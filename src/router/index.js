@@ -1,16 +1,18 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import AffectedCountry from '../views/AffectedCountry';
+import WorldTotal from '../views/WorldTotal';
 import Global from '../views/Global';
-import ComingSoon from "../views/ComingSoon";
+import Map from "../views/Map";
+import Myanmar from "../views/Myanmar"
+import Wiki from "../views/Wiki"
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'AffectedCountry',
-    component: AffectedCountry
+    name: 'WorldTotal',
+    component: WorldTotal
   },
   {
     path: '/global',
@@ -18,9 +20,19 @@ const routes = [
     component : Global
   },
   {
-    path: '/comingsoon',
-    name: "ComingSoon",
-    component : ComingSoon
+    path: '/map',
+    name: "Map",
+    component : Map
+  },
+  {
+    path: '/myanmar',
+    name: "Myanmar",
+    component : Myanmar
+  },
+  {
+    path : '/wiki',
+    name : "Wiki",
+    component : Wiki
   }
 ]
 

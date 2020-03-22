@@ -1,75 +1,83 @@
 <template>
   <div class="row">
-    <h1>Detail</h1>
-    <md-field md-inline id="search">
-      <label>Search by Country</label>
-      <md-input v-model="search"></md-input>
-    </md-field>
-
-    <div v-for="data in filteredListDetail" :key="data" class="content">
-      <p class="countryName">{{data.country_name}}</p>
-      <table>
-        <tr>
-          <td>
-            <p class="cases">Cases </p>
-          </td>
-          <td>
-            <p class="cases">- {{data.cases}}</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p class="total-recover">Recovered </p>
-          </td>
-          <td>
-            <p class="total-recover">- {{data.total_recovered}}</p>
-          </td>
-        </tr>
-        <tr>
-            <td><p class="new_case"> New Case </p></td>
-            <td><p class="new_case">- {{data.new_cases}}</p></td>
-        </tr>
-        <tr>
+    <div v-if="DataByAffectedCountryDetail">
+      <h1>Global</h1>
+      <md-field id="search">
+        <label>Search</label>
+        <md-textarea v-model="search" md-autogrow></md-textarea>
+      </md-field>
+      <div v-for="data in filteredListDetail" :key="data.index" class="content">
+        <p class="countryName">{{data.country_name}}</p>
+        <table>
+          <tr>
             <td>
-                <p class="active_case"> Active Case</p>
+              <p class="cases">Cases</p>
             </td>
             <td>
-                <p class="active_case">- {{data.active_cases}}</p>
+              <p class="cases">- {{data.cases}}</p>
             </td>
-        </tr>
-        <tr>
+          </tr>
+          <tr>
             <td>
-                <p class="serious">Serious Critical</p>
-            </td>
-            <td>
-                <p class="serious">- {{data.serious_critical}}</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p class="death">Death</p>
+              <p class="total-recover">Recovered</p>
             </td>
             <td>
-                <p class="death">- {{data.deaths}}</p>
+              <p class="total-recover">- {{data.total_recovered}}</p>
             </td>
-        </tr>
-        <tr>
+          </tr>
+          <tr>
             <td>
-                <p class="new_dead">New Death</p>
-            </td>
-            <td>
-                <p class="new_dead">- {{data.new_deaths}}</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p class="total_per">Case per 1 min</p>
+              <p class="new_case">New Case</p>
             </td>
             <td>
-                <p class="total_per">- {{data.total_cases_per_1m_population}}</p>
+              <p class="new_case">- {{data.new_cases}}</p>
             </td>
-        </tr>
-      </table>
+          </tr>
+          <tr>
+            <td>
+              <p class="active_case">Active Case</p>
+            </td>
+            <td>
+              <p class="active_case">- {{data.active_cases}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p class="serious">Serious Critical</p>
+            </td>
+            <td>
+              <p class="serious">- {{data.serious_critical}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p class="death">Death</p>
+            </td>
+            <td>
+              <p class="death">- {{data.deaths}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p class="new_dead">New Death</p>
+            </td>
+            <td>
+              <p class="new_dead">- {{data.new_deaths}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p class="total_per">Case per 1 min</p>
+            </td>
+            <td>
+              <p class="total_per">- {{data.total_cases_per_1m_population}}</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div v-else id="spinner">
+      <md-progress-spinner class="md-accent" :md-stroke="3" md-mode="indeterminate"></md-progress-spinner>
     </div>
   </div>
 </template>
@@ -82,7 +90,7 @@ export default {
   name: "AffectedCountry",
   data() {
     return {
-      DataByAffectedCountryDetail: [],
+      DataByAffectedCountryDetail: '',
       search: ""
     };
   },
@@ -112,7 +120,6 @@ export default {
   },
   computed: {
     filteredListDetail() {
-      console.log(this.DataByAffectedCountryDetail);
       return this.DataByAffectedCountryDetail.filter(name => {
         return name.country_name
           .toLowerCase()
