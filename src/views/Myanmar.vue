@@ -27,6 +27,8 @@
 </template>
 
 <script>
+/* eslint-disable no-console */
+
 export default {
   data() {
     return {
@@ -46,7 +48,6 @@ export default {
     )
       .then(response => {
         response.json().then(caseby_mm => {
-            console.log(caseby_mm);
           this.caseinMyanmar = caseby_mm.latest_stat_by_country;
         });
       })
@@ -55,4 +56,6 @@ export default {
       });
   }
 };
+/* eslint-enable no-console */
+
 </script>
