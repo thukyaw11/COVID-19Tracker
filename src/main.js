@@ -7,14 +7,24 @@ import VueMarkDown from 'vue-markdown';
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
-
+import * as VueGoogleMaps from 'vue2-google-maps'
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyBxxA4MD_m1FcF6F4QaJ1KSUn4sHK7Jwxo',
+    libraries: 'places', // This is required if you use the Autocomplete plugin
+  }
+})
 Vue.use(VueMaterial);
 Vue.use(VueMarkDown);
+const sourceOfTruth = {title: 'hello world',updatedTime : '2020-03-28 00:00:00'};
+
+
 export const eventBus = new Vue();
  
 Vue.config.productionTip = false
 
 new Vue({
   router,
+  data : sourceOfTruth,
   render: h => h(App)
 }).$mount('#app')

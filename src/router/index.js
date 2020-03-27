@@ -1,23 +1,29 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import WorldTotal from '../views/WorldTotal';
-import Global from '../views/Global';
+import DashboardGlobal from '../views/DashboardGlobal';
+import DashboardLocal from '../views/DashboardLocal';
+import CountryCases from '../views/CountryCases';
 import Map from "../views/Map";
 import Myanmar from "../views/Myanmar"
-import Wiki from "../views/Wiki"
+import Contants from "../views/Emergencycontants"
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'WorldTotal',
-    component: WorldTotal
+    name: 'DashboardGlobal',
+    component: DashboardGlobal
   },
   {
-    path: '/global',
-    name: "Global",
-    component : Global
+    path: '/local',
+    name : 'DashboardLocal',
+    component: DashboardLocal
+  },
+  {
+    path: '/countrycases',
+    name: "CountryCases",
+    component : CountryCases
   },
   {
     path: '/map',
@@ -30,9 +36,9 @@ const routes = [
     component : Myanmar
   },
   {
-    path : '/wiki',
-    name : "Wiki",
-    component : Wiki
+    path : '/contants',
+    name : "Contants",
+    component : Contants
   }
 ]
 

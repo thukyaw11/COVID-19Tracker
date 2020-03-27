@@ -1,21 +1,303 @@
 <template>
-  <div id="app" class="container">
-    <router-view></router-view>
-    <div class="phone-viewport">
-      <md-bottom-bar md-sync-route class="md-primary" md-type="shift">
-        <md-bottom-bar-item to="/" exact md-label="Dashboard" md-icon="home"></md-bottom-bar-item>
-        <md-bottom-bar-item to="/global" md-label="Global" md-icon="language"></md-bottom-bar-item>
-        <md-bottom-bar-item to="/map" md-label="Map" md-icon="map"></md-bottom-bar-item>
-        <md-bottom-bar-item to="/myanmar" md-label="Myanmar" md-icon="place"></md-bottom-bar-item>
-        <md-bottom-bar-item to="/wiki" md-label="Wiki" md-icon="book"></md-bottom-bar-item>
-      </md-bottom-bar>
+  <div id="app">
+    <div id="myNav" class="overlay">
+      <a
+        href="javascript:void(0)"
+        class="closebtn"
+        @click="closeNav()"
+        style="color: white; text-decoration: none; margin-top:20px;"
+      >&times;</a>
+      <div class="overlay-content">
+        <router-link
+          to="/"
+          style="color: white; text-decoration: none"
+          class="item-menu"
+          @click.native="closeNav()"
+        >Global</router-link>
+        <router-link
+          to="/local"
+          style="color: white; text-decoration: none"
+          class="item-menu"
+          @click.native="closeNav()"
+        >Local</router-link>
+        <router-link
+          to="/map"
+          style="color: white; text-decoration: none"
+          class="item-menu"
+          @click.native="closeNav()"
+        >Map</router-link>
+        <router-link
+          to="/countrycases"
+          style="color: white; text-decoration: none"
+          class="item-menu"
+          @click.native="closeNav()"
+        >Countries By Cases</router-link>
+        <router-link
+          to="/news"
+          style="color: white; text-decoration: none"
+          class="item-menu"
+          @click.native="closeNav()"
+        >News</router-link>
+        <router-link
+          to="/contants"
+          style="color: white; text-decoration: none"
+          class="item-menu"
+          @click.native="closeNav()"
+        >Contants</router-link>
+      </div>
     </div>
+
+    <div class="headercontainer">
+      <div class="menubutton" style="font-size:24px;cursor:pointer" @click="openNav()">
+        <i class="material-icons">sort</i>
+      </div>
+      <Header v-bind:title="this.$root.$data.title" />
+
+      <div class="space">
+        <div
+          class="Emergencybutton"
+          onclick="window.location.href = '../covid19/Emergencycontacts.html';"
+        >
+          <i class="material-icons" id="Emergencyicon">add_ic_call</i>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <router-view></router-view>
   </div>
 </template>
 
+<script>
+import Header from "./components/Header";
+import { store } from "./store/store.js";
+export default {
+  data() {
+    return {
+      storeState: store
+    };
+  },
+  components: {
+    Header
+  },
+  methods: {
+    openNav: function() {
+      document.getElementById("myNav").style.width = "100%";
+    },
+    closeNav: function() {
+      document.getElementById("myNav").style.width = "0%";
+    }
+  },
+  mounted() {
+    console.log(this.$root.$data.title);
+  }
+};
+</script>
+
 
 <style>
-body{
+.spinner{
+  text-align: center;
+  margin-top: 150px;
+}
+#app {
+  font-family: "Poppins", sans-serif;
+  color: #212121;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+#myNav {
+  color: white;
+}
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #3f51b5;
+  color: white;
+  opacity: 1;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.overlay-content {
+  line-height: 40px;
+  position: relative;
+  top: 10%;
+  width: 100%;
+  margin-left: 35px;
+  margin-top: 40px;
+  color: white;
+  z-index: inherit;
+}
+
+.overlay .item-menu {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 20px;
+  display: block;
+  transition: 0.3s;
+  color: white;
+}
+
+.overlay a:hover,
+.overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+  padding: 8px;
+}
+hr {
+  border: 1px solid #eee;
+}
+.flex-container {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 50px;
+}
+.headercontainer {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 50px;
+}
+.menubutton {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  margin-left: 35px;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.space {
+  display: flex;
+  margin-right: 35px;
+  justify-content: flex-end;
+  flex: 1;
+  align-items: center;
+}
+.Emergencybutton {
+  display: flex;
+  background-color: red;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+#Emergencyicon {
+  display: flex;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #fff;
+}
+
+.toggle {
+  flex-direction: row;
+  display: flex;
+  flex: 1;
+  background-color: #f5f5f5;
+  height: 90px;
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+}
+.global {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.globalheading {
+  margin-top: 10px;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.local {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.container {
+  margin-top: 10px;
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 600px;
+}
+.ConfirmedCaseContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100px;
+  margin-left: 35px;
+}
+.RecoverCase {
+  background-color: #e8f5e9;
+  display: flex;
+  flex: 1;
+  margin-left: 10px;
+  border-radius: 15px;
+  margin-right: 10px;
+  height: 90px;
+}
+.DeathCase {
+  background-color: #ffebee;
+  display: flex;
+  flex: 1;
+  margin-left: 10px;
+  border-radius: 15px;
+  margin-right: 10px;
+  margin-top: 5px;
+  height: 93px;
+}
+.caseheading {
+  font-size: 16px;
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+}
+.number {
+  display: flex;
+  flex: 2;
+  align-items: center;
+}
+.activedots {
+  margin-top: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50px;
+  background-color: #3f51b5;
+}
+.lcalactivedots {
+  margin-top: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50px;
+  background-color: #eee;
+}
+/* body{
   background: white;
 }
 #app {
@@ -91,9 +373,9 @@ body{
   padding-top: 60px;
   text-align: center;
 }
-#spinner{
+.loading_spinner{
   text-align: center;
-  padding-top: 70px;
+  padding-top: 100px;
 }
 .md-card.md-table{
   height: 1000px;
@@ -112,5 +394,5 @@ body{
 p{
   font-size: 20px;
   line-height: 28px;
-}
+} */
 </style>

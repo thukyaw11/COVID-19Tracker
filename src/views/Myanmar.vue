@@ -2,25 +2,29 @@
   <div class="caseinmm">
     <div v-if="caseinMyanmar.length > 0" id="mmwrapper">
       <div v-for="casesmm in caseinMyanmar" v-bind:key="casesmm.id">
-          <h1>{{casesmm.total_cases}}</h1>
+          <h1 v-if="caseinMyanmar[0].total_cases">{{casesmm.total_cases}}</h1>
+          <h1 v-else>0</h1>
           <h3 class="total">Infected</h3>
           <br>
-          <h1>{{casesmm.total_deaths}}</h1>
+          <h1 v-if="caseinMyanmar[0].total_deaths">{{casesmm.total_deaths}}</h1>
+          <h1 v-else>0</h1>
           <h3 class="death">Deaths</h3>
           <br>
-          <h1>{{casesmm.new_deaths}}</h1>
+          <h1 v-if="caseinMyanmar[0].new_deaths">{{casesmm.new_deaths}}</h1>
+          <h1 v-else>0</h1>
           <h3 class="death">New Deaths</h3>
           <br>
-          <h1>{{casesmm.serious_critical}}</h1>
+          <h1 v-if="caseinMyanmar[0].serious_critical">{{casesmm.serious_critical}}</h1>
+          <h1 v-else>0</h1>
           <h3 class="newCase">Serious Critical</h3>
           <br>
-          <h1>{{casesmm.total_recovered}}</h1>
+          <h1 v-if="caseinMyanmar[0].total_recovered">{{casesmm.total_recovered}}</h1>
+          <h1 v-else>0</h1>
           <h3 class="recover">Recovered</h3>
         </div>
     </div>
-    <div id="mmwrapper" v-else>
-        <img src="../assets/preview.gif" alt="you are lucky myanmar">
-        <h3 style="color: grey;">No data yet</h3>
+    <div v-else class="loading_spinner">
+      <md-progress-spinner class="md-accent" :md-stroke="3" md-mode="indeterminate"></md-progress-spinner>
     </div>
 
   </div>
@@ -49,6 +53,7 @@ export default {
       .then(response => {
         response.json().then(caseby_mm => {
           this.caseinMyanmar = caseby_mm.latest_stat_by_country;
+          console.log(this.caseinMyanmar);
         });
       })
       .catch(err => {

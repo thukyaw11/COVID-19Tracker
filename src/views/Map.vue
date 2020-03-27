@@ -1,48 +1,22 @@
 <template>
   <div class="map">
-      <img src="../assets/coming-soon.png" alt="coming soon" style="margin-top: 150px;">
+    <vue-google-maps :center="{lat: 1.38, lng: 103.8}" :zoom="12" style="width: 100%; height: 500px"/>
   </div>
 </template>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
  <script>
- /* global google */
+  import VueGoogleMaps from 'vue2-google-maps';
+
 export default {
+  components : {
+    VueGoogleMaps
+  },
   data() {
-    return {};
-  },
-  mounted() {
-    google.charts.load("current", {
-      packages: ["geochart"],
-      // Note: you will need to get a mapsApiKey for your project.
-      // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
-      mapsApiKey: "AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY"
-    });
-    google.charts.setOnLoadCallback(this.drawRegionsMap);
-  },
-  methods : {
-    drawRegionsMap: function() {
-      var data = google.visualization.arrayToDataTable([
-        ["Country", "Case"],
-        ["Germany", 1000],
-        ["United States", 300],
-        ["Brazil", 400],
-        ["Canada", 500],
-        ["France", 600],
-        ["RU", 700],
-        ["Myanmar", 4000]
-      ]);
-      console.log(data);
-
-      var options = {
-        colorAxis: { colors: ["red", "brown", "black"] }
-      };
-
-      var chart = new google.visualization.GeoChart(
-        document.getElementById("regions_div")
-      );
-      console.log(chart);
-      chart.draw(data, options);
-    }
+    return {
+      // Array will be automatically processed with visualization.arrayToDataTable function
+      //AIzaSyBxxA4MD_m1FcF6F4QaJ1KSUn4sHK7Jwxo
+    };
   }
 };
 </script>
+
