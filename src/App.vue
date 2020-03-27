@@ -69,13 +69,7 @@
 
 <script>
 import Header from "./components/Header";
-import { store } from "./store/store.js";
 export default {
-  data() {
-    return {
-      storeState: store
-    };
-  },
   components: {
     Header
   },
