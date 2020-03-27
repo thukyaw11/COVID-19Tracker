@@ -80,9 +80,6 @@ export default {
     closeNav: function() {
       document.getElementById("myNav").style.width = "0%";
     }
-  },
-  mounted() {
-    console.log(this.$root.$data.title);
   }
 };
 </script>
