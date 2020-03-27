@@ -53,7 +53,6 @@ export default {
       .then(response => {
         response.json().then(caseby_mm => {
           this.caseinMyanmar = caseby_mm.latest_stat_by_country;
-          console.log(this.caseinMyanmar);
         });
       })
       .catch(err => {

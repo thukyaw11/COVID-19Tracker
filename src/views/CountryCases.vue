@@ -87,7 +87,6 @@ export default {
     )
       .then(response => {
         response.json().then(data => {
-          console.log(data.countries_stat);
           this.DataByAffectedCountryDetail = data.countries_stat;
           this.setData(data.countries_stat);
         });
@@ -101,18 +100,17 @@ export default {
     setData(data) {
       this.DataByAffectedCountryDetail = data;
       this.updatedTime = this.$root.$data.updatedTime;
-      console.log(this.updatedTime);
+
     },
     toggleData() {
       var coll = document.getElementsByClassName("collapsible");
       var i;
-      console.log(coll);
-      console.log(coll.length);
+
       for (i = 0; i < coll.length; i++) {
         coll[i].addEventListener("click", function() {
           this.classList.toggle("active");
           var content = this.nextElementSibling;
-          console.log(content);
+
           if (content.style.maxHeight) {
             content.style.maxHeight = null;
           } else {
