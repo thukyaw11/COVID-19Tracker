@@ -16,6 +16,9 @@ export default {
       // Array will be automatically processed with visualization.arrayToDataTable function
       //AIzaSyBxxA4MD_m1FcF6F4QaJ1KSUn4sHK7Jwxo
     };
+  },
+  mounted(){
+    this.$root.$data.title = "Map";
   }
 };
 </script>

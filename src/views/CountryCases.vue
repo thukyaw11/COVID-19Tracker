@@ -122,6 +122,7 @@ export default {
   },
   computed: {
     filteredListDetail() {
+      console.log(this.DataByAffectedCountryDetail);
       return this.DataByAffectedCountryDetail.filter(name => {
         return name.country_name
           .toLowerCase()

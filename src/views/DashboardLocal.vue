@@ -108,6 +108,8 @@ export default {
       .catch(err => {
         console.log(err);
       });
+
+    this.$root.$data.title = "Local Dashboard";
   }
 };
 /* eslint-enable no-console */

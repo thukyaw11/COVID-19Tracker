@@ -7,6 +7,9 @@ import VueMarkDown from 'vue-markdown';
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
+import ReadMore from 'vue-read-more';
+
+Vue.use(ReadMore);
 Vue.use(VueMaterial);
 Vue.use(VueMarkDown);
 const sourceOfTruth = {title: 'hello world',updatedTime : '2020-03-28 00:00:00'};

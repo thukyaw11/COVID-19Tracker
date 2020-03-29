@@ -103,7 +103,7 @@ export default {
         console.log(err);
       });
 
-    this.$root.$data.title = "Dashboard";
+    this.$root.$data.title = "Global Dashboard";
   },
   methods: {
     setData(data) {
