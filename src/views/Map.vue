@@ -1,10 +1,30 @@
 <template>
-<div class="iframe-container">
+<!--<div class="iframe-container">
   <iframe src="https://datawrapper.dwcdn.net/Z16wj/8/" allowfullscreen></iframe>
-</div>  
+</div>-->
+
+<div>
+  <div id="map"></div>
+</div>
 
 </template>
 
+<script>
+  export default
+  {
+    created() {
+    var scripts = [
+      "countrymap.js",
+      "mapdata.js"
+    ];
+    scripts.forEach(script => {
+      let tag = document.createElement("script");
+      tag.setAttribute("src", script);
+      document.head.appendChild(tag);
+    });
+  }
+  }
+</script>
 
 <style scoped>
 .iframe-container{
@@ -22,5 +42,4 @@
    overflow: hidden;
 }
 
-</style>
-
+</style>  
