@@ -17,7 +17,7 @@
             class="number"
             style="font-size:42px;"
             v-if="caseinMyanmar[0].new_cases"
-          >{{casemm.new_cases}}</div>
+          >{{casesmm.new_cases}}</div>
           <div class="number" style="font-size:42px;" v-else>0</div>
         </div>
         <div class="RecoverCase">

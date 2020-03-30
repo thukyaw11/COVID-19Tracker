@@ -6,37 +6,31 @@
           <h1>Latest</h1>
         </div>
         <div class="dateflex2">
-          <h5 style="color:#757575">22 march 2020</h5>
+          <h5 style="color:#757575">{{this.today}}</h5>
         </div>
       </div>
-
-      <div class="contentcontainer" onclick="location.href='http://www.google.com';">
-        <div class="contentflex1">
-          <p align="justify">
-            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-            The point of using Lorem Ipsum is that it has a normal distribution of letters, as opposed to using 'Content here, content here',
-            making it look like readable English.
-          </p>
-        </div>
-        <div class="contentflex2">
-          <i class="material-icons" style="font-size:20px;">arrow_forward_ios</i>
+      <div v-if="latestNews">
+        <div v-for="news in latestNews" v-bind:key="news._id">
+          <a
+            class="contentcontainer"
+            :href="linkIt(news.url)"
+            style="color : black; text-decoration: none;"
+          >
+            <div class="contentflex1">
+              <p align="justify">{{latestNews}}</p>
+            </div>
+            <div class="contentflex2">
+              <i class="material-icons" style="font-size:20px;">arrow_forward_ios</i>
+            </div>
+          </a>
         </div>
       </div>
-
-      <div class="contentcontainer" onclick="location.href='http://www.google.com';">
-        <div class="contentflex1">
-          <p>
-            Lorem Ipsum is simply dummy text of
-            the printing and typesetting industry.
-          </p>
-        </div>
-        <div class="contentflex2">
-          <i class="material-icons" style="font-size:20px;">arrow_forward_ios</i>
-        </div>
+      <div v-else class="contentcontainer">
+        <h3>No Post Yet</h3>
       </div>
 
       <h1 style="margin-left: 5px;">Yesterday</h1>
-      <div v-for="news in newsRequest" v-bind:key="news._id">
+      <div v-for="news in yesterdayNews" v-bind:key="news._id">
         <a
           class="contentcontainer"
           :href="linkIt(news.url)"
@@ -56,7 +50,7 @@
       </div>
 
       <h1 style="margin-left: 5px;">Uploaded</h1>
-      <div v-for="news in newsRequest" v-bind:key="news._id">
+      <div v-for="news in uploadedNews" v-bind:key="news._id">
         <a
           class="contentcontainer"
           :href="linkIt(news.url)"
@@ -86,11 +80,14 @@ export default {
   data() {
     return {
       contracted: true,
-      baseURL: "http://18.141.141.60/news",
-      newsRequest: "",
+      baseURL: "http://18.141.10.115/news",
+      newsRequest: [],
+      latestNews: [],
+      yesterdayNews: [],
+      uploadedNews: [],
       newsReqMessage: "",
-      today : '',
-      yesterday : '',
+      today: "",
+      yesterday: ""
     };
   },
   mounted() {
@@ -101,6 +98,9 @@ export default {
 
     this.today = todayDate.toDateString();
     this.yesterday = yesterdayDate.toDateString();
+    var isoToday = todayDate.toISOString().slice(0, 10);
+    var isoYesterday = yesterdayDate.toISOString().slice(0, 10);
+
     console.log("today " + this.today);
     console.log("yesterday " + this.yesterday);
     //change the nav bar content
@@ -109,27 +109,33 @@ export default {
 
     axios.all([this.fetchNews()]).then(
       axios.spread(newsContent => {
-
         this.newsRequest = newsContent.data;
         newsContent.data.forEach(dates => {
           var mydate = new Date(dates.date);
-          console.log(mydate.toDateString());
-            if(mydate == this.today){
-              console.log("latest" + mydate);
-            }
 
-            if(mydate == this.yesterday){
-              console.log("today" + mydate);
-            }
+          if (mydate.toDateString() == this.today) {
+            this.latestNews = this.newsRequest.filter(function(date) {
+              return date.date == isoToday;
+            });
+          }
 
-            if(mydate != this.yesterday && mydate != this.today){
-              console.log("uploaded" + mydate)
-            }
+          if (mydate.toDateString() == this.yesterday) {
+            this.yesterdayNews = this.newsRequest.filter(function(date) {
+              return date.date == isoYesterday;
+            });
+          }
+
+          if (
+            mydate.toDateString() != this.yesterday &&
+            mydate.toDateString() != this.today
+          ) {
+            this.uploadedNews = this.newsRequest.filter(function(date) {
+              return date.date != isoYesterday && date.date != isoToday;
+            });
+          }
         });
       })
     );
-
-
   },
   methods: {
     fetchNews() {
@@ -143,7 +149,6 @@ export default {
 };
 
 /* eslint-enable no-console */
-
 </script>
 
 
@@ -220,6 +225,7 @@ export default {
   flex-direction: row;
 }
 .datecontainer {
+  margin-top: 80px;
   margin-left: 5px;
   margin-right: 5px;
   display: flex;

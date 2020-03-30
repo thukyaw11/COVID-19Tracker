@@ -62,7 +62,7 @@
         </div>
       </div>
     </div>
-    <hr />
+
     <router-view></router-view>
   </div>
 </template>
@@ -146,9 +146,7 @@ export default {
   font-size: 60px;
   padding: 8px;
 }
-hr {
-  border: 1px solid #eee;
-}
+
 .flex-container {
   margin-top: 15px;
   display: flex;
@@ -157,11 +155,14 @@ hr {
   height: 50px;
 }
 .headercontainer {
-  margin-top: 15px;
+  top: 0;
   display: flex;
   flex-direction: row;
-  width: 100%;
-  height: 50px;
+  width:100%;
+  height:70px;
+  background-color: #fff;
+  position: fixed;
+  border-bottom: 1px solid #eee;
 }
 .menubutton {
   display: flex;
@@ -229,14 +230,15 @@ hr {
   justify-content: center;
   flex-direction: column;
 }
-.container {
-  margin-top: 10px;
-  margin-bottom: 100px;
-  display: flex;
+.container
+{
+  margin-top: 80px;
+  margin-bottom:100px;
+  display:flex;
   flex-direction: column;
-  flex: 1;
-  height: 600px;
+  flex:1;
 }
+
 .ConfirmedCaseContainer {
   display: flex;
   flex-direction: column;
