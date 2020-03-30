@@ -2,7 +2,6 @@
   <div id="app">
     <div id="myNav" class="overlay">
       <a
-        href="javascript:void(0)"
         class="closebtn"
         @click="closeNav()"
         style="color: white; text-decoration: none; margin-top:20px;"
@@ -44,6 +43,12 @@
           class="item-menu"
           @click.native="closeNav()"
         >Contants</router-link>
+        <router-link
+          to="/aboutus"
+          style="color: white; text-decoration: none"
+          class="item-menu"
+          @click.native="closeNav()"
+        >About Us </router-link>
       </div>
     </div>
 
@@ -104,7 +109,7 @@ export default {
   height: 100%;
   width: 0;
   position: fixed;
-  z-index: 1;
+  z-index: 10000;
   top: 0;
   left: 0;
   background-color: #3f51b5;
@@ -158,17 +163,19 @@ export default {
   top: 0;
   display: flex;
   flex-direction: row;
+  z-index: 9000;
   width:100%;
   height:70px;
   background-color: #fff;
   position: fixed;
   border-bottom: 1px solid #eee;
+  
 }
 .menubutton {
   display: flex;
   flex: 1;
   align-items: center;
-  margin-left: 35px;
+  margin-left: 20px;
 }
 
 .heading {
@@ -178,7 +185,7 @@ export default {
 }
 .space {
   display: flex;
-  margin-right: 35px;
+  margin-right: 20px;
   justify-content: flex-end;
   flex: 1;
   align-items: center;
@@ -232,38 +239,37 @@ export default {
 }
 .container
 {
-  margin-top: 80px;
-  margin-bottom:100px;
+  margin: 80px auto;
+  width:95%;
+  margin-bottom: 100px;
+  align-items: center;
+  height: auto;
+}
+.ConfirmedCaseContainer
+{
   display:flex;
   flex-direction: column;
-  flex:1;
+  height: 120px;
+  margin-left: 20px;
 }
-
-.ConfirmedCaseContainer {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  height: 100px;
-  margin-left: 35px;
-}
-.RecoverCase {
-  background-color: #e8f5e9;
-  display: flex;
-  flex: 1;
-  margin-left: 10px;
+.RecoverCase
+{
+  display:flex;
+  height: 120px;
   border-radius: 15px;
-  margin-right: 10px;
-  height: 90px;
-}
-.DeathCase {
-  background-color: #ffebee;
-  display: flex;
-  flex: 1;
-  margin-left: 10px;
-  border-radius: 15px;
-  margin-right: 10px;
   margin-top: 5px;
-  height: 93px;
+  background-color: #E8F5E9;
+
+
+}
+.DeathCase
+{
+  background-color: #FFEBEE;
+  display:flex;
+  height: 120px;
+  border-radius: 15px;
+  margin-top: 5px;
+
 }
 .caseheading {
   font-size: 16px;
