@@ -54,12 +54,12 @@
       <Header v-bind:title="this.$root.$data.title" />
 
       <div class="space">
-        <div
-          class="Emergencybutton"
-          onclick="window.location.href = '../covid19/Emergencycontacts.html';"
-        >
+        <router-link to="/contants" style="text-decoration: none;">
+        <div class="Emergencybutton">
           <i class="material-icons" id="Emergencyicon">add_ic_call</i>
         </div>
+        </router-link>
+
       </div>
     </div>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="container-country">
+  <div class="container">
     <div v-if="DataByAffectedCountryDetail">
       <form class="searchcontainer">
         <div class="placeholdercontainer">
@@ -147,6 +147,7 @@ export default {
   width: 100%;
   bottom: 0px;
 }
+
 .global {
   display: flex;
   flex: 1;

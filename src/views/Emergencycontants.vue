@@ -1,5 +1,5 @@
 <template>
-  <div class="container_contact">
+  <div class="container">
     <form class="searchcontainer">
       <div class="placeholdercontainer">
         <input type="text" id="search-bar" placeholder="Search ..." v-model="search" />
@@ -55,7 +55,7 @@ export default {
   methods: {
     fetchContent() {
       this.request_msg = "ph no request began";
-      return axios.get("http://18.141.141.60/contact/list/");
+      return axios.get("http://18.141.10.115/contact/list/");
     }
   },
   computed: {

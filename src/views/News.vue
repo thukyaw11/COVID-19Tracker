@@ -9,7 +9,7 @@
           <h5 style="color:#757575">{{this.today}}</h5>
         </div>
       </div>
-      <div v-if="latestNews">
+      <div v-if="latestNews.length > 0">
         <div v-for="news in latestNews" v-bind:key="news._id">
           <a
             class="contentcontainer"
@@ -17,7 +17,12 @@
             style="color : black; text-decoration: none;"
           >
             <div class="contentflex1">
-              <p align="justify">{{latestNews}}</p>
+
+                <div class="contentdescription">
+                  <p>{{news.title}}</p>
+                </div>
+                <div class="contentsource">source : {{news.source}}</div>
+            
             </div>
             <div class="contentflex2">
               <i class="material-icons" style="font-size:20px;">arrow_forward_ios</i>
@@ -26,47 +31,57 @@
         </div>
       </div>
       <div v-else class="contentcontainer">
-        <h3>No Post Yet</h3>
+        <h3 style="padding: 0px 30px">No Post Yet</h3>
       </div>
 
       <h1 style="margin-left: 5px;">Yesterday</h1>
-      <div v-for="news in yesterdayNews" v-bind:key="news._id">
-        <a
-          class="contentcontainer"
-          :href="linkIt(news.url)"
-          style="color : black; text-decoration: none;"
-        >
-          <div class="contentflex1">
-            <div class="contentdescription">
-              <p>{{news.title}}</p>
+      <div v-if="yesterdayNews.length > 0">
+        <div v-for="news in yesterdayNews" v-bind:key="news._id">
+          <a
+            class="contentcontainer"
+            :href="linkIt(news.url)"
+            style="color : black; text-decoration: none;"
+          >
+            <div class="contentflex1">
+              <div class="contentdescription">
+                <p>{{news.title}}</p>
+              </div>
+              <div class="contentsource">source : {{news.source}}</div>
             </div>
-            <div class="contentsource">Source: Eleven News</div>
-          </div>
 
-          <div class="contentflex2">
-            <i class="material-icons" style="font-size:20px;">arrow_forward_ios</i>
-          </div>
-        </a>
+            <div class="contentflex2">
+              <i class="material-icons" style="font-size:20px;">arrow_forward_ios</i>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div v-else class="contentcontainer">
+        <h3 style="padding: 0px 30px">No Post Yet</h3>
       </div>
 
       <h1 style="margin-left: 5px;">Uploaded</h1>
-      <div v-for="news in uploadedNews" v-bind:key="news._id">
-        <a
-          class="contentcontainer"
-          :href="linkIt(news.url)"
-          style="color : black; text-decoration: none;"
-        >
-          <div class="contentflex1">
-            <div class="contentdescription">
-              <p>{{news.title}}</p>
+      <div v-if="uploadedNews.length > 0">
+        <div v-for="news in uploadedNews" v-bind:key="news._id">
+          <a
+            class="contentcontainer"
+            :href="linkIt(news.url)"
+            style="color : black; text-decoration: none;"
+          >
+            <div class="contentflex1">
+              <div class="contentdescription">
+                <p>{{news.title}}</p>
+              </div>
+              <div class="contentsource">source : {{news.source}}</div>
             </div>
-            <div class="contentsource">Source: Eleven News</div>
-          </div>
 
-          <div class="contentflex2">
-            <i class="material-icons" style="font-size:20px;">arrow_forward_ios</i>
-          </div>
-        </a>
+            <div class="contentflex2">
+              <i class="material-icons" style="font-size:20px;">arrow_forward_ios</i>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div v-else class="contentcontainer">
+        <h3 style="padding: 0px 30px">No Post Yet</h3>
       </div>
     </div>
   </div>

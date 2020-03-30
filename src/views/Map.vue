@@ -1,25 +1,26 @@
 <template>
-  <div class="map">
-    <vue-google-maps :center="{lat: 1.38, lng: 103.8}" :zoom="12" style="width: 100%; height: 500px"/>
-  </div>
+<div class="iframe-container">
+  <iframe src="https://datawrapper.dwcdn.net/Z16wj/8/" allowfullscreen></iframe>
+</div>  
+
 </template>
 
- <script>
-  import VueGoogleMaps from 'vue2-google-maps';
 
-export default {
-  components : {
-    VueGoogleMaps
-  },
-  data() {
-    return {
-      // Array will be automatically processed with visualization.arrayToDataTable function
-      //AIzaSyBxxA4MD_m1FcF6F4QaJ1KSUn4sHK7Jwxo
-    };
-  },
-  mounted(){
-    this.$root.$data.title = "Map";
-  }
-};
-</script>
+<style scoped>
+.iframe-container{
+  margin-top: 90px;
+  width: 100%;
+  height: 100px;
+}
+.iframe-container iframe {
+   border: 0;
+   height: 100%;
+   left: 0;
+   position: absolute;
+   top: 0;
+   width: 100%;
+   overflow: hidden;
+}
+
+</style>
 
