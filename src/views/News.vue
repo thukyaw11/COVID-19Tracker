@@ -95,7 +95,7 @@ export default {
   data() {
     return {
       contracted: true,
-      baseURL: "http://18.141.10.115/news",
+      baseURL: "https://18.141.10.115/news",
       newsRequest: [],
       latestNews: [],
       yesterdayNews: [],

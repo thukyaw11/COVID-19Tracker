@@ -6,6 +6,7 @@ import CountryCases from '../views/CountryCases';
 import News from '../views/News';
 import Map from "../views/Map";
 import Contants from "../views/Emergencycontants"
+import AboutUs from "../views/AboutUs"
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
     path : '/news',
     name : "News",
     component : News
+  },
+  {
+    path : '/aboutus',
+    name : "AboutUs",
+    component : AboutUs
   }
 ]
 

@@ -55,7 +55,7 @@ export default {
   methods: {
     fetchContent() {
       this.request_msg = "ph no request began";
-      return axios.get("http://18.141.10.115/contact/list/");
+      return axios.get("https://18.141.10.115/contact/list/");
     }
   },
   computed: {
