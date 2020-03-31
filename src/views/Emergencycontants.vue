@@ -63,7 +63,7 @@ export default {
   methods: {
     fetchContent() {
       this.request_msg = "ph no request began";
-      return axios.get("https://covid19mm.info/contact/list");
+      return axios.get("https://covid19mm.info/api/contact/list");
     }
   },
   computed: {

@@ -95,7 +95,7 @@ export default {
   data() {
     return {
       contracted: true,
-      baseURL: "https://covid19mm.info/news",
+      baseURL: "https://covid19mm.info/api/news",
       newsRequest: [],
       latestNews: [],
       yesterdayNews: [],
