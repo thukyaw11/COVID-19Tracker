@@ -47,7 +47,8 @@
         <div class="caseheading">Countries</div>
         <div class="number" style="font-size:42px; color:#616161">{{affectedCountry}}</div>
       </div>
-      <p style="text-align:center; color:#757575;">Last Updated : {{addHour(WorldTotal.statistic_taken_at)}}</p>
+      <p style="text-align:center; color:#757575; margin-bottom:100px;">Last Updated : {{addHour(WorldTotal.statistic_taken_at)}}</p>
+      <br />
     </div>
     <div v-else class="spinner">
       <md-progress-spinner :md-diameter="30" :md-stroke="3" md-mode="indeterminate"></md-progress-spinner>
@@ -162,13 +163,5 @@ export default {
   align-items: center;
   justify-content: flex-end;
   margin-right: 10px;
-}
-.container
-{
-    margin-top: 80px;
-    margin-bottom: 100px;
-    margin-left: 8px;
-    margin-right: 8px;
-
 }
 </style>

@@ -7,7 +7,7 @@
         </div>
         <div class="dateflex2">
           <h5 style="color:#757575">{{this.today}}</h5>
-        </div>
+        </div><br/>
       </div>
       <div v-if="latestNews.length > 0">
         <div v-for="news in latestNews" v-bind:key="news._id">
@@ -19,7 +19,7 @@
             <div class="contentflex1">
 
                 <div class="contentdescription">
-                  <p>{{news.title}}</p>
+                  <p class="comment more">{{news.title}}</p>
                 </div>
                 <div class="contentsource">source : {{news.source}}</div>
             
@@ -77,12 +77,14 @@
             <div class="contentflex2">
               <i class="material-icons" style="font-size:20px;">arrow_forward_ios</i>
             </div>
+            
           </a>
         </div>
       </div>
       <div v-else class="contentcontainer">
         <h3 style="padding: 0px 30px">No Post Yet</h3>
       </div>
+      <br/>
     </div>
   </div>
 </template>
@@ -106,6 +108,8 @@ export default {
     };
   },
   mounted() {
+
+
     const todayDate = new Date();
     const yesterdayDate = new Date(todayDate);
 
@@ -170,6 +174,7 @@ export default {
 
 
 <style scoped>
+
 .contentflex1 {
   display: flex;
   flex: 4;
@@ -177,6 +182,8 @@ export default {
   flex-direction: column;
 }
 .contentdescription {
+  
+  width: 100%; 
   display: flex;
   flex: 1;
 }
@@ -203,16 +210,14 @@ export default {
   flex: 10;
 }
 .contentcontainer {
-  display: flex;
-  flex: 1;
+  display:flex;
+  background-color:#eee;
   flex-direction: row;
   width: 100%;
-  height: auto;
-  background-color: #f5f5f5;
+  height:150px;
   border-radius: 15px;
   margin-bottom: 10px;
-  padding: 18px 2px;
-  line-height: 25px;
+  padding:5px 0px;
   font-size: 15px;
 }
 .contentflex2 {
@@ -239,7 +244,7 @@ export default {
   margin-left: 5px;
   margin-right: 5px;
   display: flex;
-  flex: 1;
+  flex:1;
   flex-direction: row;
 }
 .dateflex1 {

@@ -3,7 +3,7 @@
     <div v-if="DataByAffectedCountryDetail">
       <form class="searchcontainer">
         <div class="placeholdercontainer">
-          <input type="text" id="search-bar" placeholder="Search ..." v-model="search" />
+          <input type="text" id="search-bar" style="font-size:14px;" placeholder="Search ..." v-model="search" />
         </div>
         <div class="searchicon">
           <i class="material-icons">search</i>
@@ -33,7 +33,7 @@
           </div>
           <div class="flex2">
             <div class="box">
-              <div class="cases">Serious Critical</div>
+              <div class="cases" style="font-size:12px;">Serious Critical</div>
               <div class="casesnumber">{{data.serious_critical}}</div>
             </div>
             <div class="box">
@@ -41,7 +41,7 @@
               <div class="casesnumber">{{data.new_deaths}}</div>
             </div>
             <div class="box">
-              <div class="cases">Case per 1 min</div>
+              <div class="cases" style="font-size:12px;">Case per 1 min</div>
               <div class="casesnumber">{{data.total_cases_per_1m_population}}</div>
             </div>
           </div>

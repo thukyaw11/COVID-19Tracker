@@ -2,7 +2,7 @@
   <div class="container-contacts">
     <form class="searchcontainer">
       <div class="placeholdercontainer">
-        <input type="text" id="search-bar" placeholder="Search ..." v-model="search" />
+        <input type="text" id="search-bar" style="font-size:14px;" placeholder="Search ..." v-model="search" />
       </div>
       <div class="searchicon">
         <i class="material-icons">search</i>

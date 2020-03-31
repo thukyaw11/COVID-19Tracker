@@ -295,7 +295,7 @@
       </div>
     </div>
 
-    <br />
+
     <div class="apisourcecontainer">
       <div class="apicontainer1">
         <div class="box1">Statistic API</div>
@@ -381,6 +381,7 @@
 
     <br />
     <p style="color:#757575;">Copyright 2020 Covid 19 | Myanmar | UIT-SU</p>
+    <br/>
   </div>
 </template>
 
@@ -395,25 +396,22 @@ export default {
 
 <style scoped>
 .container-aboutus {
-  width: 90%;
-  font-family: "Poppins", sans-serif;
-  color: #212121;
-  height: 1000px;
-  font-size: 14px;
-  margin-top: 80px;
-  margin-bottom: 100px;
-  margin-left: 10px;
-  margin-right: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
+    margin:100px auto;
+    display: flex;
+    width:90%;
+    flex-direction: column;
+    align-items: center;
+  
+    
+ 
 }
 
 .versioncontent {
   width: 100%;
-  height: 150px;
+  height: 200px;
   display: flex;
-  flex: 1;
+
   flex-direction: column;
 }
 .numberflex {
@@ -432,6 +430,7 @@ export default {
   padding-top: 15px;
 }
 .aboutcontent {
+  height:250px;
   display: flex;
   flex-direction: column;
 }
@@ -466,13 +465,12 @@ export default {
   width: 100%;
   height: 165px;
   display: flex;
-  flex: 1;
   flex-direction: column;
 }
 .apicontainer1 {
   display: flex;
-  flex: 1;
-  background-color: #f5f5f5;
+  height:80px;
+  background-color: #eee;
   flex-direction: column;
   margin-bottom: 10px;
   border-radius: 15px;
@@ -492,8 +490,8 @@ export default {
 .apicontainer2 {
   flex-direction: column;
   display: flex;
-  flex: 1;
-  background-color: #f5f5f5;
+  height:80px;
+  background-color: #eee;
   border-radius: 15px;
 }
 

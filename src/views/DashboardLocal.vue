@@ -73,7 +73,8 @@
           <div class="number" style="font-size:42px;" v-else>0</div>
         </div>
 
-        <p style="text-align:center; color:#757575;">Last updated: {{addHour(casesmm.record_date)}} </p>
+        <p style="text-align:center; color:#757575; margin-bottom:100px;">Last updated: {{addHour(casesmm.record_date)}} </p>
+        <br/>
       </div>
     </div>
     <div v-else class="spinner">
@@ -165,13 +166,5 @@ export default {
   align-items: center;
   justify-content: flex-end;
   margin-right: 10px;
-}
-.container
-{
-    margin-top: 80px;
-    margin-bottom: 100px;
-    margin-left: 8px;
-    margin-right: 8px;
-
 }
 </style>
