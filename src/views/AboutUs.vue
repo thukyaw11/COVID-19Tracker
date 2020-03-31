@@ -296,6 +296,8 @@
     </div>
 
     <br />
+    <br />
+    <br />
     <div class="apisourcecontainer">
       <div class="apicontainer1">
         <div class="box1">Statistic API</div>
@@ -430,12 +432,10 @@ export default {
 }
 .aboutcontent {
   display: flex;
-  flex: 1;
   flex-direction: column;
 }
 .aboutheader {
   display: flex;
-  flex: 1;
   flex-direction: row;
   font-size: 24px;
   padding: 0;

@@ -164,6 +164,6 @@ export default {
   margin-right: 10px;
 }
 .container{
-  height: 700px;
+  height: 100%;
 }
 </style>

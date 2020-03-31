@@ -207,7 +207,7 @@ export default {
   flex: 1;
   flex-direction: row;
   width: 100%;
-  min-height: 80px;
+  min-height: 120px;
   background-color: #f5f5f5;
   border-radius: 15px;
   margin-bottom: 10px;
