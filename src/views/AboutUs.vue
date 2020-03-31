@@ -295,7 +295,6 @@
       </div>
     </div>
 
-    
     <br />
     <div class="apisourcecontainer">
       <div class="apicontainer1">
@@ -396,15 +395,18 @@ export default {
 
 <style scoped>
 .container-aboutus {
-  display: flex;
-  flex-direction: column;
-  margin: 80px auto 20px;
   width: 90%;
-  align-items: center;
   font-family: "Poppins", sans-serif;
   color: #212121;
   height: 1000px;
   font-size: 14px;
+  margin-top: 80px;
+  margin-bottom: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .versioncontent {

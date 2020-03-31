@@ -166,4 +166,12 @@ export default {
   justify-content: flex-end;
   margin-right: 10px;
 }
+.container
+{
+    margin-top: 80px;
+    margin-bottom: 100px;
+    margin-left: 8px;
+    margin-right: 8px;
+
+}
 </style>
