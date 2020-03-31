@@ -260,6 +260,7 @@ export default {
   margin: 80px auto;
   width: 95%;
   align-items: center;
+  height: 100%;
 }
 .ConfirmedCaseContainer {
   display: flex;

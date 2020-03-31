@@ -163,7 +163,5 @@ export default {
   justify-content: flex-end;
   margin-right: 10px;
 }
-.container{
-  height: 100%;
-}
+
 </style>
