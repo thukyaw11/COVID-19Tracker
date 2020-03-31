@@ -47,7 +47,9 @@
         <div class="caseheading">Countries</div>
         <div class="number" style="font-size:42px; color:#616161">{{affectedCountry}}</div>
       </div>
-      <p style="text-align:center; color:#757575; margin-bottom:100px;">Last Updated : {{addHour(WorldTotal.statistic_taken_at)}}</p>
+      <p
+        style="text-align:center; color:#757575; margin-bottom:100px;"
+      >Last Updated : {{addHour(WorldTotal.statistic_taken_at)}}</p>
       <br />
     </div>
     <div v-else class="spinner">
@@ -90,7 +92,7 @@ export default {
   },
   mounted() {
     fetch(
-      "https://coronavirus-monitor.p.rapidapi.com/coronavirus/worldstat.php",
+      "https://coronavirus-monitor.p.rapidapi.com/coronavirus/world_total_stat.php",
       {
         method: "GET",
         headers: {
@@ -112,7 +114,7 @@ export default {
         method: "GET",
         headers: {
           "x-rapidapi-host": "coronavirus-monitor.p.rapidapi.com",
-          "x-rapidapi-key": "08dd76e316msh2f84322619ba704p1fdd2bjsn9889809b8110"
+          "x-rapidapi-key": "434d08dc18mshae16281f0a85829p14d6e6jsn35f8027ce547"
         }
       }
     )
