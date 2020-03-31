@@ -93,7 +93,7 @@ export default {
 <style>
 .spinner{
   text-align: center;
-  margin-top: 150px;
+  margin-top: 250px;
 }
 #app {
   font-family: "Poppins", sans-serif;

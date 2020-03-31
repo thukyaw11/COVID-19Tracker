@@ -12,7 +12,7 @@
 <script>
   export default
   {
-    created() {
+    mounted() {
     var scripts = [
       "countrymap.js",
       "mapdata.js"
@@ -22,25 +22,15 @@
       tag.setAttribute("src", script);
       document.head.appendChild(tag);
     });
+
+    this.$root.$data.title = "Map";
   }
   }
 </script>
 
 <style scoped>
-.iframe-container{
-  margin-top: 90px;
-  width: 100%;
-  height: 100px;
-  z-index: 1;
-}
-.iframe-container iframe {
-   border: 0;
-   height: 100%;
-   left: 0;
-   position: absolute;
-   top: 0;
-   width: 100%;
-   overflow: hidden;
+#map{
+  margin: 150px auto;
 }
 
 </style>  
