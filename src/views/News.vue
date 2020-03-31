@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container-news">
+    <div class="container">
       <div class="datecontainer">
         <div class="dateflex1">
           <h1>Latest</h1>
@@ -186,11 +186,6 @@ export default {
   display: flex;
   align-items: flex-start;
   margin-bottom: 10px;
-}
-.container-news {
-  margin: 10px auto 100px;
-  width: 90%;
-  align-items: center;
 }
 .link {
   display: flex;

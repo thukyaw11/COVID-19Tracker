@@ -299,11 +299,19 @@
     <div class="apisourcecontainer">
       <div class="apicontainer1">
         <div class="box1">Statistic API</div>
-        <div class="box2"><a href="https://rapidapi.com/" style="text-decoration: none;">https://rapidapi.com/</a></div>
+        <div class="box2">
+          <a href="https://rapidapi.com/" style="text-decoration: none;">https://rapidapi.com/</a>
+        </div>
       </div>
       <div class="apicontainer2">
         <div class="box1">News API</div>
-        <div class="box2">Contact via<a href="https://www.facebook.com/UITStudentsUnion/" style="text-decoration : none; margin-left:3px"> UIT-SU</a></div>
+        <div class="box2">
+          Contact via
+          <a
+            href="https://www.facebook.com/UITStudentsUnion/"
+            style="text-decoration : none; margin-left:3px"
+          >UIT-SU</a>
+        </div>
       </div>
     </div>
 
@@ -319,7 +327,7 @@
           <div class="profile">
             <img src="../assets/heinthanth.jpg" width="55" height="55" />
           </div>
-          <div class="name">Hein Thant</div>
+          <div class="name">Hein Thanth</div>
         </div>
         <div class="flexbox2">
           <div class="profile">
@@ -387,18 +395,20 @@ export default {
 
 <style scoped>
 .container-aboutus {
-  margin-top: 70px;
-  padding: 10px 17px 0px 17px;
   display: flex;
   flex-direction: column;
-  flex: 1;
-  text-align: center;
-  background: white;
-  font-family: "Poppins";
+  margin: 80px auto 20px;
+  width: 90%;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  color: #212121;
+  height: 1000px;
+  font-size: 14px;
 }
+
 .versioncontent {
   width: 100%;
-  height: 220px;
+  height: 150px;
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -434,10 +444,10 @@ export default {
 }
 .headerflex1 {
   display: flex;
-  flex: 3;
-  padding: 0;
-  margin: 0;
+  flex: 4;
+  align-items: center;
   font-weight: bold;
+  justify-content: flex-start;
 }
 .headerflex2 {
   display: flex;

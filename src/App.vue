@@ -50,7 +50,7 @@
           class="item-menu"
           @click.native="closeNav()"
         >
-          <i class="material-icons" style="color:#f44336;">add_ic_call</i>
+          <i class="material-icons" style="color:#f44336; font-size: 21px" >add_ic_call</i>
           Emergency
         </router-link>
       </div>

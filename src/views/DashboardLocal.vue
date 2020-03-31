@@ -1,7 +1,7 @@
 <template>
-  <div class="container-local">
+  <div class="container">
     <div v-if="caseinMyanmar.length > 0">
-      <div class="container" v-for="casesmm in caseinMyanmar" v-bind:key="casesmm.id">
+      <div v-for="casesmm in caseinMyanmar" v-bind:key="casesmm.id">
 
 
         <div class="mapvector">

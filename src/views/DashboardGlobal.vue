@@ -1,6 +1,6 @@
 <template>
-  <div class="container-global">
-    <div class="container" v-if="WorldTotal">
+  <div class="container">
+    <div v-if="WorldTotal">
       <div class="mapvector">
         <div class="mapflex1">
           <div class="ConfirmedCaseContainer">
@@ -162,5 +162,8 @@ export default {
   align-items: center;
   justify-content: flex-end;
   margin-right: 10px;
+}
+.container{
+  height: 700px;
 }
 </style>
