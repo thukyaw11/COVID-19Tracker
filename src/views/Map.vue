@@ -12,7 +12,7 @@
 <script>
   export default
   {
-    mounted() {
+    created() {
     var scripts = [
       "countrymap.js",
       "mapdata.js"

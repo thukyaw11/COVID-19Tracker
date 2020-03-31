@@ -289,14 +289,8 @@
       </div>
       <div class="aboutbody">
         <p align="justify">
-          This website is br br nyr nyr dummy text of the
-          printing and typesetting industry. Lorem Ipsum
-          has been the industry’s standard dummy text
-          ever since the 1500s, when an unknown printer
-          took a galley of type and scrambled it to make
-          a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic
-          typesetting, remaining essentially unchanged.
+          We hope to bring an information source that rolls updates on COVID-19, especially for cases in Myanmar, to our citizens.This website is built by the University of Information Technology Students' Union.
+          APIs below are still in development stage and later will be published for further development purposes.
         </p>
       </div>
     </div>
@@ -304,12 +298,12 @@
     <br />
     <div class="apisourcecontainer">
       <div class="apicontainer1">
-        <div class="box1">Current API</div>
-        <div class="box2">Lorem Ipsum is the typesetting industry.</div>
+        <div class="box1">Statistic API</div>
+        <div class="box2"><a href="https://rapidapi.com/" style="text-decoration: none;">https://rapidapi.com/</a></div>
       </div>
       <div class="apicontainer2">
-        <div class="box1">Current API</div>
-        <div class="box2">Lorem Ipsum is the typesetting industry.</div>
+        <div class="box1">News API</div>
+        <div class="box2">Contact via<a href="https://www.facebook.com/UITStudentsUnion/" style="text-decoration : none; margin-left:3px"> UIT-SU</a></div>
       </div>
     </div>
 
@@ -378,7 +372,7 @@
     </div>
 
     <br />
-    <p style="color:#757575;">Copyright 2020 Covid 19 | Myanamr</p>
+    <p style="color:#757575;">Copyright 2020 Covid 19 | Myanmar | UIT-SU</p>
   </div>
 </template>
 
@@ -400,7 +394,7 @@ export default {
   flex: 1;
   text-align: center;
   background: white;
-      font-family: 'Poppins';
+  font-family: "Poppins";
 }
 .versioncontent {
   width: 100%;

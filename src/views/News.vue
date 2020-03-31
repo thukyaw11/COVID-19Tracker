@@ -95,7 +95,7 @@ export default {
   data() {
     return {
       contracted: true,
-      baseURL: "https://18.141.10.115/news",
+      baseURL: "https://covid19mm.info/news",
       newsRequest: [],
       latestNews: [],
       yesterdayNews: [],

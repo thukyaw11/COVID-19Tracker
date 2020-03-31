@@ -12,7 +12,8 @@
           style="color: white; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
-        >Global</router-link>
+        >Global
+        </router-link>
         <router-link
           to="/local"
           style="color: white; text-decoration: none"
@@ -38,17 +39,20 @@
           @click.native="closeNav()"
         >News</router-link>
         <router-link
-          to="/contants"
-          style="color: white; text-decoration: none"
-          class="item-menu"
-          @click.native="closeNav()"
-        >Contants</router-link>
-        <router-link
           to="/aboutus"
           style="color: white; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
-        >About Us </router-link>
+        >About Us</router-link>
+        <router-link
+          to="/contants"
+          style="text-decoration: none; color:#f44336; font-weight:bold;"
+          class="item-menu"
+          @click.native="closeNav()"
+        >
+          <i class="material-icons" style="color:#f44336;">add_ic_call</i>
+          Emergency
+        </router-link>
       </div>
     </div>
 
@@ -60,11 +64,10 @@
 
       <div class="space">
         <router-link to="/contants" style="text-decoration: none;">
-        <div class="Emergencybutton">
-          <i class="material-icons" id="Emergencyicon">add_ic_call</i>
-        </div>
+          <div class="Emergencybutton">
+            <i class="material-icons" id="Emergencyicon">add_ic_call</i>
+          </div>
         </router-link>
-
       </div>
     </div>
 
@@ -91,7 +94,24 @@ export default {
 
 
 <style>
-.spinner{
+.router-link-exact-active {
+  font-weight: bolder;
+}
+#emergency {
+  display: flex;
+  flex-direction: row;
+}
+.linkflex1 {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+.linkflex2 {
+  display: flex;
+  flex: 10;
+}
+.spinner {
   text-align: center;
   margin-top: 250px;
 }
@@ -164,12 +184,11 @@ export default {
   display: flex;
   flex-direction: row;
   z-index: 9000;
-  width:100%;
-  height:70px;
+  width: 100%;
+  height: 70px;
   background-color: #fff;
   position: fixed;
   border-bottom: 1px solid #eee;
-  
 }
 .menubutton {
   display: flex;
@@ -237,39 +256,32 @@ export default {
   justify-content: center;
   flex-direction: column;
 }
-.container
-{
+.container {
   margin: 80px auto;
-  width:95%;
+  width: 95%;
   margin-bottom: 100px;
   align-items: center;
   height: auto;
 }
-.ConfirmedCaseContainer
-{
-  display:flex;
+.ConfirmedCaseContainer {
+  display: flex;
   flex-direction: column;
   height: 120px;
   margin-left: 20px;
 }
-.RecoverCase
-{
-  display:flex;
+.RecoverCase {
+  display: flex;
   height: 120px;
   border-radius: 15px;
   margin-top: 5px;
-  background-color: #E8F5E9;
-
-
+  background-color: #e8f5e9;
 }
-.DeathCase
-{
-  background-color: #FFEBEE;
-  display:flex;
+.DeathCase {
+  background-color: #ffebee;
+  display: flex;
   height: 120px;
   border-radius: 15px;
   margin-top: 5px;
-
 }
 .caseheading {
   font-size: 16px;

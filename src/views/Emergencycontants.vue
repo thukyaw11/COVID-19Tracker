@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-contacts">
     <form class="searchcontainer">
       <div class="placeholdercontainer">
         <input type="text" id="search-bar" placeholder="Search ..." v-model="search" />
@@ -55,7 +55,7 @@ export default {
   methods: {
     fetchContent() {
       this.request_msg = "ph no request began";
-      return axios.get("https://18.141.10.115/contact/list/");
+      return axios.get("https://covid19mm.info/contact/list");
     }
   },
   computed: {
@@ -76,6 +76,9 @@ export default {
   flex: 1;
   height: 100px;
   border-bottom: 1px solid #eee;
+}
+.container-contacts{
+  margin-top: 80px;
 }
 .flex1 {
   display: flex;

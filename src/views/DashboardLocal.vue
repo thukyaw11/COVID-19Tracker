@@ -73,7 +73,7 @@
           <div class="number" style="font-size:42px;" v-else>0</div>
         </div>
 
-        <p style="text-align:center; color:#757575;">Last updated: {{casesmm.record_date}}</p>
+        <p style="text-align:center; color:#757575;">Last updated: {{addHour(casesmm.record_date)}} </p>
       </div>
     </div>
     <div v-else class="spinner">
@@ -131,6 +131,15 @@ export default {
       });
 
     this.$root.$data.title = "Local Dashboard";
+  },
+  methods:{
+    addHour(recordDate){
+      var dateTime = new Date(recordDate);
+
+      dateTime.setHours(dateTime.getHours()+3);
+      dateTime.setMinutes(dateTime.getMinutes()+30);
+      return dateTime;
+    }
   }
 };
 /* eslint-enable no-console */
