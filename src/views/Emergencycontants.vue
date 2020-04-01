@@ -92,7 +92,7 @@ export default {
   display: flex;
   flex: 2;
   flex-direction: column;
-  margin-left: 35px;
+  margin-left: 20px;
 }
 
 .box1 {

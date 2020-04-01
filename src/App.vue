@@ -227,10 +227,11 @@ export default {
 }
 
 .toggle {
+  border-top: 1px solid #eee;
   flex-direction: row;
   display: flex;
   flex: 1;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
   height: 90px;
   position: fixed;
   width: 100%;
