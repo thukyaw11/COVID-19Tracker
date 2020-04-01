@@ -166,7 +166,7 @@ export default {
   },
   mounted() {
     fetch(
-      "https://coronavirus-monitor.p.rapidapi.com/coronavirus/latest_stat_by_country_name.php?country=myanmar",
+      "https://coronavirus-monitor.p.rapidapi.com/coronavirus/latest_stat_by_country.php?country=myanmar",
       {
         method: "GET",
         headers: {

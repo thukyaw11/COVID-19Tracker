@@ -92,7 +92,7 @@ export default {
   },
   mounted() {
     fetch(
-      "https://coronavirus-monitor.p.rapidapi.com/coronavirus/world_total_stat.php",
+      "https://coronavirus-monitor.p.rapidapi.com/coronavirus/worldstat.php",
       {
         method: "GET",
         headers: {
