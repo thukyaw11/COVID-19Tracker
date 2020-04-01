@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <div class="casescontainer">
     <div v-if="WorldTotal">
       <div class="mapvector">
         <div class="mapflex1">
@@ -47,13 +48,12 @@
         <div class="caseheading">Countries</div>
         <div class="number" style="font-size:42px; color:#616161">{{affectedCountry}}</div>
       </div>
-      <p
-        style="text-align:center; color:#757575; margin-bottom:100px;"
-      >Last Updated : {{addHour(WorldTotal.statistic_taken_at)}}</p>
+      <p style="text-align:center; color:#757575; margin-bottom:100px;">Last Updated : {{addHour(WorldTotal.statistic_taken_at)}}</p>
       <br />
     </div>
     <div v-else class="spinner">
       <md-progress-spinner :md-diameter="30" :md-stroke="3" md-mode="indeterminate"></md-progress-spinner>
+    </div>
     </div>
     <div class="toggle">
       <div class="global">
@@ -114,7 +114,7 @@ export default {
         method: "GET",
         headers: {
           "x-rapidapi-host": "coronavirus-monitor.p.rapidapi.com",
-          "x-rapidapi-key": "434d08dc18mshae16281f0a85829p14d6e6jsn35f8027ce547"
+          "x-rapidapi-key": "08dd76e316msh2f84322619ba704p1fdd2bjsn9889809b8110"
         }
       }
     )
@@ -165,5 +165,17 @@ export default {
   align-items: center;
   justify-content: flex-end;
   margin-right: 10px;
+}
+.container
+{
+  width:100%;
+
+}
+.casescontainer
+{
+  margin: 80px auto;
+  width: 95%;
+  align-items: center;
+  height: 100%;
 }
 </style>
