@@ -1,7 +1,7 @@
 {
     "name": "COVID19 MM",
     "short_name": "COVID 19",
-    "theme_color": "#fffff",
+    "theme_color": "#ffffff",
     "icons": [
         {
             "src": "./img/icons/android-chrome-192x192.png",
