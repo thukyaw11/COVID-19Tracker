@@ -9,7 +9,7 @@
             <div class="number" style="font-size:42px; font-weight: bold">{{WorldTotal.total_cases}}</div>
           </div>
           <div class="ConfirmedCaseContainer">
-            <div class="caseheading">News Cases</div>
+            <div class="caseheading">New Cases</div>
             <div class="number" style="font-size:42px;  ">{{WorldTotal.new_cases}}</div>
           </div>
         </div>
