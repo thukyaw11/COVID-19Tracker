@@ -22,7 +22,7 @@
                     </div>
                     <div class="ConfirmedCaseContainer">
                         <div class="caseheading">
-                            News Cases
+                            New Cases
                         </div>
                         <div             class="number"
             style="font-size:42px;"
