@@ -98,8 +98,7 @@
       <div class="desbody">
         <div class="mainflex1">
           <div class="descountrybycases">
-            <div id="div1" style="height: 886px;">
-              <div id="div2" style="max-height:100%;overflow:auto;">
+            
                 <br />
                 <div
                   class="descountrybycasesheading"
@@ -197,8 +196,7 @@
                     <div class="descasesflex2">140640 cases</div>
                   </div>
                 </div>
-              </div>
-            </div>
+              
           </div>
         </div>
         <div class="mainflex2">
@@ -255,99 +253,63 @@
           </div>
 
           <div class="desnews">
-            <div id="div1" style="height: 700px;">
-              <div id="div2" style="max-height:100%;overflow:auto;">
-                <div class="desnewsheading">Latest</div>
-                <div class="desnewscontent">
-                  <div class="box1flex1">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum is simply dummy text of the printing
+            
+                <br />
+                <div class="desnewsheading">Latest News</div>
+                <br />
+                <div class="desnewsbody">
+                  <div class="desnewscontent">
+                    <div class="box1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing</div>
+                    <div class="box2">140640 cases</div>
                   </div>
-                  <div class="box1flex2">Source: Eleven News</div>
-                </div>
-                <hr style="border: 1px solid #eee; " />
+                   <div class="desnewscontent">
+                    <div class="box1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing</div>
+                    <div class="box2">140640 cases</div>
+                  </div>
+                  <div class="desnewsheading">Yesterday</div>
+           
+                  <div class="desnewscontent">
+                    <div class="box1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing</div>
+                    <div class="box2">140640 cases</div>
+                  </div>
+                  <div class="desnewscontent">
+                    <div class="box1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing</div>
+                    <div class="box2">140640 cases</div>
+                  </div>
+                  <div class="desnewscontent">
+                    <div class="box1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing</div>
+                    <div class="box2">140640 cases</div>
+                  </div>
+                  <div class="desnewscontent">
+                    <div class="box1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing</div>
+                    <div class="box2">140640 cases</div>
+                  </div>
+                  <div class="desnewscontent">
+                    <div class="box1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing</div>
+                    <div class="box2">140640 cases</div>
+                  </div>
+                  <div class="desnewscontent">
+                    <div class="box1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing</div>
+                    <div class="box2">140640 cases</div>
+                  </div>
+                  <div class="desnewscontent">
+                    <div class="box1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing</div>
+                    <div class="box2">140640 cases</div>
+                  </div>
+                  <div class="desnewscontent">
+                    <div class="box1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing</div>
+                    <div class="box2">140640 cases</div>
+                  </div>
+                  <div class="desnewscontent">
+                    <div class="box1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing</div>
+                    <div class="box2">140640 cases</div>
+                  </div>
 
-                <div class="desnewsheading">Yesterday</div>
 
-                <div class="desnewscontent">
-                  <div class="box1flex1">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum is simply dummy text of the printing
-                  </div>
-                  <div class="box1flex2">Source: Eleven News</div>
                 </div>
-                <hr style="border: 1px solid #eee;" />
+              
 
-                <div class="desnewscontent">
-                  <div class="box1flex1">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum is simply dummy text of the printing
-                  </div>
-                  <div class="box1flex2">Source: Eleven News</div>
-                </div>
-                <hr style="border: 1px solid #eee;" />
 
-                <div class="desnewscontent">
-                  <div class="box1flex1">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum is simply dummy text of the printing
-                  </div>
-                  <div class="box1flex2">Source: Eleven News</div>
-                </div>
-                <hr style="border: 1px solid #eee; " />
-
-                <div class="desnewscontent">
-                  <div class="box1flex1">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum is simply dummy text of the printing
-                  </div>
-                  <div class="box1flex2">Source: Eleven News</div>
-                </div>
-                <hr style="border: 1px solid #eee; " />
-                <div class="desnewscontent">
-                  <div class="box1flex1">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum is simply dummy text of the printing
-                  </div>
-                  <div class="box1flex2">Source: Eleven News</div>
-                </div>
-                <hr style="border: 1px solid #eee; " />
-
-                <div class="desnewscontent">
-                  <div class="box1flex1">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum is simply dummy text of the printing
-                  </div>
-                  <div class="box1flex2">Source: Eleven News</div>
-                </div>
-                <hr style="border: 1px solid #eee;" />
-
-                <div class="desnewscontent">
-                  <div class="box1flex1">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum is simply dummy text of the printing
-                  </div>
-                  <div class="box1flex2">Source: Eleven News</div>
-                </div>
-                <hr style="border: 1px solid #eee; " />
-                <div class="desnewscontent">
-                  <div class="box1flex1">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum is simply dummy text of the printing
-                  </div>
-                  <div class="box1flex2">Source: Eleven News</div>
-                </div>
-                <hr style="border: 1px solid #eee; " />
-                <div class="desnewscontent">
-                  <div class="box1flex1">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum is simply dummy text of the printing
-                  </div>
-                  <div class="box1flex2">Source: Eleven News</div>
-                </div>
-                <hr style="border: 1px solid #eee; " />
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -654,26 +616,36 @@ export default {
   .toggle {
     display: none;
   }
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
 
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+   background-color: #d6d6d6;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
   .desktopcontainer {
     display: flex;
-    flex: 1;
+    background-color:#fafafa;
     flex-direction: column;
     height: 100%;
     font-size: 18px;
-    background-color: #fafafa;
     font-family: "Poppins", sans-serif;
   }
   .desheading {
     display: flex;
-    flex: 1;
     flex-direction: row;
     height: 120px;
   }
   .desbody {
     flex-direction: row;
     display: flex;
-    flex: 1;
     height: 930px;
   }
   .desheadingname {
@@ -689,13 +661,16 @@ export default {
   .mainflex1 {
     display: flex;
     flex: 1;
+    align-items:center;
     justify-content: center;
   }
   .descountrybycases {
+    overflow-x: hidden;
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     width: 90%;
-    height: 886px;
+    height:871px;
     border-radius: 10px;
     background-color: #ffffff;
     box-shadow: 0 8px 10px 1px rgba(238, 238, 238, 238),
@@ -808,6 +783,7 @@ export default {
     flex: 1;
     flex-direction: column;
     align-items: center;
+    justify-content:center;
   }
   .desemergency {
     margin-bottom: 20px;
@@ -832,9 +808,12 @@ export default {
     justify-content: center;
   }
   .desnews {
+    overflow-x: hidden;
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     width: 90%;
+    height:685px;
     border-radius: 10px;
     background-color: #ffffff;
     box-shadow: 0 8px 10px 1px rgba(238, 238, 238, 238),
@@ -842,8 +821,8 @@ export default {
       0 5px 5px -3px rgba(238, 238, 238, 238);
   }
   .desnewsheading {
+    margin-top:20px;
     display: flex;
-    width: 100%;
     height: 80px;
     font-size: 24px;
     align-items: center;
@@ -851,28 +830,28 @@ export default {
     font-weight: bold;
   }
   .desnewscontent {
+    margin-top:20px;
     display: flex;
+    flex-direction:column;
     height: 150px;
+    margin-right:20px;
     flex-direction: column;
-    margin-left: 20px;
-    margin-right: 20px;
+    border-bottom: 1px solid #eee;
   }
 
-  .box1flex1 {
-    display: flex;
-    flex: 3;
-    font-size: 14px;
+  .box1
+  {
+    margin-left:20px;
   }
-  .box1flex2 {
-    display: flex;
-    flex: 1;
+  .box2
+  {
+    margin-left:20px;
     color: #ff5722;
-    font-weight: bold;
+    font-weight:bold;
+
   }
-  .box2 {
-    display: flex;
-    flex: 1;
-  }
+
+
 
   .deslink ul {
     list-style-type: none;
