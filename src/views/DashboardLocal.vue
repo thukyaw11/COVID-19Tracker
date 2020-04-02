@@ -55,7 +55,7 @@
         </div>
         <div class="DeathCase">
           <div class="ConfirmedCaseContainer">
-            <div class="caseheading">Deaths</div>
+            <div class="caseheading">Death</div>
             <div
               class="number"
               style="font-size:42px; color:#F44336"

@@ -3,7 +3,13 @@
     <div v-if="DataByAffectedCountryDetail">
       <form class="searchcontainer">
         <div class="placeholdercontainer">
-          <input type="text" id="search-bar" style="font-size:14px;" placeholder="Search ..." v-model="search" />
+          <input
+            type="text"
+            id="search-bar"
+            style="font-size:14px;"
+            placeholder="Search ..."
+            v-model="search"
+          />
         </div>
         <div class="searchicon">
           <i class="material-icons">search</i>
@@ -13,7 +19,7 @@
       <div v-for="data in filteredListDetail" :key="data.index">
         <button class="collapsible" @click="toggleData()">
           <div class="col1">{{data.country_name}}</div>
-          <div class="col2">{{data.cases}} cases</div>
+          <div class="col2">{{data.cases || sorting}} cases</div>
         </button>
         <div class="content">
           <br />
@@ -98,9 +104,13 @@ export default {
   },
   methods: {
     setData(data) {
-      this.DataByAffectedCountryDetail = data;
+      var sortedArray = data.sort(function(a, b) {
+        var bCases = Number(b.cases.replace(/,/g, ''));
+        var aCases = Number(a.cases.replace(/,/g, ''));
+        return bCases - aCases;
+      });
+      this.DataByAffectedCountryDetail = sortedArray;
       this.updatedTime = this.$root.$data.updatedTime;
-
     },
     toggleData() {
       var coll = document.getElementsByClassName("collapsible");
@@ -122,7 +132,6 @@ export default {
   },
   computed: {
     filteredListDetail() {
-      console.log(this.DataByAffectedCountryDetail);
       return this.DataByAffectedCountryDetail.filter(name => {
         return name.country_name
           .toLowerCase()
