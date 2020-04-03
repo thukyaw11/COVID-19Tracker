@@ -77,14 +77,14 @@
 
     <div class="desktopcontainer">
       <div class="desheading">
-        <div class="desheadingname">Global Dashboard</div>
+        <div class="desheadingname">{{this.$root.$data.title}}</div>
         <div class="deslink">
           <ul>
             <li>
-              <a class="active" href="#home">Global</a>
+              <router-link to="/">Global</router-link>
             </li>
             <li>
-              <a href="#news">Local</a>
+              <router-link to="/local">Local</router-link>
             </li>
             <li>
               <a href="#contact">About Us</a>
@@ -98,151 +98,41 @@
       <div class="desbody">
         <div class="mainflex1">
           <div class="descountrybycases">
-            
-                <br />
-                <div
-                  class="descountrybycasesheading"
-                  style="color:#3F51B5;"
-                >Countries, areas or territories with cases</div>
-                <br />
-                <div class="descountrybycasesbody">
-                  <div class="descasescontainer">
-                    <div class="descasesflex1" style="margin-left:20px;">United States of America</div>
-                    <div class="descasesflex2">140640 cases</div>
-                  </div>
-                  <div class="descasescontainer">
-                    <div class="descasesflex1" style="margin-left:20px;">United States of America</div>
-                    <div class="descasesflex2">140640 cases</div>
-                  </div>
-                  <div class="descasescontainer">
-                    <div class="descasesflex1" style="margin-left:20px;">United States of America</div>
-                    <div class="descasesflex2">140640 cases</div>
-                  </div>
-                  <div class="descasescontainer">
-                    <div class="descasesflex1" style="margin-left:20px;">United States of America</div>
-                    <div class="descasesflex2">140640 cases</div>
-                  </div>
-                  <div class="descasescontainer">
-                    <div class="descasesflex1" style="margin-left:20px;">United States of America</div>
-                    <div class="descasesflex2">140640 cases</div>
-                  </div>
-                  <div class="descasescontainer">
-                    <div class="descasesflex1" style="margin-left:20px;">United States of America</div>
-                    <div class="descasesflex2">140640 cases</div>
-                  </div>
-                  <div class="descasescontainer">
-                    <div class="descasesflex1" style="margin-left:20px;">United States of America</div>
-                    <div class="descasesflex2">140640 cases</div>
-                  </div>
-                  <div class="descasescontainer">
-                    <div class="descasesflex1" style="margin-left:20px;">United States of America</div>
-                    <div class="descasesflex2">140640 cases</div>
-                  </div>
-                  <div class="descasescontainer">
-                    <div class="descasesflex1" style="margin-left:20px;">United States of America</div>
-                    <div class="descasesflex2">140640 cases</div>
-                  </div>
-                  <div class="descasescontainer">
-                    <div class="descasesflex1" style="margin-left:20px;">United States of America</div>
-                    <div class="descasesflex2">140640 cases</div>
-                  </div>
-                  <div class="descasescontainer">
-                    <div class="descasesflex1" style="margin-left:20px;">United States of America</div>
-                    <div class="descasesflex2">140640 cases</div>
-                  </div>
-                  <div class="descasescontainer">
-                    <div class="descasesflex1" style="margin-left:20px;">United States of America</div>
-                    <div class="descasesflex2">140640 cases</div>
-                  </div>
-                  <div class="descasescontainer">
-                    <div class="descasesflex1" style="margin-left:20px;">United States of America</div>
-                    <div class="descasesflex2">140640 cases</div>
-                  </div>
-                  <div class="descasescontainer">
-                    <div class="descasesflex1" style="margin-left:20px;">United States of America</div>
-                    <div class="descasesflex2">140640 cases</div>
-                  </div>
-                  <div class="descasescontainer">
-                    <div class="descasesflex1" style="margin-left:20px;">United States of America</div>
-                    <div class="descasesflex2">140640 cases</div>
-                  </div>
-                  <div class="descasescontainer">
-                    <div class="descasesflex1" style="margin-left:20px;">United States of America</div>
-                    <div class="descasesflex2">140640 cases</div>
-                  </div>
+            <br />
 
-                  <div class="descasescontainer">
-                    <div class="descasesflex1" style="margin-left:20px;">United States of America</div>
-                    <div class="descasesflex2">140640 cases</div>
-                  </div>
-                  <div class="descasescontainer">
-                    <div class="descasesflex1" style="margin-left:20px;">United States of America</div>
-                    <div class="descasesflex2">140640 cases</div>
-                  </div>
-                  <div class="descasescontainer">
-                    <div class="descasesflex1" style="margin-left:20px;">United States of America</div>
-                    <div class="descasesflex2">140640 cases</div>
-                  </div>
-                  <div class="descasescontainer">
-                    <div class="descasesflex1" style="margin-left:20px;">United States of America</div>
-                    <div class="descasesflex2">140640 cases</div>
-                  </div>
-                  <div class="descasescontainer">
-                    <div class="descasesflex1" style="margin-left:20px;">United States of America</div>
-                    <div class="descasesflex2">140640 cases</div>
-                  </div>
-                  <div class="descasescontainer">
-                    <div class="descasesflex1" style="margin-left:20px;">United States of America</div>
-                    <div class="descasesflex2">140640 cases</div>
-                  </div>
-                </div>
-              
+            <div
+              class="descountrybycasesheading"
+              style="color:#3F51B5;"
+            >Countries, areas or territories with cases</div>
+            <br />
+            <form class="searchcontainer-custom">
+              <div class="placeholdercontainer">
+                <input type="text" id="search-bar" placeholder="Search ..." v-model="search" />
+              </div>
+              <div class="searchicon">
+                <i class="material-icons">search</i>
+              </div>
+            </form>
+            <div class="descountrybycasesbody">
+              <div
+                class="descasescontainer"
+                v-for="country in filteredListDetail"
+                :key="country.index"
+              >
+                <div class="descasesflex1" style="margin-left:20px;">{{country.country_name}}</div>
+                <div class="descasesflex2">{{country.cases}}</div>
+              </div>
+              <span
+                v-if="!filteredListDetail.length"
+                style="padding:60px; color:grey;"
+              >Country not Found !</span>
+            </div>
           </div>
         </div>
         <div class="mainflex2">
-          <!-- <div class="desnumber">
-            <div class="descomfirmedcase">
-              <div class="numbercontainer1">
-                <div
-                  style="display:flex; align-items:flex-start; justify-content:flex-start;"
-                >Confirmed Cases</div>
-                <div style="font-size:36px; color:#757575;">754,948</div>
-              </div>
-            </div>
-            <div class="desrecover">
-              <div class="numbercontainer2">
-                <div>Recover</div>
-                <div style="font-size:36px; color:#4CAF50;">178,468</div>
-              </div>
-            </div>
-            <div class="desdeath">
-              <div class="numbercontainer3">
-                <div>Deaths</div>
-                <div style="font-size:36px; color:#F44336;">36,571</div>
-              </div>
-            </div>
-          </div>
-          <div class="desmap">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              version="1.1"
-              x="0px"
-              y="0px"
-              viewBox="0 0 100 100"
-              style="enable-background:new 0 0 100 100; width:560.09px; height:563px;"
-              xml:space="preserve"
-              fill="#e0e0e0"
-            >
-              <path
-                d="M92.3,39.6L92.3,39.6L92.3,39.6C92.3,39.6,92.3,39.6,92.3,39.6C92.3,39.6,92.3,39.6,92.3,39.6z M60.5,93.1  C38.9,98.4,16,86.6,8.3,64.9c-2.8-7.9-3.4-16-1.6-24.2C6.8,40.5,6.9,40.2,7,40c0,0.2,0,0.5,0.1,0.7c0,0.1,0.1,0.3,0.2,0.4  c0-0.2,0.1-0.3,0.1-0.5c0-0.6,0-1.2,0.1-1.9c0.6,0.5,0.2,1.2,0.4,1.7c0.3,0.8,0.3,1.6,0.3,2.5c-0.1,1.3,1.1,2.2,2,2.3  c1.7,0.2,2.7,1.5,4.2,2c0.7,0.2,1.1,0.9,1.2,1.2c0.2,1.3,1.2,1.7,2,2.2c0.2,0.1,0.4,0.3,0.6,0c0.7-1.4,0.8-0.4,1.1,0.2  c0.7,1.5,0.1,2.7-0.7,3.9c-0.6,0.8-1.3,1.6-0.6,2.7c0.1,0.1,0,0.4-0.1,0.5c-0.5,0.8-0.2,1.4,0.3,2.1c0.7,1,1.3,2,1.8,3.1  c0.7,1.4,1.3,2.7,2.9,3.4c1,0.4,1.6,1.3,1.7,2.5c0.3,3.4,0.8,6.8,1.3,10.1c0.3,2,1.9,3.4,2.6,5.2c0.3,0.8,0.8,1.5,1.4,2.2  c1.1,1.3,2.7,1.4,4.1,2.1c0.1,0,0.3,0,0.4,0c-0.1-0.1-0.3-0.2-0.4-0.3c-0.9-0.8-2.8-1-1.6-2.9c0-0.1-0.1-0.3-0.1-0.3  c-1.4-0.3-0.7-1.3-0.6-2c0-0.4,0.4-0.7-0.2-0.8c-0.1,0-0.2-0.2-0.2-0.3c1.1,0.3,0.7-1.3,1.6-1.3c1.3,0,1.8-0.5,1.1-1.8  c-0.2-0.3-0.5-0.7,0.3-0.5c0.8,0.2,1.2-0.1,1.4-0.8c0.2-0.7,0.5-1.4,1.1-2c0.5-0.6,0.8-1.3,0.6-2.2c-0.3-1.5,1.2-1.8,2.1-1.9  c1.9-0.2,2-1.5,2.4-2.8c0.3-1,0.3-2,0.2-3.1c-0.1-1.1,0.8-1.8,1.4-2.6c0.8-1,1.3-2.3,0.5-3.2c-0.8-0.9-1.8-1.9-3.2-2  c-2-0.1-3.5-1.4-5.2-2.1c-0.6-0.2-0.6-1.2-0.8-1.8c-0.5-1.4-1.4-2-2.8-2.2c-1.7-0.2-2.4-1.5-3.1-2.7c-0.5-0.9-1.2-0.5-1.6-0.4  c-1,0.3-1.8,0-2.5-0.4c-1.7-0.9-3.1-0.6-4.3,1.2c-0.2,0.3-0.5,0.8-1,0.3c-0.3-0.3-0.7-0.3-1.2-0.1c-0.9,0.4-1.7-0.3-1.6-1.3  c0-0.4,0.1-0.8,0.2-1.2c0.3-1.7,0.2-1.9-1.5-1.7c-0.7,0.1-0.8-0.1-0.5-0.7c0.3-0.6,0.6-1.2,0.7-1.9c0.1-0.4,0.7-0.9,0-1.2  c-0.5-0.2-1.4,0-1.5,0.7c-0.2,1.2-0.9,1.5-1.9,1.3c-1.1-0.3-1-1.4-0.8-2.2c0.2-1.6,0.3-3.4,2-4.4c0.4-0.3,0.8-0.4,1.3-0.3  c0.5,0.1,0.9,0.1,1.4-0.4c0.7-0.7,1.5-0.2,2.3,0c0.6,0.2,0.3,0.8,0.4,1.2c0.1,0.6,0.1,1.5,0.7,1.4c0.7,0,0.8-0.9,0.6-1.6  c-0.4-1.5,0.1-2.8,1.5-3.5c1.5-0.8,2.2-2.1,3.1-3.4c0.6-1,1.7-1.5,2.7-2.2c1-0.6,1.8-1.7,3.1-2.2c0.2-0.1,0.4-0.1,0.5-0.2  c-0.1,0.2-0.1,0.3-0.2,0.5c-0.1,0.2-0.2,0.3,0,0.4c0.1,0,0.3,0,0.4-0.1c0.3-0.4,0.8-0.5,1.3-0.6c0.3-0.1,0.8-0.3,0.9-0.5  c0-0.4-0.5-0.2-0.7-0.4c-0.4-0.3-0.4-0.6-0.2-0.9c0.2-0.5,0.9-1-0.3-1c0,0-0.1-0.1-0.1-0.2c0.1,0,0.2-0.1,0.3-0.1  c1.4-0.3,2.9,0.2,4.2-0.8c0.1,0,0.2,0.1,0.3,0.1c-0.1,0.1-0.1,0.2-0.2,0.3c-0.3,0.7-1.6,1-1.2,1.8c0.2,0.4,1.4-0.3,2.2,0.3  c0.3,0.2,0.8,0,0.6-0.3c-0.3-0.5,0.7-1.3-0.2-1.3c-0.9-0.1-0.6-0.4-0.4-0.8c0.6-1,0.8-1.8-0.5-2.3c-0.7-0.3-0.3-1-0.5-1.5  c-0.2-0.8-0.3-1.4-1.3-0.6c-0.4,0.3-1.5,1.3-1.2-0.5c0.1-0.4-0.6-0.8-0.9-0.8c-0.8,0-1.8-0.5-2.2,0.5c-0.4,0.8-1.4,1.3-1.4,2.4  c0,0.3-0.5,0.6-0.9,0.8c-0.8,0.3-1.4,0.7-1.5,1.6c-0.1,0.5-0.5,0.9-1,0.7c-0.6-0.3-0.1-0.8,0.1-1.1c0.4-0.5,0.4-0.9-0.4-0.8  c-0.8,0.1-1.3-0.7-2.2-0.8c-0.3,0-0.3-0.8,0.1-1.1c1.3-1.3,3-1.7,4.5-2.7c0.4-0.3,0.5,0.9,0.8,0.3c0.3-0.6,2.2,0.4,1.3-1.3  c0.5-0.2,0.9-0.3,1.4-0.5c0.7-0.3,0.9-1.2,1.8-1.4c0.8-0.1,1.7-0.2,1.8,0.5c0.1,0.7-0.9,0.9-1.5,1.2c-0.3,0.1-0.6,0-0.9,0.1  c-0.2,0.1-0.5,0.3-0.5,0.4c0,0.3,0.4,0.2,0.6,0.2c0.6-0.1,1.1-0.1,1.5,0.5c0.3,0.4,1.4,0.6,1.4,0.4c0.1-0.9,2.4-0.2,1.2-1.8  c0-0.1,0-0.3,0-0.3c0.2-0.2,0.4-0.1,0.6,0.1c0.7,0.8,1.3,0.1,1.6-0.3c0.4-0.6-0.7-0.6-0.7-0.8c0-1.3-1.2-1.1-1.8-1.5  c-0.6-0.4-1.1-0.4-1.7-0.3c0.2,0.1,0.2,0.4,0,0.3c-0.8-0.5-1.4-0.1-2.1,0c-0.7,0.2-1.3,0.2-1.9-0.2c-0.4-0.3-0.8-0.2-1.2,0  c-0.1,0-0.2,0.1-0.2,0.2c0,0,0.1,0.1,0.2,0.1c0.3,0,0.6-0.5,0.9-0.1c-0.4,0.3-0.8,0.5-1.3,0.6l0,0c0,0,0,0,0,0  c-1.2-0.2-1.6,0.2-1.5,1.2c0,0.2-0.1,0.4-0.2,0.6c-0.5-0.4-1.5,0.3-1.5-0.1c0-0.6-0.3-1.5,0.5-2c9.6-5.7,19.8-7.8,30.8-5.9  c7.3,1.3,13.8,4.2,19.7,8.7c0.3,0.2,0.5,0.5,0.7,0.7c-0.4,0.2-0.6-0.2-0.9-0.3c-0.9-0.4-1.7-1.1-2.7-1.3c-1.3-0.2-2.6-0.4-3.6,0.7  c-0.7,0.7-1.5,1.2-2.5,1.4c-0.8,0.2-1,0.6-0.6,1.4c0.3,0.8,0.7,1.3,1.5,0.9c0.7-0.4,1-0.1,1.4,0.4c0.5,0.6,0.3,0.8-0.1,1.2  c-0.1,0.1,0.1,0.5-0.3,0.4C69.9,20.5,70,20.3,70,20c0-0.3,0.4-0.8-0.2-0.8c-0.5,0-0.9,0.5-0.7,1c0.4,0.8-0.1,1-0.7,1  c-1,0.1-1.4,1.3-2.3,1.4c-0.5,1.1-1.7,0.5-2.5,1c-0.2,0.1-0.6,0-0.7,0.3c0,0.1,0.3,0.3,0.5,0.4c0.4,0.2,0.7,0.5,1,0.8  c0.4,0.5,0.3,1,0.1,1.5c-0.2,0.6-0.7,0.3-1.1,0.3c-0.1,0-0.2,0-0.2,0c-2.6-0.3-3.4,0.5-3,3.1c0.1,0.5,0.1,1.2,1,1.1  c0.7,0,1,0.5,0.5,1.1c-1,1.2-2.1,2.4-2.6,4c-0.3,0.7-1.4,0.7-1.9,1.6c-0.7,1.6-2.5,2.7-1.8,4.9c0.3,0.9,0,1.8-0.3,2.8  c-0.3,0.9-0.3,2,0.6,2.8c1.5,1.2,2,3.2,3.7,4.2c0.7,0.4,1.2,0.5,2,0.4c1.9-0.2,3.7-0.8,5.5-0.9c1.1-0.1,2.3,1.1,3.5,1.6  c0.7,0.3,0,1.6-0.1,2.4c-0.1,0.7-0.1,1.2,0.4,1.7c1.5,1.6,1.7,3.6,2.1,5.6c0.2,0.9-0.8,1.5-1,2.4c-0.3,1.2-0.5,2.3,0.2,3.4  c0.7,1.1,1,2.3,0.8,3.6c-0.1,1.3,1,2,1.2,3.1c0.4,2.2,0.5,2.1,2.8,1.7c2.6-0.5,3.8-2.6,4.9-4.7c0.3-0.5,0.3-1,0.9-1.2  c0.6-0.3,0.9-1.1,0.7-1.7c-0.3-1.3,0.4-2.2,1.3-2.8c1.9-1.2,2.1-3,1.6-4.7c-0.9-3.3,0.7-5.6,2.6-7.8c1.5-1.7,2-3.6,2.3-5.6  c0.1-0.5,0-0.9-0.7-0.5c-0.3,0.2-0.6,0.3-1,0.4c-0.5,0.1-1.1,0.3-1.4-0.4c-0.4-0.9,0.5-0.7,0.8-0.8c1.8-1,3.7-2,4-4.4  c0.1-0.7,0-1.4-0.5-2c-0.3-0.4-0.5-0.9-0.3-1.4c2.2,2.4,1.9,5.6,2,8.4C95.1,69.6,80.8,88.1,60.5,93.1z M22,42.4  c-1.1-0.7-2-1.8-3.5-1.8c-0.4,0.1-0.9,0.2-1.3,0.6c-0.1,0.1-0.2,0.5,0.1,0.4c1.6-0.6,2.5,0.1,3.5,1.2c0.2,0.2,0.8,0.4,1.3,0.1  C22.1,42.7,22,42.4,22,42.4z M25,43.5c-0.4-0.6-1-0.7-1.7-0.8c-0.9-0.2-0.5,1.1-1.2,1c0.3,0.1,0.6,0.3,1,0.4  C23.7,43.8,24.4,43.7,25,43.5z M59.6,14.6c0-0.4-0.4-0.5-0.7-0.5c-0.8,0-1.6,0-2.4,0c-0.3,0-0.7-0.3-0.9,0.1  c0.4,0.2,0.1,0.9,0.7,1.1c0.3,0.1,0.7,0.1,1.1,0.2c0.5-0.1,1.1-0.3,1.6-0.4C59.3,14.9,59.6,14.9,59.6,14.6z M62.8,20  c0.6,0.3,1.6,0.4,0.5,1.4c-0.3,0.3,0,1-0.4,1.4c0.5,0.3,0.9-0.1,1.3-0.1c0.6,0,1.3-0.1,1.9-0.2c0-0.9-0.5-1.6-1.2-2.3  c-0.2-0.2-0.5-0.5-0.5-0.8c0.1-1-0.5-1.5-1.3-1.3C62.3,18.4,62.4,19.2,62.8,20z M61.9,19.8c-0.5,0.1-1.3,0.3-1.3,0.9  c0,0.4-0.6,1,0,1.2c0.4,0.1,1.2-0.1,1.5-0.4c0.4-0.4,0.5-1,0.7-1.5C62.5,19.9,62.2,19.8,61.9,19.8z M55.4,12.8  c0.4,0,0.8-0.3,1.2-0.5c0.2-0.1,0.4-0.2,0.3-0.4c-1.1-1.2,0.4-0.5,0.6-0.8c0.2-0.2,0.8-0.3,0.9-0.5c0.3-1.3,1.3-1.5,2.5-1.5  C60.8,9.1,61,9,61.1,9c-0.1-0.1-0.2-0.2-0.4-0.2c-1.1-0.2-2.2-0.4-3.3-0.6c-4.7-0.6-9.4,0.4-14.2,0.1c-2.7-0.2-5.2,1-7.9,1.3  c-0.4,0-0.8,0.3-1.2,0.4C34,10,33.7,10.3,34,10.3c0.9,0.2,0,0.4,0,0.4c-0.3,0.4-0.8,0.2-1.2,0.3c-0.2,0.1-0.5,0.3-0.5,0.4  c0.1,0.3,0.4,0.1,0.6,0.1c0.7,0,1.4,0,2.1-0.1h0c1.5-1.1,3.2-1.5,4.9-2.1c0.2-0.1,0.4,0,0.6-0.1c0,1.8,1.3,0.6,1.9,0.8  c0.8,0.2,2-0.3,1.7,1.3c0,0.1,0.1,0.2,0.2,0.3c0.6,0.5,0.4,1-0.2,1.2c-1.2,0.3-1,1.3-1.1,2.2c0,1.4,1.2,1.5,2.1,1.9  c0.8,0.3,1.1-0.4,1.5-0.8c0.8-0.7,1.3-1.7,2.4-1.8C51.2,14,53.2,12.9,55.4,12.8z M90.2,63.9c-0.1-0.3-0.2-0.5-0.2-0.8  c-0.2,0.2-0.4,0.4-0.5,0.6c-0.2,0.3-0.3,0.9-0.7,1.1c-1.9,1.3-1.4,3.4-2.1,5.2c-0.1,0.3-0.1,0.7,0.3,0.8c0.3,0.1,0.6-0.1,0.8-0.4  C88.8,68.3,89.7,66.2,90.2,63.9z M83.1,35.2c-0.3,0.7-1,0-1.4,0.1c-1.7,0.4-3-0.4-4.4-1.1c-0.5-0.2-1.1-0.1-1.2,0.3  c-0.7,2.3-1.6-0.2-2.3,0.1c-0.1,0-0.3-0.5-0.4-0.5c-1.6-0.2-2.7-0.7-2.2-2.7c0.1-0.3-0.5-0.5-0.8-0.4c-2,0.3-4.2-0.4-6,1  c-0.2,0.2-0.6,0-0.9,0c-0.3,0-0.9,0.1-0.9-0.3c0-0.5,0.5-0.4,0.9-0.5c1-0.1,1.5-0.7,1.9-1.6c0.5-1.3,1.8-1.9,2.7-2.5  c2-1.5,2.7,0.3,3.8,1.1c0.4,0.3,0.8,0.6,1.3,0.8c0.3,0.2,0.6,0.5,0.5,0.8c-0.1,0.5-0.5,0.4-0.9,0.4c-0.2,0.1-0.6-0.2-0.7,0.2  c0,0.1,0.2,0.3,0.4,0.4c0.3,0.1,0.7,0.6,0.9,0.2c0.2-0.5,0.6-0.8,0.9-1.3c1-1.5-0.7-1.3-1.1-1.9c-0.1-0.2-0.5-0.2-0.5-0.4  c-0.2-0.5-1.2-0.9-0.7-1.4c0.5-0.5,0.9,0.5,1.4,0.7c1.9,0.7,2.1,2.7,3.1,4c0.2,0.3,0.3,0.9,0.8,0.7c0.4-0.2,0.6-0.7,0.4-1.2  c-0.1-0.5-0.5-1,0.2-1.2c0.8-0.2,0.9,0.5,1,1c0.2,1.3,1,1.8,2.3,1.8c0.7,0,1.3,0.6,2.1,0.3c0.1,0,0.3,0.1,0.3,0.3  C83.7,33.6,83.4,34.4,83.1,35.2z M70.4,29.3c-0.2-0.5,0.1-1.1-0.4-1.6c-0.1,0.5-0.3,1-0.4,1.5c0.3,0.2-0.1,0.8,0.5,0.8  C70.4,29.9,70.5,29.5,70.4,29.3z M82.2,27.4c-0.4,0.1-0.7,0.1-1-0.3c-0.3-0.4-0.6-1.1-1.1-0.6c-0.6,0.5-0.9,1.3-0.7,2.1  c0.2,0.6,0.8,0.9,1.3,0.7c1.2-0.5,2.2-0.2,3.2,0.4c0.3,0.2,0.8,0.5,1,0c0.2-0.5-0.2-0.7-0.5-0.9c-0.5-0.4-1.1-0.8-1.5-1.3  c-0.2-0.3,0.2-0.9-0.6-0.8c-0.1,0-0.2,0-0.2,0.1c-0.2,0.4,0.3,0.3,0.4,0.5C82.5,27.4,82.4,27.4,82.2,27.4z M85.3,40.4  c-0.3-0.9-0.9-1.6-1.4-2.4c-0.1-0.2-0.3-0.4-0.6-0.3c-0.4,0.1-0.2,0.4-0.1,0.6c1.2,2.4,2.2,4.9,3.2,7.3c0.2,0.5,0.8,0.9,1.3,1.4  c0.1,0.1,0.2,0.1,0.3,0.2c0-0.1,0.1-0.3,0-0.1C88,44.2,86.1,42.6,85.3,40.4z M74.3,17.9c-0.4-0.7-0.1-1,0.5-1.3  c0.1-0.1,0.3-0.3,0.1-0.3c-0.2-0.1-0.6-0.1-0.6,0c-0.3,0.7-2.6,0.6-0.8,2.1c0,0,0,0.3,0,0.3c-0.7,0.5-0.5,2-1.9,1.8  c-0.1,0-0.4,0-0.2,0.2c0.8,1,1.9,0,2.9,0.3c0.3,0.1,0.5-0.3,0.6-0.7c0.1-1.1,0.4-2,1.8-1.3c0.1,0.1,0.4,0.1,0.4-0.1  c0,0-0.2-0.2-0.4-0.2c-0.2,0-0.5,0-0.7,0C75.3,18.6,74.7,18.6,74.3,17.9z M92.3,39.6c-1-0.5-1.9-1.1-2.2-2.2  c-0.1-0.2-0.3-0.6-0.6-0.4c-0.3,0.2-0.2,0.5,0,0.8c0.4,0.6,0.9,1,1.1,1.6C91.1,41.3,91.6,40.7,92.3,39.6  C92.3,39.6,92.3,39.6,92.3,39.6z M29.5,12.6c-0.7,0.4,0.4,0.5,0.1,1c-0.3,0.5,0.5,0.8,0.7,0.7c0.9-0.1,0.9-0.9,0.7-1.6  c-0.1-0.4-0.5-0.1-0.8,0C29.9,12.9,29.7,12.9,29.5,12.6C29.4,12.6,29.5,12.6,29.5,12.6z M22.4,25.4c0.1-0.4-0.3-0.5-0.6-0.5  c-0.6,0.1-1.2,0.4-1.5,0.8c-0.1,0.2,0.6-0.1,0.8,0.2C21.5,25.6,22.3,26.2,22.4,25.4z M22.3,27c-0.2,0.2,0.1,0.5,0.2,0.4  c0.4-0.3,0.9-0.6,1.2-1c0.1-0.1-0.5-0.3-0.9-0.3C22,25.9,22.6,26.7,22.3,27z M83.6,55.7c-0.5,0-0.7,0.3-0.8,0.7  c0,0.3-0.1,0.7,0.4,0.7c0.5,0,0.5-0.6,0.7-0.9C84.1,55.8,83.8,55.8,83.6,55.7z M21.3,26.6c-0.5,0.1-0.8,0.5-1,0.9  c-0.2,0.3-0.4,0.8-0.5,1.1c0.1,0,0.2,0.1,0.3,0c0.6-0.5,0.6-1.4,1.4-1.9C21.3,26.7,21.3,26.6,21.3,26.6z"
-              />
-            </svg>
-          </div>
-          <div
-            class="desfooter"
-          >Last updated:31/03/2020 18:00 CET. Copyright 2020 Covid 19 | Myanamr</div>-->
-          <router-view>s</router-view>
+          <dashboardGlobalComponent v-if="this.urlLocation == ''" />
+          <dashboardLocalComponent v-if="this.urlLocation == 'local'" />
+          <router-view></router-view>
         </div>
         <div class="mainflex3">
           <div class="desemergency">
@@ -253,63 +143,70 @@
           </div>
 
           <div class="desnews">
-            
-                <br />
-                <div class="desnewsheading">Latest News</div>
-                <br />
-                <div class="desnewsbody">
+            <br />
+            <div class="desnewsheading">Latest</div>
+            <br />
+            <div v-if="latestNews.length > 0">
+              <div class="desnewsbody" v-for="latest in latestNews" :key="latest._id">
+                <a
+                  class="contentcontainer"
+                  :href="linkIt(latest.url)"
+                  style="color : black; text-decoration: none;"
+                >
                   <div class="desnewscontent">
-                    <div class="box1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing</div>
-                    <div class="box2">140640 cases</div>
+                    <div class="box1">{{latest}}</div>
+                    <div class="box2">Source :</div>
                   </div>
-                   <div class="desnewscontent">
-                    <div class="box1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing</div>
-                    <div class="box2">140640 cases</div>
-                  </div>
-                  <div class="desnewsheading">Yesterday</div>
-           
+                </a>
+              </div>
+            </div>
+            <div v-else class="contentcontainer">
+              <h3 style="padding: 0px 30px">No Post Yet</h3>
+            </div>
+            <br />
+            <div class="desnewsheading">Yesterday</div>
+            <br />
+            <div v-if="yesterdayNews.length > 0">
+              <div class="desnewsbody" v-for="yesterday in yesterdayNews" :key="yesterday._id">
+                <a
+                  class="contentcontainer"
+                  :href="linkIt(yesterday.url)"
+                  style="color : black; text-decoration: none;"
+                >
                   <div class="desnewscontent">
-                    <div class="box1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing</div>
-                    <div class="box2">140640 cases</div>
+                    <div class="box1">{{yesterday.title}}</div>
+                    <div class="box2">Source :{{yesterday.source}}</div>
                   </div>
-                  <div class="desnewscontent">
-                    <div class="box1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing</div>
-                    <div class="box2">140640 cases</div>
-                  </div>
-                  <div class="desnewscontent">
-                    <div class="box1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing</div>
-                    <div class="box2">140640 cases</div>
-                  </div>
-                  <div class="desnewscontent">
-                    <div class="box1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing</div>
-                    <div class="box2">140640 cases</div>
-                  </div>
-                  <div class="desnewscontent">
-                    <div class="box1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing</div>
-                    <div class="box2">140640 cases</div>
-                  </div>
-                  <div class="desnewscontent">
-                    <div class="box1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing</div>
-                    <div class="box2">140640 cases</div>
-                  </div>
-                  <div class="desnewscontent">
-                    <div class="box1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing</div>
-                    <div class="box2">140640 cases</div>
-                  </div>
-                  <div class="desnewscontent">
-                    <div class="box1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing</div>
-                    <div class="box2">140640 cases</div>
-                  </div>
-                  <div class="desnewscontent">
-                    <div class="box1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing</div>
-                    <div class="box2">140640 cases</div>
-                  </div>
+                </a>
+              </div>
+            </div>
+            <div v-else class="contentcontainer">
+              <h3 style="padding: 0px 30px">No Post Yet</h3>
+            </div>
 
+            <br />
 
-                </div>
-              
+            <div class="desnewsheading">Uploaded</div>
+            <br />
+            <div v-if="uploadedNews.length > 0">
+              <div class="desnewsbody" v-for="uploaded in uploadedNews" :key="uploaded._id">
+                <a
+                  class="contentcontainer"
+                  :href="linkIt(uploaded.url)"
+                  style="color : black; text-decoration: none;"
+                >
+                  <div class="desnewscontent">
+                    <div class="box1">{{uploaded.title}}</div>
+                    <div class="box2">Source : {{uploaded.source}}</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div v-else class="contentcontainer">
+              <h3 style="padding: 0px 30px">No Post Yet</h3>
+            </div>
 
-
+            <br />
           </div>
         </div>
       </div>
@@ -318,10 +215,26 @@
 </template>
 
 <script>
+import axios from "axios";
 import Header from "./components/Header";
+import dashboardGlobalComponent from "./components/dashboardGlobalComponent";
+import dashboardLocalComponent from "./components/dashboardLocalComponent";
 export default {
   components: {
-    Header
+    Header,
+    dashboardGlobalComponent,
+    dashboardLocalComponent
+  },
+  data() {
+    return {
+      urlLocation: "",
+      CountryByCases: [],
+      search: "",
+      newsRequest: [],
+      latestNews: [],
+      yesterdayNews: [],
+      uploadedNews: []
+    };
   },
   methods: {
     openNav: function() {
@@ -329,6 +242,102 @@ export default {
     },
     closeNav: function() {
       document.getElementById("myNav").style.width = "0%";
+    },
+    fetchCountriesCases() {
+      return fetch(
+        "https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php",
+        {
+          method: "GET",
+          headers: {
+            "x-rapidapi-host": "coronavirus-monitor.p.rapidapi.com",
+            "x-rapidapi-key":
+              "84660ad37emshfca869ae254ae73p16b922jsnf01c1ebb19a6"
+          }
+        }
+      );
+    },
+    fetchNews() {
+      return axios.get("https://covid19mm.info/api/news");
+    },
+    setCountryCases(data) {
+      var sortedArray = data.sort(function(a, b) {
+        var bCases = Number(b.cases.replace(/,/g, ""));
+        var aCases = Number(a.cases.replace(/,/g, ""));
+        return bCases - aCases;
+      });
+      this.CountryByCases = sortedArray;
+    },
+    setNews(data) {
+      this.newsData = data;
+    },
+    linkIt(url) {
+      return url;
+    }
+  },
+  created() {
+    this.urlLocation = window.location.href.split("/").pop();
+  },
+  mounted() {
+    //yesterday, today and uploaded
+    const todayDate = new Date();
+    const yesterdayDate = new Date(todayDate);
+
+    yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+
+    this.today = todayDate.toDateString();
+    this.yesterday = yesterdayDate.toDateString();
+    var isoToday = todayDate.toISOString().slice(0, 10);
+    var isoYesterday = yesterdayDate.toISOString().slice(0, 10);
+
+    axios.all([this.fetchCountriesCases(), this.fetchNews()]).then(
+      axios.spread((countrycasesResponse, newsResponse) => {
+        countrycasesResponse.json().then(data => {
+          this.CountryByCases = data.countries_stat;
+          this.setCountryCases(data.countries_stat);
+        });
+        // news request filter by yesterday, tomorrow and today
+        this.newsRequest = newsResponse.data;
+        this.setNews(newsResponse.data);
+        newsResponse.data.forEach(dates => {
+          var mydate = new Date(dates.date);
+
+          if (mydate.toDateString() == this.today) {
+            this.latestNews = this.newsRequest.filter(function(date) {
+              return date.date == isoToday;
+            });
+          }
+
+          if (mydate.toDateString() == this.yesterday) {
+            this.yesterdayNews = this.newsRequest.filter(function(date) {
+              return date.date == isoYesterday;
+            });
+          }
+
+          if (
+            mydate.toDateString() != this.yesterday &&
+            mydate.toDateString() != this.today
+          ) {
+            this.uploadedNews = this.newsRequest.filter(function(date) {
+              return date.date != isoYesterday && date.date != isoToday;
+            });
+          }
+        });
+      })
+    );
+  },
+  watch: {
+    $route(to, from) {
+      this.urlLocation = to.path.split("/").pop();
+      console.log(from.path);
+    }
+  },
+  computed: {
+    filteredListDetail() {
+      return this.CountryByCases.filter(name => {
+        return name.country_name
+          .toLowerCase()
+          .includes(this.search.toLowerCase());
+      });
     }
   }
 };
@@ -604,6 +613,14 @@ export default {
 /* for desktop version css */
 
 @media only screen and (min-width: 1100px) {
+  .searchcontainer-custom {
+    border-radius: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: row;
+    background-color: #f5f5f5;
+  }
   #myNav {
     display: none;
   }
@@ -620,19 +637,18 @@ export default {
     width: 3px;
   }
 
-  
   /* Handle */
   ::-webkit-scrollbar-thumb {
-   background-color: #d6d6d6;
+    background-color: #d6d6d6;
   }
 
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
+    background: #555;
   }
   .desktopcontainer {
     display: flex;
-    background-color:#fafafa;
+    background-color: #fafafa;
     flex-direction: column;
     height: 100%;
     font-size: 18px;
@@ -661,7 +677,7 @@ export default {
   .mainflex1 {
     display: flex;
     flex: 1;
-    align-items:center;
+    align-items: center;
     justify-content: center;
   }
   .descountrybycases {
@@ -670,7 +686,7 @@ export default {
     display: flex;
     flex-direction: column;
     width: 90%;
-    height:871px;
+    height: 871px;
     border-radius: 10px;
     background-color: #ffffff;
     box-shadow: 0 8px 10px 1px rgba(238, 238, 238, 238),
@@ -783,7 +799,7 @@ export default {
     flex: 1;
     flex-direction: column;
     align-items: center;
-    justify-content:center;
+    justify-content: center;
   }
   .desemergency {
     margin-bottom: 20px;
@@ -813,7 +829,7 @@ export default {
     display: flex;
     flex-direction: column;
     width: 90%;
-    height:685px;
+    height: 685px;
     border-radius: 10px;
     background-color: #ffffff;
     box-shadow: 0 8px 10px 1px rgba(238, 238, 238, 238),
@@ -821,7 +837,7 @@ export default {
       0 5px 5px -3px rgba(238, 238, 238, 238);
   }
   .desnewsheading {
-    margin-top:20px;
+    margin-top: 20px;
     display: flex;
     height: 80px;
     font-size: 24px;
@@ -830,28 +846,24 @@ export default {
     font-weight: bold;
   }
   .desnewscontent {
-    margin-top:20px;
+    margin-top: 20px;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     height: 150px;
-    margin-right:20px;
+    font-size: 15px;
+    margin-right: 20px;
     flex-direction: column;
     border-bottom: 1px solid #eee;
   }
 
-  .box1
-  {
-    margin-left:20px;
+  .box1 {
+    margin-left: 20px;
   }
-  .box2
-  {
-    margin-left:20px;
+  .box2 {
+    margin-left: 20px;
     color: #ff5722;
-    font-weight:bold;
-
+    font-weight: bold;
   }
-
-
 
   .deslink ul {
     list-style-type: none;
