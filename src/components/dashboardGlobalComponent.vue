@@ -41,7 +41,7 @@
           </div>
           <div
             class="desfooter"
-          >Last Updated : {{addHour(WorldTotal.statistic_taken_at)}} </div>
+          >Last Updated : {{addHour(WorldTotal.statistic_taken_at)}}.<br> Copyright 2020 Covid 19 | Myanamr</div>
     </div>
 </template>
 <script>

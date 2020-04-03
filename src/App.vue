@@ -105,14 +105,20 @@
               style="color:#3F51B5;"
             >Countries, areas or territories with cases</div>
             <br />
-            <form class="searchcontainer-custom">
+            <div class="dessearchbar">
+
+              <form class="searchcontainer-custom">
               <div class="placeholdercontainer">
-                <input type="text" id="search-bar" placeholder="Search ..." v-model="search" />
+                <input type="text" style="font-size:14px;" id="search-bar" placeholder="Search ..." v-model="search" />
               </div>
               <div class="searchicon">
                 <i class="material-icons">search</i>
               </div>
-            </form>
+              </form>
+
+
+            </div>
+           
             <div class="descountrybycasesbody">
               <div
                 class="descasescontainer"
@@ -130,9 +136,11 @@
           </div>
         </div>
         <div class="mainflex2">
+          <div class="flex2container">
           <dashboardGlobalComponent v-if="this.urlLocation == ''" />
           <dashboardLocalComponent v-if="this.urlLocation == 'local'" />
           <router-view></router-view>
+          </div>
         </div>
         <div class="mainflex3">
           <div class="desemergency">
@@ -161,7 +169,8 @@
               </div>
             </div>
             <div v-else class="contentcontainer">
-              <h3 style="padding: 0px 30px">No Post Yet</h3>
+              <h3 style="padding: 0px 20px;  color:#757575;">No Post Yet</h3>
+              <hr style="border:1px solid #eee; width:95%; margin-left:0;">
             </div>
             <br />
             <div class="desnewsheading">Yesterday</div>
@@ -181,7 +190,8 @@
               </div>
             </div>
             <div v-else class="contentcontainer">
-              <h3 style="padding: 0px 30px">No Post Yet</h3>
+              <h3 style="padding: 0px 20px;  color:#757575;">No Post Yet</h3>
+              <hr style="border:1px solid #eee; width:95%; margin-left:0;">
             </div>
 
             <br />
@@ -203,7 +213,8 @@
               </div>
             </div>
             <div v-else class="contentcontainer">
-              <h3 style="padding: 0px 30px">No Post Yet</h3>
+              <h3 style="padding: 0px 20px;  color:#757575;">No Post Yet</h3>
+              <hr style="border:1px solid #eee; width:95%; margin-left:0;">
             </div>
 
             <br />
@@ -615,11 +626,13 @@ export default {
 @media only screen and (min-width: 1100px) {
   .searchcontainer-custom {
     border-radius: 50px;
-    margin-left: 20px;
-    margin-right: 20px;
-    display: flex;
+    display:flex;
+    margin-left:20px;
+    margin-right:20px;
+    width:90%;
+    height:55px;
     flex-direction: row;
-    background-color: #f5f5f5;
+    background-color: #eee;
   }
   #myNav {
     display: none;
@@ -688,7 +701,6 @@ export default {
     width: 90%;
     height: 871px;
     border-radius: 10px;
-    background-color: #ffffff;
     box-shadow: 0 8px 10px 1px rgba(238, 238, 238, 238),
       0 3px 14px 2px rgba(238, 238, 238, 238),
       0 5px 5px -3px rgba(238, 238, 238, 238);
@@ -714,14 +726,23 @@ export default {
     flex: 2;
   }
   .descasesflex2 {
+    justify-content:flex-end;
+    margin-right:10px;
     display: flex;
     flex: 1;
   }
   .mainflex2 {
     display: flex;
     flex: 2;
-    flex-direction: column;
+    justify-content:center;
     align-items: center;
+  }
+  .flex2container
+  {
+    width:100%;
+    display:flex;
+     height:871px;
+    flex-direction: column;
   }
   .desnumber {
     display: flex;
@@ -789,10 +810,11 @@ export default {
   .desfooter {
     display: flex;
     width: 100%;
-    height: 55px;
-    align-items: flex-end;
+    height: 65px;
+    align-items: flex-start;
     color: #757575;
     margin-left: 25px;
+
   }
   .mainflex3 {
     display: flex;
