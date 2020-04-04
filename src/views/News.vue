@@ -106,6 +106,7 @@ export default {
     };
   },
   mounted() {
+
     //yesterday, today and uploaded
     const todayDate = new Date();
     const yesterdayDate = new Date(todayDate);
@@ -153,6 +154,7 @@ export default {
         });
       })
     );
+    
   },
   methods: {
     fetchNews() {

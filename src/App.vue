@@ -74,6 +74,7 @@
 
     <!---@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-------->
     <!---for desktop view------>
+    <vue-topprogress ref="topProgress"></vue-topprogress>
 
     <div class="desktopcontainer">
       <div class="desheading">
@@ -106,28 +107,34 @@
             >Countries, areas or territories with cases</div>
             <br />
             <div class="dessearchbar">
-
               <form class="searchcontainer-custom">
-              <div class="placeholdercontainer">
-                <input type="text" style="font-size:14px;" id="search-bar" placeholder="Search ..." v-model="search" />
-              </div>
-              <div class="searchicon">
-                <i class="material-icons">search</i>
-              </div>
+                <div class="placeholdercontainer">
+                  <input
+                    type="text"
+                    style="font-size:14px;"
+                    id="search-bar"
+                    placeholder="Search ..."
+                    v-model="search"
+                  />
+                </div>
+                <div class="searchicon">
+                  <i class="material-icons">search</i>
+                </div>
               </form>
-
-
             </div>
-           
+
             <div class="descountrybycasesbody">
-              <div
-                class="descasescontainer"
-                v-for="country in filteredListDetail"
-                :key="country.index"
-              >
-                <div class="descasesflex1" style="margin-left:20px;">{{country.country_name}}</div>
-                <div class="descasesflex2">{{country.cases}}</div>
-              </div>
+              <router-link to="countrycases" style="text-decoration : none; color:black">
+                <div
+                  class="descasescontainer"
+                  v-for="country in filteredListDetail"
+                  :key="country.index"
+                  @click="toggleData(country.country_name)"
+                >
+                  <div class="descasesflex1" style="margin-left:20px;">{{country.country_name}}</div>
+                  <div class="descasesflex2">{{country.cases}}</div>
+                </div>
+              </router-link>
               <span
                 v-if="!filteredListDetail.length"
                 style="padding:60px; color:grey;"
@@ -137,17 +144,73 @@
         </div>
         <div class="mainflex2">
           <div class="flex2container">
-          <dashboardGlobalComponent v-if="this.urlLocation == ''" />
-          <dashboardLocalComponent v-if="this.urlLocation == 'local'" />
-          <router-view></router-view>
+            <dashboardGlobalComponent v-if="this.urlLocation == ''" />
+            <dashboardLocalComponent v-if="this.urlLocation == 'local'" />
+            <countryCases
+              v-if="this.urlLocation == 'countrycases'"
+              v-bind:value="this.propCountryName"
+            />
+            <router-view></router-view>
           </div>
         </div>
         <div class="mainflex3">
-          <div class="desemergency">
+          <div class="desemergency" id="myBtn" @click="openModal()">
             <div class="desemergencyflex1">
               <span class="material-icons" style="font-size:40px;">add_ic_call</span>
             </div>
             <div class="desemergencyflex2">Emergency Contacts</div>
+          </div>
+
+          <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+              <div class="closecontainer close" @click="closeModal()">
+                <span class="material-icons" style="font-size:39px; font-weight:bold;">close</span>
+              </div>
+              <div class="modalheading">
+                <div style="color:#F44336; margin-left:20px; font-weight:bold;">Emergency Contacts</div>
+                <br />
+
+                <div>
+                  <form class="searchcontainer">
+                    <div class="placeholdercontainer">
+                      <input
+                        type="text"
+                        id="search-bar"
+                        placeholder="Search ..."
+                        v-model="searchContacts"
+                      />
+                    </div>
+                    <div class="searchicon">
+                      <i class="material-icons">search</i>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="modalbody">
+                <div
+                  class="modalbodybox"
+                  v-for="contacts in filterListContacts"
+                  v-bind:key="contacts._id"
+                >
+                  <div class="bodybox1">
+                    <div>{{contacts.name}}</div>
+                    <div style="line-height:50px" :phoneNumCopy="copyCode">{{contacts.phoneNumber}}</div>
+                  </div>
+                  <div
+                    class="bodybox2"
+                    v-clipboard:copy="contacts.phoneNumber"
+                    v-clipboard:success="onCopy"
+                  >
+                    <div>
+                      <i class="far fa-clone"></i>
+                    </div>
+                    <div>Copy</div>
+                  </div>
+                </div>
+                <br />
+              </div>
+            </div>
           </div>
 
           <div class="desnews">
@@ -162,7 +225,7 @@
                   style="color : black; text-decoration: none;"
                 >
                   <div class="desnewscontent">
-                    <div class="box1">{{latest}}</div>
+                    <div class="box1">{{latest.title}}</div>
                     <div class="box2">Source :</div>
                   </div>
                 </a>
@@ -170,7 +233,7 @@
             </div>
             <div v-else class="contentcontainer">
               <h3 style="padding: 0px 20px;  color:#757575;">No Post Yet</h3>
-              <hr style="border:1px solid #eee; width:95%; margin-left:0;">
+              <hr style="border:1px solid #eee; width:95%; margin-left:0;" />
             </div>
             <br />
             <div class="desnewsheading">Yesterday</div>
@@ -191,7 +254,7 @@
             </div>
             <div v-else class="contentcontainer">
               <h3 style="padding: 0px 20px;  color:#757575;">No Post Yet</h3>
-              <hr style="border:1px solid #eee; width:95%; margin-left:0;">
+              <hr style="border:1px solid #eee; width:95%; margin-left:0;" />
             </div>
 
             <br />
@@ -214,7 +277,7 @@
             </div>
             <div v-else class="contentcontainer">
               <h3 style="padding: 0px 20px;  color:#757575;">No Post Yet</h3>
-              <hr style="border:1px solid #eee; width:95%; margin-left:0;">
+              <hr style="border:1px solid #eee; width:95%; margin-left:0;" />
             </div>
 
             <br />
@@ -225,16 +288,25 @@
   </div>
 </template>
 
+
 <script>
+import Vue from "vue";
+import VueClipboard from "vue-clipboard2";
+import { vueTopprogress } from "vue-top-progress";
 import axios from "axios";
 import Header from "./components/Header";
 import dashboardGlobalComponent from "./components/dashboardGlobalComponent";
 import dashboardLocalComponent from "./components/dashboardLocalComponent";
+import countryCases from "./components/dynamicCountryCases";
+Vue.use(VueClipboard);
+
 export default {
   components: {
     Header,
     dashboardGlobalComponent,
-    dashboardLocalComponent
+    dashboardLocalComponent,
+    countryCases,
+    vueTopprogress
   },
   data() {
     return {
@@ -244,15 +316,25 @@ export default {
       newsRequest: [],
       latestNews: [],
       yesterdayNews: [],
-      uploadedNews: []
+      uploadedNews: [],
+      propCountryName: "",
+      contactlist: [],
+      searchContacts: "",
+      copyCode: "",
     };
   },
   methods: {
-    openNav: function() {
+    openNav() {
       document.getElementById("myNav").style.width = "100%";
     },
-    closeNav: function() {
+    closeNav() {
       document.getElementById("myNav").style.width = "0%";
+    },
+    openModal() {
+      document.getElementById("myModal").style.display = "block";
+    },
+    closeModal() {
+      document.getElementById("myModal").style.display = "none";
     },
     fetchCountriesCases() {
       return fetch(
@@ -270,6 +352,9 @@ export default {
     fetchNews() {
       return axios.get("https://covid19mm.info/api/news");
     },
+    fetchConacts() {
+      return axios.get("https://covid19mm.info/api/contact/list");
+    },
     setCountryCases(data) {
       var sortedArray = data.sort(function(a, b) {
         var bCases = Number(b.cases.replace(/,/g, ""));
@@ -281,8 +366,17 @@ export default {
     setNews(data) {
       this.newsData = data;
     },
+    setContacts(data) {
+      this.contactlist = data;
+    },
     linkIt(url) {
       return url;
+    },
+    toggleData(countryName) {
+      this.propCountryName = countryName;
+    },
+    onCopy() {
+      alert("copied");
     }
   },
   created() {
@@ -300,46 +394,63 @@ export default {
     var isoToday = todayDate.toISOString().slice(0, 10);
     var isoYesterday = yesterdayDate.toISOString().slice(0, 10);
 
-    axios.all([this.fetchCountriesCases(), this.fetchNews()]).then(
-      axios.spread((countrycasesResponse, newsResponse) => {
-        countrycasesResponse.json().then(data => {
-          this.CountryByCases = data.countries_stat;
-          this.setCountryCases(data.countries_stat);
-        });
-        // news request filter by yesterday, tomorrow and today
-        this.newsRequest = newsResponse.data;
-        this.setNews(newsResponse.data);
-        newsResponse.data.forEach(dates => {
-          var mydate = new Date(dates.date);
+    axios
+      .all([this.fetchCountriesCases(), this.fetchNews(), this.fetchConacts()])
+      .then(
+        axios.spread((countrycasesResponse, newsResponse, contactsResponse) => {
+          //country response
+          countrycasesResponse.json().then(data => {
+            this.CountryByCases = data.countries_stat;
+            this.setCountryCases(data.countries_stat);
+          });
+          //news response
+          // news request filter by yesterday, tomorrow and today
+          this.newsRequest = newsResponse.data;
+          this.setNews(newsResponse.data);
+          newsResponse.data.forEach(dates => {
+            var mydate = new Date(dates.date);
 
-          if (mydate.toDateString() == this.today) {
-            this.latestNews = this.newsRequest.filter(function(date) {
-              return date.date == isoToday;
-            });
-          }
+            if (mydate.toDateString() == this.today) {
+              this.latestNews = this.newsRequest.filter(function(date) {
+                return date.date == isoToday;
+              });
+            }
 
-          if (mydate.toDateString() == this.yesterday) {
-            this.yesterdayNews = this.newsRequest.filter(function(date) {
-              return date.date == isoYesterday;
-            });
-          }
+            if (mydate.toDateString() == this.yesterday) {
+              this.yesterdayNews = this.newsRequest.filter(function(date) {
+                return date.date == isoYesterday;
+              });
+            }
 
-          if (
-            mydate.toDateString() != this.yesterday &&
-            mydate.toDateString() != this.today
-          ) {
-            this.uploadedNews = this.newsRequest.filter(function(date) {
-              return date.date != isoYesterday && date.date != isoToday;
-            });
-          }
-        });
-      })
-    );
+            if (
+              mydate.toDateString() != this.yesterday &&
+              mydate.toDateString() != this.today
+            ) {
+              this.uploadedNews = this.newsRequest.filter(function(date) {
+                return date.date != isoYesterday && date.date != isoToday;
+              });
+            }
+          });
+
+          //contacts response
+          this.contactlist = contactsResponse.data;
+          this.setContacts(contactsResponse.data);
+          console.log(this.contactlist);
+        })
+      );
   },
   watch: {
     $route(to, from) {
       this.urlLocation = to.path.split("/").pop();
-      console.log(from.path);
+      //top progress
+      this.$refs.topProgress.start();
+
+      console.log(from);
+
+      // Use setTimeout for demo
+      setTimeout(() => {
+        this.$refs.topProgress.done();
+      }, 1000);
     }
   },
   computed: {
@@ -348,6 +459,13 @@ export default {
         return name.country_name
           .toLowerCase()
           .includes(this.search.toLowerCase());
+      });
+    },
+    filterListContacts() {
+      return this.contactlist.filter(contact => {
+        return contact.name
+          .toLowerCase()
+          .includes(this.searchContacts.toLowerCase());
       });
     }
   }
@@ -626,11 +744,11 @@ export default {
 @media only screen and (min-width: 1100px) {
   .searchcontainer-custom {
     border-radius: 50px;
-    display:flex;
-    margin-left:20px;
-    margin-right:20px;
-    width:90%;
-    height:55px;
+    display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 90%;
+    height: 55px;
     flex-direction: row;
     background-color: #eee;
   }
@@ -720,28 +838,31 @@ export default {
     width: 90%;
     flex-direction: row;
     border-bottom: 1px solid #eee;
+    cursor: pointer;
+  }
+  .descasescontainer:hover {
+    background: #eee;
   }
   .descasesflex1 {
     display: flex;
     flex: 2;
   }
   .descasesflex2 {
-    justify-content:flex-end;
-    margin-right:10px;
+    justify-content: flex-end;
+    margin-right: 10px;
     display: flex;
     flex: 1;
   }
   .mainflex2 {
     display: flex;
     flex: 2;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
   }
-  .flex2container
-  {
-    width:100%;
-    display:flex;
-     height:871px;
+  .flex2container {
+    width: 100%;
+    display: flex;
+    height: 871px;
     flex-direction: column;
   }
   .desnumber {
@@ -814,7 +935,6 @@ export default {
     align-items: flex-start;
     color: #757575;
     margin-left: 25px;
-
   }
   .mainflex3 {
     display: flex;
@@ -922,6 +1042,167 @@ export default {
     align-items: center;
     justify-content: flex-end;
     margin-right: 25px;
+  }
+
+  .mfp-zoom-in {
+    /* start state */
+    /* animate in */
+    /* animate out */
+  }
+  .mfp-zoom-in .mfp-with-anim {
+    opacity: 0;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    transform: scale(0.8);
+  }
+  .mfp-zoom-in.mfp-bg {
+    opacity: 0;
+    transition: all 0.3s ease-out;
+  }
+  .mfp-zoom-in.mfp-ready .mfp-with-anim {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .mfp-zoom-in.mfp-ready.mfp-bg {
+    opacity: 0.8;
+  }
+  .mfp-zoom-in.mfp-removing .mfp-with-anim {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  .mfp-zoom-in.mfp-removing.mfp-bg {
+    opacity: 0;
+  }
+
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    -webkit-animation-name: fadeIn; /* Fade in the background */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s;
+  }
+
+  /* Modal Content */
+  .modal-content {
+    position: fixed;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    width: 446px;
+    height: 100%;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s;
+  }
+
+  /* The Close Button */
+  .close {
+    color: #757575;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .closecontainer {
+    display: flex;
+    height: 120px;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 20px;
+  }
+  .modalheading {
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+  }
+  .modalbody {
+    overflow: scroll;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+  .modalbodybox {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #eee;
+  }
+  .bodybox1 {
+    display: flex;
+    flex: 3;
+    padding: 20px;
+    flex-direction: column;
+  }
+  .bodybox2 {
+    color: #1976d2;
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fafafa;
+    cursor: pointer;
+  }
+
+  /* Add Animation */
+  @-webkit-keyframes slideIn {
+    from {
+      right: -300px;
+      opacity: 0;
+    }
+    to {
+      right: 0;
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      right: -300px;
+      opacity: 0;
+    }
+    to {
+      right: 0;
+      opacity: 1;
+    }
+  }
+
+  @-webkit-keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 }
 </style>

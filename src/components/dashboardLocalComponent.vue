@@ -26,7 +26,11 @@
       <div class="desdeath">
         <div class="numbercontainer3">
           <div>Deaths</div>
-          <div style="font-size:36px; color:#F44336; padding-top:20px">{{myanmarStat.total_deaths}}</div>
+          <div
+            style="font-size:36px; color:#F44336; padding-top:20px"
+            v-if="caseinMyanmar[0].total_deaths"
+          >{{myanmarStat.total_deaths}}</div>
+          <div style="font-size:36px; color:#4CAF50; padding-top:20px" v-else>0</div>
         </div>
       </div>
     </div>
