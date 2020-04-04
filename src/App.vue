@@ -164,84 +164,61 @@
           <div id="myModal" class="modal">
             <!-- Modal content -->
             <div class="modal-content">
-             
               <div class="modalheading">
-                  <div class="closecontainer close" @click="closeModal()">
-                    <span class="material-icons" style="font-size:40px;">close</span>
-                    
-
+                <div class="closecontainer close" @click="closeModal()">
+                  <span class="material-icons" style="font-size:40px;">close</span>
+                </div>
+                <div class="headingcontainer">
+                  <div style="margin-left:20px; color:#F44336;">Emergency Contacts</div>
+                  <br />
+                  <br />
+                  <div>
+                    <form class="searchcontainer-custom">
+                      <div class="placeholdercontainer">
+                        <input
+                          style="font-size:14px;"
+                          type="text"
+                          id="search-bar"
+                          placeholder="Search ..."
+                          v-model="searchContacts"
+                        />
+                      </div>
+                      <div class="searchicon">
+                        <i class="material-icons">search</i>
+                      </div>
+                    </form>
                   </div>
-                  <div class="headingcontainer">
-
-                        <div style="margin-left:20px; color:#F44336;">Emergency Contacts</div><br><br>
-                        <div>
-                          <form class="searchcontainer-custom">
-                            <div class="placeholdercontainer">
-                              <input
-                                style="font-size:14px;"
-                                type="text"
-                                id="search-bar"
-                                placeholder="Search ..."
-                                v-model="searchContacts"
-                              />
-                            </div>
-                            <div class="searchicon">
-                              <i class="material-icons">search</i>
-                            </div>
-                          </form>
-                        </div>
-                       
-
-
-                  </div>
-              
-                
-
+                </div>
               </div>
-            
+
               <div class="modalbody">
-                    
-                        <div class="descontactscontainer" v-for="contacts in filterListContacts"
-                  v-bind:key="contacts._id">
-                          <div class="desflex1">
-
-                                <div class="desbox1">
-                                    {{contacts.name}}
-                                </div>
-                                <div class="desbox2" style="line-height:50px" :phoneNumCopy="copyCode">
-                                      {{contacts.phoneNumber}}
-                                </div>
-
-                          </div>
-                          <div class="desflex2" v-clipboard:copy="contacts.phoneNumber"
-                    v-clipboard:success="onCopy">
-                              <div class="desbox3">
-                                    <span><i class="far fa-clone"></i></span>
-                              </div>
-                              <div class="desbox4">
-                                  Copy
-                              </div>
-
-                          </div>
-                        </div>
-
-
-                        
-                         
-                       
-                     
-                    
+                <div
+                  class="descontactscontainer"
+                  v-for="contacts in filterListContacts"
+                  v-bind:key="contacts._id"
+                >
+                  <div class="desflex1">
+                    <div class="desbox1">{{contacts.name}}</div>
+                    <div
+                      class="desbox2"
+                      style="line-height:50px"
+                      :phoneNumCopy="copyCode"
+                    >{{contacts.phoneNumber}}</div>
                   </div>
-                    
-          
-           
-              
-
-
-
-                
-                
-              
+                  <div
+                    class="desflex2"
+                    v-clipboard:copy="contacts.phoneNumber"
+                    v-clipboard:success="onCopy"
+                  >
+                    <div class="desbox3">
+                      <span>
+                        <i class="far fa-clone"></i>
+                      </span>
+                    </div>
+                    <div class="desbox4">Copy</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -322,6 +299,8 @@
 
 
 <script>
+/* eslint-disable no-console */
+
 import Vue from "vue";
 import VueClipboard from "vue-clipboard2";
 import { vueTopprogress } from "vue-top-progress";
@@ -352,7 +331,7 @@ export default {
       propCountryName: "",
       contactlist: [],
       searchContacts: "",
-      copyCode: "",
+      copyCode: ""
     };
   },
   methods: {
@@ -502,6 +481,8 @@ export default {
     }
   }
 };
+
+/* eslint-enable no-console */
 </script>
 
 
@@ -1076,7 +1057,6 @@ export default {
     margin-right: 25px;
   }
 
-
   /* The Modal (background) */
   .modal {
     display: none; /* Hidden by default */
@@ -1100,11 +1080,11 @@ export default {
     position: fixed;
     right: 0;
     display: flex;
-    flex:1; 
+    flex: 1;
     flex-direction: row;
     background-color: #fff;
     width: 446px;
-    height:100%;
+    height: 100%;
     -webkit-animation-name: slideIn;
     -webkit-animation-duration: 0.4s;
     animation-name: slideIn;
@@ -1125,102 +1105,79 @@ export default {
     text-decoration: none;
     cursor: pointer;
   }
- 
-  .modalheading {
-    position:fixed;
-    width:446px;
-    height:300px;
-    display:flex;
-    flex-direction: column;
-  
-    
-  }
-  .closecontainer
-  {
-    align-items:center;
-    justify-content:flex-end;
-    margin-right:20px;
-    display:flex;
-    flex:3;
-  }
-  .headingcontainer
-  {
 
-    justify-content:center;
+  .modalheading {
+    position: fixed;
+    width: 446px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+  .closecontainer {
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 20px;
+    display: flex;
+    flex: 3;
+  }
+  .headingcontainer {
+    justify-content: center;
     font-size: 24px;
     display: flex;
     flex-direction: column;
     height: 150px;
-
   }
   .modalbody {
-
-    margin-top:300px;
+    margin-top: 300px;
     overflow-x: hidden;
     overflow-y: auto;
     flex-direction: column;
- 
-    
   }
-  .descontactscontainer
-{
-  width:446px;
-  height:135px;
-  display:flex;
-  border-bottom:1px solid #eee;
-  flex-direction:row;
+  .descontactscontainer {
+    width: 446px;
+    height: 135px;
+    display: flex;
+    border-bottom: 1px solid #eee;
+    flex-direction: row;
+  }
+  .desflex1 {
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+    margin-left: 20px;
+  }
 
-}
-.desflex1
-{
-  display:flex;
-  flex:2;
-  flex-direction:column;
-  margin-left:20px;
-}
+  .desbox1 {
+    display: flex;
+    flex: 1;
+    align-items: center;
+  }
+  .desbox2 {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-start;
+  }
 
-.desbox1
-{
-  display:flex;
-  flex:1;
-  align-items:center;
-}
-.desbox2
-{
-  display:flex;
-  flex:1;
-  align-items:center;
-  justify-content:flex-start;
-}
-
-.desflex2
-{
-  display:flex;
-  flex:1;
-  flex-direction:column;
-  background-color:#FAFAFA;
-  color:#1976D2;
-}
-.desbox3
-{
-  display:flex;
-  flex:1;
-  align-items:flex-end;
-  justify-content:center;
-
-}
-.desbox4
-{
-  display:flex;
-  flex:1;
-  align-items:center;
-  justify-content:center;
-
-
-
-
-}
-
+  .desflex2 {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    background-color: #fafafa;
+    color: #1976d2;
+  }
+  .desbox3 {
+    display: flex;
+    flex: 1;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .desbox4 {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+  }
 
   /* Add Animation */
   @-webkit-keyframes slideIn {
