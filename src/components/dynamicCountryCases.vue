@@ -71,7 +71,7 @@ export default {
     };
   },
   mounted() {
-    this.$root.$data.title = "Global Dashboard";
+    this.$root.$data.title = "Countries, areas with cases";
     this.fetchCountryCases(`https://coronavirus-monitor.p.rapidapi.com/coronavirus/latest_stat_by_country.php?country=myanmar`);
   },
   methods: {

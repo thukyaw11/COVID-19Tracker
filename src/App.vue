@@ -164,52 +164,84 @@
           <div id="myModal" class="modal">
             <!-- Modal content -->
             <div class="modal-content">
-              <div class="closecontainer close" @click="closeModal()">
-                <span class="material-icons" style="font-size:39px; font-weight:bold;">close</span>
-              </div>
+             
               <div class="modalheading">
-                <div style="color:#F44336; margin-left:20px; font-weight:bold;">Emergency Contacts</div>
-                <br />
+                  <div class="closecontainer close" @click="closeModal()">
+                    <span class="material-icons" style="font-size:40px;">close</span>
+                    
 
-                <div>
-                  <form class="searchcontainer">
-                    <div class="placeholdercontainer">
-                      <input
-                        type="text"
-                        id="search-bar"
-                        placeholder="Search ..."
-                        v-model="searchContacts"
-                      />
-                    </div>
-                    <div class="searchicon">
-                      <i class="material-icons">search</i>
-                    </div>
-                  </form>
-                </div>
+                  </div>
+                  <div class="headingcontainer">
+
+                        <div style="margin-left:20px; color:#F44336;">Emergency Contacts</div><br><br>
+                        <div>
+                          <form class="searchcontainer-custom">
+                            <div class="placeholdercontainer">
+                              <input
+                                style="font-size:14px;"
+                                type="text"
+                                id="search-bar"
+                                placeholder="Search ..."
+                                v-model="searchContacts"
+                              />
+                            </div>
+                            <div class="searchicon">
+                              <i class="material-icons">search</i>
+                            </div>
+                          </form>
+                        </div>
+                       
+
+
+                  </div>
+              
+                
+
               </div>
+            
               <div class="modalbody">
-                <div
-                  class="modalbodybox"
-                  v-for="contacts in filterListContacts"
-                  v-bind:key="contacts._id"
-                >
-                  <div class="bodybox1">
-                    <div>{{contacts.name}}</div>
-                    <div style="line-height:50px" :phoneNumCopy="copyCode">{{contacts.phoneNumber}}</div>
+                    
+                        <div class="descontactscontainer" v-for="contacts in filterListContacts"
+                  v-bind:key="contacts._id">
+                          <div class="desflex1">
+
+                                <div class="desbox1">
+                                    {{contacts.name}}
+                                </div>
+                                <div class="desbox2" style="line-height:50px" :phoneNumCopy="copyCode">
+                                      {{contacts.phoneNumber}}
+                                </div>
+
+                          </div>
+                          <div class="desflex2" v-clipboard:copy="contacts.phoneNumber"
+                    v-clipboard:success="onCopy">
+                              <div class="desbox3">
+                                    <span><i class="far fa-clone"></i></span>
+                              </div>
+                              <div class="desbox4">
+                                  Copy
+                              </div>
+
+                          </div>
+                        </div>
+
+
+                        
+                         
+                       
+                     
+                    
                   </div>
-                  <div
-                    class="bodybox2"
-                    v-clipboard:copy="contacts.phoneNumber"
-                    v-clipboard:success="onCopy"
-                  >
-                    <div>
-                      <i class="far fa-clone"></i>
-                    </div>
-                    <div>Copy</div>
-                  </div>
-                </div>
-                <br />
-              </div>
+                    
+          
+           
+              
+
+
+
+                
+                
+              
             </div>
           </div>
 
@@ -1044,35 +1076,6 @@ export default {
     margin-right: 25px;
   }
 
-  .mfp-zoom-in {
-    /* start state */
-    /* animate in */
-    /* animate out */
-  }
-  .mfp-zoom-in .mfp-with-anim {
-    opacity: 0;
-    -webkit-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-    transform: scale(0.8);
-  }
-  .mfp-zoom-in.mfp-bg {
-    opacity: 0;
-    transition: all 0.3s ease-out;
-  }
-  .mfp-zoom-in.mfp-ready .mfp-with-anim {
-    opacity: 1;
-    transform: scale(1);
-  }
-  .mfp-zoom-in.mfp-ready.mfp-bg {
-    opacity: 0.8;
-  }
-  .mfp-zoom-in.mfp-removing .mfp-with-anim {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  .mfp-zoom-in.mfp-removing.mfp-bg {
-    opacity: 0;
-  }
 
   /* The Modal (background) */
   .modal {
@@ -1097,10 +1100,11 @@ export default {
     position: fixed;
     right: 0;
     display: flex;
-    flex-direction: column;
+    flex:1; 
+    flex-direction: row;
     background-color: #fff;
     width: 446px;
-    height: 100%;
+    height:100%;
     -webkit-animation-name: slideIn;
     -webkit-animation-duration: 0.4s;
     animation-name: slideIn;
@@ -1121,48 +1125,102 @@ export default {
     text-decoration: none;
     cursor: pointer;
   }
-  .closecontainer {
-    display: flex;
-    height: 120px;
-    align-items: center;
-    justify-content: flex-end;
-    margin-right: 20px;
-  }
+ 
   .modalheading {
+    position:fixed;
+    width:446px;
+    height:300px;
+    display:flex;
+    flex-direction: column;
+  
+    
+  }
+  .closecontainer
+  {
+    align-items:center;
+    justify-content:flex-end;
+    margin-right:20px;
+    display:flex;
+    flex:3;
+  }
+  .headingcontainer
+  {
+
+    justify-content:center;
     font-size: 24px;
     display: flex;
     flex-direction: column;
     height: 150px;
+
   }
   .modalbody {
-    overflow: scroll;
-    display: flex;
-    flex: 1;
+
+    margin-top:300px;
+    overflow-x: hidden;
+    overflow-y: auto;
     flex-direction: column;
+ 
+    
   }
-  .modalbodybox {
-    width: 100%;
-    height: 120px;
-    display: flex;
-    flex-direction: row;
-    border-bottom: 1px solid #eee;
-  }
-  .bodybox1 {
-    display: flex;
-    flex: 3;
-    padding: 20px;
-    flex-direction: column;
-  }
-  .bodybox2 {
-    color: #1976d2;
-    display: flex;
-    flex: 2;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #fafafa;
-    cursor: pointer;
-  }
+  .descontactscontainer
+{
+  width:446px;
+  height:135px;
+  display:flex;
+  border-bottom:1px solid #eee;
+  flex-direction:row;
+
+}
+.desflex1
+{
+  display:flex;
+  flex:2;
+  flex-direction:column;
+  margin-left:20px;
+}
+
+.desbox1
+{
+  display:flex;
+  flex:1;
+  align-items:center;
+}
+.desbox2
+{
+  display:flex;
+  flex:1;
+  align-items:center;
+  justify-content:flex-start;
+}
+
+.desflex2
+{
+  display:flex;
+  flex:1;
+  flex-direction:column;
+  background-color:#FAFAFA;
+  color:#1976D2;
+}
+.desbox3
+{
+  display:flex;
+  flex:1;
+  align-items:flex-end;
+  justify-content:center;
+
+}
+.desbox4
+{
+  display:flex;
+  flex:1;
+  align-items:center;
+  justify-content:center;
+
+
+
+
+}
+
 
   /* Add Animation */
   @-webkit-keyframes slideIn {

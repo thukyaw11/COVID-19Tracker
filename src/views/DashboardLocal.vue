@@ -89,7 +89,7 @@
             <a style="text-decoration:none; color:#212121;">Global</a>
           </router-link>
         </div>
-        <div class="lcalactivedots"></div>
+        <div class="inactivedots"></div>
       </div>
       <div class="local">
         <div class="toggleheading">
