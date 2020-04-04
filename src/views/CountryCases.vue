@@ -30,7 +30,7 @@
             </div>
             <div class="newcasebox">
               <div class="cases">New Cases</div>
-              <div class="newcasesnumber">{{data.cases}}</div>
+              <div class="newcasesnumber">{{data.new_cases}}</div>
             </div>
             <div class="deathcasebox">
               <div class="cases">Death</div>
