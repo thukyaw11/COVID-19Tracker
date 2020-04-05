@@ -1,17 +1,9 @@
 <template>
-  <div
-    class="container"
-    style="text-align:center"
-  >
-    <div class="versioncontent">
-      <div class="numberflex">1.1</div>
-      <div class="versionflex">Version</div>
-    </div>
-    <br />
-    <div class="aboutcontent">
-      <div class="aboutheader">
-        <div class="headerflex1">Coronavirus disease Situation Dashboard</div>
-        <div class="headerflex2">
+  <div class="desaboutuscontainer">
+    <div class="desaboutusheading">
+      <div class="desaboutusflex1">
+        <div class="desaboutusflex1box1">About Us</div>
+        <div class="desaboutusflex1box2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -19,7 +11,7 @@
             x="0px"
             y="0px"
             viewBox="0 0 100 100"
-            style="enable-background:new 0 0 100 100; width:41.39px; height:41.39px;"
+            style="enable-background:new 0 0 100 100; width:59.68px; height:59.68px;"
             xml:space="preserve"
             fill="#F44336"
           >
@@ -290,271 +282,90 @@
           </svg>
         </div>
       </div>
-      <div class="aboutbody">
-        <p align="justify">
-          We hope to bring an information source that rolls updates on COVID-19, especially for cases in Myanmar, to our citizens.This website is built by the University of Information Technology Students' Union.
-          APIs below are still in development stage and later will be published for further development purposes.
-        </p>
+      <div class="desaboutusflex2">
+        We hope to bring an information source that rolls updates on COVID-19, especially for cases in Myanmar, to our citizens. This website is
+        built by the University of Information Technology Students’ Union. APIs below are still in development stage and later will be published
+        for further development purposes.
+      </div>
+      <div class="desaboutusflex3">
+        <div class="desapicontainer1">
+          <div style="margin-left:20px;">Statistic API</div>
+          <div style="margin-left:20px; margin-right:20px;">
+            <a href="https://rapidapi.com/" style="text-decoration: none;">https://rapidapi.com/</a>
+          </div>
+        </div>
+        <div class="desapicontainer2">
+          <div style="margin-left:20px;">News API</div>
+          <div style="margin-left:20px; margin-right:20px;">
+            Contact via
+            <a
+              href="https://www.facebook.com/UITStudentsUnion/"
+              style="text-decoration : none; margin-left:3px"
+            >UIT-SU</a>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="apisourcecontainer">
-      <div class="apicontainer1">
-        <div class="box1">Statistic API</div>
-        <div class="box2">
-          <a href="https://rapidapi.com/" style="text-decoration: none;">https://rapidapi.com/</a>
+    <div class="desaboutusdevelop">
+      <div class="desdevelop">
+        <div class="developheading">Developed by</div>
+        <div class="developmemberflex1">
+          <div class="member">
+            <div class="profile">
+              <img src="../assets/heinthanth.jpg" width="100" height="100" />
+            </div>
+            <div class="name">Hein Thanth</div>
+          </div>
+          <div class="member">
+            <div class="profile">
+              <img src="../assets/phonemyatkhine.jpg" width="100" height="100" />
+            </div>
+            <div class="name">Phone Myat Khine</div>
+          </div>
+          <div class="member">
+            <div class="profile">
+              <img src="../assets/aunghtetnyein.jpg" width="100" height="100" />
+            </div>
+            <div class="name">Aung Htet Nyein</div>
+          </div>
+          <div class="member">
+            <div class="profile">
+              <img src="../assets/phyoheinkyaw.jpg" width="100" height="100" />
+            </div>
+            <div class="name">Phyo Hein Kyaw</div>
+          </div>
+        </div>
+        <div class="developmemberflex2">
+          <div class="member">
+            <div class="profile">
+              <img src="../assets/kaungkhant.jpg" width="100" height="100" />
+            </div>
+            <div class="name">Kaung Khant</div>
+          </div>
+          <div class="member">
+            <div class="profile">
+              <img src="../assets/aungkhantthaw.jpg" width="100" height="100" />
+            </div>
+            <div class="name">Aung Khant Thaw</div>
+          </div>
+          <div class="member">
+            <div class="profile">
+              <img src="../assets/myatnoeaein.jpg" width="100" height="100" />
+            </div>
+            <div class="name">Myat Noe Aein</div>
+          </div>
+          <div class="member">
+            <div class="profile">
+              <img src="../assets/male-avatar-icon-png-7.png" width="100" height="100" />
+            </div>
+            <div class="name">Min Thu Kyaw</div>
+          </div>
         </div>
       </div>
-      <div class="apicontainer2">
-        <div class="box1">News API</div>
-        <div class="box2">
-          Contact via
-          <a
-            href="https://www.facebook.com/UITStudentsUnion/"
-            style="text-decoration : none; margin-left:3px"
-          >UIT-SU</a>
-        </div>
-      </div>
-    </div>
-
-    <br />
-
-    <div class="bar"></div>
-
-    <h4 style="color:#757575;">Developed By</h4>
-
-    <div class="profilecontainer">
-      <div class="profileflex1">
-        <div class="flexbox1">
-          <div class="profile">
-            <img src="../assets/heinthanth.jpg" width="55" height="55" />
-          </div>
-          <div class="name">Hein Thanth</div>
-        </div>
-        <div class="flexbox2">
-          <div class="profile">
-            <img src="../assets/phonemyatkhine.jpg" width="55" height="55" />
-          </div>
-          <div class="name">Phone Myat Khine</div>
-        </div>
-        <div class="flexbox3">
-          <div class="profile">
-            <img src="../assets/aunghtetnyein.jpg" width="55" height="55" />
-          </div>
-          <div class="name">Aung Htet Nyein</div>
-        </div>
-      </div>
-      <div class="profileflex2">
-        <div class="flexbox1">
-          <div class="profile">
-            <img src="../assets/phyoheinkyaw.jpg" width="55" height="55" />
-          </div>
-          <div class="name">Phyo Hein Kyaw</div>
-        </div>
-        <div class="flexbox2">
-          <div class="profile">
-            <img src="../assets/kaungkhant.jpg" width="55" height="55" />
-          </div>
-          <div class="name">Kaung Khant</div>
-        </div>
-        <div class="flexbox3">
-          <div class="profile">
-            <img src="../assets/aungkhantthaw.jpg" width="55" height="55" />
-          </div>
-          <div class="name">Aung Khant Thaw</div>
-        </div>
-      </div>
-      <div class="profileflex3">
-        <div class="flexbox1">
-          <div class="profile">
-            <img src="../assets/myatnoeaein.jpg" width="55" height="55" />
-          </div>
-          <div class="name">Myat Noe Aein</div>
-        </div>
-        <div class="flexbox2">
-          <div class="profile">
-            <img src="../assets/male-avatar-icon-png-7.png" width="55" height="55" />
-          </div>
-          <div class="name">Min Thu Kyaw</div>
-        </div>
-        <div class="flexbox3"></div>
+      <div class="desversion">
+        <div class="desversionflex1" style="font-size:36px;">Version 1.1</div>
+        <div class="desversionflex2">Copyright 2020 Covid 19 | Myanamr</div>
       </div>
     </div>
-
-    <br />
-    <p style="color:#757575;">Copyright 2020 Covid 19 | Myanmar | UIT-SU</p>
-    <br />
   </div>
 </template>
-
-
-<script>
-export default {
-  mounted() {
-    this.$root.$data.title = "About Us";
-  }
-};
-</script>
-
-<style scoped>
-.container-aboutus {
-  margin: 100px auto;
-  display: flex;
-  width: 90%;
-  flex-direction: column;
-  align-items: center;
-}
-
-.versioncontent {
-  width: 100%;
-  height: 200px;
-  display: flex;
-
-  flex-direction: column;
-}
-.numberflex {
-  display: flex;
-  flex: 1;
-  font-size: 24px;
-  align-items: flex-end;
-  justify-content: center;
-}
-.versionflex {
-  display: flex;
-  flex: 1;
-  font-size: 24px;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 15px;
-}
-.aboutcontent {
-  height: 250px;
-  display: flex;
-  flex-direction: column;
-}
-.aboutheader {
-  display: flex;
-  flex-direction: row;
-  font-size: 24px;
-  padding: 0;
-  margin: 0;
-  line-height: 35px;
-}
-.headerflex1 {
-  display: flex;
-  flex: 4;
-  align-items: center;
-  font-weight: bold;
-  justify-content: flex-start;
-}
-.headerflex2 {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.aboutbody {
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-}
-.apisourcecontainer {
-  width: 100%;
-  height: 165px;
-  display: flex;
-  flex-direction: column;
-}
-.apicontainer1 {
-  display: flex;
-  height: 80px;
-  background-color: #eee;
-  flex-direction: column;
-  margin-bottom: 10px;
-  border-radius: 15px;
-}
-.box1 {
-  display: flex;
-  flex: 1;
-  align-items: flex-end;
-  margin-left: 15px;
-}
-.box2 {
-  display: flex;
-  flex: 1;
-  align-items: flex-start;
-  margin-left: 15px;
-}
-.apicontainer2 {
-  flex-direction: column;
-  display: flex;
-  height: 80px;
-  background-color: #eee;
-  border-radius: 15px;
-}
-
-.bar {
-  width: 25px;
-  height: 5px;
-  display: flex;
-  border-radius: 50px;
-  background-color: #bdbdbd;
-  margin: 0 auto;
-}
-.profilecontainer {
-  width: 100%;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-}
-.profileflex1 {
-  display: flex;
-  flex: 1;
-}
-.flexbox1 {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.profile {
-  display: flex;
-  flex: 2;
-  align-items: center;
-  justify-content: center;
-}
-.name {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-}
-.flexbox2 {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.flexbox3 {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.profileflex2 {
-  display: flex;
-  flex: 1;
-}
-.profileflex3 {
-  display: flex;
-  flex: 1;
-}
-img {
-  display: inline-block;
-  border-radius: 100px;
-}
-</style>

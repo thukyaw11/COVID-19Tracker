@@ -88,7 +88,7 @@
               <router-link to="/local">Local</router-link>
             </li>
             <li>
-              <a href="#contact">About Us</a>
+              <router-link to="/aboutus">About Us</router-link>
             </li>
             <li>
               <a href="#about">FAQs</a>
@@ -150,6 +150,7 @@
               v-if="this.urlLocation == 'countrycases'"
               v-bind:value="this.propCountryName"
             />
+            <AboutusComponent v-if="this.urlLocation == 'aboutus'"/>
             <router-view></router-view>
           </div>
         </div>
@@ -309,6 +310,7 @@ import Header from "./components/Header";
 import dashboardGlobalComponent from "./components/dashboardGlobalComponent";
 import dashboardLocalComponent from "./components/dashboardLocalComponent";
 import countryCases from "./components/dynamicCountryCases";
+import AboutusComponent from "./components/aboutusComponent";
 Vue.use(VueClipboard);
 
 export default {
@@ -317,7 +319,8 @@ export default {
     dashboardGlobalComponent,
     dashboardLocalComponent,
     countryCases,
-    vueTopprogress
+    vueTopprogress,
+    AboutusComponent
   },
   data() {
     return {
@@ -452,6 +455,7 @@ export default {
   },
   watch: {
     $route(to, from) {
+      console.log(to.path);
       this.urlLocation = to.path.split("/").pop();
       //top progress
       this.$refs.topProgress.start();
@@ -491,6 +495,10 @@ export default {
 /* for mobile version css */
 
 @media only screen and (max-width: 1100px) {
+  .spinner{
+    text-align: center;
+    margin-top: 300px;
+  }
   #app {
     font-family: "Poppins", sans-serif;
   }
@@ -750,11 +758,153 @@ export default {
     display: none;
   }
 }
+/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+/* for desktop version css */
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 3px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #d6d6d6;
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+  display: block;
+}
 
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
 /* for desktop version css */
 
 @media only screen and (min-width: 1100px) {
+  /* aboutus css */
+  .desaboutuscontainer {
+    background-color: #ffffff;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 871px;
+    border-radius: 10px;
+    box-shadow: 0 8px 10px 1px rgba(238, 238, 238, 238),
+      0 3px 14px 2px rgba(238, 238, 238, 238),
+      0 5px 5px -3px rgba(238, 238, 238, 238);
+  }
+  .desaboutusheading {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 435.5px;
+  }
+  .desaboutusflex1 {
+    font-size: 36px;
+    margin-left: 35px;
+    display: flex;
+    flex: 1;
+  }
+  .desaboutusflex1box1 {
+    display: flex;
+    flex: 1;
+    align-items: center;
+  }
+  .desaboutusflex1box2 {
+    display: flex;
+    flex: 4;
+    align-items: center;
+  }
+  .desaboutusflex2 {
+    margin-left: 35px;
+    margin-right: 35px;
+    display: flex;
+    flex: 1;
+  }
+  .desaboutusflex3 {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+  }
+  .desapicontainer1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 30px;
+    border-radius: 15px;
+    width: 400px;
+    height: 120px;
+    background-color: #eee;
+  }
+  .desapicontainer2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 30px;
+    margin-right: 30px;
+    border-radius: 15px;
+    width: 400px;
+    height: 120px;
+    background-color: #eee;
+  }
+  .desaboutusdevelop {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    height: 435.5px;
+  }
+  .desdevelop {
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+  }
+  .developheading {
+    align-items: center;
+    margin-left: 35px;
+    font-size: 24px;
+    display: flex;
+    flex: 1;
+  }
+  .developmemberflex1 {
+    display: flex;
+    flex: 3;
+  }
+
+  .member {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    flex: 1;
+  }
+
+  img {
+    display: inline-block;
+    border-radius: 100px;
+  }
+  .developmemberflex2 {
+    display: flex;
+    flex: 3;
+  }
+  .desversion {
+    color: #757575;
+    align-items: flex-end;
+    justify-content: flex-end;
+    display: flex;
+    flex: 1;
+    width: 100%;
+    flex-direction: column;
+  }
+  .desversionflex1 {
+    display: flex;
+    margin-right: 20px;
+    flex: 7;
+    align-items: flex-end;
+  }
+  .desversionflex2 {
+    display: flex;
+    margin-right: 20px;
+    flex: 1;
+  }
+
+  .container-aboutus {
+    display: none;
+  }
   .searchcontainer-custom {
     border-radius: 50px;
     display: flex;
