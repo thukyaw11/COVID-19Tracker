@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="middlecontainer" v-if="statusCountry">
     <vue-topprogress ref="topProgress"></vue-topprogress>
-    <div v-if="statusCountry">
+ 
       <div class="desnumber" v-for="caseByCountry in statusCountry" v-bind:key="caseByCountry.id">
         <div class="descomfirmedcase">
           <div class="numbercontainer1">
@@ -54,7 +54,7 @@
         Last Updated : {{addHour( statusCountry.statistic_taken_at)}}.
         <br />Copyright 2020 Covid 19 | Myanamr
       </div>
-    </div>
+
   </div>
 </template>
 <script>

@@ -2,7 +2,7 @@
   <div class="desaboutuscontainer">
     <div class="desaboutusheading">
       <div class="desaboutusflex1">
-        <div class="desaboutusflex1box1">About Us</div>
+        <div class="desaboutusflex1box1">Coronavirus disease Situation Dashboard</div>
         <div class="desaboutusflex1box2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -282,21 +282,21 @@
           </svg>
         </div>
       </div>
-      <div class="desaboutusflex2">
+      <div class="desaboutusflex2" align="justify">
         We hope to bring an information source that rolls updates on COVID-19, especially for cases in Myanmar, to our citizens. This website is
         built by the University of Information Technology Students’ Union. APIs below are still in development stage and later will be published
         for further development purposes.
       </div>
       <div class="desaboutusflex3">
         <div class="desapicontainer1">
-          <div style="margin-left:20px;">Statistic API</div>
-          <div style="margin-left:20px; margin-right:20px;">
+          <div style="margin-left:25px; font-size:14px; ">Statistic API</div>
+          <div style="margin-left:25px; margin-right:20px;">
             <a href="https://rapidapi.com/" style="text-decoration: none;">https://rapidapi.com/</a>
           </div>
         </div>
         <div class="desapicontainer2">
-          <div style="margin-left:20px;">News API</div>
-          <div style="margin-left:20px; margin-right:20px;">
+          <div style="margin-left:25px; font-size:14px;  ">News API</div>
+          <div style="margin-left:25px; margin-right:20px;">
             Contact via
             <a
               href="https://www.facebook.com/UITStudentsUnion/"
@@ -304,68 +304,76 @@
             >UIT-SU</a>
           </div>
         </div>
+         <div class="desapicontainer3">
+          <div style="margin-left:25px; font-size:14px;">Website Version</div>
+          <div style="margin-left:25px; margin-right:20px;">
+           1.1 beta
+          </div>
+        </div>
       </div>
+     
     </div>
+     <hr style="border:0.5px solid #eee; width:95%;">
+    
     <div class="desaboutusdevelop">
       <div class="desdevelop">
         <div class="developheading">Developed by</div>
         <div class="developmemberflex1">
           <div class="member">
             <div class="profile">
-              <img src="../assets/heinthanth.jpg" width="100" height="100" />
+              <img class="img" src="../assets/heinthanth.jpg" width="80" height="80" />
             </div>
-            <div class="name">Hein Thanth</div>
+            <div class="developername">Hein Thanth</div>
           </div>
           <div class="member">
             <div class="profile">
-              <img src="../assets/phonemyatkhine.jpg" width="100" height="100" />
+              <img class="img" src="../assets/phonemyatkhine.jpg" width="80" height="80" />
             </div>
-            <div class="name">Phone Myat Khine</div>
+            <div class="developername">Phone Myat Khine</div>
           </div>
           <div class="member">
             <div class="profile">
-              <img src="../assets/aunghtetnyein.jpg" width="100" height="100" />
+              <img class="img" src="../assets/aunghtetnyein.jpg" width="80" height="80" />
             </div>
-            <div class="name">Aung Htet Nyein</div>
+            <div class="developername">Aung Htet Nyein</div>
           </div>
           <div class="member">
             <div class="profile">
-              <img src="../assets/phyoheinkyaw.jpg" width="100" height="100" />
+              <img  class="img" src="../assets/phyoheinkyaw.jpg" width="80" height="80" />
             </div>
-            <div class="name">Phyo Hein Kyaw</div>
+            <div class="developername">Phyo Hein Kyaw</div>
           </div>
         </div>
         <div class="developmemberflex2">
           <div class="member">
             <div class="profile">
-              <img src="../assets/kaungkhant.jpg" width="100" height="100" />
+              <img  class="img" src="../assets/kaungkhant.jpg" width="80" height="80" />
             </div>
-            <div class="name">Kaung Khant</div>
+            <div class="developername">Kaung Khant</div>
           </div>
           <div class="member">
             <div class="profile">
-              <img src="../assets/aungkhantthaw.jpg" width="100" height="100" />
+              <img  class="img" src="../assets/aungkhantthaw.jpg" width="80" height="80" />
             </div>
-            <div class="name">Aung Khant Thaw</div>
+            <div class="developername">Aung Khant Thaw</div>
           </div>
           <div class="member">
             <div class="profile">
-              <img src="../assets/myatnoeaein.jpg" width="100" height="100" />
+              <img class="img" src="../assets/myatnoeaein.jpg" width="80" height="80" />
             </div>
-            <div class="name">Myat Noe Aein</div>
+            <div class="developername">Myat Noe Aein</div>
           </div>
           <div class="member">
             <div class="profile">
-              <img src="../assets/male-avatar-icon-png-7.png" width="100" height="100" />
+              <img class="img" src="../assets/male-avatar-icon-png-7.png" width="80" height="80" />
             </div>
-            <div class="name">Min Thu Kyaw</div>
+            <div class="developername">Min Thu Kyaw</div>
           </div>
-        </div>
+        </div><br>
+         <div class="footer">Copyright 2020 Covid 19 | Myanamr</div>
       </div>
-      <div class="desversion">
-        <div class="desversionflex1" style="font-size:36px;">Version 1.1</div>
-        <div class="desversionflex2">Copyright 2020 Covid 19 | Myanamr</div>
-      </div>
+     
     </div>
+    
   </div>
 </template>

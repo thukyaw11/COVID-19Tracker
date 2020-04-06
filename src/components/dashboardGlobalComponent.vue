@@ -1,24 +1,24 @@
 <template>
-    <div>
-            <div class="desnumber" v-if="WorldTotal">
+    <div class="middlecontainer">
+          <div class="desnumber" v-if="WorldTotal">
             <div class="descomfirmedcase">
               <div class="numbercontainer1">
                 <div
                   style="display:flex; align-items:flex-start; justify-content:flex-start;"
                 >Confirmed Cases</div>
-                <div style="font-size:36px; color:#757575; padding-top:20px">{{WorldTotal.total_cases}}</div>
+                <div style="font-size:36px; color:#757575; font-weight:bold; padding-top:20px">{{WorldTotal.total_cases}}</div>
               </div>
             </div>
             <div class="desrecover">
               <div class="numbercontainer2">
                 <div>Recover</div>
-                <div style="font-size:36px; color:#4CAF50; padding-top:20px">{{WorldTotal.total_recovered}}</div>
+                <div style="font-size:36px; color:#4CAF50; font-weight:bold; padding-top:20px">{{WorldTotal.total_recovered}}</div>
               </div>
             </div>
             <div class="desdeath">
               <div class="numbercontainer3">
                 <div>Deaths</div>
-                <div style="font-size:36px; color:#F44336; padding-top:20px">{{WorldTotal.total_deaths}}</div>
+                <div style="font-size:36px; color:#F44336;  font-weight:bold; padding-top:20px">{{WorldTotal.total_deaths}}</div>
               </div>
             </div>
           </div>
@@ -30,7 +30,7 @@
               x="0px"
               y="0px"
               viewBox="0 0 100 100"
-              style="enable-background:new 0 0 100 100; width:560.09px; height:563px;"
+              style="enable-background:new 0 0 100 100; width:80%; height:80%;"
               xml:space="preserve"
               fill="#e0e0e0"
             >

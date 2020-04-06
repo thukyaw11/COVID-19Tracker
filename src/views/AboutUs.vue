@@ -443,6 +443,7 @@ export default {
 .headerflex1 {
   display: flex;
   flex: 4;
+  text-align:left;
   align-items: center;
   font-weight: bold;
   justify-content: flex-start;

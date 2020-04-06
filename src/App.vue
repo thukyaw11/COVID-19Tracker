@@ -1,5 +1,6 @@
 <template>
-  <div id="app">
+  <div id="app"> 
+ 
     <div id="myNav" class="overlay">
       <a
         class="closebtn"
@@ -49,7 +50,6 @@
           class="item-menu"
           @click.native="closeNav()"
         >
-          <i class="material-icons" style="color:#f44336; font-size: 21px">add_ic_call</i>
           Emergency
         </router-link>
       </div>
@@ -57,7 +57,7 @@
 
     <div class="headercontainer">
       <div class="menubutton" style="font-size:24px;cursor:pointer" @click="openNav()">
-        <i class="material-icons">sort</i>
+        <span class="material-icons" style="font-size:28px;">menu</span>
       </div>
       <Header v-bind:title="this.$root.$data.title" />
 
@@ -80,20 +80,15 @@
       <div class="desheading">
         <div class="desheadingname">{{this.$root.$data.title}}</div>
         <div class="deslink">
-          <ul>
-            <li>
-              <router-link to="/">Global</router-link>
-            </li>
-            <li>
-              <router-link to="/local">Local</router-link>
-            </li>
-            <li>
-              <router-link to="/aboutus">About Us</router-link>
-            </li>
-            <li>
-              <a href="#about">FAQs</a>
-            </li>
-          </ul>
+          
+          <div class="topnav">
+            <a class="active" href="#home" style="text-decoration:none; color:#212121;">Global</a>
+            <a href="#news" style="text-decoration:none; color:#212121; ">Local</a>
+            <a href="#contact" style="text-decoration:none; color:#212121;">About Us</a>
+            <a href="#about" style="text-decoration:none; color:#212121;">Question</a>
+            <a href="#about" style="text-decoration:none; color:#212121;">Donation</a>
+          </div>
+     
         </div>
       </div>
       <div class="desbody">
@@ -131,6 +126,7 @@
                   :key="country.index"
                   @click="toggleData(country.country_name)"
                 >
+                  <img style="margin-left:20px" src="https://img.icons8.com/color/24/000000/usa.png"/>
                   <div class="descasesflex1" style="margin-left:20px;">{{country.country_name}}</div>
                   <div class="descasesflex2">{{country.cases}}</div>
                 </div>
@@ -170,7 +166,7 @@
                   <span class="material-icons" style="font-size:40px;">close</span>
                 </div>
                 <div class="headingcontainer">
-                  <div style="margin-left:20px; color:#F44336;">Emergency Contacts</div>
+                  <div style="margin-left:20px; color:#F44336; font-weight:bold;">Emergency Contacts</div>
                   <br />
                   <br />
                   <div>
@@ -222,7 +218,7 @@
               </div>
             </div>
           </div>
-
+          <div style="height:1%"></div>
           <div class="desnews">
             <br />
             <div class="desnewsheading">Latest</div>
@@ -257,7 +253,7 @@
                 >
                   <div class="desnewscontent">
                     <div class="box1">{{yesterday.title}}</div>
-                    <div class="box2">Source :{{yesterday.source}}</div>
+                    <div class="box2">Source : {{yesterday.source}}</div>
                   </div>
                 </a>
               </div>
@@ -339,10 +335,10 @@ export default {
   },
   methods: {
     openNav() {
-      document.getElementById("myNav").style.width = "100%";
+      document.getElementById("myNav").style.height = "100%";
     },
     closeNav() {
-      document.getElementById("myNav").style.width = "0%";
+      document.getElementById("myNav").style.height = "0%";
     },
     openModal() {
       document.getElementById("myModal").style.display = "block";
@@ -506,15 +502,17 @@ export default {
     display: none;
   }
   .overlay {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #3f51b5;
-    overflow-x: hidden;
-    transition: 0.5s;
+    height: 0%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #3949ab;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  transition: 0.5s;
+
   }
 
   .overlay-content {
@@ -581,7 +579,7 @@ export default {
   }
   .Emergencybutton {
     display: flex;
-    background-color: red;
+    background-color: #e53935;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -597,10 +595,11 @@ export default {
   }
 
   .toggle {
+    border-top: 1px solid #eee;
     flex-direction: row;
     display: flex;
     flex: 1;
-    background-color: #f5f5f5;
+    background-color: #ffffff;
     height: 90px;
     position: fixed;
     width: 100%;
@@ -775,13 +774,23 @@ export default {
 
 @media only screen and (min-width: 1100px) {
   /* aboutus css */
+  .developername
+  {
+    font-size:14px;
+  }
+  .footer
+  { 
+    color:#757575;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
   .desaboutuscontainer {
-    background-color: #ffffff;
+    background-color: #fff;
     overflow-x: hidden;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
-    width: 100%;
     height: 871px;
     border-radius: 10px;
     box-shadow: 0 8px 10px 1px rgba(238, 238, 238, 238),
@@ -792,25 +801,28 @@ export default {
     display: flex;
     flex: 1;
     flex-direction: column;
-    height: 435.5px;
+    height: 411px;
   }
   .desaboutusflex1 {
-    font-size: 36px;
     margin-left: 35px;
     display: flex;
     flex: 1;
   }
   .desaboutusflex1box1 {
+    font-size:28px;
+    font-weight:bold;
     display: flex;
-    flex: 1;
+    flex: 5;
     align-items: center;
   }
   .desaboutusflex1box2 {
     display: flex;
-    flex: 4;
+    flex: 1;
     align-items: center;
+    justify-content:center;
   }
   .desaboutusflex2 {
+
     margin-left: 35px;
     margin-right: 35px;
     display: flex;
@@ -827,8 +839,8 @@ export default {
     justify-content: center;
     margin-left: 30px;
     border-radius: 15px;
-    width: 400px;
-    height: 120px;
+    width: 100%;
+    height: 100px;
     background-color: #eee;
   }
   .desapicontainer2 {
@@ -836,31 +848,47 @@ export default {
     flex-direction: column;
     justify-content: center;
     margin-left: 30px;
+    border-radius: 15px;
+    width: 100%;
+    height: 100px;
+    background-color: #eee;
+  }
+  .desapicontainer3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 30px;
     margin-right: 30px;
     border-radius: 15px;
-    width: 400px;
-    height: 120px;
+    width: 100%;
+    height: 100px;
     background-color: #eee;
   }
   .desaboutusdevelop {
     display: flex;
     flex: 1;
+    margin:30px;
     flex-direction: row;
-    height: 435.5px;
+    height: 450px;
   }
   .desdevelop {
+      
     display: flex;
     flex: 2;
     flex-direction: column;
   }
   .developheading {
     align-items: center;
-    margin-left: 35px;
+    justify-content:center;
     font-size: 24px;
     display: flex;
+    font-weight:bold;
+    color:#757575;
+  
     flex: 1;
   }
   .developmemberflex1 {
+    padding:20px;
     display: flex;
     flex: 3;
   }
@@ -873,23 +901,16 @@ export default {
     flex: 1;
   }
 
-  img {
+  .img {
     display: inline-block;
     border-radius: 100px;
   }
   .developmemberflex2 {
+    padding:20px;
     display: flex;
     flex: 3;
   }
-  .desversion {
-    color: #757575;
-    align-items: flex-end;
-    justify-content: flex-end;
-    display: flex;
-    flex: 1;
-    width: 100%;
-    flex-direction: column;
-  }
+ 
   .desversionflex1 {
     display: flex;
     margin-right: 20px;
@@ -949,38 +970,47 @@ export default {
     font-family: "Poppins", sans-serif;
   }
   .desheading {
+    background-color:#fafafa;
     display: flex;
+    position:fixed;
+    flex:1;
+    width:100%;
     flex-direction: row;
     height: 120px;
   }
   .desbody {
+    margin-top:130px;
     flex-direction: row;
     display: flex;
-    height: 930px;
+    width:100%;
+    height:88%;
   }
   .desheadingname {
+    font-weight:bold;
     display: flex;
     flex: 1;
     height: 120px;
     align-items: center;
     justify-content: flex-start;
     margin-left: 25px;
-    font-size: 42px;
+    font-size: 36px;
   }
 
   .mainflex1 {
     display: flex;
-    flex: 1;
+    flex:1;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
   }
   .descountrybycases {
+    background-color:#ffffff;
     overflow-x: hidden;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
     width: 90%;
-    height: 871px;
+    height: 95%;
     border-radius: 10px;
     box-shadow: 0 8px 10px 1px rgba(238, 238, 238, 238),
       0 3px 14px 2px rgba(238, 238, 238, 238),
@@ -998,7 +1028,7 @@ export default {
     align-items: center;
     display: flex;
     height: 50px;
-    width: 90%;
+    width: 100%;
     flex-direction: row;
     border-bottom: 1px solid #eee;
     cursor: pointer;
@@ -1017,40 +1047,49 @@ export default {
     flex: 1;
   }
   .mainflex2 {
+    flex:2;
     display: flex;
-    flex: 2;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content:center;
+  }
+  .middlecontainer
+  {
+    display:flex;
+    flex:1;
+    flex-direction:column;
   }
   .flex2container {
     width: 100%;
     display: flex;
-    height: 871px;
+    height: 95%;
     flex-direction: column;
   }
   .desnumber {
     display: flex;
+    flex-direction:row;
+    align-items:center;
     width: 100%;
-    height: 166px;
+    height: 21%;
   }
   .descomfirmedcase {
     display: flex;
     width: 100%;
-    height: 166px;
+    height: 100%;
     align-items: center;
     justify-content: center;
   }
   .desrecover {
-    display: flex;
+     display: flex;
     width: 100%;
-    height: 166px;
+    height: 100%;
     align-items: center;
     justify-content: center;
   }
   .desdeath {
     display: flex;
     width: 100%;
-    height: 166px;
+    height: 100%;
     align-items: center;
     justify-content: center;
   }
@@ -1059,17 +1098,18 @@ export default {
     flex-direction: column;
     border-radius: 10px;
     width: 90%;
-    height: 166px;
+    height: 100%;
     align-items: center;
     justify-content: center;
     background-color: #f5f5f5;
   }
   .numbercontainer2 {
     display: flex;
+    flex:1;
     flex-direction: column;
     border-radius: 10px;
     width: 90%;
-    height: 166px;
+    height: 100%;
     align-items: center;
     justify-content: center;
     background-color: #e8f5e9;
@@ -1079,7 +1119,7 @@ export default {
     flex-direction: column;
     border-radius: 10px;
     width: 90%;
-    height: 166px;
+    height: 100%;
     align-items: center;
     justify-content: center;
     background-color: #ffebee;
@@ -1087,35 +1127,38 @@ export default {
   .desmap {
     display: flex;
     width: 100%;
-    height: 660px;
+    height: 75%;
     align-items: center;
     justify-content: center;
   }
   .desfooter {
+    flex:1;
     display: flex;
     width: 100%;
-    height: 65px;
-    align-items: flex-start;
+    height:50px;
+    align-items:center;
     color: #757575;
     margin-left: 25px;
   }
   .mainflex3 {
     display: flex;
-    flex: 1;
+    flex:1;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
   .desemergency {
-    margin-bottom: 20px;
+
+    
     display: flex;
-    height: 166px;
+    height: 20%;;
     width: 90%;
     border-radius: 10px;
     align-items: center;
     background-color: #f44336;
   }
   .desemergencyflex1 {
+   
     display: flex;
     flex: 1;
     color: #ffffff;
@@ -1134,7 +1177,7 @@ export default {
     display: flex;
     flex-direction: column;
     width: 90%;
-    height: 685px;
+    height: 74%;
     border-radius: 10px;
     background-color: #ffffff;
     box-shadow: 0 8px 10px 1px rgba(238, 238, 238, 238),
@@ -1170,42 +1213,14 @@ export default {
     font-weight: bold;
   }
 
-  .deslink ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+  .deslink
+  {
+    display:flex;
+    flex:2;
+    align-items:center;
+    justify-content:flex-end;
   }
-
-  .deslink li {
-    float: left;
-  }
-
-  .deslink li a {
-    width: 98px;
-    height: 100%;
-    display: block;
-    color: #212121;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-
-  .deslink li a:hover:not(.active) {
-    border-bottom: 3px solid #eee;
-  }
-
-  .deslink .active {
-    border-bottom: 3px solid #3f51b5;
-  }
-  .deslink {
-    display: flex;
-    flex: 1;
-    height: 120px;
-    align-items: center;
-    justify-content: flex-end;
-    margin-right: 25px;
-  }
+  
 
   /* The Modal (background) */
   .modal {
@@ -1328,6 +1343,26 @@ export default {
     align-items: center;
     justify-content: center;
   }
+  .topnav {
+  margin-right:15px;
+  overflow: hidden;
+  
+}
+.topnav a {
+  margin-left:10px;
+  width:120px;
+  float: left;
+  text-align: center;
+  padding: 18px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a.active {
+  border-radius:5px;
+  background-color:#eee;
+  font-weight:bold;
+}
 
   /* Add Animation */
   @-webkit-keyframes slideIn {

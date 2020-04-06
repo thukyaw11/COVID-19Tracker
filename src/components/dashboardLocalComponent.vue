@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="middlecontainer">
     <div class="desnumber" v-for="myanmarStat in caseinMyanmar" :key="myanmarStat.id">
       <div class="descomfirmedcase">
         <div class="numbercontainer1">
