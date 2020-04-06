@@ -7,8 +7,7 @@
           <div class="numbercontainer1">
             <div
               style="display:flex; align-items:flex-start; justify-content:flex-start;"
-            >Confirmed <span v-if="value">{{value}}</span>
-            <span v-else>Myanmar</span></div>
+            >Confirmed </div>
             <div
               style="font-size:36px; color:#757575; padding-top:20px"
             >{{caseByCountry.total_cases}}</div>
@@ -71,7 +70,7 @@ export default {
     };
   },
   mounted() {
-    this.$root.$data.title = "Countries, areas with cases";
+    
     this.fetchCountryCases(`https://coronavirus-monitor.p.rapidapi.com/coronavirus/latest_stat_by_country.php?country=myanmar`);
   },
   methods: {
@@ -124,6 +123,8 @@ export default {
           `https://coronavirus-monitor.p.rapidapi.com/coronavirus/latest_stat_by_country.php?country=myanmar`
         );
       }
+
+      this.$root.$data.title = this.$props.value + " DashBoard";
     }
   }
 };

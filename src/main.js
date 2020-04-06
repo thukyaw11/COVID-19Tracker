@@ -16,6 +16,8 @@ var filter = function (text, length, clamp) {
   return content.length > length ? content.slice(0, length) + clamp : content;
 };
 
+
+
 Vue.filter('truncate', filter);
 
 Vue.use(VueMaterial);

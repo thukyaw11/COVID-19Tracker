@@ -7,6 +7,7 @@ import News from '../views/News';
 import Map from "../views/Map";
 import Contants from "../views/Emergencycontants"
 import AboutUs from "../views/AboutUs"
+import Question from '../views/Queston'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/',
     name: 'DashboardGlobal',
     component: DashboardGlobal
+  },
+  {
+    path : '/global',
+    name : 'DashboardGlobal',
+    component : DashboardGlobal
   },
   {
     path: '/local',
@@ -45,6 +51,11 @@ const routes = [
     path : '/aboutus',
     name : "AboutUs",
     component : AboutUs
+  },
+  {
+    path : '/question',
+    name : "Question",
+    component : Question
   }
 ]
 

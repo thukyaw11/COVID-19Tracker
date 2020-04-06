@@ -1,6 +1,5 @@
 <template>
-  <div id="app"> 
- 
+  <div id="app">
     <div id="myNav" class="overlay">
       <a
         class="closebtn"
@@ -9,7 +8,7 @@
       >&times;</a>
       <div class="overlay-content">
         <router-link
-          to="/"
+          to="/global"
           style="color: white; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
@@ -21,17 +20,17 @@
           @click.native="closeNav()"
         >Local</router-link>
         <router-link
-          to="/map"
-          style="color: white; text-decoration: none"
-          class="item-menu"
-          @click.native="closeNav()"
-        >Map</router-link>
-        <router-link
           to="/countrycases"
           style="color: white; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
         >Countries By Cases</router-link>
+        <router-link
+          to="/question"
+          style="color: white; text-decoration: none"
+          class="item-menu"
+          @click.native="closeNav()"
+        >Check Symptoms</router-link>
         <router-link
           to="/news"
           style="color: white; text-decoration: none"
@@ -49,9 +48,7 @@
           style="text-decoration: none; color:#f44336; font-weight:bold;"
           class="item-menu"
           @click.native="closeNav()"
-        >
-          Emergency
-        </router-link>
+        >Emergency</router-link>
       </div>
     </div>
 
@@ -80,15 +77,13 @@
       <div class="desheading">
         <div class="desheadingname">{{this.$root.$data.title}}</div>
         <div class="deslink">
-          
           <div class="topnav">
-            <a class="active" href="#home" style="text-decoration:none; color:#212121;">Global</a>
-            <a href="#news" style="text-decoration:none; color:#212121; ">Local</a>
-            <a href="#contact" style="text-decoration:none; color:#212121;">About Us</a>
-            <a href="#about" style="text-decoration:none; color:#212121;">Question</a>
-            <a href="#about" style="text-decoration:none; color:#212121;">Donation</a>
+            <router-link to="/global" style="text-decoration : none; color: #212121;">Global</router-link>
+            <router-link to="/local" style="text-decoration : none; color: #212121;">Local</router-link>
+            <router-link to="/aboutus" style="text-decoration : none; color: #212121;">About Us</router-link>
+            <router-link to="/question" style="text-decoration : none; color: #212121;">Question</router-link>
+            <router-link to="/donation" style="text-decoration : none; color: #212121;">Donation</router-link>
           </div>
-     
         </div>
       </div>
       <div class="desbody">
@@ -126,7 +121,11 @@
                   :key="country.index"
                   @click="toggleData(country.country_name)"
                 >
-                  <img style="margin-left:20px" src="https://img.icons8.com/color/24/000000/usa.png"/>
+                <h1>{{capitalCountryName}}</h1>
+                  <img
+                    style="margin-left:20px"
+                    :src="'https://img.icons8.com/color/24/000000/'+ lower(country.country_name)+ '.png'"
+                  />
                   <div class="descasesflex1" style="margin-left:20px;">{{country.country_name}}</div>
                   <div class="descasesflex2">{{country.cases}}</div>
                 </div>
@@ -140,13 +139,14 @@
         </div>
         <div class="mainflex2">
           <div class="flex2container">
-            <dashboardGlobalComponent v-if="this.urlLocation == ''" />
+            <dashboardGlobalComponent v-if="this.urlLocation == ''"/>
+            <dashboardGlobalComponent v-if="this.urlLocation == 'global'" />
             <dashboardLocalComponent v-if="this.urlLocation == 'local'" />
             <countryCases
               v-if="this.urlLocation == 'countrycases'"
               v-bind:value="this.propCountryName"
             />
-            <AboutusComponent v-if="this.urlLocation == 'aboutus'"/>
+            <AboutusComponent v-if="this.urlLocation == 'aboutus'" />
             <router-view></router-view>
           </div>
         </div>
@@ -375,6 +375,7 @@ export default {
     },
     setNews(data) {
       this.newsData = data;
+      
     },
     setContacts(data) {
       this.contactlist = data;
@@ -387,6 +388,9 @@ export default {
     },
     onCopy() {
       alert("copied");
+    },
+    lower(value){
+      return value.toLowerCase();
     }
   },
   created() {
@@ -412,6 +416,7 @@ export default {
           countrycasesResponse.json().then(data => {
             this.CountryByCases = data.countries_stat;
             this.setCountryCases(data.countries_stat);
+          
           });
           //news response
           // news request filter by yesterday, tomorrow and today
@@ -445,7 +450,6 @@ export default {
           //contacts response
           this.contactlist = contactsResponse.data;
           this.setContacts(contactsResponse.data);
-          console.log(this.contactlist);
         })
       );
   },
@@ -491,7 +495,7 @@ export default {
 /* for mobile version css */
 
 @media only screen and (max-width: 1100px) {
-  .spinner{
+  .spinner {
     text-align: center;
     margin-top: 300px;
   }
@@ -503,16 +507,15 @@ export default {
   }
   .overlay {
     height: 0%;
-  width: 100%;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #3949ab;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  transition: 0.5s;
-
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #3949ab;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    transition: 0.5s;
   }
 
   .overlay-content {
@@ -774,16 +777,14 @@ export default {
 
 @media only screen and (min-width: 1100px) {
   /* aboutus css */
-  .developername
-  {
-    font-size:14px;
+  .developername {
+    font-size: 14px;
   }
-  .footer
-  { 
-    color:#757575;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+  .footer {
+    color: #757575;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .desaboutuscontainer {
     background-color: #fff;
@@ -809,8 +810,8 @@ export default {
     flex: 1;
   }
   .desaboutusflex1box1 {
-    font-size:28px;
-    font-weight:bold;
+    font-size: 28px;
+    font-weight: bold;
     display: flex;
     flex: 5;
     align-items: center;
@@ -819,10 +820,9 @@ export default {
     display: flex;
     flex: 1;
     align-items: center;
-    justify-content:center;
+    justify-content: center;
   }
   .desaboutusflex2 {
-
     margin-left: 35px;
     margin-right: 35px;
     display: flex;
@@ -867,28 +867,27 @@ export default {
   .desaboutusdevelop {
     display: flex;
     flex: 1;
-    margin:30px;
+    margin: 30px;
     flex-direction: row;
     height: 450px;
   }
   .desdevelop {
-      
     display: flex;
     flex: 2;
     flex-direction: column;
   }
   .developheading {
     align-items: center;
-    justify-content:center;
+    justify-content: center;
     font-size: 24px;
     display: flex;
-    font-weight:bold;
-    color:#757575;
-  
+    font-weight: bold;
+    color: #757575;
+
     flex: 1;
   }
   .developmemberflex1 {
-    padding:20px;
+    padding: 20px;
     display: flex;
     flex: 3;
   }
@@ -906,11 +905,11 @@ export default {
     border-radius: 100px;
   }
   .developmemberflex2 {
-    padding:20px;
+    padding: 20px;
     display: flex;
     flex: 3;
   }
- 
+
   .desversionflex1 {
     display: flex;
     margin-right: 20px;
@@ -970,23 +969,23 @@ export default {
     font-family: "Poppins", sans-serif;
   }
   .desheading {
-    background-color:#fafafa;
+    background-color: #fafafa;
     display: flex;
-    position:fixed;
-    flex:1;
-    width:100%;
+    position: fixed;
+    flex: 1;
+    width: 100%;
     flex-direction: row;
     height: 120px;
   }
   .desbody {
-    margin-top:130px;
+    margin-top: 130px;
     flex-direction: row;
     display: flex;
-    width:100%;
-    height:88%;
+    width: 100%;
+    height: 88%;
   }
   .desheadingname {
-    font-weight:bold;
+    font-weight: bold;
     display: flex;
     flex: 1;
     height: 120px;
@@ -998,13 +997,13 @@ export default {
 
   .mainflex1 {
     display: flex;
-    flex:1;
+    flex: 1;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
   .descountrybycases {
-    background-color:#ffffff;
+    background-color: #ffffff;
     overflow-x: hidden;
     overflow-y: scroll;
     display: flex;
@@ -1047,17 +1046,16 @@ export default {
     flex: 1;
   }
   .mainflex2 {
-    flex:2;
+    flex: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content:center;
+    justify-content: center;
   }
-  .middlecontainer
-  {
-    display:flex;
-    flex:1;
-    flex-direction:column;
+  .middlecontainer {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
   }
   .flex2container {
     width: 100%;
@@ -1067,8 +1065,8 @@ export default {
   }
   .desnumber {
     display: flex;
-    flex-direction:row;
-    align-items:center;
+    flex-direction: row;
+    align-items: center;
     width: 100%;
     height: 21%;
   }
@@ -1080,7 +1078,7 @@ export default {
     justify-content: center;
   }
   .desrecover {
-     display: flex;
+    display: flex;
     width: 100%;
     height: 100%;
     align-items: center;
@@ -1105,7 +1103,7 @@ export default {
   }
   .numbercontainer2 {
     display: flex;
-    flex:1;
+    flex: 1;
     flex-direction: column;
     border-radius: 10px;
     width: 90%;
@@ -1132,33 +1130,30 @@ export default {
     justify-content: center;
   }
   .desfooter {
-    flex:1;
+    flex: 1;
     display: flex;
     width: 100%;
-    height:50px;
-    align-items:center;
+    height: 50px;
+    align-items: center;
     color: #757575;
     margin-left: 25px;
   }
   .mainflex3 {
     display: flex;
-    flex:1;
+    flex: 1;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
   .desemergency {
-
-    
     display: flex;
-    height: 20%;;
+    height: 20%;
     width: 90%;
     border-radius: 10px;
     align-items: center;
     background-color: #f44336;
   }
   .desemergencyflex1 {
-   
     display: flex;
     flex: 1;
     color: #ffffff;
@@ -1213,14 +1208,12 @@ export default {
     font-weight: bold;
   }
 
-  .deslink
-  {
-    display:flex;
-    flex:2;
-    align-items:center;
-    justify-content:flex-end;
+  .deslink {
+    display: flex;
+    flex: 2;
+    align-items: center;
+    justify-content: flex-end;
   }
-  
 
   /* The Modal (background) */
   .modal {
@@ -1344,25 +1337,23 @@ export default {
     justify-content: center;
   }
   .topnav {
-  margin-right:15px;
-  overflow: hidden;
-  
-}
-.topnav a {
-  margin-left:10px;
-  width:120px;
-  float: left;
-  text-align: center;
-  padding: 18px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a.active {
-  border-radius:5px;
-  background-color:#eee;
-  font-weight:bold;
-}
+    margin-right: 15px;
+    overflow: hidden;
+  }
+  .topnav a {
+    margin-left: 10px;
+    width: 120px;
+    float: left;
+    text-align: center;
+    padding: 18px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  .router-link-active {
+    border-radius: 5px;
+    background-color: #eee;
+    font-weight: bold;
+  }
 
   /* Add Animation */
   @-webkit-keyframes slideIn {
