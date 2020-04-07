@@ -68,7 +68,7 @@
           >
             <div class="contentflex1">
               <div class="contentdescription">
-                <p>{{news.title | truncate(140, '...')}}</p>
+                <p>{{news.title | truncate(120, '...')}}</p>
               </div>
               <div class="contentsource">source : {{news.source}}</div>
             </div>

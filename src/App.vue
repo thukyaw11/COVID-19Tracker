@@ -87,7 +87,7 @@
         </div>
       </div>
       <div class="desbody">
-        <div class="mainflex1">
+        <div class="mainflex1" id="mainflexid">
           <div class="descountrybycases">
             <br />
 
@@ -121,11 +121,7 @@
                   :key="country.index"
                   @click="toggleData(country.country_name)"
                 >
-                <h1>{{capitalCountryName}}</h1>
-                  <img
-                    style="margin-left:20px"
-                    :src="'https://img.icons8.com/color/24/000000/'+ lower(country.country_name)+ '.png'"
-                  />
+                  <img style="margin-left:20px" :src="getCountryCode(country.country_name)" />
                   <div class="descasesflex1" style="margin-left:20px;">{{country.country_name}}</div>
                   <div class="descasesflex2">{{country.cases}}</div>
                 </div>
@@ -139,7 +135,7 @@
         </div>
         <div class="mainflex2">
           <div class="flex2container">
-            <dashboardGlobalComponent v-if="this.urlLocation == ''"/>
+            <dashboardGlobalComponent v-if="this.urlLocation == ''" />
             <dashboardGlobalComponent v-if="this.urlLocation == 'global'" />
             <dashboardLocalComponent v-if="this.urlLocation == 'local'" />
             <countryCases
@@ -275,7 +271,7 @@
                   style="color : black; text-decoration: none;"
                 >
                   <div class="desnewscontent">
-                    <div class="box1">{{uploaded.title}}</div>
+                    <div class="box1">{{uploaded.title | truncate(140, '...')}}</div>
                     <div class="box2">Source : {{uploaded.source}}</div>
                   </div>
                 </a>
@@ -297,6 +293,7 @@
 
 <script>
 /* eslint-disable no-console */
+/*eslint no-prototype-builtins: "error"*/
 
 import Vue from "vue";
 import VueClipboard from "vue-clipboard2";
@@ -307,6 +304,7 @@ import dashboardGlobalComponent from "./components/dashboardGlobalComponent";
 import dashboardLocalComponent from "./components/dashboardLocalComponent";
 import countryCases from "./components/dynamicCountryCases";
 import AboutusComponent from "./components/aboutusComponent";
+import isoCountries from "./assets/content/countryCode";
 Vue.use(VueClipboard);
 
 export default {
@@ -330,10 +328,24 @@ export default {
       propCountryName: "",
       contactlist: [],
       searchContacts: "",
-      copyCode: ""
+      copyCode: "",
+      isoCou: isoCountries
     };
   },
   methods: {
+    getCountryCode(countryname) {
+      if (Object.prototype.hasOwnProperty.call(this.isoCou, countryname)) {
+        const img_url =
+          "https://www.countryflags.io/" +
+          this.isoCou[countryname] +
+          "/flat/24.png";
+        return img_url;
+      } else {
+        const default_img_url =
+          "https://img.icons8.com/emoji/24/000000/ship.png";
+        return default_img_url;
+      }
+    },
     openNav() {
       document.getElementById("myNav").style.height = "100%";
     },
@@ -375,7 +387,6 @@ export default {
     },
     setNews(data) {
       this.newsData = data;
-      
     },
     setContacts(data) {
       this.contactlist = data;
@@ -388,9 +399,6 @@ export default {
     },
     onCopy() {
       alert("copied");
-    },
-    lower(value){
-      return value.toLowerCase();
     }
   },
   created() {
@@ -416,7 +424,6 @@ export default {
           countrycasesResponse.json().then(data => {
             this.CountryByCases = data.countries_stat;
             this.setCountryCases(data.countries_stat);
-          
           });
           //news response
           // news request filter by yesterday, tomorrow and today
@@ -455,12 +462,19 @@ export default {
   },
   watch: {
     $route(to, from) {
-      console.log(to.path);
+      //display none country cases view in about us page desktop
+
       this.urlLocation = to.path.split("/").pop();
+      console.log(this.urlLocation);
+      if(this.urlLocation == "aboutus"){
+        document.getElementById("mainflexid").style.display = "none";
+      }else{
+        document.getElementById("mainflexid").style.display = "block";
+      }
       //top progress
       this.$refs.topProgress.start();
 
-      console.log(from);
+      console.log("from" + from);
 
       // Use setTimeout for demo
       setTimeout(() => {

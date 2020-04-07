@@ -3,10 +3,10 @@
     <h1>Hello</h1>
 
     <h3>{{questions[0].questionOne}}</h3>
-    <input type="radio" name="age" value="A">Under 18 
-    <input type="radio" name="age" value="B">18-60 
-    <input type="radio" name="age" value="C">Over 60 
-
+    <input type="radio" name="age" value="A" />Under 18
+    <input type="radio" name="age" value="B" />18-60
+    <input type="radio" name="age" value="C" />
+    Over 60
     <h3>{{questions[1].questionTwo}}</h3>
     <input type="radio" id="sym1" name="yawgar" value="A" />
     <label for="age1">A</label>&nbsp;
@@ -36,16 +36,22 @@
     <label for="age7">G</label>
     <input type="radio" id="sym8" name="sym" value="H" />
     <label for="age8">H</label>
-    <br><br>
-    <button @click="putuserAnswer"> submit </button>
+    <br />
+    <br />
+    <button @click="putuserAnswer">submit</button>
+    <h1 v-if="stayHome == true">Yayy</h1>
+    <h1 v-if="stayHome == false">noo</h1>
   </div>
 </template>
 
 <script>
+import answer from "../assets/content/answer";
 export default {
   data() {
     return {
-        userAnswer : [],
+      anser: answer,
+      stayHome: false,
+      userAnswer: [],
       questions: [
         { questionOne: "သင်၏ အသက်ကိုဖြေဆိုပါ" },
         { questionTwo: "ယခု သင်ဘာရောဂါ လက္ခဏာတွေ ခံစားနေရလဲ။" },
@@ -79,31 +85,44 @@ export default {
   mounted() {
     this.$root.$data.title = "Check your symptoms";
   },
-  methods:{
-      putuserAnswer(){
-            const elementAge = document.getElementsByName('age');
-            const elementYawGar  = document.getElementsByName('yawgar');
-            const elementSym = document.getElementsByName('sym');
+  methods: {
+    putuserAnswer() {
+      const elementAge = document.getElementsByName("age");
+      const elementYawGar = document.getElementsByName("yawgar");
+      const elementSym = document.getElementsByName("sym");
 
-
-            for(var i=0 ; i < elementAge.length; i++){
-                if(elementAge[i].checked){
-                    console.log("result : " + elementAge[i].value)
-                }
-            }
-
-            for(var k=0 ; k < elementYawGar.length ; k++){
-                if(elementYawGar[k].checked){
-                    console.log("result : " + elementYawGar[k].value);
-                }
-            }
-
-            for(var j=0 ; j < elementSym.length ; j++){
-                if(elementSym[j].checked){
-                    console.log("result : " + elementSym[j].value);
-                }
-            }
+      for (var i = 0; i < elementAge.length; i++) {
+        if (elementAge[i].checked) {
+          this.userAnswer.push(elementAge[i].value);
+        }
       }
+
+      for (var k = 0; k < elementYawGar.length; k++) {
+        if (elementYawGar[k].checked) {
+          this.userAnswer.push(elementYawGar[k].value);
+        }
+      }
+
+      for (var j = 0; j < elementSym.length; j++) {
+        if (elementSym[j].checked) {
+          this.userAnswer.push(elementSym[j].value);
+        }
+      }
+      console.log(this.userAnswer);
+      console.log(this.anser[0]);
+
+	// Check if all items exist and are in the same order
+	for (var p = 0; p < this.userAnswer.length; p++) {
+        console.log(this.userAnswer[p]);
+        console.log(this.anser[0][p]);
+		if (this.userAnswer[p] == this.anser[0][p]){
+            this.stayHome = true;
+        } 
+	}
+
+
+      console.log(this.stayHome);
+    }
   }
 };
 </script>
