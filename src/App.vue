@@ -86,8 +86,16 @@
           </div>
         </div>
       </div>
-      <div class="desbody">
-        <div class="mainflex1" id="mainflexid">
+
+
+      <div id="desaboutusbody">
+        <AboutusComponent v-if="this.urlLocation == 'aboutus'" />
+        <router-view></router-view>
+
+      </div>
+
+      <div id="desbody">
+        <div class="mainflex1" >
           <div class="descountrybycases">
             <br />
 
@@ -142,8 +150,7 @@
               v-if="this.urlLocation == 'countrycases'"
               v-bind:value="this.propCountryName"
             />
-            <AboutusComponent v-if="this.urlLocation == 'aboutus'" />
-            <router-view></router-view>
+            
           </div>
         </div>
         <div class="mainflex3">
@@ -287,6 +294,10 @@
         </div>
       </div>
     </div>
+
+
+
+   
   </div>
 </template>
 
@@ -467,10 +478,12 @@ export default {
       this.urlLocation = to.path.split("/").pop();
       console.log(this.urlLocation);
       if(this.urlLocation == "aboutus"){
-        document.getElementById("mainflexid").style.display = "none";
+        document.getElementById("desbody").style.visibility = "hidden";
       }else{
-        document.getElementById("mainflexid").style.display = "block";
+        document.getElementById("desaboutusbody").style.visibility = "visible";
       }
+
+     
       //top progress
       this.$refs.topProgress.start();
 
@@ -991,7 +1004,7 @@ export default {
     flex-direction: row;
     height: 120px;
   }
-  .desbody {
+  #desbody {
     margin-top: 130px;
     flex-direction: row;
     display: flex;
