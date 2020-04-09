@@ -1,41 +1,43 @@
 <template>
-  <div class="container-contacts">
-    <form class="searchcontainer">
-      <div class="placeholdercontainer">
-        <input type="text" id="search-bar" style="font-size:14px;" placeholder="Search ..." v-model="search" />
-      </div>
-      <div class="searchicon">
-        <i class="material-icons">search</i>
-      </div>
-    </form>
-    <!-- yangon -->
-    <div v-if="phone_numbers.length > 0">
-      <div v-for="phone in comMessage" v-bind:key="phone.index">
-        <div class="contactscontainer">
-          <div class="flex1">
-            <div class="box1">{{phone.name}}</div>
-            <div class="box2">{{phone.phoneNumber}}</div>
-          </div>
-          <a
-            v-bind:href="'tel:'+phone.phoneNumber"
-            class="flex2"
-            style="color: white; text-decoration: none"
-          >
-            <div class="box3">
-              <span>
-                <i class="material-icons">call</i>
-              </span>
+  <div class="container">
+    <div class="emergencycontainer">
+      <form class="searchcontainer">
+        <div class="placeholdercontainer">
+          <input type="text" id="search-bar" style="font-size:14px;" placeholder="Search ..." v-model="search" />
+        </div>
+        <div class="searchicon">
+          <i class="material-icons">search</i>
+        </div>
+      </form>
+      <!-- yangon -->
+      <div v-if="phone_numbers.length > 0">
+        <div v-for="phone in comMessage" v-bind:key="phone.index">
+          <div class="contactscontainer">
+            <div class="flex1">
+              <div class="box1">{{phone.name}}</div>
+              <div class="box2">{{phone.phoneNumber}}</div>
             </div>
-            <div class="box4">Call Now</div>
-          </a>
+            <a
+              v-bind:href="'tel:'+phone.phoneNumber"
+              class="flex2"
+              style="color: white; text-decoration: none"
+            >
+              <div class="box3">
+                <span>
+                  <i class="material-icons">call</i>
+                </span>
+              </div>
+              <div class="box4">Call Now</div>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-    <div v-else class="spinner">
-      <md-progress-spinner :md-diameter="30" :md-stroke="3" md-mode="indeterminate"></md-progress-spinner>
-    </div>
+      <div v-else class="spinner">
+        <md-progress-spinner :md-diameter="30" :md-stroke="3" md-mode="indeterminate"></md-progress-spinner>
+      </div>
 
-    <br />
+      <br />
+    </div>
   </div>
 </template>
 <script>
@@ -77,6 +79,13 @@ export default {
 </script>
 
 <style>
+.emergencycontainer {
+  margin-top:80px;
+  justify-content:center;
+  width: 100%;
+  align-items: center;
+  height: 100%;
+}
 .contactscontainer {
   margin-top: 15px;
   display: flex;

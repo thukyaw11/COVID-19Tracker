@@ -51,9 +51,9 @@
           <div class="caseheading">Countries</div>
           <div class="number" style="font-size:42px; color:#616161">{{affectedCountry}}</div>
         </div>
-        <p
-          style="text-align:center; color:#757575; margin-bottom:100px;"
-        >Last Updated : {{addHour(WorldTotal.statistic_taken_at)}}</p>
+        <div
+          style="text-align:center; color:#757575;"
+        >Last Updated : {{addHour(WorldTotal.statistic_taken_at)}}</div>
         <br />
       </div>
       <div v-else class="spinner">
@@ -192,7 +192,8 @@ export default {
   width: 100%;
 }
 .casescontainer {
-  margin: 80px auto;
+  margin-top:80px;
+  justify-content:center;
   width: 95%;
   align-items: center;
   height: 100%;

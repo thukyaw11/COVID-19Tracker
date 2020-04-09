@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="container">
+  <div class="container">
+    <div class="newscontainer">
       <div class="datecontainer">
         <div class="dateflex1">
           <h1>Latest</h1>
@@ -177,6 +177,12 @@ export default {
 
 
 <style scoped>
+.newscontainer {
+  justify-content:center;
+  width: 95%;
+  align-items: center;
+  height: 100%;
+}
 .contentflex1 {
   display: flex;
   flex: 4;

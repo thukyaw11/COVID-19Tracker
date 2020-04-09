@@ -1,64 +1,66 @@
 <template>
   <div class="container">
-    <div v-if="DataByAffectedCountryDetail">
-      <form class="searchcontainer">
-        <div class="placeholdercontainer">
-          <input
-            type="text"
-            id="search-bar"
-            style="font-size:14px;"
-            placeholder="Search ..."
-            v-model="search"
-          />
-        </div>
-        <div class="searchicon">
-          <i class="material-icons">search</i>
-        </div>
-      </form>
-      <h2 style="margin-left: 20px;">From Highest to Lowest</h2>
-      <div v-for="data in filteredListDetail" :key="data.index">
-        <button class="collapsible" @click="toggleData()">
-          <div class="col1">{{data.country_name}}</div>
-          <div class="col2">{{data.cases || sorting}} cases</div>
-        </button>
-        <div class="content">
-          <br />
-          <div class="flex1">
-            <div class="recoveredbox">
-              <div class="cases">Recovered</div>
-              <div class="recoveredcasesnumber">{{data.total_recovered}}</div>
-            </div>
-            <div class="newcasebox">
-              <div class="cases">New Cases</div>
-              <div class="newcasesnumber">{{data.new_cases}}</div>
-            </div>
-            <div class="deathcasebox">
-              <div class="cases">Death</div>
-              <div class="deathcasesnumber">{{data.deaths}}</div>
-            </div>
+    <div class="countrybycasescontainer">
+      <div v-if="DataByAffectedCountryDetail">
+        <form class="searchcontainer">
+          <div class="placeholdercontainer">
+            <input
+              type="text"
+              id="search-bar"
+              style="font-size:14px;"
+              placeholder="Search ..."
+              v-model="search"
+            />
           </div>
-          <div class="flex2">
-            <div class="box">
-              <div class="cases" style="font-size:12px;">Serious Critical</div>
-              <div class="casesnumber">{{data.serious_critical}}</div>
-            </div>
-            <div class="box">
-              <div class="cases">New Death</div>
-              <div class="casesnumber">{{data.new_deaths}}</div>
-            </div>
-            <div class="box">
-              <div class="cases" style="font-size:12px;">Case per 1 min</div>
-              <div class="casesnumber">{{data.total_cases_per_1m_population}}</div>
-            </div>
+          <div class="searchicon">
+            <i class="material-icons">search</i>
           </div>
+        </form>
+        <div style="text-align:center; color:#757575; font-size:12px; font-weight:bold;">From Highest to Lowest</div>
+        <div v-for="data in filteredListDetail" :key="data.index">
+          <button class="collapsible" @click="toggleData()">
+            <div class="col1">{{data.country_name}}</div>
+            <div class="col2">{{data.cases || sorting}} cases</div>
+          </button>
+          <div class="content">
+            <br />
+            <div class="flex1">
+              <div class="recoveredbox">
+                <div class="cases">Recovered</div>
+                <div class="recoveredcasesnumber">{{data.total_recovered}}</div>
+              </div>
+              <div class="newcasebox">
+                <div class="cases">New Cases</div>
+                <div class="newcasesnumber">{{data.new_cases}}</div>
+              </div>
+              <div class="deathcasebox">
+                <div class="cases">Death</div>
+                <div class="deathcasesnumber">{{data.deaths}}</div>
+              </div>
+            </div>
+            <div class="flex2">
+              <div class="box">
+                <div class="cases" style="font-size:12px;">Serious Critical</div>
+                <div class="casesnumber">{{data.serious_critical}}</div>
+              </div>
+              <div class="box">
+                <div class="cases">New Death</div>
+                <div class="casesnumber">{{data.new_deaths}}</div>
+              </div>
+              <div class="box">
+                <div class="cases" style="font-size:12px;">Case per 1 min</div>
+                <div class="casesnumber">{{data.total_cases_per_1m_population}}</div>
+              </div>
+            </div>
 
-          <p style="text-align:center;">Updated {{updatedTime}}</p>
-          <br />
+            <p style="text-align:center;">Updated {{updatedTime}}</p>
+            <br />
+          </div>
         </div>
       </div>
-    </div>
-    <div v-else class="spinner">
-      <md-progress-spinner :md-diameter="30" :md-stroke="3" md-mode="indeterminate"></md-progress-spinner>
+      <div v-else class="spinner">
+        <md-progress-spinner :md-diameter="30" :md-stroke="3" md-mode="indeterminate"></md-progress-spinner>
+      </div>
     </div>
   </div>
 </template>
@@ -146,6 +148,13 @@ export default {
 
 
 <style scoped>
+.countrybycasescontainer {
+  margin-top:80px;
+  justify-content:center;
+  width: 95%;
+  align-items: center;
+  height: 100%;
+}
 .toggle {
   flex-direction: row;
   display: flex;

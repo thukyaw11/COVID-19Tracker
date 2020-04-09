@@ -168,6 +168,8 @@ input[name="myradio"]:checked + .clickable .checked-box {
   display: block;
 }
 .headercontainer {
+  top:0;
+  z-index:20;
   position: fixed;
   background-color: #ffffff;
   display: flex;

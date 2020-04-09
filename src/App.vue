@@ -88,9 +88,7 @@
       </div>
 
 
-      <div id="desaboutusbody">
-        <AboutusComponent v-if="this.urlLocation == 'aboutus'" />
-      </div>
+      
 
       <div id="desbody">
         <div class="mainflex1" >
@@ -291,6 +289,9 @@
           </div>
         </div>
       </div>
+      <div id="desaboutusbody">
+        <AboutusComponent v-if="this.urlLocation == 'aboutus'" />
+      </div>
     </div>
 
 
@@ -477,9 +478,11 @@ export default {
       this.urlLocation = to.path.split("/").pop();
       console.log(this.urlLocation);
       if(this.urlLocation == "aboutus"){
-        document.getElementById("desbody").style.visibility = "hidden";
+        document.getElementById("desbody").style.display = "none";
+        document.getElementById("desaboutusbody").style.display = "flex";
       }else{
-        document.getElementById("desbody").style.visibility = "visible";
+        document.getElementById("desaboutusbody").style.display = "none";
+        document.getElementById("desbody").style.display = "flex";
       }
 
       console.log(from);
@@ -526,6 +529,7 @@ export default {
     margin-top: 300px;
   }
   #app {
+    background-color:white;
     font-family: "Poppins", sans-serif;
   }
   .desktopcontainer {
@@ -577,21 +581,21 @@ export default {
     font-size: 60px;
   }
   .headercontainer {
-    top: 0;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 70px;
-    background-color: #fff;
-    position: fixed;
-    border-bottom: 1px solid #eee;
+  top:0;
+  position: fixed;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 75px;
+  border-bottom: 1px solid #eee;
   }
 
   .menubutton {
     display: flex;
     flex: 1;
     align-items: center;
-    margin-left: 35px;
+    margin-left: 20px;
   }
 
   .heading {
@@ -601,7 +605,7 @@ export default {
   }
   .space {
     display: flex;
-    margin-right: 35px;
+    margin-right: 20px;
     justify-content: flex-end;
     flex: 1;
     align-items: center;
@@ -655,11 +659,11 @@ export default {
     flex-direction: column;
   }
   .container {
-    margin: 80px auto;
-    width: 95%;
-    margin-bottom: 100px;
+    display:flex;
+    flex:1;
+    width: 100%;
+    justify-content:center;
     align-items: center;
-    height: auto;
   }
 
   .ConfirmedCaseContainer {
@@ -820,7 +824,7 @@ export default {
     justify-content: center;
   }
   .desaboutuscontainer {
-    background-color: #fff;
+    background-color: blue;
     overflow-x: hidden;
     overflow-y: scroll;
     display: flex;
@@ -1011,6 +1015,13 @@ export default {
     height: 120px;
   }
   #desbody {
+    margin-top: 130px;
+    flex-direction: row;
+    display: flex;
+    width: 100%;
+    height: 88%;
+  }
+   #desaboutusbody {
     margin-top: 130px;
     flex-direction: row;
     display: flex;
