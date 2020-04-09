@@ -19,7 +19,7 @@
             <div>Recover</div>
             <div
               style="font-size:36px; color:#4CAF50; padding-top:20px"
-              v-if="caseinMyanmar[0].total_recovered"
+              v-if="caseinMyanmar[0].total_cases_recovered"
             >{{myanmarStat.total_cases_recovered}}</div>
             <div style="font-size:36px; color:#4CAF50; padding-top:20px" v-else>0</div>
           </div>

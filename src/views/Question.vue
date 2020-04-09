@@ -13,7 +13,7 @@
     <div class="container-question" v-if="questionIndex<ques.questions.length">
       <div class="questioncontainer">
         <div class="questionname">
-          <h2>3</h2>
+          <h2>{{questionIndex + 1}}</h2>
           <div style="text-align:center;">{{ ques.questions[questionIndex].text }}</div>
         </div>
         <div
@@ -24,45 +24,101 @@
           <!-- create the product container the user sees -->
           <div class="optioncontainer">
             <input :id="response.id" type="radio" name="myradio" />
-            <label :for="response.id" class="clickable" @click="selectOption()"></label>
+            <label :for="response.id" class="clickable" @click="selectOption(response.id)"></label>
             {{ response.text }}
           </div>
           <br />
         </div>
       </div>
       <br />
-      <button :class="selected ? 'nextbutton':'nextbutton-disable'" @click="next" :disabled="!selected">Next</button>
+      <button
+        :class="selected ? 'nextbutton':'nextbutton-disable'"
+        @click="next"
+        :disabled="!selected"
+      >Next</button>
       <br />
     </div>
-    <div v-if="questionIndex >= ques.questions.length" v-bind:key="questionIndex">question completed</div>
+    <div v-if="seeResultClick == true">
+      <stayhome v-show="finalResult == true" />
+      <emergency v-show="finalResult == false" />
+    </div>
   </div>
 </template>
 
 <script>
+import stayhome from "../components/stayhomeMobile";
+import emergency from "../components/emergencyResponseMobile";
 import { ques } from "../assets/content/question";
+import answer from "../assets/content/answer";
+import Vue from "vue";
 
 export default {
+  components: {
+    stayhome,
+    emergency
+  },
   data() {
     return {
       ques: ques,
       questionIndex: 0,
-      selected : false
+      selected: false,
+      userResponses: "",
+      answer: answer,
+      resultArray: [],
+      finalResult: "",
+      seeResultClick: false
     };
   },
 
   methods: {
-    next: function() {
+    next() {
       if (this.questionIndex < this.ques.questions.length) this.questionIndex++;
       this.selected = false;
+
+      if (this.questionIndex >= this.ques.questions.length) {
+        this.arrayMatch();
+      }
     },
-    selectOption: function() {
+    selectOption(index) {
+      Vue.set(this.userResponses, this.questionIndex, index);
+
       this.selected = true;
+    },
+    compare(arr1, arr2) {
+      // Check if all items exist and are in the same order
+      for (var i = 0; i < arr1.length; i++) {
+        if (arr1[i] !== arr2[i]) {
+          return false;
+        }
+      }
+
+      // Otherwise, return true
+      return true;
+    },
+    arrayMatch() {
+      this.seeResultClick = true;
+      for (var i = 0; i < this.answer.length; i++) {
+        var result = this.compare(this.userResponses, this.answer[i]);
+        this.resultArray.push(result);
+      }
+
+
+
+      this.finalResult = this.resultArray.includes(true);
+
     }
+  },
+
+  mounted() {
+    this.userResponses = Array(this.ques.questions.length).fill(null);
   }
 };
 </script>
 
 <style scoped>
+.visible {
+  display: none;
+}
 .container-question {
   display: flex;
   flex-direction: column;
@@ -131,7 +187,6 @@ export default {
   justify-content: center;
 }
 
-
 .optioncontainer {
   display: flex;
   position: relative;
@@ -168,8 +223,8 @@ input[name="myradio"]:checked + .clickable .checked-box {
   display: block;
 }
 .headercontainer {
-  top:0;
-  z-index:20;
+  top: 0;
+  z-index: 20;
   position: fixed;
   background-color: #ffffff;
   display: flex;
