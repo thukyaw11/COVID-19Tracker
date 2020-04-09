@@ -7,7 +7,8 @@ import News from '../views/News';
 import Map from "../views/Map";
 import Contants from "../views/Emergencycontants"
 import AboutUs from "../views/AboutUs"
-import Question from '../views/Queston'
+import StartScreening from '../views/StartScreening'
+import Question from '../views/Question';
 
 Vue.use(VueRouter)
 
@@ -51,6 +52,11 @@ const routes = [
     path : '/aboutus',
     name : "AboutUs",
     component : AboutUs
+  },
+  {
+    path : '/start',
+    name : "StartScreening",
+    component : StartScreening
   },
   {
     path : '/question',

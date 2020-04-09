@@ -26,11 +26,11 @@
           @click.native="closeNav()"
         >Countries By Cases</router-link>
         <router-link
-          to="/question"
+          to="/start"
           style="color: white; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
-        >Check Symptoms</router-link>
+        >Screening Kit</router-link>
         <router-link
           to="/news"
           style="color: white; text-decoration: none"
@@ -81,7 +81,7 @@
             <router-link to="/global" style="text-decoration : none; color: #212121;">Global</router-link>
             <router-link to="/local" style="text-decoration : none; color: #212121;">Local</router-link>
             <router-link to="/aboutus" style="text-decoration : none; color: #212121;">About Us</router-link>
-            <router-link to="/question" style="text-decoration : none; color: #212121;">Question</router-link>
+            <router-link to="/start" style="text-decoration : none; color: #212121;">Screening Kit</router-link>
             <router-link to="/donation" style="text-decoration : none; color: #212121;">Donation</router-link>
           </div>
         </div>
@@ -90,8 +90,6 @@
 
       <div id="desaboutusbody">
         <AboutusComponent v-if="this.urlLocation == 'aboutus'" />
-        <router-view></router-view>
-
       </div>
 
       <div id="desbody">
@@ -145,12 +143,12 @@
           <div class="flex2container">
             <dashboardGlobalComponent v-if="this.urlLocation == ''" />
             <dashboardGlobalComponent v-if="this.urlLocation == 'global'" />
-            <dashboardLocalComponent v-if="this.urlLocation == 'local'" />
+            <dashboardLocalComponent v-if="this.urlLocation == 'local'"/>
             <countryCases
               v-if="this.urlLocation == 'countrycases'"
               v-bind:value="this.propCountryName"
             />
-            
+
           </div>
         </div>
         <div class="mainflex3">
@@ -235,7 +233,7 @@
                 >
                   <div class="desnewscontent">
                     <div class="box1">{{latest.title}}</div>
-                    <div class="box2">Source :</div>
+                    <div class="box2">Source :{{latest.source}}</div>
                   </div>
                 </a>
               </div>
@@ -297,14 +295,14 @@
 
 
 
-   
+
   </div>
 </template>
 
 
 <script>
 /* eslint-disable no-console */
-/*eslint no-prototype-builtins: "error"*/
+
 
 import Vue from "vue";
 import VueClipboard from "vue-clipboard2";
@@ -410,7 +408,8 @@ export default {
     },
     onCopy() {
       alert("copied");
-    }
+    },
+
   },
   created() {
     this.urlLocation = window.location.href.split("/").pop();
@@ -480,14 +479,14 @@ export default {
       if(this.urlLocation == "aboutus"){
         document.getElementById("desbody").style.visibility = "hidden";
       }else{
-        document.getElementById("desaboutusbody").style.visibility = "visible";
+        document.getElementById("desbody").style.visibility = "visible";
       }
 
-     
+      console.log(from);
       //top progress
       this.$refs.topProgress.start();
 
-      console.log("from" + from);
+
 
       // Use setTimeout for demo
       setTimeout(() => {
@@ -803,6 +802,13 @@ export default {
 /* for desktop version css */
 
 @media only screen and (min-width: 1100px) {
+  /* loading spinner */
+  .spinner-des{
+    text-align : center;
+    margin-top : 100px;
+  }
+
+
   /* aboutus css */
   .developername {
     font-size: 14px;
