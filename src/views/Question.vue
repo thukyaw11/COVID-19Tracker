@@ -121,6 +121,7 @@ export default {
 .visible {
   display: none;
 }
+
 .container-question {
   margin-top:100px;
   display: flex;
@@ -139,6 +140,7 @@ export default {
 }
 
 .questioncontainer {
+
   width: 95%;
   display: flex;
   height:   auto%;

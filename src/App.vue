@@ -529,7 +529,6 @@ export default {
     margin-top: 300px;
   }
   #app {
-    background-color:white;
     font-family: "Poppins", sans-serif;
   }
   .desktopcontainer {

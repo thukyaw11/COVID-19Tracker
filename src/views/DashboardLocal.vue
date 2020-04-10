@@ -149,20 +149,17 @@ export default {
 </script>
 
 <style scoped>
-  .mapvector
-{
-  display:flex;
-  flex-direction: row ;
-  flex:1;
+.mapvector {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
 }
-.mapflex1
-{
+.mapflex1 {
   display: flex;
   flex: 1;
   flex-direction: column;
 }
-.mapflex2
-{
+.mapflex2 {
   display: flex;
   flex: 1;
   align-items: center;
@@ -172,14 +169,11 @@ export default {
 .container
 {
   width:100%;
+}
+.casescontainer {
+  
+  width:95%;
+  margin-top:250px;
+}
 
-}
-.casescontainer
-{
-  margin-top:80px;
-  justify-content:center;
-  width: 95%;
-  align-items: center;
-  height: 100%;
-}
 </style>
