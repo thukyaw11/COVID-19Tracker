@@ -146,7 +146,7 @@ export default {
 }
 .quesbuttoncontainer
 {
-  background-color:white;
+ 
   padding:30px;
   display:flex;
   flex:1;

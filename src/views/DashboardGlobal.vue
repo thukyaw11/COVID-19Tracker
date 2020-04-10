@@ -192,8 +192,10 @@ export default {
   width: 100%;
 }
 .casescontainer {
-  
-  width:95%;
-  margin-top:250px;
+   margin-top:80px;
+  justify-content:center;
+  width: 95%;
+  align-items: center;
+  height: auto;
 }
 </style>
