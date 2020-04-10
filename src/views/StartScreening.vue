@@ -1,26 +1,27 @@
 <template>
-  <div class="container-question">
-     <img src="../assets/cold.jpg" width="1000" height="300" style="margin-top: 75px;">
+  <div class="container">
+  <div class="questioncontainer">
+        <img src="../assets/cold.jpg" width="1000" height="300" style="margin-top: 75px;">
 
-    <div class="quesheading">
-      <br>
-      <h2>COVID 19 Screening Kit</h2>
-
-
-      <div>
-        You will answer 9 questions about your feelings,
-        symptoms, travel, and contact you’ve had with
-        the others. We will never share your answers
-        with others without your permissions.
-
-      </div>
-      <br>
-    </div>
-    <div class="quesbuttoncontainer">
-      <router-link to="question" class="quesbutton"><p style="color : #fff; font-size:14px; font-weight : bold; text-align: center;">Start Screening Myself</p></router-link>
-    </div>
+        <div class="quesheading">
+          <br>
+          <h2>COVID 19 Screening Kit</h2>
 
 
+          <div>
+            You will answer nine questions about your feelings,
+            symptoms, travel, and contact you’ve had with
+            the others. We will never share your answers
+            with others without your permissions.
+
+          </div>
+          <br>
+        </div>
+        <div class="quesbuttoncontainer">
+          <router-link to="question" class="quesbutton"><p style="color : #fff; font-size:14px; font-weight : bold; text-align: center;">Start Screening Myself</p></router-link>
+        </div>
+
+  </div>
   </div>
 
 
@@ -128,6 +129,12 @@ export default {
 <style scoped>
 
   /* question home */
+.questioncontainer {
+  justify-content:center;
+  width: 100%;
+  align-items: center;
+  height: 100%;
+}
   .quesheading
 {
 
@@ -139,6 +146,7 @@ export default {
 }
 .quesbuttoncontainer
 {
+  background-color:white;
   padding:30px;
   display:flex;
   flex:1;

@@ -11,10 +11,11 @@
     </div>
 
     <div class="container-question" v-if="questionIndex<ques.questions.length">
+    
       <div class="questioncontainer">
         <div class="questionname">
           <h2>{{questionIndex + 1}}</h2>
-          <div style="text-align:center;">{{ ques.questions[questionIndex].text }}</div>
+          <div style="text-align:center; padding:10px;">{{ ques.questions[questionIndex].text }}</div>
         </div>
         <div
           class="questionbody"
@@ -37,6 +38,7 @@
         :disabled="!selected"
       >Next</button>
       <br />
+    
     </div>
     <div v-if="seeResultClick == true">
       <stayhome v-show="finalResult == true" />
@@ -120,12 +122,14 @@ export default {
   display: none;
 }
 .container-question {
+  margin-top:100px;
   display: flex;
   flex-direction: column;
   flex: 1;
   align-items: center;
   justify-content: center;
-  height: auto;
+  height:auto;
+
 }
 /* Hide the browser's default radio button*/
 .optioncontainer input {
@@ -135,10 +139,9 @@ export default {
 }
 
 .questioncontainer {
-  margin-top: 100px;
   width: 95%;
   display: flex;
-  height: 100%;
+  height:   auto%;
   flex-direction: column;
   border-radius: 15px;
   background-color: #f5f5f5;
@@ -196,11 +199,28 @@ export default {
   font-size: 14px;
   border: 0px;
   outline: none;
-  background-color: #fff;
   width: 95%;
   height: 65px;
   align-items: center;
   justify-content: center;
+  background-color:#ffffff;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+.optioncontainer:hover {
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  -ms-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  -o-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
 .clickable {

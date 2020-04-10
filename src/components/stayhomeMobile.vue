@@ -1,4 +1,5 @@
 <template>
+  <div class="container">
   <div class="container-stayhome">
     <img src="../assets/stayhome.jpg" width="1000" height="300" />
 
@@ -43,15 +44,17 @@
       <router-link to="/contants" class="splashbutton" style="color : #fff;">Emergency Contacts</router-link>
     </div>
   </div>
+  </div> 
 </template>
 
 
 <style scoped>
 .container-stayhome {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  margin-top: 70px;
+justify-content:center;
+  width: 100%;
+  align-items: center;
+  height: 100%;
+  margin-top:70px;
 }
 .splashheader {
   margin-left: 20px;
@@ -64,12 +67,11 @@
   color: #424242;
   font-size: 14px;
   display: flex;
-  flex: 1;
   flex-direction: column;
+  margin-bottom:30px;
 }
 .list {
   padding: 5px;
-  flex: 1;
   display: flex;
   flex-direction: row;
 }
@@ -91,8 +93,12 @@ img {
   height: auto;
 }
 .splashbuttoncontainer {
-  padding: 30px;
+
+  bottom: 0;
+  border-top: 1px solid #eee;
+  padding: 20px;
   display: flex;
+  width: 100%;
   flex: 1;
   flex-direction: column;
   align-items: center;

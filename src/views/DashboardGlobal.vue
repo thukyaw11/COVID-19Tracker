@@ -52,7 +52,7 @@
           <div class="number" style="font-size:42px; color:#616161">{{affectedCountry}}</div>
         </div>
         <div
-          style="text-align:center; color:#757575;"
+          style="text-align:center; color:#757575; margin-bottom:100px;"
         >Last Updated : {{addHour(WorldTotal.statistic_taken_at)}}</div>
         <br />
       </div>

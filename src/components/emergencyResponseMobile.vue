@@ -29,7 +29,7 @@
   margin-right: 20px;
   display: flex;
   flex-direction: column;
-  flex: 1;
+  
 }
 .splashbody {
   color: #424242;
