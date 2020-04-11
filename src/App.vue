@@ -583,10 +583,9 @@ export default {
 
   .overlay .closebtn {
     display: flex;
-    flex: 1;
+    position:relative;
+    top:10%;
     height: 100px;
-    position: relative;
-    bottom: 1%;
     width: 100%;
     align-items: center;
     justify-content: center;
@@ -938,18 +937,12 @@ export default {
     display: flex;
     flex: 3;
   }
-
   .member {
     align-items: center;
     justify-content: center;
     flex-direction: column;
     display: flex;
     flex: 1;
-  }
-
-  .img {
-    display: inline-block;
-    border-radius: 100px;
   }
   .developmemberflex2 {
     padding: 20px;
@@ -1085,6 +1078,11 @@ export default {
     flex-direction: row;
     border-bottom: 1px solid #eee;
     cursor: pointer;
+  }
+  .descasescontainer img
+  {
+    width:24px;
+    height:24px;
   }
   .descasescontainer:hover {
     background: #eee;

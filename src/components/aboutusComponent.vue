@@ -377,4 +377,13 @@
     
   </div>
 </template>
+<style scoped>
+img
+{
+  width:80px;
+  height:80px;
+  display: inline-block;
+  border-radius: 100px;
+}
+</style>
 

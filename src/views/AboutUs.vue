@@ -325,39 +325,39 @@
         <div class="profileflex1">
           <div class="flexbox1">
             <div class="profile">
-              <img src="../assets/heinthanth.jpg" width="55" height="55" />
+              <img src="../assets/heinthanth.jpg"  />
             </div>
             <div class="name">Hein Thanth</div>
           </div>
           <div class="flexbox2">
             <div class="profile">
-              <img src="../assets/phonemyatkhine.jpg" width="55" height="55" />
+              <img src="../assets/phonemyatkhine.jpg" />
             </div>
             <div class="name">Phone Myat Khine</div>
           </div>
           <div class="flexbox3">
             <div class="profile">
-              <img src="../assets/aunghtetnyein.jpg" width="55" height="55" />
+              <img src="../assets/phyoheinkyaw.jpg" />
             </div>
-            <div class="name">Aung Htet Nyein</div>
+            <div class="name">Phyo Hein Kyaw</div>
           </div>
         </div>
         <div class="profileflex2">
           <div class="flexbox1">
             <div class="profile">
-              <img src="../assets/phyoheinkyaw.jpg" width="55" height="55" />
+              <img src="../assets/aunghtetnyein.jpg" />
             </div>
-            <div class="name">Phyo Hein Kyaw</div>
+            <div class="name">Aung Htet Nyein</div>
           </div>
           <div class="flexbox2">
             <div class="profile">
-              <img src="../assets/kaungkhant.jpg" width="55" height="55" />
+              <img src="../assets/kaungkhant.jpg" />
             </div>
             <div class="name">Kaung Khant</div>
           </div>
           <div class="flexbox3">
             <div class="profile">
-              <img src="../assets/aungkhantthaw.jpg" width="55" height="55" />
+              <img src="../assets/aungkhantthaw.jpg" />
             </div>
             <div class="name">Aung Khant Thaw</div>
           </div>
@@ -365,7 +365,7 @@
         <div class="profileflex3">
           <div class="flexbox1">
             <div class="profile">
-              <img src="../assets/myatnoeaein.jpg" width="55" height="55" />
+              <img src="../assets/myatnoeaein.jpg" />
             </div>
             <div class="name">Myat Noe Aein</div>
           </div>
@@ -554,6 +554,8 @@ export default {
   flex: 1;
 }
 img {
+  width:55px;
+  height:55px;
   display: inline-block;
   border-radius: 100px;
 }
