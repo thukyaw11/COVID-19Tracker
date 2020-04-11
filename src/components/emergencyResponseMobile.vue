@@ -1,5 +1,6 @@
 <template>
   <div class="container-emergency">
+    <goback/>
     <img src="../assets/emergency.jpg" width="1000" height="300" />
 
     <div class="splashheader">
@@ -16,7 +17,14 @@
     </div>
   </div>
 </template>
-
+<script>
+import goback from "../components/goback";
+export default {
+  components : {
+    goback
+  }  
+}
+</script>
 <style scoped>
 .container-emergency {
   display: flex;
