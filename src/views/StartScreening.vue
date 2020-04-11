@@ -15,7 +15,7 @@
             with others without your permissions.
 
           </div>
-          <br>
+      
         </div>
         <div class="quesbuttoncontainer">
           <router-link to="question" class="quesbutton"><p style="color : #fff; font-size:14px; font-weight : bold; text-align: center;">Start Screening Myself</p></router-link>
@@ -69,6 +69,7 @@ export default {
 }
 .quesbuttoncontainer
 {
+  background-color:#ffffff;
   padding:30px;
   display:flex;
   flex:1;

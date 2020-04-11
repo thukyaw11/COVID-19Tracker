@@ -1,51 +1,48 @@
 <template>
   <div id="app">
     <div id="myNav" class="overlay">
-      <a
-        class="closebtn"
-        @click="closeNav()"
-        style="color: white; text-decoration: none; margin-top:20px;"
-      >&times;</a>
+      <div style="position:relative; top:5%;">Coronavirus disease Situation Menu</div>
       <div class="overlay-content">
         <router-link
           to="/global"
-          style="color: white; text-decoration: none"
+          style="color: #212121; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
-        >Global</router-link>
+        >Global
+        </router-link>
         <router-link
           to="/local"
-          style="color: white; text-decoration: none"
+          style="color: #212121; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
         >Local</router-link>
         <router-link
           to="/countrycases"
-          style="color: white; text-decoration: none"
+          style="color: #212121; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
         >Countries By Cases</router-link>
         <router-link
           to="/start"
-          style="color: white; text-decoration: none"
+          style="color: #212121; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
         >Screening Kit</router-link>
-        <router-link
-          to="/donation"
-          style="color: white; text-decoration: none"
+         <router-link
+          to="/#"
+          style="color: #212121; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
         >Donation</router-link>
         <router-link
           to="/news"
-          style="color: white; text-decoration: none"
+          style="color: #212121; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
         >News</router-link>
         <router-link
           to="/aboutus"
-          style="color: white; text-decoration: none"
+          style="color: #212121; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
         >About Us</router-link>
@@ -56,6 +53,12 @@
           @click.native="closeNav()"
         >Emergency</router-link>
       </div>
+
+      <div
+        class="closebtn"
+        @click="closeNav()"
+        style="color: #212121; text-decoration: none; margin-top:20px;"
+      ><i class="fas fa-times" style="font-size:24px;"></i></div>
     </div>
 
     <div class="headercontainer">
@@ -67,7 +70,7 @@
       <div class="space">
         <router-link to="/contants" style="text-decoration: none;">
           <div class="Emergencybutton">
-            <i class="material-icons" id="Emergencyicon">add_ic_call</i>
+            <i class="fas fa-star-of-life" id="Emergencyicon"></i>
           </div>
         </router-link>
       </div>
@@ -93,8 +96,11 @@
         </div>
       </div>
 
+
+      
+
       <div id="desbody">
-        <div class="mainflex1">
+        <div class="mainflex1" >
           <div class="descountrybycases">
             <br />
 
@@ -144,11 +150,12 @@
           <div class="flex2container">
             <dashboardGlobalComponent v-if="this.urlLocation == ''" />
             <dashboardGlobalComponent v-if="this.urlLocation == 'global'" />
-            <dashboardLocalComponent v-if="this.urlLocation == 'local'" />
+            <dashboardLocalComponent v-if="this.urlLocation == 'local'"/>
             <countryCases
               v-if="this.urlLocation == 'countrycases'"
               v-bind:value="this.propCountryName"
             />
+
           </div>
         </div>
         <div class="mainflex3">
@@ -295,12 +302,17 @@
         <AboutusComponent v-if="this.urlLocation == 'aboutus'" />
       </div>
     </div>
+
+
+
+
   </div>
 </template>
 
 
 <script>
 /* eslint-disable no-console */
+
 
 import Vue from "vue";
 import VueClipboard from "vue-clipboard2";
@@ -406,7 +418,8 @@ export default {
     },
     onCopy() {
       alert("copied");
-    }
+    },
+
   },
   created() {
     this.urlLocation = window.location.href.split("/").pop();
@@ -473,10 +486,10 @@ export default {
 
       this.urlLocation = to.path.split("/").pop();
       console.log(this.urlLocation);
-      if (this.urlLocation == "aboutus") {
+      if(this.urlLocation == "aboutus"){
         document.getElementById("desbody").style.display = "none";
         document.getElementById("desaboutusbody").style.display = "flex";
-      } else {
+      }else{
         document.getElementById("desaboutusbody").style.display = "none";
         document.getElementById("desbody").style.display = "flex";
       }
@@ -484,6 +497,8 @@ export default {
       console.log(from);
       //top progress
       this.$refs.topProgress.start();
+
+
 
       // Use setTimeout for demo
       setTimeout(() => {
@@ -523,19 +538,24 @@ export default {
     margin-top: 300px;
   }
   #app {
+    background-color:#ffffff;
     font-family: "Poppins", sans-serif;
   }
   .desktopcontainer {
     display: none;
   }
   .overlay {
-    height: 0%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    height:100%;
     width: 100%;
     position: fixed;
-    z-index: 1;
+    z-index:1;
     top: 0;
-    left: 0;
-    background-color: #3949ab;
+    left: 0;  
+    border-radius: 5px;
+    background-color:#fff;
     overflow-y: hidden;
     overflow-x: hidden;
     transition: 0.5s;
@@ -543,45 +563,55 @@ export default {
 
   .overlay-content {
     display: flex;
-    flex: 1;
     flex-direction: column;
-    line-height: 40px;
-    position: relative;
-    top: 10%;
-    width: 100%;
-    margin-left: 20px;
-    margin-top: 30px;
+    line-height: 50px;
+    position:relative;
+    top:10%;
+    width: 90%;
   }
 
-  .overlay a {
-    padding: 8px;
+  .overlay a{
+    padding-left:15px;
     text-decoration: none;
     font-size: 20px;
-    color: #fff;
     display: block;
     transition: 0.3s;
   }
-
-  .overlay a:hover,
-  .overlay a:focus {
-    color: #f1f1f1;
+  .overlay .router-link {
+    display:flex;
+    flex-direction:row;
+    flex: 1;
   }
+ 
+  .overlay .router-link-active {
+    border-radius:50px;
+    background-color:#f5f5f5;
+    width:100%;
+    font-weight: bold;
+    
+  }
+ 
+
 
   .overlay .closebtn {
-    position: absolute;
-    top: 20px;
-    right: 45px;
-    font-size: 60px;
+    display:flex;
+    flex:1;
+    height:100px;
+    position:relative;
+    bottom:1%;
+    width:100%;
+    align-items:center;
+    justify-content:center;
   }
   .headercontainer {
-    top: 0;
-    position: fixed;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 75px;
-    border-bottom: 1px solid #eee;
+  top:0;
+  position: fixed;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 75px;
+  border-bottom: 1px solid #eee;
   }
 
   .menubutton {
@@ -652,10 +682,10 @@ export default {
     flex-direction: column;
   }
   .container {
-    display: flex;
-    flex: 1;
+    display:flex;
+    flex:1;
     width: 100%;
-    justify-content: center;
+    justify-content:center;
     align-items: center;
   }
 
@@ -800,10 +830,11 @@ export default {
 
 @media only screen and (min-width: 1100px) {
   /* loading spinner */
-  .spinner-des {
-    text-align: center;
-    margin-top: 100px;
+  .spinner-des{
+    text-align : center;
+    margin-top : 100px;
   }
+
 
   /* aboutus css */
   .developername {
@@ -1013,7 +1044,7 @@ export default {
     width: 100%;
     height: 88%;
   }
-  #desaboutusbody {
+   #desaboutusbody {
     margin-top: 130px;
     flex-direction: row;
     display: flex;

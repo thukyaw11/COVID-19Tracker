@@ -144,7 +144,7 @@ export default {
 }
 
 .container-question {
-  margin-top: 100px;
+ 
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -160,6 +160,7 @@ export default {
 }
 
 .questioncontainer {
+  margin-top:100px;
   width: 95%;
   display: flex;
   height: auto;
@@ -238,6 +239,7 @@ export default {
   transition: all 0.25s ease-in-out;
 }
 .optioncontainer:hover {
+  border:3px solid #3F51B5;
   -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
     0 6px 6px rgba(0, 0, 0, 0.23);
   -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),

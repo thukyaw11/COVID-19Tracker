@@ -46,6 +46,7 @@ img {
   height: auto;
 }
 .splashbuttoncontainer {
+  background-color:#ffffff;
   position: fixed;
   bottom: 0;
   border-top: 1px solid #eee;

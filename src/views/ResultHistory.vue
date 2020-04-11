@@ -8,7 +8,7 @@
             &nbsp;&nbsp;Delete all history
           </div>
         </div>
-
+        <br>
         <div class="resultContainerParent" v-for="(result,index) in results" :key="index">
           <div class="resultcontainer">
             <div class="time">
@@ -141,15 +141,14 @@ export default {
   justify-content: flex-end;
 }
 .resulthistorycontainerParent {
-  margin-top: 80px;
   display: flex;
   width: 100%;
-  height: auto;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 .resulthistorycontainer {
+   margin-top: 100px;
   display: flex;
   width: 100%;
   height: auto;
@@ -163,7 +162,6 @@ export default {
   width: 95%;
   align-items: center;
   justify-content: center;
-  flex: 1;
 }
 .deletebutton {
   border-radius: 15px;
@@ -174,6 +172,6 @@ export default {
   width: 95%;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
+
 }
 </style>
