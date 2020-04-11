@@ -126,6 +126,7 @@ export default {
 
     axios.all([this.fetchNews()]).then(
       axios.spread(newsContent => {
+        console.log(newsContent.data);
         this.newsRequest = newsContent.data;
         this.setData(newsContent.data);
         newsContent.data.forEach(dates => {

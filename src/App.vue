@@ -32,6 +32,12 @@
           @click.native="closeNav()"
         >Screening Kit</router-link>
         <router-link
+          to="/donation"
+          style="color: white; text-decoration: none"
+          class="item-menu"
+          @click.native="closeNav()"
+        >Donation</router-link>
+        <router-link
           to="/news"
           style="color: white; text-decoration: none"
           class="item-menu"
@@ -87,11 +93,8 @@
         </div>
       </div>
 
-
-      
-
       <div id="desbody">
-        <div class="mainflex1" >
+        <div class="mainflex1">
           <div class="descountrybycases">
             <br />
 
@@ -141,12 +144,11 @@
           <div class="flex2container">
             <dashboardGlobalComponent v-if="this.urlLocation == ''" />
             <dashboardGlobalComponent v-if="this.urlLocation == 'global'" />
-            <dashboardLocalComponent v-if="this.urlLocation == 'local'"/>
+            <dashboardLocalComponent v-if="this.urlLocation == 'local'" />
             <countryCases
               v-if="this.urlLocation == 'countrycases'"
               v-bind:value="this.propCountryName"
             />
-
           </div>
         </div>
         <div class="mainflex3">
@@ -293,17 +295,12 @@
         <AboutusComponent v-if="this.urlLocation == 'aboutus'" />
       </div>
     </div>
-
-
-
-
   </div>
 </template>
 
 
 <script>
 /* eslint-disable no-console */
-
 
 import Vue from "vue";
 import VueClipboard from "vue-clipboard2";
@@ -409,8 +406,7 @@ export default {
     },
     onCopy() {
       alert("copied");
-    },
-
+    }
   },
   created() {
     this.urlLocation = window.location.href.split("/").pop();
@@ -477,10 +473,10 @@ export default {
 
       this.urlLocation = to.path.split("/").pop();
       console.log(this.urlLocation);
-      if(this.urlLocation == "aboutus"){
+      if (this.urlLocation == "aboutus") {
         document.getElementById("desbody").style.display = "none";
         document.getElementById("desaboutusbody").style.display = "flex";
-      }else{
+      } else {
         document.getElementById("desaboutusbody").style.display = "none";
         document.getElementById("desbody").style.display = "flex";
       }
@@ -488,8 +484,6 @@ export default {
       console.log(from);
       //top progress
       this.$refs.topProgress.start();
-
-
 
       // Use setTimeout for demo
       setTimeout(() => {
@@ -580,14 +574,14 @@ export default {
     font-size: 60px;
   }
   .headercontainer {
-  top:0;
-  position: fixed;
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 75px;
-  border-bottom: 1px solid #eee;
+    top: 0;
+    position: fixed;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 75px;
+    border-bottom: 1px solid #eee;
   }
 
   .menubutton {
@@ -658,10 +652,10 @@ export default {
     flex-direction: column;
   }
   .container {
-    display:flex;
-    flex:1;
+    display: flex;
+    flex: 1;
     width: 100%;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
   }
 
@@ -806,11 +800,10 @@ export default {
 
 @media only screen and (min-width: 1100px) {
   /* loading spinner */
-  .spinner-des{
-    text-align : center;
-    margin-top : 100px;
+  .spinner-des {
+    text-align: center;
+    margin-top: 100px;
   }
-
 
   /* aboutus css */
   .developername {
@@ -1020,7 +1013,7 @@ export default {
     width: 100%;
     height: 88%;
   }
-   #desaboutusbody {
+  #desaboutusbody {
     margin-top: 130px;
     flex-direction: row;
     display: flex;

@@ -11,7 +11,6 @@
     </div>
 
     <div class="container-question" v-if="questionIndex<ques.questions.length">
-    
       <div class="questioncontainer">
         <div class="questionname">
           <h2>{{questionIndex + 1}}</h2>
@@ -38,7 +37,6 @@
         :disabled="!selected"
       >Next</button>
       <br />
-    
     </div>
     <div v-if="seeResultClick == true">
       <stayhome v-show="finalResult == true" />
@@ -68,7 +66,10 @@ export default {
       answer: answer,
       resultArray: [],
       finalResult: "",
-      seeResultClick: false
+      seeResultClick: false,
+      localStorageArray: localStorage.getItem("resultSession")
+        ? JSON.parse(localStorage.getItem("resultSession"))
+        : []
     };
   },
 
@@ -104,10 +105,30 @@ export default {
         this.resultArray.push(result);
       }
 
-
-
       this.finalResult = this.resultArray.includes(true);
 
+      var d = new Date();
+      var datestring =
+        d.getDate() +
+        "-" +
+        (d.getMonth() + 1) +
+        "-" +
+        d.getFullYear() +
+        " " +
+        d.getHours() +
+        ":" +
+        d.getMinutes();
+
+      let localStorageValue = {
+        resultLocal: this.finalResult,
+        dateTime : datestring
+      };
+
+      this.localStorageArray.push(localStorageValue);
+      localStorage.setItem(
+        "resultSession",
+        JSON.stringify(this.localStorageArray)
+      );
     }
   },
 
@@ -123,14 +144,13 @@ export default {
 }
 
 .container-question {
-  margin-top:100px;
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
   flex: 1;
   align-items: center;
   justify-content: center;
-  height:auto;
-
+  height: auto;
 }
 /* Hide the browser's default radio button*/
 .optioncontainer input {
@@ -140,10 +160,9 @@ export default {
 }
 
 .questioncontainer {
-
   width: 95%;
   display: flex;
-  height:   auto%;
+  height: auto;
   flex-direction: column;
   border-radius: 15px;
   background-color: #f5f5f5;
@@ -205,8 +224,9 @@ export default {
   height: 65px;
   align-items: center;
   justify-content: center;
-  background-color:#ffffff;
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -218,8 +238,10 @@ export default {
   transition: all 0.25s ease-in-out;
 }
 .optioncontainer:hover {
-  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+    0 6px 6px rgba(0, 0, 0, 0.23);
+  -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+    0 6px 6px rgba(0, 0, 0, 0.23);
   -ms-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   -o-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
@@ -236,14 +258,7 @@ export default {
   z-index: 10;
 }
 
-input[name="myradio"]:checked + .clickable {
-  border-color: #3f51b5;
-  box-shadow: 0px 0px 0px 3px #3f51b5;
-}
 
-input[name="myradio"]:checked + .clickable .checked-box {
-  display: block;
-}
 .headercontainer {
   top: 0;
   z-index: 20;

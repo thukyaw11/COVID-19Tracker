@@ -9,6 +9,8 @@ import Contants from "../views/Emergencycontants"
 import AboutUs from "../views/AboutUs"
 import StartScreening from '../views/StartScreening'
 import Question from '../views/Question';
+import Donation from "../views/Donation";
+import resultHistory from "../views/ResultHistory";
 
 Vue.use(VueRouter)
 
@@ -62,6 +64,16 @@ const routes = [
     path : '/question',
     name : "Question",
     component : Question
+  },
+  {
+    path : '/donation',
+    name : "Donation",
+    component : Donation
+  },
+  {
+    path : '/resultHistory',
+    name : "resultHistroy",
+    component : resultHistory
   }
 ]
 
