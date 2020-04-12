@@ -9,11 +9,11 @@
               <div
                 class="number"
                 style="font-size:42px; font-weight: bold"
-              >{{WorldTotal.total_cases}}</div>
+              >{{WorldTotal.total_cases  | mmnumber}}</div>
             </div>
             <div class="ConfirmedCaseContainer">
-              <div class="caseheading">New Cases</div>
-              <div class="number" style="font-size:42px;  ">{{WorldTotal.new_cases}}</div>
+              <div class="caseheading">{{$t('globaldashboard.newcases')}}</div>
+              <div class="number" style="font-size:42px;  ">{{WorldTotal.new_cases  | mmnumber }}</div>
             </div>
           </div>
           <div class="mapflex2">
@@ -37,23 +37,23 @@
 
         <div class="RecoverCase">
           <div class="ConfirmedCaseContainer">
-            <div class="caseheading">Recover</div>
-            <div class="number" style="font-size:42px; color:#4CAF50">{{WorldTotal.total_recovered}}</div>
+            <div class="caseheading">{{$t('globaldashboard.recover')}}</div>
+            <div class="number" style="font-size:42px; color:#4CAF50">{{WorldTotal.total_recovered  | mmnumber}}</div>
           </div>
         </div>
         <div class="DeathCase">
           <div class="ConfirmedCaseContainer">
-            <div class="caseheading">Death</div>
-            <div class="number" style="font-size:42px; color:#F44336">{{WorldTotal.total_deaths}}</div>
+            <div class="caseheading">{{$t('globaldashboard.death')}}</div>
+            <div class="number" style="font-size:42px; color:#F44336">{{WorldTotal.total_deaths  | mmnumber}}</div>
           </div>
         </div>
         <div class="ConfirmedCaseContainer">
-          <div class="caseheading">Countries</div>
-          <div class="number" style="font-size:42px; color:#616161">{{affectedCountry}}</div>
+          <div class="caseheading">{{$t('globaldashboard.countries')}}</div>
+          <div class="number" style="font-size:42px; color:#616161">{{affectedCountry  | mmnumber}}</div>
         </div>
         <div
           style="text-align:center; color:#757575; margin-bottom:100px;"
-        >Last Updated : {{addHour(WorldTotal.statistic_taken_at)}}</div>
+        >Last Updated : {{addHour(WorldTotal.statistic_taken_at)  | mmnumber}}</div>
         <br />
       </div>
       <div v-else class="spinner">

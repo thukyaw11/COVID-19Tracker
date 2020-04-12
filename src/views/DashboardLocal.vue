@@ -105,7 +105,7 @@
 
 <script>
 /* eslint-disable no-console */
-
+import i18n from "../plugin/i18n";
 export default {
   data() {
     return {
@@ -126,6 +126,7 @@ export default {
       .then(response => {
         response.json().then(caseby_mm => {
           this.caseinMyanmar = caseby_mm.latest_stat_by_country;
+ 
 
         });
       })
@@ -134,6 +135,8 @@ export default {
       });
 
     this.$root.$data.title = "Local Dashboard";
+
+    console.log(i18n.locale);
   },
   methods:{
     addHour(recordDate){

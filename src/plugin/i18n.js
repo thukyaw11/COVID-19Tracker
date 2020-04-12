@@ -16,7 +16,11 @@ const messages = {
         langswitchEnglish: 'English',
         langdesc: 'language',
         globaldashboard: {
-            confirmcase: "Confirmed Cases"
+            confirmcase: "Confirmed Cases",
+            newcases : "New Cases",
+            recover : "Recover",
+            death : "Death",
+            countries : "Countries"
         }
     },
     'mm': {
@@ -31,7 +35,14 @@ const messages = {
         langswitchEnglish: 'အင်္ဂလိပ်',
         langdesc: 'ဘာသာစကား',
         globaldashboard: {
-            confirmcase: "အတည်ပြုလူနာ"
+            confirmcase: "အတည်ပြုလူနာ",
+            newcases : "ယနေ့ ထပ်တိုးလူနာ",
+            recover : "ရောဂါပျောက်ဆုံးလူနာ",
+            death : "သေဆုံးလူနာ",
+            countries : "နိုင်ငံပေါင်း"
+
+
+
         }
     }
 };

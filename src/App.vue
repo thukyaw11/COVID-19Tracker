@@ -342,7 +342,8 @@ export default {
       contactlist: [],
       searchContacts: "",
       copyCode: "",
-      isoCou: isoCountries
+      isoCou: isoCountries,
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : []
     };
   },
   methods: {
@@ -361,7 +362,8 @@ export default {
     },
     changeLocale(locale) {
       i18n.locale = locale;
-      console.log(i18n.locale);
+      localStorage.setItem("lang", locale);
+      this.closeNav();
     },
     openNav() {
       document.getElementById("myNav").style.height = "100%";
@@ -422,6 +424,7 @@ export default {
     this.urlLocation = window.location.href.split("/").pop();
   },
   mounted() {
+      i18n.locale = this.lang;
     //yesterday, today and uploaded
     document.getElementById("myNav").style.height = "0%";
 
