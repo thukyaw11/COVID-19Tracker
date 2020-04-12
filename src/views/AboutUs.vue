@@ -523,6 +523,7 @@ export default {
   flex: 2;
   align-items: center;
   justify-content: center;
+
 }
 .name {
   display: flex;
@@ -558,5 +559,7 @@ img {
   height:55px;
   display: inline-block;
   border-radius: 100px;
+  width: 55px;
+  height: 55px;
 }
 </style>

@@ -15,6 +15,7 @@
     "survey-vue": "^1.5.18",
     "vue": "^2.6.11",
     "vue-clipboard2": "^0.3.1",
+    "vue-i18n": "^8.17.0",
     "vue-markdown": "^2.2.4",
     "vue-material": "^1.0.0-beta-11",
     "vue-router": "^3.1.6",

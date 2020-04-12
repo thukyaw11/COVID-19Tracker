@@ -1,56 +1,71 @@
 <template>
   <div id="app">
     <div id="myNav" class="overlay">
-      <div style="position:relative; top:5%;">Coronavirus disease Situation Menu</div>
+      <div style="position:relative; top:5%;">{{ $t('menutitle')}}</div>
       <div class="overlay-content">
         <router-link
           to="/global"
           style="color: #212121; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
-        >Global</router-link>
+        >{{ $t('global') }}</router-link>
         <router-link
           to="/local"
           style="color: #212121; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
-        >Local</router-link>
+        >{{ $t('local') }}</router-link>
         <router-link
           to="/countrycases"
           style="color: #212121; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
-        >Countries By Cases</router-link>
+        >{{ $t('countrycase') }}</router-link>
         <router-link
           to="/start"
           style="color: #212121; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
-        >Screening Kit</router-link>
+        >{{ $t('start') }}</router-link>
         <router-link
           to="/donation"
           style="color: #212121; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
-        >Donation</router-link>
+        >{{ $t('donation') }}</router-link>
         <router-link
           to="/news"
           style="color: #212121; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
-        >News</router-link>
+        >{{ $t('news') }}</router-link>
         <router-link
           to="/aboutus"
           style="color: #212121; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
-        >About Us</router-link>
+        >{{ $t('aboutus')}}</router-link>
         <router-link
           to="/contants"
           style="text-decoration: none; color:#f44336; font-weight:bold;"
           class="item-menu"
           @click.native="closeNav()"
-        >Emergency</router-link>
+        >{{ $t('contants')}}</router-link>
+        <br />
+        <br />
+        <div class="langbtncontainer">
+          <button
+            v-for="entry in languages"
+            :key="entry.title"
+            @click="changeLocale(entry.language)"
+            class="langbtn"
+          >
+            <img :src="'https://www.countryflags.io/'+entry.flag+'/flat/24.png'" class="langbtnimg" />
+            {{entry.title}}
+          </button>
+        </div>
+
+        <br />
       </div>
 
       <div
@@ -316,6 +331,8 @@ import dashboardLocalComponent from "./components/dashboardLocalComponent";
 import countryCases from "./components/dynamicCountryCases";
 import AboutusComponent from "./components/aboutusComponent";
 import isoCountries from "./assets/content/countryCode";
+import i18n from "./plugin/i18n";
+
 Vue.use(VueClipboard);
 
 export default {
@@ -329,6 +346,10 @@ export default {
   },
   data() {
     return {
+      languages: [
+        { flag: "us", language: "en", title: "English" },
+        { flag: "mm", language: "mm", title: "မြန်မာ" }
+      ],
       urlLocation: "",
       CountryByCases: [],
       search: "",
@@ -356,6 +377,10 @@ export default {
           "https://img.icons8.com/emoji/24/000000/ship.png";
         return default_img_url;
       }
+    },
+    changeLocale(locale) {
+      i18n.locale = locale;
+      console.log(i18n.locale);
     },
     openNav() {
       document.getElementById("myNav").style.height = "100%";
@@ -524,6 +549,20 @@ export default {
 /* for mobile version css */
 
 @media only screen and (max-width: 1100px) {
+  .langbtncontainer {
+    display: flex;
+    font-size: 20px;
+    margin: 0 auto;
+  }
+  .langbtn {
+    border: none;
+    background: white;
+    height: 30px;
+  }
+  .langbtnimg {
+    width: 30px;
+    height: 20px;
+  }
   .spinner {
     text-align: center;
     margin-top: 300px;
@@ -583,8 +622,8 @@ export default {
 
   .overlay .closebtn {
     display: flex;
-    position:relative;
-    top:10%;
+    position: relative;
+    top: 10%;
     height: 100px;
     width: 100%;
     align-items: center;
@@ -1079,10 +1118,9 @@ export default {
     border-bottom: 1px solid #eee;
     cursor: pointer;
   }
-  .descasescontainer img
-  {
-    width:24px;
-    height:24px;
+  .descasescontainer img {
+    width: 24px;
+    height: 24px;
   }
   .descasescontainer:hover {
     background: #eee;

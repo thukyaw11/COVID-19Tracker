@@ -3,6 +3,7 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import VueMarkDown from 'vue-markdown';
+import i18n from './plugin/i18n';
 //import LoadScript from 'vue-plugin-load-script';
 
 import VueMaterial from 'vue-material'
@@ -33,6 +34,7 @@ export const eventBus = new Vue();
 Vue.config.productionTip = false
 
 new Vue({
+  i18n,
   router,
   data: sourceOfTruth,
   render: h => h(App)
