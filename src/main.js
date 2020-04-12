@@ -4,6 +4,7 @@ import './registerServiceWorker'
 import router from './router'
 import VueMarkDown from 'vue-markdown';
 import i18n from './plugin/i18n';
+import Meta from 'vue-meta';
 //import LoadScript from 'vue-plugin-load-script';
 
 import VueMaterial from 'vue-material'
@@ -20,7 +21,7 @@ var filter = function (text, length, clamp) {
 
 
 Vue.filter('truncate', filter);
-
+Vue.use(Meta);
 Vue.use(VueMaterial);
 Vue.use(VueMarkDown);
 //Vue.use(LoadScript);

@@ -5,7 +5,7 @@
         <div class="mapvector">
           <div class="mapflex1">
             <div class="ConfirmedCaseContainer">
-              <div class="caseheading">Confirmed Cases</div>
+              <div class="caseheading">{{$t('globaldashboard.confirmcase')}}</div>
               <div
                 class="number"
                 style="font-size:42px; font-weight: bold"

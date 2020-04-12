@@ -7,24 +7,32 @@ const messages = {
     'en': {
         menutitle: 'Coronavirus disease Situation Menu',
         global: 'Global',
-        local: 'Local',
-        countrycase : ' Countries By Cases',
-        start : 'Screening Kit',
-        donation : 'Donation',
-        news : 'News',
-        aboutus : 'About Us',
-        contants : 'Emergency'
+        countrycase: ' Countries By Cases',
+        start: 'Screening Kit',
+        donation: 'Donation',
+        news: 'News',
+        aboutus: 'About Us',
+        langswitchMyanmar: 'Myanmar',
+        langswitchEnglish: 'English',
+        langdesc: 'language',
+        globaldashboard: {
+            confirmcase: "Confirmed Cases"
+        }
     },
     'mm': {
         menutitle: 'ကိုရိုနာကူးစက်ခံရမှုပြ မာတိကာ',
         global: 'ကမ္ဘာတစ်ဝှမ်း',
-        local: 'မြန်မာနိုင်ငံ',
-        countrycase : 'နိုင်ငံအလိုက်',
-        start : 'ကျန်းမာရေးစစ်',
-        donation : 'အလှူစာရင်း',
-        news : 'သတင်းများ',
-        aboutus : 'App အကြောင်း',
-        contants : 'အရေးပေါ်ဖုန်းနံပါတ်များ'
+        countrycase: 'နိုင်ငံအလိုက်',
+        start: 'ကျန်းမာရေးစစ်',
+        donation: 'အလှူစာရင်း',
+        news: 'သတင်းများ',
+        aboutus: 'App အကြောင်း',
+        langswitchMyanmar: 'မြန်မာ',
+        langswitchEnglish: 'အင်္ဂလိပ်',
+        langdesc: 'ဘာသာစကား',
+        globaldashboard: {
+            confirmcase: "အတည်ပြုလူနာ"
+        }
     }
 };
 

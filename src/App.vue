@@ -1,79 +1,60 @@
 <template>
   <div id="app">
     <div id="myNav" class="overlay">
-      <div style="position:relative; top:5%;">{{ $t('menutitle')}}</div>
+      <div style="position:relative; top:5%;">{{$t ('menutitle')}}</div>
       <div class="overlay-content">
         <router-link
           to="/global"
           style="color: #212121; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
-        >{{ $t('global') }}</router-link>
-        <router-link
-          to="/local"
-          style="color: #212121; text-decoration: none"
-          class="item-menu"
-          @click.native="closeNav()"
-        >{{ $t('local') }}</router-link>
+        >{{$t ('global')}}</router-link>
+
         <router-link
           to="/countrycases"
           style="color: #212121; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
-        >{{ $t('countrycase') }}</router-link>
+        >{{$t ('countrycase')}}</router-link>
         <router-link
           to="/start"
           style="color: #212121; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
-        >{{ $t('start') }}</router-link>
+        >{{$t ('start')}}</router-link>
         <router-link
           to="/donation"
           style="color: #212121; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
-        >{{ $t('donation') }}</router-link>
+        >{{$t ('donation')}}</router-link>
         <router-link
           to="/news"
           style="color: #212121; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
-        >{{ $t('news') }}</router-link>
+        >{{$t ('news')}}</router-link>
         <router-link
           to="/aboutus"
           style="color: #212121; text-decoration: none"
           class="item-menu"
           @click.native="closeNav()"
-        >{{ $t('aboutus')}}</router-link>
-        <router-link
-          to="/contants"
-          style="text-decoration: none; color:#f44336; font-weight:bold;"
-          class="item-menu"
-          @click.native="closeNav()"
-        >{{ $t('contants')}}</router-link>
-        <br />
-        <br />
-        <div class="langbtncontainer">
-          <button
-            v-for="entry in languages"
-            :key="entry.title"
-            @click="changeLocale(entry.language)"
-            class="langbtn"
-          >
-            <img :src="'https://www.countryflags.io/'+entry.flag+'/flat/24.png'" class="langbtnimg" />
-            {{entry.title}}
-          </button>
-        </div>
-
-        <br />
+        >{{$t ('aboutus')}}</router-link>
       </div>
-
+      <br />
+      <div class="languageswitcher">
+        <div class="switchheading">{{$t ('langdesc')}}</div>
+        <div class="switchcontainer">
+          <div class="switch1" @click="changeLocale('en')">{{$t ('langswitchEnglish')}}</div>
+          <div class="switch2" @click="changeLocale('mm')">{{$t ('langswitchMyanmar')}}</div>
+        </div>
+      </div>
       <div
         class="closebtn"
         @click="closeNav()"
         style="color: #212121; text-decoration: none; margin-top:20px;"
       >
-        <i class="fas fa-times" style="font-size:24px;"></i>
+        <span class="material-icons" style="font-size:36px; color:f44336;">cancel</span>
       </div>
     </div>
 
@@ -537,32 +518,37 @@ export default {
           .includes(this.searchContacts.toLowerCase());
       });
     }
+  },
+  metaInfo: {
+    meta: [
+      { property: "og:title", content: "COVID 19 | Myanmar" },
+      {
+        property: "og:site_name",
+        content: "A covid 19 tracker app powered by UIT-SU | Myanmar"
+      },
+      // The list of types is available here: http://ogp.me/#types
+      { property: "og:type", content: "tracker app" },
+      // Should the the same as your canonical link, see below.
+      { property: "og:url", content: "https://covid19mm.netlify.com/" },
+      {
+        property: "og:image",
+        content:
+          "https://icons8.com/wp-content/uploads/2020/02/elegant-digital-illustration.png"
+      },
+      // Often the same as your meta description, but not always.
+      { property: "og:description", content: "Hello I am Min Thu Kyaw" }
+    ]
   }
 };
 
 /* eslint-enable no-console */
 </script>
 
-
 <style>
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
 /* for mobile version css */
 
 @media only screen and (max-width: 1100px) {
-  .langbtncontainer {
-    display: flex;
-    font-size: 20px;
-    margin: 0 auto;
-  }
-  .langbtn {
-    border: none;
-    background: white;
-    height: 30px;
-  }
-  .langbtnimg {
-    width: 30px;
-    height: 20px;
-  }
   .spinner {
     text-align: center;
     margin-top: 300px;
@@ -574,6 +560,48 @@ export default {
   .desktopcontainer {
     display: none;
   }
+  .languageswitcher {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 100px;
+    border-top: 1px solid #eee;
+    align-items: center;
+  }
+  .switchheading {
+    display: flex;
+    flex: 1;
+    align-items: flex-end;
+    width: 90%;
+  }
+  .switchcontainer {
+    border-radius: 100px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    display: flex;
+    flex: 2;
+  }
+  .switch1 {
+    border-radius: 50px;
+    background-color: #f5f5f5;
+    margin-right: 5px;
+    display: flex;
+    width: 145px;
+    height: 45px;
+    align-items: center;
+    justify-content: center;
+  }
+  .switch2 {
+    background-color: #f5f5f5;
+    border-radius: 50px;
+    margin-left: 5px;
+    display: flex;
+    width: 145px;
+    height: 45px;
+    align-items: center;
+    justify-content: center;
+  }
   .overlay {
     display: flex;
     flex-direction: column;
@@ -581,6 +609,7 @@ export default {
     height: 100%;
     width: 100%;
     position: fixed;
+    overflow-y: scroll;
     z-index: 1;
     top: 0;
     left: 0;
@@ -595,8 +624,7 @@ export default {
     display: flex;
     flex-direction: column;
     line-height: 50px;
-    position: relative;
-    top: 10%;
+    margin-top: 80px;
     width: 90%;
   }
 
@@ -604,7 +632,7 @@ export default {
     padding-left: 15px;
     text-decoration: none;
     font-size: 20px;
-    display: block;
+    display: flex;
     transition: 0.3s;
   }
   .overlay .router-link {
@@ -622,8 +650,6 @@ export default {
 
   .overlay .closebtn {
     display: flex;
-    position: relative;
-    top: 10%;
     height: 100px;
     width: 100%;
     align-items: center;
