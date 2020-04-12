@@ -100,16 +100,18 @@
         <div class="activedots"></div>
       </div>
     </div>
+    <h1>{{error}}</h1>
   </div>
 </template>
 
 <script>
 /* eslint-disable no-console */
-import i18n from "../plugin/i18n";
+
 export default {
   data() {
     return {
-      caseinMyanmar: []
+      caseinMyanmar: [],
+      errorMsg : ''
     };
   },
   mounted() {
@@ -126,17 +128,14 @@ export default {
       .then(response => {
         response.json().then(caseby_mm => {
           this.caseinMyanmar = caseby_mm.latest_stat_by_country;
- 
 
         });
       })
       .catch(err => {
-        console.log(err);
+        this.errorMsg = err;
       });
 
     this.$root.$data.title = "Local Dashboard";
-
-    console.log(i18n.locale);
   },
   methods:{
     addHour(recordDate){

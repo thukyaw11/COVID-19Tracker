@@ -343,7 +343,7 @@ export default {
       searchContacts: "",
       copyCode: "",
       isoCou: isoCountries,
-      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : []
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
     };
   },
   methods: {
