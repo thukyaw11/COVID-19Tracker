@@ -4,12 +4,7 @@
 
 <script>
 export default {
-  props: ["title"],
-  methods: {
-    updateLang(e) {
-      console.log(e);
-    }
-  }
+  props: ["title"]
 };
 </script>
 
