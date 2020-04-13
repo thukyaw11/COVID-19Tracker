@@ -19,7 +19,7 @@
           >
             <div class="contentflex1">
               <div class="contentdescription">
-                <p class="comment more">{{news.title | truncate(140, '...')}} </p>
+                <p class="comment more">{{news.title | truncate(140, '...')}}</p>
               </div>
               <div class="contentsource">source : {{news.source}}</div>
             </div>
@@ -102,11 +102,11 @@ export default {
       uploadedNews: [],
       newsReqMessage: "",
       today: "",
-      yesterday: ""
+      yesterday: "",
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
     };
   },
   mounted() {
-
     //yesterday, today and uploaded
     const todayDate = new Date();
     const yesterdayDate = new Date(todayDate);
@@ -121,7 +121,13 @@ export default {
     console.log("today " + this.today);
     console.log("yesterday " + this.yesterday);
     //change the nav bar content
-    this.$root.$data.title = "News";
+    if (this.lang == "mm") {
+      this.$root.$data.title = "သတင်း";
+    }
+    if (this.lang == "en") {
+      this.$root.$data.title = "News";
+    }
+
     this.newsReqMessage = "news in progress";
 
     axios.all([this.fetchNews()]).then(
@@ -155,9 +161,18 @@ export default {
         });
       })
     );
-    
   },
   methods: {
+    changeName(name) {
+      // lang will be automatically transported to the parameter.
+      this.lang = name;
+      if (name == "mm") {
+        this.$root.$data.title = "သတင်း";
+      }
+      if (name == "en") {
+        this.$root.$data.title = "Donation";
+      }
+    },
     fetchNews() {
       this.newsReqMessage = "news request began";
       return axios.get(this.baseURL);
@@ -168,6 +183,9 @@ export default {
     setData(newsContent) {
       this.newsRequest = newsContent;
     }
+  },
+  created(){
+    this.$eventHub.$on("change-name", this.changeName);
   }
 };
 
@@ -179,7 +197,7 @@ export default {
 
 <style scoped>
 .newscontainer {
-  justify-content:center;
+  justify-content: center;
   width: 95%;
   align-items: center;
   height: 100%;

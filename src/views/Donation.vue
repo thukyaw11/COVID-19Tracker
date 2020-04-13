@@ -4,20 +4,20 @@
       <span class="material-icons" style="font-size:150px; color:#EC407A;">favorite</span>
     </div>
     <div class="donationbody">
-      <h2>Make your own support</h2>
+      <h2>{{$t('donationPage.donationHeader')}}</h2>
 
-      <div class="justify">
-        Your support is greatly br br nyr nyr about your
-        feelings, symptoms, travel, and contact you’ve
-        answers with others without your permissions.
-      </div>
+      <div class="justify">{{$t('donationPage.donationContent')}}</div>
     </div>
     <div class="donatebuttoncontainer">
-      <button class="donatebutton">Donate Now</button>
-      <span class="material-icons" style="font-size:36px; margin-top:20px;">expand_more</span>
+      <button class="donatebutton" v-scroll-to="'#element'">{{$t('donationPage.donationButton')}}</button>
+      <span
+        class="material-icons"
+        style="font-size:36px; margin-top:20px;"
+        v-scroll-to="'#element'"
+      >expand_more</span>
     </div>
 
-    <h3 style="text-align:center; color:#757575;">Donation Contacts</h3>
+    <h3 style="text-align:center; color:#757575;" id="element">Donation Contacts</h3>
 
     <div class="donationcontactsbody">
       <div class="donationcard">
@@ -107,177 +107,179 @@
 
 <script>
 export default {
+  data() {
+    return {
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
+    };
+  },
+  //working with event bus
+  created() {
+    this.$eventHub.$on("change-name", this.changeName);
+  },
   mounted() {
-    this.$root.$data.title = "Donation";
+    if (this.lang == "mm") {
+      this.$root.$data.title = "လှူဒါန်းမှု";
+    }
+    if (this.lang == "en") {
+      this.$root.$data.title = "Donation";
+    }
+  },
+  methods: {
+    changeName(name) {
+      // lang will be automatically transported to the parameter.
+      this.lang = name;
+      if (name == "mm") {
+        this.$root.$data.title = "လှူဒါန်းမှု";
+      }
+      if (name == "en") {
+        this.$root.$data.title = "Donation";
+      }
+    }
   }
 };
 </script>
 
 <style scoped>
-.container-donation
-{
-  margin-bottom:100px;
+.container-donation {
+  margin-bottom: 100px;
   margin-top: 10px;
-  display:flex;
+  display: flex;
   flex-direction: column;
-  flex:1;
+  flex: 1;
   height: auto;
 }
-.hearticon
-{
-  margin-top:75px;
-  display:flex;
-  width:100%;
-  height:350px;
-  align-items:center;
-  justify-content:center;
+.hearticon {
+  margin-top: 75px;
+  display: flex;
+  width: 100%;
+  height: 350px;
+  align-items: center;
+  justify-content: center;
 }
-.donationbody
-{
-  display:flex;
-  width:100%;
-  height:200px;
-  align-items:center;
-  text-align:center;
-  flex-direction:column;
-}
-.donatebuttoncontainer
-{
-  padding:30px;
-  display:flex;
+.donationbody {
+  display: flex;
+  width: 100%;
+  height: 200px;
+  align-items: center;
+  text-align: center;
   flex-direction: column;
-  align-items:center;
-  justify-content:center;
-
 }
-.donatebutton
-{
-  border-radius:10px;
-  font-weight:bold;
-  color:#ffffff;
-  font-size:14px;
-  border:0px;
-  outline:none;
-  background-color:#EC407A;
-  width:100%;
-  height:50px;
-  align-items:center;
-  justify-content:center;
-}
-.donationcontactsbody
-{
-  flex-direction:column;
-  display:flex;
-  width:100%;
-  height:auto;
-  align-items:center;
-  justify-content:center;
-}
-.donationcard
-{
-  border-radius:15px;
-  display:flex;
-  flex-direction:column;
-  width:95%;
-  height:690px;
-  background-color:#eee;
-  margin-bottom:30px;
-}
-.donateheading
-{
-  margin-top:10px;
-  display:flex;
+.donatebuttoncontainer {
+  padding: 30px;
+  display: flex;
   flex-direction: column;
-  padding:10px;
-
+  align-items: center;
+  justify-content: center;
 }
-.donatetypeoforg
-{
-  display:flex;
+.donatebutton {
+  border-radius: 10px;
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 14px;
+  border: 0px;
+  outline: none;
+  background-color: #ec407a;
+  width: 100%;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+}
+.donationcontactsbody {
   flex-direction: column;
-  height:55px;
-  padding:10px;
-
+  display: flex;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  justify-content: center;
 }
-.donatephno
-{
-  display:flex;
+.donationcard {
+  border-radius: 15px;
+  display: flex;
   flex-direction: column;
-  height:55px;
-  padding:10px;
-
+  width: 95%;
+  height: 690px;
+  background-color: #eee;
+  margin-bottom: 30px;
 }
-.donatename
-{
-  display:flex;
+.donateheading {
+  margin-top: 10px;
+  display: flex;
   flex-direction: column;
-  height:55px;
-  padding:10px;
-
+  padding: 10px;
 }
-.donatedescirption
-{
-  display:flex;
+.donatetypeoforg {
+  display: flex;
   flex-direction: column;
-  height:120px;
-  padding:10px;
+  height: 55px;
+  padding: 10px;
 }
-.bank
-{
-  display:flex;
-  width:100%;
-  height:auto;
-  flex-direction:column;
-  align-items:center;
+.donatephno {
+  display: flex;
+  flex-direction: column;
+  height: 55px;
+  padding: 10px;
 }
-.bankcontainer
-{
-  border-radius:10px;
-  background-color:#ffffff;
-  display:flex;
-  height:65px;
-  width:95%;
-  margin-bottom:10px;
+.donatename {
+  display: flex;
+  flex-direction: column;
+  height: 55px;
+  padding: 10px;
 }
-.bankflex1
-{
-  font-weight:bold;
-  display:flex;
-  flex:1;
-  flex-direction:row;
-  align-items:center;
-  justify-content:center;
+.donatedescirption {
+  display: flex;
+  flex-direction: column;
+  height: 120px;
+  padding: 10px;
 }
-.bankflex2
-{
-  font-weight:bold;
-  display:flex;
-  flex:4;
-  flex-direction:row;
-  align-items:center;
-
+.bank {
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+  align-items: center;
 }
-.bankflex3
-{
-  display:flex;
-  flex:1;
-  flex-direction:row;
-  align-items:center;
-  justify-content:center;
+.bankcontainer {
+  border-radius: 10px;
+  background-color: #ffffff;
+  display: flex;
+  height: 65px;
+  width: 95%;
+  margin-bottom: 10px;
 }
-.contactnowbutton
-{
-  border-radius:10px;
-  font-weight:bold;
-  color:#ffffff;
-  font-size:14px;
-  border:0px;
-  outline:none;
-  background-color:#EC407A;
-  width:90%;
-  height:50px;
-  align-items:center;
-  justify-content:center;
+.bankflex1 {
+  font-weight: bold;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.bankflex2 {
+  font-weight: bold;
+  display: flex;
+  flex: 4;
+  flex-direction: row;
+  align-items: center;
+}
+.bankflex3 {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.contactnowbutton {
+  border-radius: 10px;
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 14px;
+  border: 0px;
+  outline: none;
+  background-color: #ec407a;
+  width: 90%;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
 }
 </style>
     

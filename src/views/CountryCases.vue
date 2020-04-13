@@ -16,7 +16,9 @@
             <i class="material-icons">search</i>
           </div>
         </form>
-        <div style="text-align:center; color:#757575; font-size:12px; font-weight:bold;">From Highest to Lowest</div>
+        <div
+          style="text-align:center; color:#757575; font-size:12px; font-weight:bold;"
+        >From Highest to Lowest</div>
         <div v-for="data in filteredListDetail" :key="data.index">
           <button class="collapsible" @click="toggleData()">
             <div class="col1">{{data.country_name}}</div>
@@ -79,7 +81,8 @@ export default {
     return {
       DataByAffectedCountryDetail: "",
       search: "",
-      updatedTime: ""
+      updatedTime: "",
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
     };
   },
   mounted() {
@@ -101,14 +104,35 @@ export default {
       })
       .catch(err => console.log(err));
 
-    //change the nav bar title with soureofTruth
-    this.$root.$data.title = "Countries, areas with cases";
+    if (this.lang == "mm") {
+      this.$root.$data.title = "နိုင်ငံအလိုက်";
+    }
+    if (this.lang == "en") {
+      this.$root.$data.title = "Country by Cases";
+    }
+  },
+
+  //working with event bus
+  created() {
+    this.$eventHub.$on("change-name", this.changeName);
   },
   methods: {
+    //recieved emit event
+    changeName(name) {
+      // lang will be automatically transported to the parameter.
+      this.lang = name;
+      if (name == "mm") {
+        this.$root.$data.title = "နိုင်ငံအလိုက်";
+      }
+      if (name == "en") {
+        this.$root.$data.title = "Country by cases";
+      }
+    },
+
     setData(data) {
       var sortedArray = data.sort(function(a, b) {
-        var bCases = Number(b.cases.replace(/,/g, ''));
-        var aCases = Number(a.cases.replace(/,/g, ''));
+        var bCases = Number(b.cases.replace(/,/g, ""));
+        var aCases = Number(a.cases.replace(/,/g, ""));
         return bCases - aCases;
       });
       this.DataByAffectedCountryDetail = sortedArray;
@@ -149,8 +173,8 @@ export default {
 
 <style scoped>
 .countrybycasescontainer {
-  margin-top:80px;
-  justify-content:center;
+  margin-top: 80px;
+  justify-content: center;
   width: 95%;
   align-items: center;
   height: 100%;

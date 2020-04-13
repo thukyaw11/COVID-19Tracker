@@ -64,7 +64,7 @@
       <div class="global">
         <div class="toggleheading">
           <router-link to="/">
-            <a style="text-decoration:none; color:#212121;">Global</a>
+            <a style="text-decoration:none; color:#212121;">{{$t('bottomBar.global')}}</a>
           </router-link>
         </div>
 
@@ -73,7 +73,7 @@
       <div class="local">
         <div class="toggleheading">
           <router-link to="/local">
-            <a style="text-decoration:none; color:#212121;">Local</a>
+            <a style="text-decoration:none; color:#212121;">{{$t('bottomBar.local')}}</a>
           </router-link>
         </div>
 
@@ -92,7 +92,8 @@ export default {
   data() {
     return {
       WorldTotal: "",
-      affectedCountry: ""
+      affectedCountry: "",
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
     };
   },
   mounted() {
@@ -132,33 +133,59 @@ export default {
         console.log(err);
       });
 
-    this.$root.$data.title = "Global Dashboard";
+    if (this.lang == "mm") {
+      this.$root.$data.title = "ကမ္ဘာတစ်ဝှမ်း";
+    }
+    if (this.lang == "en") {
+      this.$root.$data.title = "Global Dashboard";
+    }
   },
+
+  //working with event bus
+  created() {
+    this.$eventHub.$on("change-name", this.changeName);
+  },
+
   methods: {
+    changeName(name) {
+      // name will be automatically transported to the parameter.
+      this.lang = name;
+      if (name == "mm") {
+        this.$root.$data.title = "ကမ္ဘာတစ်ဝှမ်း";
+      }
+      if (name == "en") {
+        this.$root.$data.title = "Global Dashboard";
+      }
+    },
+
     setData(data) {
       this.WorldTotal = data;
     },
     addHour(recordDate) {
-
       var dateParts = recordDate.substring(0, 10).split("-");
       var timePart = recordDate.substr(11);
       var hour = timePart.substring(0, 2);
       var minute = timePart.substring(3, 5);
-      var second = timePart.substring(6,9);
+      var second = timePart.substring(6, 9);
 
       var numHour = Number(hour) + 3;
       var numMinute = Number(minute) + 30;
 
-
       if (numMinute > 60) {
         numHour = numHour + 1;
-        numMinute = '00';
+        numMinute = "00";
       }
 
+      var finalTimePart = numHour + ":" + numMinute + ":" + second;
 
-      var finalTimePart = numHour + ':' + numMinute + ':' + second;
-
-      var finalDateTime = dateParts[1] + '/' + dateParts[2] + '/' + dateParts[0] + ' ' + finalTimePart;
+      var finalDateTime =
+        dateParts[1] +
+        "/" +
+        dateParts[2] +
+        "/" +
+        dateParts[0] +
+        " " +
+        finalTimePart;
       this.$root.$data.updatedTime = finalDateTime;
 
       return finalDateTime;
@@ -192,8 +219,8 @@ export default {
   width: 100%;
 }
 .casescontainer {
-   margin-top:80px;
-  justify-content:center;
+  margin-top: 80px;
+  justify-content: center;
   width: 95%;
   align-items: center;
   height: auto;

@@ -82,7 +82,7 @@ export default {
       })
       .catch(err => console.log(err));
 
-    this.$root.$data.title = "Global Dashboard";
+    this.$root.$data.title = this.$t('globaldashboard.heading');
   },
   methods: {
     setData(data) {

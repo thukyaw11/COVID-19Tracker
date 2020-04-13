@@ -363,6 +363,9 @@ export default {
     changeLocale(locale) {
       i18n.locale = locale;
       localStorage.setItem("lang", locale);
+
+      this.$eventHub.$emit("change-name", locale);
+
       this.closeNav();
     },
     openNav() {
@@ -424,7 +427,27 @@ export default {
     this.urlLocation = window.location.href.split("/").pop();
   },
   mounted() {
-      i18n.locale = this.lang;
+    i18n.locale = this.lang;
+
+    
+    if (this.urlLocation == "" || this.urlLocation == "global") {
+      if (this.lang == "mm") {
+        this.$root.$data.title = "ကမ္ဘာတစ်ဝှမ်း";
+      }
+      if (this.lang == "en") {
+        this.$root.$data.title = "Global Dashboard";
+      }
+    }
+
+    if (this.urlLocation == "local") {
+      if (this.lang == "mm") {
+        this.$root.$data.title = "မြန်မာ";
+      }
+      if (this.lang == "en") {
+        this.$root.$data.title = "Local Dashboard";
+      }
+    }
+
     //yesterday, today and uploaded
     document.getElementById("myNav").style.height = "0%";
 

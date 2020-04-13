@@ -8,7 +8,7 @@
       <br />
       <div class="aboutcontent">
         <div class="aboutheader">
-          <div class="headerflex1">Coronavirus disease Situation Dashboard</div>
+          <div class="headerflex1">{{$t('aboutusPage.heading')}}</div>
           <div class="headerflex2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -290,8 +290,7 @@
         </div>
         <div class="aboutbody">
           <p align="justify">
-            We hope to bring an information source that rolls updates on COVID-19, especially for cases in Myanmar, to our citizens.This website is built by the University of Information Technology Students' Union.
-            APIs below are still in development stage and later will be published for further development purposes.
+           {{$t('aboutusPage.content')}}
           </p>
         </div>
       </div>
@@ -325,7 +324,7 @@
         <div class="profileflex1">
           <div class="flexbox1">
             <div class="profile">
-              <img src="../assets/heinthanth.jpg"  />
+              <img src="../assets/heinthanth.jpg" />
             </div>
             <div class="name">Hein Thanth</div>
           </div>
@@ -389,17 +388,43 @@
 
 <script>
 export default {
+  data() {
+    return {
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
+    };
+  },
+  methods: {
+    changeName(name) {
+      // lang will be automatically transported to the parameter.
+      this.lang = name;
+      if (name == "mm") {
+        this.$root.$data.title = "App အကြောင်း";
+      }
+      if (name == "en") {
+        this.$root.$data.title = "About Us";
+      }
+    }
+  },
+  //working with event bus
+  created() {
+    this.$eventHub.$on("change-name", this.changeName);
+  },
   mounted() {
-    this.$root.$data.title = "About Us";
+    if (this.lang == "mm") {
+      this.$root.$data.title = "App အကြောင်း";
+    }
+    if (this.lang == "en") {
+      this.$root.$data.title = "About Us";
+    }
   }
 };
 </script>
 
 <style scoped>
 .aboutuscontainer {
-  text-align:center;
-  margin-top:80px;
-  justify-content:center;
+  text-align: center;
+  margin-top: 80px;
+  justify-content: center;
   width: 95%;
   align-items: center;
   height: 100%;
@@ -442,7 +467,7 @@ export default {
 .headerflex1 {
   display: flex;
   flex: 4;
-  text-align:left;
+  text-align: left;
   align-items: center;
   font-weight: bold;
   justify-content: flex-start;
@@ -523,7 +548,6 @@ export default {
   flex: 2;
   align-items: center;
   justify-content: center;
-
 }
 .name {
   display: flex;
@@ -555,8 +579,8 @@ export default {
   flex: 1;
 }
 img {
-  width:55px;
-  height:55px;
+  width: 55px;
+  height: 55px;
   display: inline-block;
   border-radius: 100px;
   width: 55px;

@@ -5,25 +5,20 @@
 
       <div class="quesheading">
         <br />
-        <h2>COVID 19 Screening Kit</h2>
+        <h2>{{$t('screening.screeningHeader')}}</h2>
 
-        <div>
-          You will answer nine questions about your feelings,
-          symptoms, travel, and contact you’ve had with
-          the others. We will never share your answers
-          with others without your permissions.
-        </div>
+        <div>{{$t('screening.screeningContent')}}</div>
       </div>
       <div class="quesbuttoncontainer">
         <router-link to="question" class="quesbutton">
           <p
             style="color : #fff; font-size:14px; font-weight : bold; text-align: center;"
-          >Start Screening Myself</p>
+          >{{$t('screening.screeningButton')}}</p>
         </router-link>
         <router-link to="resultHistory" class="viewhistorybutton" v-if="results.length > 0">
           <p
             style="color : #3F51B5; font-size:14px; font-weight : bold; text-align: center;"
-          >View History</p>
+          >{{$t('screening.screeningHistory')}}</p>
         </router-link>
       </div>
     </div>
@@ -36,12 +31,35 @@ export default {
     return {
       results: localStorage.getItem("resultSession")
         ? JSON.parse(localStorage.getItem("resultSession"))
-        : []
+        : [],
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
     };
   },
   mounted() {
-    this.$root.$data.title = "Screening Kit";
+    // lang will be automatically transported to the parameter.
 
+    if (this.lang == "mm") {
+      this.$root.$data.title = "ကျန်းမာရေး စစ်ဆေးခြင်း";
+    }
+    if (this.lang == "en") {
+      this.$root.$data.title = "Screening Kit";
+    }
+  },
+  //working with event bus
+  created() {
+    this.$eventHub.$on("change-name", this.changeName);
+  },
+  methods: {
+    changeName(name) {
+      // lang will be automatically transported to the parameter.
+      this.lang = name;
+      if (name == "mm") {
+        this.$root.$data.title = "myanmar lo";
+      }
+      if (name == "en") {
+        this.$root.$data.title = "Screening";
+      }
+    }
   }
 };
 

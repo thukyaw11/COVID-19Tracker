@@ -5,6 +5,7 @@ import router from './router'
 import VueMarkDown from 'vue-markdown';
 import i18n from './plugin/i18n';
 import Meta from 'vue-meta';
+import vuescroll from 'vue-scrollto';
 //import LoadScript from 'vue-plugin-load-script';
 
 import VueMaterial from 'vue-material'
@@ -24,13 +25,17 @@ Vue.filter('truncate', filter);
 Vue.use(Meta);
 Vue.use(VueMaterial);
 Vue.use(VueMarkDown);
+Vue.use(vuescroll);
+
 //Vue.use(LoadScript);
 const sourceOfTruth = { title: 'hello world', updatedTime: '2020-03-28 00:00:00' };
 
 //Vue.LoadScript('./mapdata.js');
 //Vue.LoadScript('./countrymap.js')
 
-export const eventBus = new Vue();
+
+Vue.prototype.$eventHub = new Vue(); // Global event bus
+
 
 Vue.config.productionTip = false
 

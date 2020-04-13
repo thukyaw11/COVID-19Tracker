@@ -1,10 +1,15 @@
 <template>
-      <div class="heading">{{title}}</div>
+  <div class="heading">{{title}}</div>
 </template>
 
 <script>
 export default {
-   props : ['title']
-}
+  props: ["title"],
+  methods: {
+    updateLang(e) {
+      console.log(e);
+    }
+  }
+};
 </script>
 

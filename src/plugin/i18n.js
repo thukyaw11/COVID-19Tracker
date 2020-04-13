@@ -20,14 +20,47 @@ const messages = {
             newcases : "New Cases",
             recover : "Recover",
             death : "Death",
-            countries : "Countries"
+            countries : "Countries",
+            heading : "Global Dashboard"
+        },
+        localdashboard : {
+            confirmcase : "Infected",
+            newcases : "New Cases",
+            recover : "Recover",
+            death : "Death",
+            seriouscase : "Serious Cases",
+            heading : "Local Dashboard"
+        },
+        bottomBar : {
+            local : "Local",
+            global : "Global"
+        },
+        screening : {
+            screeningContent : `This General Screening Test of Covid 19 disease contains 9 questions asking about your symptoms, contacts and travel history.
+            This is just a general test and contact to emergency healthcare departments if you are suffering severe symptoms.
+            Your answers will be securely kept and we will not share without your permission.`,
+            screeningHeader : "Covid 19 Screening Test",
+            screeningButton : "Start Screening Myself",
+            screeningHistory : "View History"
+        },
+        donationPage : {
+            donationHeader  : "Make your own support",
+            donationContent : `In order to prevent, stop and cure the disease, we have to cooperate and support to everyone who needs our help.
+            Bank accounts and contacts of the Government and Civil Service Organisations are described in this menu for any financial support.
+            Let's win this Covid 19 by our unity.`,
+            donationButton : "Donate Now"
+        } ,
+        aboutusPage : {
+            heading : "Coronavirus disease Situation Dashboard",
+            content : "We hope to bring an information source that rolls updates on COVID-19, especially for cases in Myanmar, to our citizens.This website is built by the University of Information Technology Students' Union. APIs below are still in development stage and later will be published for further development purposes."
         }
+
     },
     'mm': {
         menutitle: 'ကိုရိုနာကူးစက်ခံရမှုပြ မာတိကာ',
         global: 'ကမ္ဘာတစ်ဝှမ်း',
         countrycase: 'နိုင်ငံအလိုက်',
-        start: 'ကျန်းမာရေးစစ်',
+        start: 'ကူးစက်ခံရမှုရှိ/မရှိ စစ်ဆေးခြင်း',
         donation: 'အလှူစာရင်း',
         news: 'သတင်းများ',
         aboutus: 'App အကြောင်း',
@@ -39,11 +72,42 @@ const messages = {
             newcases : "ယနေ့ ထပ်တိုးလူနာ",
             recover : "ရောဂါပျောက်ဆုံးလူနာ",
             death : "သေဆုံးလူနာ",
-            countries : "နိုင်ငံပေါင်း"
+            countries : "နိုင်ငံပေါင်း",
+            heading : "ကမ္ဘာတစ်ဝှမ်း"
+        },
+        localdashboard : {
+            confirmcase : "ကူးစက်ခံ လူနာ",
+            newcases : "ယနေ့ ထပ်တိုးလူနာ",
+            recover : "ရောဂါပျောက်ဆုံးလူနာ",
+            death : "သေဆုံးလူနာ",
+            seriouscase : "ပြင်းထန်လူနာ",
+            heading : "မြန်မာ"
+        },
+        bottomBar : {
+            local : "မြန်မာ",
+            global : "ကမ္ဘာတစ်ဝှမ်း"
+        },
+        screening : {
+            screeningContent : `ရောဂါကူးစက်ခံရမှု ရှိ/မရှိ ယေဘုယျ စစ်ဆေးရာတွင် သင့်အနေဖြင့် မေးခွန်း ၉ ခုဖြေဆိုရမည်ဖြစ်ပြီး ရောဂါလက္ခဏာများအကြောင်း၊ ခရီးသွားရာဇ၀င်နှင့် လူအများနှင့်ထိတွေ့မှု အကြောင်း မေးမြန်းသွားပါမည်။
+            ၎င်းသည် ယေဘုယျ စစ်ဆေးခြင်းသာဖြစ်ပြီး သင့်၌ ပြင်းထန်သော ရောဂါလက္ခဏာများရှိပါက အရေးပေါ် ကျန်းမာရေးဌာနများသို့ အလျင်အမြန်ဆက်သွယ်ပါ။
+            ဖြေဆိုထားသောအဖြေများအား လုံခြုံစွာ ထိန်းသိမ်းထားမည်ဖြစ်ပြီး သင်၏ခွင့်ပြုချက်မရှိပဲ မည်သူကိုမှ မျှဝေသွားမည် မဟုတ်ပါ။`,
+            screeningHeader : "ကိုဗစ် ၁၉ ရောဂါ ယေဘုယျစစ်ဆေးခြင်း",
+            screeningButton : "စတင်‌စစ်ဆေးမည်",
+            screeningHistory : "စစ်ဆေးမှု မှတ်တမ်း"
+        },
+        donationPage : {
+            donationHeader  : "သင်လည်း ကူညီနိုင်ပါတယ်။",
+            donationContent : `ဤရောဂါဆိုးအား အမြစ်ဖြတ် တွန်းလှန်နိုင်ရန် မိမိတို့သည် ဘက်ပေါင်းစုံမှ ပူးပေါင်းပါ၀င်ရပါမည်။
+            လိုအပ်ချက်များအား ဖြည့်ဆည်းနိုင်ရန် ဤနေရာမှ ငွေကြေးလှူဒါန်းမှုများ ပြုလုပ်နိုင်ပြီး အစိုးရနှင့် အခြားလူမှုအဖွဲ့အစည်းများ၏ ဘဏ်စာရင်းများနှင့် ဆက်သွယ်ရန်ဖုန်းနံပါတ်များအား ဖော်ပြထားပါသည်။
+            စုပေါင်းအင်အားဖြင့် Covid 19 အား အနိုင်ယူကြပါစို့`,
+            donationButton : "လှူဒါန်းမည်။"
+        },
+        aboutusPage : {
+            heading : "ကိုရိုနာဗိုင်းရပ်စ်အခြေအနေပြရီပို့",
+            content : "ကျွန်ုပ်တို့အနေနဲ့ကိုဗစ်19နဲ့ပတ်သက်တဲ့နောက်ဆုံးရအခြေအနေသတင်းအထူးသဖြင့်မြန်မာနိုင်ငံမှသတင်းတွေကိုဒီကနေတစ်ဆင့်မြန်မာပြည်သူတွေကိုယူဆောင်ပေးမယ်နိုင်လို့မျှော်လင့်ပါတယ် ဒီwebsite ကိုသတင်းအချက်အလက်နည်းပညာတက္ကသိုလ်ကျောင်းသားသမဂ္ဂမှတည်ဆောက်ထားတာဖြစ်ပါတယ် အောက်တွင်ဖော်ပြထားသော data တွေဟာယခုလောလောဆယ်တွင်တည်ဆောက်ဆဲဖြစ်သော်လည်းနောက်တစ်ချိန်အသုံးပြုနိုင်ရင်ဖြန့်ဖြူးပေးနိုင်မှာဖြစ်ပါတယ်"
+        } 
 
 
-
-        }
     }
 };
 
