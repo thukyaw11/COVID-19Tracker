@@ -49,6 +49,8 @@
           <div class="switch2" @click="changeLocale('mm')">{{$t ('langswitchMyanmar')}}</div>
         </div>
       </div>
+        <md-switch class="md-primary" v-model="darkmode" @change="closeChange()">Dark Mode</md-switch>
+    
       <div
         class="closebtn"
         @click="closeNav()"
@@ -58,7 +60,7 @@
       </div>
     </div>
 
-    <div class="headercontainer">
+    <div :class="darkmode? 'headercontainerDark' : 'headercontainer'">
       <div class="menubutton" style="font-size:24px;cursor:pointer" @click="openNav()">
         <span class="material-icons" style="font-size:28px;">menu</span>
       </div>
@@ -313,7 +315,6 @@ import countryCases from "./components/dynamicCountryCases";
 import AboutusComponent from "./components/aboutusComponent";
 import isoCountries from "./assets/content/countryCode";
 import i18n from "./plugin/i18n";
-
 Vue.use(VueClipboard);
 
 export default {
@@ -343,7 +344,8 @@ export default {
       searchContacts: "",
       copyCode: "",
       isoCou: isoCountries,
-      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en",
+      darkmode: false
     };
   },
   methods: {
@@ -372,7 +374,12 @@ export default {
       document.getElementById("myNav").style.height = "100%";
     },
     closeNav() {
+      console.log("close nav")
       document.getElementById("myNav").style.height = "0%";
+    },
+    closeChange(){
+      document.getElementById("myNav").style.height = "0%";
+      this.$darkModeBus.$emit("dark-mode", this.darkmode);
     },
     openModal() {
       document.getElementById("myModal").style.display = "block";
@@ -429,7 +436,6 @@ export default {
   mounted() {
     i18n.locale = this.lang;
 
-    
     if (this.urlLocation == "" || this.urlLocation == "global") {
       if (this.lang == "mm") {
         this.$root.$data.title = "ကမ္ဘာတစ်ဝှမ်း";
@@ -581,8 +587,9 @@ export default {
   }
   #app {
     background-color: #ffffff;
-    font-family: "Poppins", sans-serif,'Myanmar3';
+    font-family: "Poppins", sans-serif;
   }
+
   .desktopcontainer {
     display: none;
   }
@@ -691,6 +698,17 @@ export default {
     height: 75px;
     border-bottom: 1px solid #eee;
   }
+  .headercontainerDark {
+    color: white;
+    top: 0;
+    position: fixed;
+    background-color: #192734;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 75px;
+    border-bottom: 1px solid #eee;
+  }
 
   .menubutton {
     display: flex;
@@ -738,6 +756,19 @@ export default {
     position: fixed;
     width: 100%;
     bottom: 0px;
+    color: black;
+  }
+  .toggleDark {
+    border-top: 1px solid #eee;
+    flex-direction: row;
+    display: flex;
+    flex: 1;
+    background-color: #192734;
+    height: 90px;
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    color: white;
   }
   .global {
     display: flex;
@@ -766,6 +797,15 @@ export default {
     justify-content: center;
     align-items: center;
   }
+  .containerDark {
+    background: #192734;
+    display: flex;
+    flex: 1;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
 
   .ConfirmedCaseContainer {
     display: flex;
@@ -781,8 +821,22 @@ export default {
     margin-top: 5px;
     background-color: #e8f5e9;
   }
+  .RecoverCaseDark {
+    display: flex;
+    height: 120px;
+    border-radius: 15px;
+    margin-top: 5px;
+    background-color: #253542;
+  }
   .DeathCase {
     background-color: #ffebee;
+    display: flex;
+    height: 120px;
+    border-radius: 15px;
+    margin-top: 5px;
+  }
+  .DeathCaseDark {
+    background-color: #253542;
     display: flex;
     height: 120px;
     border-radius: 15px;
@@ -881,13 +935,19 @@ export default {
   #myNav {
     display: none;
   }
-  .headercontainer {
+  .headercontainerDark{
     display: none;
   }
   .container {
     display: none;
   }
+  .containerDark{
+    display: none;
+  }
   .toggle {
+    display: none;
+  }
+  .toggleDark{
     display: none;
   }
 }

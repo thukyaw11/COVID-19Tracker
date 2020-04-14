@@ -135,7 +135,7 @@
         <md-progress-spinner :md-diameter="30" :md-stroke="3" md-mode="indeterminate"></md-progress-spinner>
       </div>
     </div>
-    <div class="toggle">
+    <div class="toggleDark">
       <div class="global">
         <div class="toggleheading">
           <router-link to="/">

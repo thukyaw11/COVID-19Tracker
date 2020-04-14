@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div :class="darkmode? 'containerDark' : 'container'">
     <div class="casescontainer">
       <div v-if="WorldTotal">
         <div class="mapvector">
@@ -35,13 +35,13 @@
           </div>
         </div>
 
-        <div class="RecoverCase">
+        <div :class="darkmode? 'RecoverCaseDark' : 'RecoverCase'">
           <div class="ConfirmedCaseContainer">
             <div class="caseheading">{{$t('globaldashboard.recover')}}</div>
             <div class="number" style="font-size:42px; color:#4CAF50">{{WorldTotal.total_recovered}}</div>
           </div>
         </div>
-        <div class="DeathCase">
+        <div :class="darkmode? 'DeathCaseDark' : 'DeathCase'">
           <div class="ConfirmedCaseContainer">
             <div class="caseheading">{{$t('globaldashboard.death')}}</div>
             <div class="number" style="font-size:42px; color:#F44336">{{WorldTotal.total_deaths}}</div>
@@ -60,11 +60,11 @@
         <md-progress-spinner :md-diameter="30" :md-stroke="3" md-mode="indeterminate"></md-progress-spinner>
       </div>
     </div>
-    <div class="toggle">
+    <div :class="darkmode? 'toggleDark' : 'toggle'">
       <div class="global">
         <div class="toggleheading">
           <router-link to="/">
-            <a style="text-decoration:none; color:#212121;">{{$t('bottomBar.global')}}</a>
+            <a style="text-decoration:none;" :style="darkmode? 'color : #fff' : 'color : black'">{{$t('bottomBar.global')}}</a>
           </router-link>
         </div>
 
@@ -73,7 +73,7 @@
       <div class="local">
         <div class="toggleheading">
           <router-link to="/local">
-            <a style="text-decoration:none; color:#212121;">{{$t('bottomBar.local')}}</a>
+            <a style="text-decoration:none;" :style="darkmode? 'color : #fff' : 'color : black'">{{$t('bottomBar.local')}}</a>
           </router-link>
         </div>
 
@@ -93,7 +93,8 @@ export default {
     return {
       WorldTotal: "",
       affectedCountry: "",
-      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en",
+      darkmode : ""
     };
   },
   mounted() {
@@ -144,9 +145,14 @@ export default {
   //working with event bus
   created() {
     this.$eventHub.$on("change-name", this.changeName);
+
+    this.$darkModeBus.$on("dark-mode",this.changeDark);
   },
 
   methods: {
+    changeDark(value){
+      this.darkmode = value;
+    },
     changeName(name) {
       // name will be automatically transported to the parameter.
       this.lang = name;
@@ -198,6 +204,12 @@ export default {
 
 
 <style scoped>
+.lightmodetext{
+  color: black;
+}
+.darkmodetext{
+  color: white;
+}
 .mapvector {
   display: flex;
   flex-direction: row;
