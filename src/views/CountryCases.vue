@@ -19,13 +19,14 @@
         <div
           style="text-align:center; color:#757575; font-size:12px; font-weight:bold;"
         >From Highest to Lowest</div>
-        <div v-for="data in filteredListDetail" :key="data.index">
-          <button class="collapsible" @click="toggleData()">
-            <div class="col1">{{data.country_name}}</div>
-            <div class="col2">{{data.cases || sorting}} cases</div>
-          </button>
-          <div class="content">
-            <br />
+
+        <a-collapse defaultActiveKey="1" :bordered="false" v-for="(data,index) in filteredListDetail" :key="index">
+          <template v-slot:expandIcon="props">
+            <a-icon type="caret-right" :rotate="props.isActive ? 90 : 0" />
+          </template>
+          <a-collapse-panel :header="data.country_name +' - '+data.cases +' '+ 'cases'" :key="index">
+          
+
             <div class="flex1">
               <div class="recoveredbox">
                 <div class="cases">Recovered</div>
@@ -56,9 +57,10 @@
             </div>
 
             <p style="text-align:center;">Updated {{updatedTime}}</p>
-            <br />
-          </div>
-        </div>
+
+          </a-collapse-panel>
+
+        </a-collapse>
       </div>
       <div v-else class="spinner">
         <md-progress-spinner :md-diameter="30" :md-stroke="3" md-mode="indeterminate"></md-progress-spinner>
@@ -74,7 +76,11 @@
 
 <script>
 /* eslint-disable no-console */
-
+import Vue from 'vue';
+import { Collapse,Icon } from 'ant-design-vue';
+Vue.use(Collapse);
+Vue.use(Icon);
+import 'ant-design-vue/dist/antd.css';
 export default {
   name: "AffectedCountry",
   data() {
@@ -103,7 +109,6 @@ export default {
         });
       })
       .catch(err => console.log(err));
-
     if (this.lang == "mm") {
       this.$root.$data.title = "နိုင်ငံအလိုက်";
     }
@@ -111,7 +116,6 @@ export default {
       this.$root.$data.title = "Country by Cases";
     }
   },
-
   //working with event bus
   created() {
     this.$eventHub.$on("change-name", this.changeName);
@@ -128,7 +132,6 @@ export default {
         this.$root.$data.title = "Country by cases";
       }
     },
-
     setData(data) {
       var sortedArray = data.sort(function(a, b) {
         var bCases = Number(b.cases.replace(/,/g, ""));
@@ -141,12 +144,10 @@ export default {
     toggleData() {
       var coll = document.getElementsByClassName("collapsible");
       var i;
-
       for (i = 0; i < coll.length; i++) {
         coll[i].addEventListener("click", function() {
           this.classList.toggle("active");
           var content = this.nextElementSibling;
-
           if (content.style.maxHeight) {
             content.style.maxHeight = null;
           } else {
@@ -166,7 +167,6 @@ export default {
     }
   }
 };
-
 /* eslint-enable no-console */
 </script>
 
@@ -189,7 +189,6 @@ export default {
   width: 100%;
   bottom: 0px;
 }
-
 .global {
   display: flex;
   flex: 1;
@@ -202,7 +201,6 @@ export default {
   align-items: flex-end;
   justify-content: center;
 }
-
 .local {
   display: flex;
   flex: 1;
@@ -268,7 +266,6 @@ export default {
   border-radius: 50px;
   background-color: #eee;
 }
-
 .collapsible {
   border: 0;
   background-color: #fff;
@@ -294,12 +291,10 @@ export default {
   display: flex;
   flex: 1;
 }
-
 .active,
 .collapsible:hover {
   background-color: #eee;
 }
-
 .collapsible:after {
   content: "\002B";
   font-size: 20px;
@@ -309,11 +304,9 @@ export default {
   justify-content: center;
   display: flex;
 }
-
 .active:after {
   content: "\2212";
 }
-
 .content {
   flex-direction: column;
   padding: 0 0px;
@@ -398,7 +391,6 @@ export default {
   color: #f44336;
   padding-top: 10px;
 }
-
 .box {
   margin: 0 5px;
   border-radius: 15px;
@@ -418,7 +410,6 @@ export default {
   font-size: 24px;
   padding-top: 10px;
 }
-
 .searchcontainer {
   border-radius: 50px;
   margin-left: 20px;
@@ -440,7 +431,6 @@ export default {
   align-items: center;
   justify-content: center;
 }
-
 #search-bar {
   width: 100%;
   margin-left: 15px;
@@ -450,7 +440,6 @@ export default {
   height: 40px;
   width: 90%;
 }
-
 .link {
   display: flex;
   flex: 1;
