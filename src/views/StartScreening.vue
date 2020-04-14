@@ -54,10 +54,10 @@ export default {
       // lang will be automatically transported to the parameter.
       this.lang = name;
       if (name == "mm") {
-        this.$root.$data.title = "myanmar lo";
+        this.$root.$data.title = "ကျန်းမာရေး စစ်ဆေးခြင်း";
       }
       if (name == "en") {
-        this.$root.$data.title = "Screening";
+        this.$root.$data.title = "Screening Kit";
       }
     }
   }

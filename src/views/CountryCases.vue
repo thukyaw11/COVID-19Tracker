@@ -22,35 +22,35 @@
         <div v-for="(data,index) in filteredListDetail" :key="index">
           <button class="collapsible" @click="toggleData(index)">
             <div class="col1">{{data.country_name}}</div>
-            <div class="col2">{{data.cases || sorting}} cases</div>
+            <div class="col2">{{data.cases || sorting}} {{$t('casesPage.confirmcase')}}</div>
           </button>
           <div id="grow" class="grow">
             <div class="measuringWrapper">
               <div class="flex1">
                 <div class="recoveredbox">
-                  <div class="cases">Recovered</div>
+                  <div class="cases">{{$t('casesPage.recovered')}}</div>
                   <div class="recoveredcasesnumber">{{data.total_recovered}}</div>
                 </div>
                 <div class="newcasebox">
-                  <div class="cases">New Cases</div>
+                  <div class="cases">{{$t('casesPage.newcases')}}</div>
                   <div class="newcasesnumber">{{data.new_cases}}</div>
                 </div>
                 <div class="deathcasebox">
-                  <div class="cases">Death</div>
+                  <div class="cases">{{$t('casesPage.death')}}</div>
                   <div class="deathcasesnumber">{{data.deaths}}</div>
                 </div>
               </div>
               <div class="flex2">
                 <div class="box">
-                  <div class="cases" style="font-size:12px;">Serious Critical</div>
+                  <div class="cases" style="font-size:12px;">{{$t('casesPage.serious')}}</div>
                   <div class="casesnumber">{{data.serious_critical}}</div>
                 </div>
                 <div class="box">
-                  <div class="cases">New Death</div>
+                  <div class="cases">{{$t('casesPage.newDeath')}}</div>
                   <div class="casesnumber">{{data.new_deaths}}</div>
                 </div>
                 <div class="box">
-                  <div class="cases" style="font-size:12px;">Case per 1 min</div>
+                  <div class="cases" style="font-size:12px;">{{$t('casesPage.casepermin')}}</div>
                   <div class="casesnumber">{{data.total_cases_per_1m_population}}</div>
                 </div>
               </div>
@@ -60,6 +60,7 @@
             </div>
           </div>
         </div>
+        
       </div>
       <div v-else class="spinner">
         <md-progress-spinner :md-diameter="30" :md-stroke="3" md-mode="indeterminate"></md-progress-spinner>
@@ -286,7 +287,7 @@ export default {
   background-color: #eee;
 }
 .collapsible:after {
-  content: "\002B";
+  content: ' \2023';
   font-size: 20px;
   float: right;
   margin-left: 5px;

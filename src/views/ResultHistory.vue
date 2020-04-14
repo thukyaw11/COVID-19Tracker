@@ -8,7 +8,7 @@
             &nbsp;&nbsp;Delete all history
           </div>
         </div>
-        <br>
+        <br />
         <div class="resultContainerParent" v-for="(result,index) in results" :key="index">
           <div class="resultcontainer">
             <div class="time">
@@ -56,11 +56,21 @@ export default {
         ? JSON.parse(localStorage.getItem("resultSession"))
         : [],
       click: false,
-      response: ""
+      response: "",
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
     };
   },
   mounted() {
-    this.$root.$data.title = "Results History";
+    if (this.lang == "mm") {
+      this.$root.$data.title = "စစ်ဆေးမှု မှတ်တမ်း";
+    }
+    if (this.lang == "en") {
+      this.$root.$data.title = "Result History";
+    }
+  },
+  //working with event bus
+  created() {
+    this.$eventHub.$on("change-name", this.changeName);
   },
   methods: {
     removeHistory() {
@@ -70,6 +80,16 @@ export default {
     viewResponse(responseCheck) {
       this.click = true;
       this.response = responseCheck;
+    },
+    changeName(name) {
+      // name will be automatically transported to the parameter.
+      this.lang = name;
+      if (name == "mm") {
+        this.$root.$data.title = "စစ်ဆေးမှု မှတ်တမ်း";
+      }
+      if (name == "en") {
+        this.$root.$data.title = "Result History";
+      }
     }
   }
 };
@@ -148,7 +168,7 @@ export default {
   justify-content: center;
 }
 .resulthistorycontainer {
-   margin-top: 100px;
+  margin-top: 100px;
   display: flex;
   width: 100%;
   height: auto;
@@ -172,6 +192,5 @@ export default {
   width: 95%;
   align-items: center;
   justify-content: center;
-
 }
 </style>

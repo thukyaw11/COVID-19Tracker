@@ -3,7 +3,13 @@
     <div class="emergencycontainer">
       <form class="searchcontainer">
         <div class="placeholdercontainer">
-          <input type="text" id="search-bar" style="font-size:14px;" placeholder="Search ..." v-model="search" />
+          <input
+            type="text"
+            id="search-bar"
+            style="font-size:14px;"
+            placeholder="Search ..."
+            v-model="search"
+          />
         </div>
         <div class="searchicon">
           <i class="material-icons">search</i>
@@ -48,7 +54,8 @@ export default {
       message: "no message",
       request_msg: "no request",
       phone_numbers: [],
-      search: ""
+      search: "",
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
     };
   },
   mounted() {
@@ -60,12 +67,28 @@ export default {
         this.phone_numbers = response.data;
       })
     );
-    this.$root.$data.title = "Contacts";
+
+    if (this.lang == "mm") {
+      this.$root.$data.title = "အရေးပေါ်ဖုန်းနံပါတ်များ";
+    }
+    if (this.lang == "en") {
+      this.$root.$data.title = "Contacts";
+    }
   },
   methods: {
     fetchContent() {
       this.request_msg = "ph no request began";
       return axios.get("https://covid19mm.info/api/contact/list");
+    },
+    changeName(name) {
+      // name will be automatically transported to the parameter.
+      this.lang = name;
+      if (name == "mm") {
+        this.$root.$data.title = "အရေးပေါ်ဖုန်းနံပါတ်များ";
+      }
+      if (name == "en") {
+        this.$root.$data.title = "Contacts";
+      }
     }
   },
   computed: {
@@ -74,14 +97,18 @@ export default {
         return contact.name.toLowerCase().includes(this.search.toLowerCase());
       });
     }
+  },
+  //working with event bus
+  created() {
+    this.$eventHub.$on("change-name", this.changeName);
   }
 };
 </script>
 
 <style>
 .emergencycontainer {
-  margin-top:80px;
-  justify-content:center;
+  margin-top: 80px;
+  justify-content: center;
   width: 100%;
   align-items: center;
   height: 100%;
