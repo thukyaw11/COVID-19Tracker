@@ -19,48 +19,47 @@
         <div
           style="text-align:center; color:#757575; font-size:12px; font-weight:bold;"
         >From Highest to Lowest</div>
+        <div v-for="(data,index) in filteredListDetail" :key="index">
+          <button class="collapsible" @click="toggleData(index)">
+            <div class="col1">{{data.country_name}}</div>
+            <div class="col2">{{data.cases || sorting}} cases</div>
+          </button>
+          <div id="grow" class="grow">
+            <div class="measuringWrapper">
+              <div class="flex1">
+                <div class="recoveredbox">
+                  <div class="cases">Recovered</div>
+                  <div class="recoveredcasesnumber">{{data.total_recovered}}</div>
+                </div>
+                <div class="newcasebox">
+                  <div class="cases">New Cases</div>
+                  <div class="newcasesnumber">{{data.new_cases}}</div>
+                </div>
+                <div class="deathcasebox">
+                  <div class="cases">Death</div>
+                  <div class="deathcasesnumber">{{data.deaths}}</div>
+                </div>
+              </div>
+              <div class="flex2">
+                <div class="box">
+                  <div class="cases" style="font-size:12px;">Serious Critical</div>
+                  <div class="casesnumber">{{data.serious_critical}}</div>
+                </div>
+                <div class="box">
+                  <div class="cases">New Death</div>
+                  <div class="casesnumber">{{data.new_deaths}}</div>
+                </div>
+                <div class="box">
+                  <div class="cases" style="font-size:12px;">Case per 1 min</div>
+                  <div class="casesnumber">{{data.total_cases_per_1m_population}}</div>
+                </div>
+              </div>
 
-        <a-collapse defaultActiveKey="1" :bordered="false" v-for="(data,index) in filteredListDetail" :key="index">
-          <template v-slot:expandIcon="props">
-            <a-icon type="caret-right" :rotate="props.isActive ? 90 : 0" />
-          </template>
-          <a-collapse-panel :header="data.country_name +' - '+data.cases +' '+ 'cases'" :key="index">
-          
-
-            <div class="flex1">
-              <div class="recoveredbox">
-                <div class="cases">Recovered</div>
-                <div class="recoveredcasesnumber">{{data.total_recovered}}</div>
-              </div>
-              <div class="newcasebox">
-                <div class="cases">New Cases</div>
-                <div class="newcasesnumber">{{data.new_cases}}</div>
-              </div>
-              <div class="deathcasebox">
-                <div class="cases">Death</div>
-                <div class="deathcasesnumber">{{data.deaths}}</div>
-              </div>
+              <p style="text-align:center;">Updated {{updatedTime}}</p>
+              <br />
             </div>
-            <div class="flex2">
-              <div class="box">
-                <div class="cases" style="font-size:12px;">Serious Critical</div>
-                <div class="casesnumber">{{data.serious_critical}}</div>
-              </div>
-              <div class="box">
-                <div class="cases">New Death</div>
-                <div class="casesnumber">{{data.new_deaths}}</div>
-              </div>
-              <div class="box">
-                <div class="cases" style="font-size:12px;">Case per 1 min</div>
-                <div class="casesnumber">{{data.total_cases_per_1m_population}}</div>
-              </div>
-            </div>
-
-            <p style="text-align:center;">Updated {{updatedTime}}</p>
-
-          </a-collapse-panel>
-
-        </a-collapse>
+          </div>
+        </div>
       </div>
       <div v-else class="spinner">
         <md-progress-spinner :md-diameter="30" :md-stroke="3" md-mode="indeterminate"></md-progress-spinner>
@@ -76,11 +75,6 @@
 
 <script>
 /* eslint-disable no-console */
-import Vue from 'vue';
-import { Collapse,Icon } from 'ant-design-vue';
-Vue.use(Collapse);
-Vue.use(Icon);
-import 'ant-design-vue/dist/antd.css';
 export default {
   name: "AffectedCountry",
   data() {
@@ -141,19 +135,15 @@ export default {
       this.DataByAffectedCountryDetail = sortedArray;
       this.updatedTime = this.$root.$data.updatedTime;
     },
-    toggleData() {
-      var coll = document.getElementsByClassName("collapsible");
-      var i;
-      for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-          this.classList.toggle("active");
-          var content = this.nextElementSibling;
-          if (content.style.maxHeight) {
-            content.style.maxHeight = null;
-          } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-          }
-        });
+    toggleData(index) {
+      var growDiv = document.getElementsByClassName("grow")[index];
+      if (growDiv.clientHeight) {
+        growDiv.style.height = 0;
+      } else {
+        var wrapper = document.getElementsByClassName("measuringWrapper")[
+          index
+        ];
+        growDiv.style.height = wrapper.clientHeight + "px";
       }
     }
   },
@@ -467,5 +457,14 @@ export default {
 #emergency {
   display: flex;
   flex-direction: row;
+}
+#grow {
+  -moz-transition: height 0.5s;
+  -ms-transition: height 0.5s;
+  -o-transition: height 0.5s;
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
+  height: 0;
+  overflow: hidden;
 }
 </style>
