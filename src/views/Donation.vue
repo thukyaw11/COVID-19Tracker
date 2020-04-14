@@ -6,7 +6,7 @@
     <div class="donationbody">
       <h2>{{$t('donationPage.donationHeader')}}</h2>
 
-      <div class="justify">{{$t('donationPage.donationContent')}}</div>
+      <div class="bodycontent">{{$t('donationPage.donationContent')}}</div>
     </div>
     <div class="donatebuttoncontainer">
       <button class="donatebutton" v-scroll-to="'#element'">{{$t('donationPage.donationButton')}}</button>
@@ -140,6 +140,12 @@ export default {
 </script>
 
 <style scoped>
+.bodycontent
+{
+  line-height:22px;
+  width:90%;
+  text-align: justify;
+}
 .container-donation {
   margin-bottom: 100px;
   margin-top: 10px;

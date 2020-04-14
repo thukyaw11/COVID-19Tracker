@@ -581,7 +581,7 @@ export default {
   }
   #app {
     background-color: #ffffff;
-    font-family: "Poppins", sans-serif;
+    font-family: "Poppins", sans-serif,'Myanmar3';
   }
   .desktopcontainer {
     display: none;

@@ -7,7 +7,7 @@
         <br />
         <h2>{{$t('screening.screeningHeader')}}</h2>
 
-        <div>{{$t('screening.screeningContent')}}</div>
+        <div style="line-height:22px;">{{$t('screening.screeningContent')}}</div>
       </div>
       <div class="quesbuttoncontainer">
         <router-link to="question" class="quesbutton">
@@ -69,14 +69,15 @@ export default {
 <style scoped>
 /* question home */
 .questioncontainer {
+  background-color:#fff;
   justify-content: center;
   width: 100%;
   align-items: center;
-  height: 100%;
+  height: auto;
 }
 .quesheading {
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 12px;
+  margin-right: 12px;
   display: flex;
   flex-direction: column;
   flex: 1;

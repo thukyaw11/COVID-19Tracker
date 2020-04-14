@@ -289,12 +289,13 @@
           </div>
         </div>
         <div class="aboutbody">
-          <p align="justify">
+          <p align="justify" style="line-height:22px;">
            {{$t('aboutusPage.content')}}
           </p>
         </div>
+       
       </div>
-
+      <br>
       <div class="apisourcecontainer">
         <div class="apicontainer1">
           <div class="box1">Statistic API</div>
@@ -427,7 +428,7 @@ export default {
   justify-content: center;
   width: 95%;
   align-items: center;
-  height: 100%;
+  height:auto;
 }
 
 .versioncontent {
@@ -452,7 +453,7 @@ export default {
   padding-top: 15px;
 }
 .aboutcontent {
-  height: 250px;
+  height:280px;
   display: flex;
   flex-direction: column;
 }
@@ -482,6 +483,8 @@ export default {
 .aboutbody {
   display: flex;
   flex: 1;
+  align-items:center;
+  justify-content:center;
   flex-direction: row;
 }
 .apisourcecontainer {

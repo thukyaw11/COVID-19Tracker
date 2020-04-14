@@ -18,15 +18,16 @@
         </form>
         <div
           style="text-align:center; color:#757575; font-size:12px; font-weight:bold;"
-        >From Highest to Lowest</div>
+        >Order of Highest to Lowest</div>
         <div v-for="(data,index) in filteredListDetail" :key="index">
           <button class="collapsible" @click="toggleData(index)">
             <div class="col1">{{data.country_name}}</div>
-            <div class="col2">{{data.cases || sorting}} {{$t('casesPage.confirmcase')}}</div>
+            <div class="col2">{{data.cases || sorting}} {{$t('casesPage.confirmcase')}}  </div>
+            <div class="col3"><i class="fas fa-angle-right"></i></div>
           </button>
           <div id="grow" class="grow">
             <div class="measuringWrapper">
-              <div class="flex1">
+              <div class="gflex1">
                 <div class="recoveredbox">
                   <div class="cases">{{$t('casesPage.recovered')}}</div>
                   <div class="recoveredcasesnumber">{{data.total_recovered}}</div>
@@ -40,7 +41,7 @@
                   <div class="deathcasesnumber">{{data.deaths}}</div>
                 </div>
               </div>
-              <div class="flex2">
+              <div class="gflex2">
                 <div class="box">
                   <div class="cases" style="font-size:12px;">{{$t('casesPage.serious')}}</div>
                   <div class="casesnumber">{{data.serious_critical}}</div>
@@ -164,11 +165,13 @@ export default {
 
 <style scoped>
 .countrybycasescontainer {
+  background-color:#fff;
   margin-top: 80px;
   justify-content: center;
   width: 95%;
   align-items: center;
-  height: 100%;
+  height: auto;
+
 }
 .toggle {
   flex-direction: row;
@@ -179,25 +182,6 @@ export default {
   position: fixed;
   width: 100%;
   bottom: 0px;
-}
-.global {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-.globalheading {
-  margin-top: 10px;
-  align-items: flex-end;
-  justify-content: center;
-}
-.local {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
 }
 .container-country {
   margin-top: 10px;
@@ -267,18 +251,28 @@ export default {
   width: 100%;
   text-align: left;
   outline: none;
+  border-bottom: 1px solid #eee;
   font-size: 15px;
+  align-items:center;
+  justify-content:center;
 }
 .col1 {
+  color:#212121;
   align-items: center;
   display: flex;
-  flex: 1;
-  height: 100%;
+  flex: 2;
 }
 .col2 {
+   color:#212121;
   align-items: center;
   justify-content: flex-end;
-  margin-right: 10px;
+  display: flex;
+  flex: 10;
+}
+.col3{
+   color:#212121;
+  align-items: center;
+  justify-content: flex-end;
   display: flex;
   flex: 1;
 }
@@ -286,28 +280,13 @@ export default {
 .collapsible:hover {
   background-color: #eee;
 }
-.collapsible:after {
-  content: ' \2023';
-  font-size: 20px;
-  float: right;
-  margin-left: 5px;
-  align-items: center;
-  justify-content: center;
-  display: flex;
+
+
+.measuringWrapper {
+  width:100%;
+  border-bottom: 1px solid red;
 }
-.active:after {
-  content: "\2212";
-}
-.content {
-  flex-direction: column;
-  padding: 0 0px;
-  max-height: 0px;
-  overflow: hidden;
-  transition: max-height 0.4s ease-out;
-  background-color: #fafafa;
-  border-bottom: 1px solid #eee;
-}
-.flex1 {
+.gflex1 {
   margin-top: 10px;
   margin-bottom: 10px;
   width: 100%;
@@ -319,7 +298,7 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.flex2 {
+.gflex2 {
   margin-bottom: 10px;
   width: 100%;
   height: 100px;
@@ -328,7 +307,6 @@ export default {
   flex: 1;
   align-items: center;
   justify-content: center;
-  background-color: #fafafa;
 }
 .recoveredbox {
   text-align: center;
@@ -393,7 +371,7 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.flex2 .box {
+.gflex2 .box {
   background-color: #eee;
   color: black;
 }

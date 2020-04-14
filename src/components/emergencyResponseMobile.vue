@@ -2,7 +2,7 @@
   <div class="container-emergency">
     <goback/>
     <img src="../assets/emergency.jpg" width="1000" height="300" />
-
+  <div>
     <div class="splashheader">
       <h2>Emergency Response</h2>
     </div>
@@ -10,6 +10,7 @@
       သင့်၌ ရောဂါပိုးကူးစက်ခံထားရနိုင်ချေမြင့်မားသဖြင့်ကျန်းမာရေး၀န်ထမ်းများသို့အလျင်အမြန်ဆက်သွယ်ပါ။
       <br />
     </div>
+  </div>
 
     <div class="splashbuttoncontainer">
       <a href="tel:911" class="splashbutton" style="color : #fff">Call 911</a>
@@ -36,6 +37,7 @@ export default {
   margin-left: 20px;
   margin-right: 20px;
   display: flex;
+  flex:1;
   flex-direction: column;
   
 }
@@ -45,7 +47,7 @@ export default {
   margin-left: 20px;
   margin-right: 20px;
   display: flex;
-  flex: 1;
+  flex:1;
   flex-direction: column;
 }
 
