@@ -94,7 +94,8 @@ export default {
       WorldTotal: "",
       affectedCountry: "",
       lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en",
-      darkmode : ""
+      darkmode: localStorage.getItem("darkmode") ? JSON.parse(localStorage.getItem("darkmode")) : false
+
     };
   },
   mounted() {

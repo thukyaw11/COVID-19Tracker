@@ -1,56 +1,61 @@
 <template>
   <div id="app">
-    <div id="myNav" class="overlay">
-      <div style="position:relative; top:5%;">{{$t ('menutitle')}}</div>
-      <div class="overlay-content">
+    <div id="myNav" :class="darkmode? 'overlayDark' : 'overlay'">
+      <div style="position:relative; top:5%;" :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">{{$t ('menutitle')}}</div>
+      <div :class="darkmode? 'overlay-contentDark' : 'overlay-content'">
         <router-link
           to="/global"
-          style="color: #212121; text-decoration: none"
-          class="item-menu"
+          style="text-decoration: none"
+          :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
           @click.native="closeNav()"
         >{{$t ('global')}}</router-link>
 
         <router-link
           to="/countrycases"
-          style="color: #212121; text-decoration: none"
-          class="item-menu"
+          style="text-decoration: none"
+          :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
           @click.native="closeNav()"
         >{{$t ('countrycase')}}</router-link>
         <router-link
           to="/start"
-          style="color: #212121; text-decoration: none"
-          class="item-menu"
+          style="text-decoration: none"
+          :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
           @click.native="closeNav()"
         >{{$t ('start')}}</router-link>
         <router-link
           to="/donation"
-          style="color: #212121; text-decoration: none"
-          class="item-menu"
+          style="text-decoration: none"
+          :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
           @click.native="closeNav()"
         >{{$t ('donation')}}</router-link>
         <router-link
           to="/news"
-          style="color: #212121; text-decoration: none"
-          class="item-menu"
+          :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+          style="text-decoration: none"
           @click.native="closeNav()"
         >{{$t ('news')}}</router-link>
         <router-link
           to="/aboutus"
-          style="color: #212121; text-decoration: none"
-          class="item-menu"
+          style="text-decoration: none"
+          :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
           @click.native="closeNav()"
         >{{$t ('aboutus')}}</router-link>
       </div>
       <br />
       <div class="languageswitcher">
-        <div class="switchheading">{{$t ('langdesc')}}</div>
+        <div class="switchheading" :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">{{$t ('langdesc')}}</div>
         <div class="switchcontainer">
-          <div class="switch1" @click="changeLocale('en')">{{$t ('langswitchEnglish')}}</div>
-          <div class="switch2" @click="changeLocale('mm')">{{$t ('langswitchMyanmar')}}</div>
+          <div
+            :class="darkmode? 'switch1Dark' : 'switch1'"
+            @click="changeLocale('en')"
+          >{{$t ('langswitchEnglish')}}</div>
+          <div
+            :class="darkmode? 'switch2Dark' : 'switch2'"
+            @click="changeLocale('mm')"
+          >{{$t ('langswitchMyanmar')}}</div>
         </div>
       </div>
-        <md-switch class="md-primary" v-model="darkmode" @change="closeChange()">Dark Mode</md-switch>
-    
+      <md-switch class="md-primary" v-model="darkmode" @change="closeChange(darkmode)"><span :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">Dark Mode</span></md-switch>
       <div
         class="closebtn"
         @click="closeNav()"
@@ -345,7 +350,9 @@ export default {
       copyCode: "",
       isoCou: isoCountries,
       lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en",
-      darkmode: false
+      darkmode: localStorage.getItem("darkmode")
+        ? JSON.parse(localStorage.getItem("darkmode"))
+        : false
     };
   },
   methods: {
@@ -374,11 +381,12 @@ export default {
       document.getElementById("myNav").style.height = "100%";
     },
     closeNav() {
-      console.log("close nav")
+      console.log("close nav");
       document.getElementById("myNav").style.height = "0%";
     },
-    closeChange(){
+    closeChange(value) {
       document.getElementById("myNav").style.height = "0%";
+      localStorage.setItem("darkmode", value);
       this.$darkModeBus.$emit("dark-mode", this.darkmode);
     },
     openModal() {
@@ -434,6 +442,8 @@ export default {
     this.urlLocation = window.location.href.split("/").pop();
   },
   mounted() {
+    console.log(this.darkmode);
+    //language switching
     i18n.locale = this.lang;
 
     if (this.urlLocation == "" || this.urlLocation == "global") {
@@ -589,6 +599,10 @@ export default {
     background-color: #ffffff;
     font-family: "Poppins", sans-serif;
   }
+  #appDark {
+    background-color: #121212;
+    font-family: "Poppins", sans-serif;
+  }
 
   .desktopcontainer {
     display: none;
@@ -625,8 +639,30 @@ export default {
     align-items: center;
     justify-content: center;
   }
+  .switch1Dark {
+    border-radius: 50px;
+    background-color: #212121;
+    margin-right: 5px;
+    display: flex;
+    width: 145px;
+    height: 45px;
+    align-items: center;
+    justify-content: center;
+    color: #f5f5f5;
+  }
   .switch2 {
     background-color: #f5f5f5;
+    border-radius: 50px;
+    margin-left: 5px;
+    display: flex;
+    width: 145px;
+    height: 45px;
+    align-items: center;
+    justify-content: center;
+  }
+  .switch2Dark {
+    color: #f5f5f5;
+    background-color: #212121;
     border-radius: 50px;
     margin-left: 5px;
     display: flex;
@@ -652,8 +688,32 @@ export default {
     overflow-x: hidden;
     transition: 0.5s;
   }
+  .overlayDark {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    overflow-y: scroll;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    border-radius: 5px;
+    background-color: #121212;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    transition: 0.5s;
+  }
 
   .overlay-content {
+    display: flex;
+    flex-direction: column;
+    line-height: 50px;
+    margin-top: 80px;
+    width: 90%;
+  }
+  .overlay-contentDark {
     display: flex;
     flex-direction: column;
     line-height: 50px;
@@ -668,7 +728,19 @@ export default {
     display: flex;
     transition: 0.3s;
   }
+  .overlayDark a {
+    padding-left: 15px;
+    text-decoration: none;
+    font-size: 20px;
+    display: flex;
+    transition: 0.3s;
+  }
   .overlay .router-link {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+  }
+  .overlayDark .router-link {
     display: flex;
     flex-direction: row;
     flex: 1;
@@ -677,6 +749,12 @@ export default {
   .overlay .router-link-active {
     border-radius: 50px;
     background-color: #f5f5f5;
+    width: 100%;
+    font-weight: bold;
+  }
+  .overlayDark .router-link-active {
+    border-radius: 50px;
+    background-color: #212121;
     width: 100%;
     font-weight: bold;
   }
@@ -854,25 +932,25 @@ export default {
     align-items: center;
   }
   .numberrecover {
-    color:#4CAF50;
+    color: #4caf50;
     display: flex;
     flex: 2;
     align-items: center;
   }
-   .numberrecoverdark {
-    color:#81c784;
+  .numberrecoverdark {
+    color: #81c784;
     display: flex;
     flex: 2;
     align-items: center;
   }
   .numberdeath {
-    color:#F44336;
+    color: #f44336;
     display: flex;
     flex: 2;
     align-items: center;
   }
   .numberdeathdark {
-    color:#e57373;
+    color: #e57373;
     display: flex;
     flex: 2;
     align-items: center;
@@ -959,19 +1037,19 @@ export default {
   #myNav {
     display: none;
   }
-  .headercontainerDark{
+  .headercontainerDark {
     display: none;
   }
   .container {
     display: none;
   }
-  .containerDark{
+  .containerDark {
     display: none;
   }
   .toggle {
     display: none;
   }
-  .toggleDark{
+  .toggleDark {
     display: none;
   }
 }

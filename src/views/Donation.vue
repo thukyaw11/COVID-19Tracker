@@ -1,57 +1,78 @@
 <template>
-  <div class="container-donation">
+  <div :class="darkmode? 'container-donationDark' : 'container-donation'">
     <div class="hearticon">
       <span class="material-icons" style="font-size:150px; color:#EC407A;">favorite</span>
     </div>
     <div class="donationbody">
-      <h2>{{$t('donationPage.donationHeader')}}</h2>
+      <h2
+        :style="darkmode? 'color: #f5f5f5' : 'color : #121212'"
+      >{{$t('donationPage.donationHeader')}}</h2>
 
-      <div class="bodycontent">{{$t('donationPage.donationContent')}}</div>
+      <div
+        class="bodycontent"
+        :style="darkmode? 'color: #f5f5f5' : 'color : #121212'"
+      >{{$t('donationPage.donationContent')}}</div>
     </div>
     <div class="donatebuttoncontainer">
       <button class="donatebutton" v-scroll-to="'#element'">{{$t('donationPage.donationButton')}}</button>
       <span
         class="material-icons"
         style="font-size:36px; margin-top:20px;"
+        :style="darkmode? 'color: #f5f5f5' : 'color : #121212'"
         v-scroll-to="'#element'"
       >expand_more</span>
     </div>
 
-    <h3 style="text-align:center; color:#757575;" id="element">Donation Contacts</h3>
+    <h3
+      style="text-align:center;"
+      :style="darkmode? 'color: #757575' : 'color : #121212'"
+      id="element"
+    >Donation Contacts</h3>
 
     <div class="donationcontactsbody">
-      <div class="donationcard">
-        <h3 class="donateheading">University Of Information Technology</h3>
+      <div :class="darkmode? 'donationcardDark' : 'donationcard'">
+        <h3
+          class="donateheading"
+          :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+        >University Of Information Technology</h3>
         <div class="donatetypeoforg">
-          <div style="color:#757575;">Type of organization</div>
-          <div>University</div>
+          <div style="color : #757575">Type of organization</div>
+          <div :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">University</div>
         </div>
         <div class="donatephno">
-          <div style="color:#757575;">Phone Number</div>
-          <div>0934534923</div>
+          <div style="color : #757575">Phone Number</div>
+          <div :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">0934534923</div>
         </div>
         <div class="donatename">
-          <div style="color:#757575;">Name</div>
-          <div>Sai Kaw Yount</div>
+          <div style="color : #757575">Name</div>
+          <div :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">Sai Kaw Yount</div>
         </div>
         <div class="donatedescirption">
-          <div style="color:#757575;">Description</div>
-          <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+          <div style="color : #757575">Description</div>
+          <div
+            :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+          >Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
         </div>
 
         <div style="padding:10px; color:#757575;">Donateable Bank Accounts</div>
 
         <div class="bank">
-          <div class="bankcontainer">
-            <div class="bankflex1">KBZ</div>
-            <div class="bankflex2">9934 3493 3492 2300</div>
+          <div :class="darkmode? 'bankcontainerDark' : 'bankcontainer'">
+            <div class="bankflex1" :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">KBZ</div>
+            <div
+              class="bankflex2"
+              :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+            >9934 3493 3492 2300</div>
             <div class="bankflex3">
               <i class="far fa-clone" style="color:#EC407A;"></i>
             </div>
           </div>
-          <div class="bankcontainer">
-            <div class="bankflex1">CB</div>
-            <div class="bankflex2">9934 3493 3492 2300</div>
+          <div :class="darkmode? 'bankcontainerDark' : 'bankcontainer'">
+            <div class="bankflex1" :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">CB</div>
+            <div
+              class="bankflex2"
+              :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+            >9934 3493 3492 2300</div>
             <div class="bankflex3">
               <i class="far fa-clone" style="color:#EC407A;"></i>
             </div>
@@ -61,38 +82,49 @@
         </div>
       </div>
 
-      <div class="donationcard">
-        <h3 class="donateheading">University Of Information Technology</h3>
+      <div :class="darkmode? 'donationcardDark' : 'donationcard'">
+        <h3
+          class="donateheading"
+          :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+        >University Of Information Technology</h3>
         <div class="donatetypeoforg">
-          <div style="color:#757575;">Type of organization</div>
-          <div>University</div>
+          <div style="color : #757575">Type of organization</div>
+          <div :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">University</div>
         </div>
         <div class="donatephno">
-          <div style="color:#757575;">Phone Number</div>
-          <div>0934534923</div>
+          <div style="color : #757575">Phone Number</div>
+          <div :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">0934534923</div>
         </div>
         <div class="donatename">
-          <div style="color:#757575;">Name</div>
-          <div>Sai Kaw Yount</div>
+          <div style="color : #757575">Name</div>
+          <div :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">Sai Kaw Yount</div>
         </div>
         <div class="donatedescirption">
-          <div style="color:#757575;">Description</div>
-          <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+          <div style="color : #757575">Description</div>
+          <div
+            :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+          >Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
         </div>
 
         <div style="padding:10px; color:#757575;">Donateable Bank Accounts</div>
 
         <div class="bank">
-          <div class="bankcontainer">
-            <div class="bankflex1">KBZ</div>
-            <div class="bankflex2">9934 3493 3492 2300</div>
+          <div :class="darkmode? 'bankcontainerDark' : 'bankcontainer'">
+            <div class="bankflex1" :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">KBZ</div>
+            <div
+              class="bankflex2"
+              :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+            >9934 3493 3492 2300</div>
             <div class="bankflex3">
               <i class="far fa-clone" style="color:#EC407A;"></i>
             </div>
           </div>
-          <div class="bankcontainer">
-            <div class="bankflex1">CB</div>
-            <div class="bankflex2">9934 3493 3492 2300</div>
+          <div :class="darkmode? 'bankcontainerDark' : 'bankcontainer'">
+            <div class="bankflex1" :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">CB</div>
+            <div
+              class="bankflex2"
+              :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+            >9934 3493 3492 2300</div>
             <div class="bankflex3">
               <i class="far fa-clone" style="color:#EC407A;"></i>
             </div>
@@ -109,12 +141,17 @@
 export default {
   data() {
     return {
-      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en",
+      darkmode: localStorage.getItem("darkmode")
+        ? JSON.parse(localStorage.getItem("darkmode"))
+        : false
     };
   },
   //working with event bus
   created() {
     this.$eventHub.$on("change-name", this.changeName);
+
+    this.$darkModeBus.$on("dark-mode", this.changeDark);
   },
   mounted() {
     if (this.lang == "mm") {
@@ -125,6 +162,9 @@ export default {
     }
   },
   methods: {
+    changeDark(value) {
+      this.darkmode = value;
+    },
     changeName(name) {
       // lang will be automatically transported to the parameter.
       this.lang = name;
@@ -140,13 +180,22 @@ export default {
 </script>
 
 <style scoped>
-.bodycontent
-{
-  line-height:22px;
-  width:90%;
+.bodycontent {
+  line-height: 22px;
+  width: 90%;
   text-align: justify;
 }
 .container-donation {
+  margin-bottom: 100px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: auto;
+  background: #fff;
+}
+.container-donationDark {
+  background: #212121;
   margin-bottom: 100px;
   margin-top: 10px;
   display: flex;
@@ -207,6 +256,15 @@ export default {
   background-color: #eee;
   margin-bottom: 30px;
 }
+.donationcardDark {
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  height: 690px;
+  background-color: #121212;
+  margin-bottom: 30px;
+}
 .donateheading {
   margin-top: 10px;
   display: flex;
@@ -247,6 +305,14 @@ export default {
 .bankcontainer {
   border-radius: 10px;
   background-color: #ffffff;
+  display: flex;
+  height: 65px;
+  width: 95%;
+  margin-bottom: 10px;
+}
+.bankcontainerDark {
+  border-radius: 10px;
+  background-color: #212121;
   display: flex;
   height: 65px;
   width: 95%;

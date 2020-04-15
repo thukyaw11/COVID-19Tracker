@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div :class="darkmode? 'containerDark' : 'container'">
     <div class="newscontainer">
       <div class="datecontainer">
         <div class="dateflex1">
@@ -13,12 +13,12 @@
       <div v-if="latestNews.length > 0">
         <div v-for="news in latestNews" v-bind:key="news._id">
           <a
-            class="contentcontainer"
+            :class="darkmode? 'contentcontainerDark' : 'contentcontainer'"
             :href="linkIt(news.url)"
             style="color : black; text-decoration: none;"
           >
             <div class="contentflex1">
-              <div class="contentdescription">
+              <div :class="darkmode? 'contentdescriptionDark' : 'contentdescription'">
                 <p class="comment more">{{news.title | truncate(140, '...')}}</p>
               </div>
               <div class="contentsource">source : {{news.source}}</div>
@@ -37,12 +37,12 @@
       <div v-if="yesterdayNews.length > 0">
         <div v-for="news in yesterdayNews" v-bind:key="news._id">
           <a
-            class="contentcontainer"
+            :class="darkmode? 'contentcontainerDark' : 'contentcontainer'"
             :href="linkIt(news.url)"
             style="color : black; text-decoration: none;"
           >
             <div class="contentflex1">
-              <div class="contentdescription">
+              <div :class="darkmode? 'contentdescriptionDark' : 'contentdescription'">
                 <p>{{news.title | truncate(140, '...')}}</p>
               </div>
               <div class="contentsource">source : {{news.source}}</div>
@@ -62,12 +62,12 @@
       <div v-if="uploadedNews.length > 0">
         <div v-for="news in uploadedNews" v-bind:key="news._id">
           <a
-            class="contentcontainer"
+            :class="darkmode? 'contentcontainerDark' : 'contentcontainer'"
             :href="linkIt(news.url)"
             style="color : black; text-decoration: none;"
           >
             <div class="contentflex1">
-              <div class="contentdescription">
+              <div :class="darkmode? 'contentdescriptionDark' : 'contentdescription'">
                 <p>{{news.title | truncate(120, '...')}}</p>
               </div>
               <div class="contentsource">source : {{news.source}}</div>
@@ -103,7 +103,10 @@ export default {
       newsReqMessage: "",
       today: "",
       yesterday: "",
-      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en",
+      darkmode: localStorage.getItem("darkmode")
+        ? JSON.parse(localStorage.getItem("darkmode"))
+        : false
     };
   },
   mounted() {
@@ -163,6 +166,9 @@ export default {
     );
   },
   methods: {
+    changeDark(value) {
+      this.darkmode = value;
+    },
     changeName(name) {
       // lang will be automatically transported to the parameter.
       this.lang = name;
@@ -184,8 +190,10 @@ export default {
       this.newsRequest = newsContent;
     }
   },
-  created(){
+  created() {
     this.$eventHub.$on("change-name", this.changeName);
+
+    this.$darkModeBus.$on("dark-mode", this.changeDark);
   }
 };
 
@@ -213,6 +221,12 @@ export default {
   display: flex;
   flex: 1;
 }
+.contentdescriptionDark {
+  width: 100%;
+  display: flex;
+  flex: 1;
+  color: #f5f5f5;
+}
 .contentsource {
   font-weight: bold;
   color: #ff5722;
@@ -238,6 +252,17 @@ export default {
 .contentcontainer {
   display: flex;
   background-color: #eee;
+  flex-direction: row;
+  width: 100%;
+  height: 150px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  padding: 5px 0px;
+  font-size: 15px;
+}
+.contentcontainerDark {
+  display: flex;
+  background-color: #212121;
   flex-direction: row;
   width: 100%;
   height: 150px;

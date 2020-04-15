@@ -1,15 +1,15 @@
 <template>
   <div class="container">
-    <div class="questioncontainer">
+    <div :class="darkmode? 'questioncontainerDark' : 'questioncontainer'">
       <img src="../assets/cold.jpg" width="1000" height="300" style="margin-top: 75px;" />
 
       <div class="quesheading">
         <br />
-        <h2>{{$t('screening.screeningHeader')}}</h2>
+        <h2 :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">{{$t('screening.screeningHeader')}}</h2>
 
-        <div style="line-height:22px;">{{$t('screening.screeningContent')}}</div>
+        <div style="line-height:22px;" :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">{{$t('screening.screeningContent')}}</div>
       </div>
-      <div class="quesbuttoncontainer">
+      <div :class="darkmode? 'quesbuttoncontainerDark' : 'quesbuttoncontainer'">
         <router-link to="question" class="quesbutton">
           <p
             style="color : #fff; font-size:14px; font-weight : bold; text-align: center;"
@@ -32,7 +32,10 @@ export default {
       results: localStorage.getItem("resultSession")
         ? JSON.parse(localStorage.getItem("resultSession"))
         : [],
-      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en",
+      darkmode: localStorage.getItem("darkmode")
+        ? JSON.parse(localStorage.getItem("darkmode"))
+        : false
     };
   },
   mounted() {
@@ -48,8 +51,12 @@ export default {
   //working with event bus
   created() {
     this.$eventHub.$on("change-name", this.changeName);
+    this.$darkModeBus.$on("dark-mode", this.changeDark)
   },
   methods: {
+    changeDark(value){
+        this.darkmode = value;
+    },
     changeName(name) {
       // lang will be automatically transported to the parameter.
       this.lang = name;
@@ -69,12 +76,20 @@ export default {
 <style scoped>
 /* question home */
 .questioncontainer {
-  background-color:#fff;
+  background-color: #fff;
   justify-content: center;
   width: 100%;
   align-items: center;
   height: auto;
 }
+.questioncontainerDark {
+  background-color: #212121;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  height: auto;
+}
+
 .quesheading {
   margin-left: 12px;
   margin-right: 12px;
@@ -84,6 +99,15 @@ export default {
 }
 .quesbuttoncontainer {
   background-color: #ffffff;
+  padding: 30px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.quesbuttoncontainerDark {
+  background-color: #212121;
   padding: 30px;
   display: flex;
   flex: 1;

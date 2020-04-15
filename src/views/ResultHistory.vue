@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="darkmode? 'containerDark' : 'container'">
     <div class="resulthistorycontainerParent" v-if="click==false">
       <div class="resulthistorycontainer" v-if="results.length > 0">
         <div class="deletebuttonParent" v-if="results.length >= 3">
@@ -10,16 +10,30 @@
         </div>
         <br />
         <div class="resultContainerParent" v-for="(result,index) in results" :key="index">
-          <div class="resultcontainer">
+          <div :class="darkmode? 'resultcontainerDark' : 'resultcontainer'">
             <div class="time">
               <div class="timeflex1">
-                <span class="material-icons">watch_later</span>
+                <span
+                  class="material-icons"
+                  :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+                >watch_later</span>
               </div>
-              <div class="timeflex2">{{result.dateTime}}</div>
+              <div
+                class="timeflex2"
+                :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+              >{{result.dateTime}}</div>
             </div>
             <div class="responsehistory">
-              <div class="responseflex1" v-if="result.resultLocal==true">StayHome Response</div>
-              <div class="responseflex1" v-if="result.resultLocal==false">Emergency Response</div>
+              <div
+                class="responseflex1"
+                v-if="result.resultLocal==true"
+                :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+              >StayHome Response</div>
+              <div
+                class="responseflex1"
+                v-if="result.resultLocal==false"
+                :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+              >Emergency Response</div>
 
               <div class="responseflex2" @click="viewResponse(result.resultLocal)">View</div>
             </div>
@@ -57,7 +71,10 @@ export default {
         : [],
       click: false,
       response: "",
-      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en",
+      darkmode: localStorage.getItem("darkmode")
+        ? JSON.parse(localStorage.getItem("darkmode"))
+        : false
     };
   },
   mounted() {
@@ -71,8 +88,13 @@ export default {
   //working with event bus
   created() {
     this.$eventHub.$on("change-name", this.changeName);
+
+    this.$darkModeBus.$on("dark-mode", this.chageDark);
   },
   methods: {
+    chageDark(value) {
+      this.darkmode = value;
+    },
     removeHistory() {
       localStorage.clear();
       window.location.reload();
@@ -118,6 +140,15 @@ export default {
   height: 100px;
   background-color: #f5f5f5;
 }
+.resultcontainerDark {
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100px;
+  background-color: #212121;
+}
+
 .resultContainerParent {
   margin-bottom: 15px;
   display: flex;

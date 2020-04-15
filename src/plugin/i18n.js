@@ -45,9 +45,9 @@ const messages = {
         },
         donationPage : {
             donationHeader  : "Make your own support",
-            donationContent : `In order to prevent, stop and cure the disease, we have to cooperate and support to everyone who needs our help.
+            donationContent : `In order to prevent, stop and cure the disease, every single one of us should pay a role by cooperating and supporting to everyone who needs our help.
             Bank accounts and contacts of the Government and Civil Service Organisations are described in this menu for any financial support.
-            Let's win this Covid 19 by our unity.`,
+            Let's win this Covid 19 with our unity.`,
             donationButton : "Donate Now"
         } ,
         aboutusPage : {

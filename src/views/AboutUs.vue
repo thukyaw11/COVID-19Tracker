@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div :class="darkmode?  'containerDark' : 'container'">
     <div class="aboutuscontainer">
       <div class="versioncontent">
         <div class="numberflex">1.1</div>
@@ -289,21 +289,18 @@
           </div>
         </div>
         <div class="aboutbody">
-          <p align="justify" style="line-height:22px;">
-           {{$t('aboutusPage.content')}}
-          </p>
+          <p align="justify" style="line-height:22px;">{{$t('aboutusPage.content')}}</p>
         </div>
-       
       </div>
-      <br>
+      <br />
       <div class="apisourcecontainer">
-        <div class="apicontainer1">
+        <div :class="darkmode? 'apicontainer1Dark' : 'apicontainer1'">
           <div class="box1">Statistic API</div>
           <div class="box2">
             <a href="https://rapidapi.com/" style="text-decoration: none;">https://rapidapi.com/</a>
           </div>
         </div>
-        <div class="apicontainer2">
+        <div :class="darkmode? 'apicontainer2Dark' : 'apicontainer2'">
           <div class="box1">News API</div>
           <div class="box2">
             Contact via
@@ -391,10 +388,16 @@
 export default {
   data() {
     return {
-      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en",
+      darkmode: localStorage.getItem("darkmode")
+        ? JSON.parse(localStorage.getItem("darkmode"))
+        : false
     };
   },
   methods: {
+    chnageDark(value) {
+      this.darkmode = value;
+    },
     changeName(name) {
       // lang will be automatically transported to the parameter.
       this.lang = name;
@@ -409,6 +412,8 @@ export default {
   //working with event bus
   created() {
     this.$eventHub.$on("change-name", this.changeName);
+
+    this.$darkModeBus.$on("dark-mode", this.chnageDark);
   },
   mounted() {
     if (this.lang == "mm") {
@@ -428,7 +433,7 @@ export default {
   justify-content: center;
   width: 95%;
   align-items: center;
-  height:auto;
+  height: auto;
 }
 
 .versioncontent {
@@ -453,7 +458,7 @@ export default {
   padding-top: 15px;
 }
 .aboutcontent {
-  height:280px;
+  height: 280px;
   display: flex;
   flex-direction: column;
 }
@@ -483,8 +488,8 @@ export default {
 .aboutbody {
   display: flex;
   flex: 1;
-  align-items:center;
-  justify-content:center;
+  align-items: center;
+  justify-content: center;
   flex-direction: row;
 }
 .apisourcecontainer {
@@ -497,6 +502,14 @@ export default {
   display: flex;
   height: 80px;
   background-color: #eee;
+  flex-direction: column;
+  margin-bottom: 10px;
+  border-radius: 15px;
+}
+.apicontainer1Dark {
+  display: flex;
+  height: 80px;
+  background-color: #212121;
   flex-direction: column;
   margin-bottom: 10px;
   border-radius: 15px;
@@ -520,7 +533,13 @@ export default {
   background-color: #eee;
   border-radius: 15px;
 }
-
+.apicontainer2Dark {
+  flex-direction: column;
+  display: flex;
+  height: 80px;
+  background-color: #212121;
+  border-radius: 15px;
+}
 .bar {
   width: 25px;
   height: 5px;

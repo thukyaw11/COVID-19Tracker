@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div :class="darkmode? 'containerDark' : 'container'">
     <div class="casescontainer">
       <div v-if="caseinMyanmar.length > 0">
         <div v-for="casesmm in caseinMyanmar" v-bind:key="casesmm.id">
@@ -94,9 +94,9 @@
             </div>
           </div>
 
-          <div class="RecoverCase">
+          <div :class="darkmode? 'RecoverCaseDark' : 'RecoverCase'">
             <div class="ConfirmedCaseContainer">
-              <div class="caseheading">{{$t('localdashboard.newcases')}}</div>
+              <div class="caseheading">{{$t('localdashboard.recover')}}</div>
               <div
                 class="number"
                 style="font-size:42px; color:#4CAF50"
@@ -105,7 +105,7 @@
               <div class="number" style="font-size:42px;" v-else>0</div>
             </div>
           </div>
-          <div class="DeathCase">
+          <div :class="darkmode? 'DeathCaseDark':'DeathCase'">
             <div class="ConfirmedCaseContainer">
               <div class="caseheading">{{$t('localdashboard.death')}}</div>
               <div
@@ -135,11 +135,11 @@
         <md-progress-spinner :md-diameter="30" :md-stroke="3" md-mode="indeterminate"></md-progress-spinner>
       </div>
     </div>
-    <div class="toggleDark">
+    <div :class="darkmode? 'toggleDark':'toggle'">
       <div class="global">
         <div class="toggleheading">
           <router-link to="/">
-            <a style="text-decoration:none; color:#212121;">{{$t('bottomBar.global')}}</a>
+            <a style="text-decoration:none;" :style="darkmode? 'color : #fff' : 'color : black'">{{$t('bottomBar.global')}}</a>
           </router-link>
         </div>
         <div class="inactivedots"></div>
@@ -147,7 +147,7 @@
       <div class="local">
         <div class="toggleheading">
           <router-link to="/local">
-            <a style="text-decoration:none; color:#212121;">{{$t('bottomBar.local')}}</a>
+            <a style="text-decoration:none;" :style="darkmode? 'color : #fff' : 'color : black'">{{$t('bottomBar.local')}}</a>
           </router-link>
         </div>
         <div class="activedots"></div>
@@ -164,10 +164,14 @@ export default {
     return {
       caseinMyanmar: [],
       errorMsg: "",
-      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en",
+      darkmode: localStorage.getItem("darkmode") ? JSON.parse(localStorage.getItem("darkmode")) : false
+      
     };
   },
   mounted() {
+
+    console.log(this.darkmode + "from local");
     fetch(
       "https://coronavirus-monitor.p.rapidapi.com/coronavirus/latest_stat_by_country.php?country=myanmar",
       {
@@ -184,7 +188,7 @@ export default {
         });
       })
       .catch(err => {
-        this.errorMsg = err;
+        this.errorMsg = "Internet lo tl ha" + err;
       });
 
     if (this.lang == "mm") {
@@ -198,9 +202,14 @@ export default {
   //working with event bus
   created() {
     this.$eventHub.$on("change-name", this.changeName);
+    this.$darkModeBus.$on("dark-mode",this.changeDark)
   },
 
   methods: {
+    changeDark(value){
+      this.darkmode = value;
+      console.log("dark from local" + value);
+    },
     changeName(name) {
       // lang will be automatically transported to the parameter.
       this.lang = name;

@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
-    <div class="countrybycasescontainer">
+  <div :class="darkmode? 'containerDark' : 'container'">
+    <div :class="darkmode? 'countrybycasescontainerDark' : 'countrybycasescontainer'">
       <div v-if="DataByAffectedCountryDetail">
-        <form class="searchcontainer">
+        <form :class="darkmode? 'searchcontainerDark' : 'searchcontainer'">
           <div class="placeholdercontainer">
             <input
               type="text"
@@ -20,37 +20,41 @@
           style="text-align:center; color:#757575; font-size:12px; font-weight:bold;"
         >Order of Highest to Lowest</div>
         <div v-for="(data,index) in filteredListDetail" :key="index">
-          <button class="collapsible" @click="toggleData(index)">
-            <div class="col1">{{data.country_name}}</div>
-            <div class="col2">{{data.cases || sorting}} {{$t('casesPage.confirmcase')}}  </div>
-            <div class="col3"><i class="fas fa-angle-right"></i></div>
+          <button :class="darkmode? 'collapsibleDark' : 'collapsible'" @click="toggleData(index)">
+            <div :class="darkmode? 'col1Dark' : 'col1'">{{data.country_name}}</div>
+            <div
+              :class="darkmode? 'col2Dark' : 'col2'"
+            >{{data.cases || sorting}} {{$t('casesPage.confirmcase')}}</div>
+            <div :class="darkmode? 'col3Dark' : 'col3'">
+              <i class="fas fa-angle-right"></i>
+            </div>
           </button>
           <div id="grow" class="grow">
             <div class="measuringWrapper">
               <div class="gflex1">
-                <div class="recoveredbox">
+                <div :class="darkmode? 'recoveredboxDark' : 'recoveredbox'">
                   <div class="cases">{{$t('casesPage.recovered')}}</div>
                   <div class="recoveredcasesnumber">{{data.total_recovered}}</div>
                 </div>
-                <div class="newcasebox">
+                <div :class="darkmode? 'newcaseboxDark' : 'newcasebox'">
                   <div class="cases">{{$t('casesPage.newcases')}}</div>
                   <div class="newcasesnumber">{{data.new_cases}}</div>
                 </div>
-                <div class="deathcasebox">
+                <div :class="darkmode? 'deathcaseboxDark' : 'deathcasebox'">
                   <div class="cases">{{$t('casesPage.death')}}</div>
                   <div class="deathcasesnumber">{{data.deaths}}</div>
                 </div>
               </div>
               <div class="gflex2">
-                <div class="box">
+                <div :class="darkmode? 'boxDark': 'box'">
                   <div class="cases" style="font-size:12px;">{{$t('casesPage.serious')}}</div>
                   <div class="casesnumber">{{data.serious_critical}}</div>
                 </div>
-                <div class="box">
+                <div :class="darkmode? 'boxDark': 'box'">
                   <div class="cases">{{$t('casesPage.newDeath')}}</div>
                   <div class="casesnumber">{{data.new_deaths}}</div>
                 </div>
-                <div class="box">
+                <div :class="darkmode? 'boxDark': 'box'">
                   <div class="cases" style="font-size:12px;">{{$t('casesPage.casepermin')}}</div>
                   <div class="casesnumber">{{data.total_cases_per_1m_population}}</div>
                 </div>
@@ -61,7 +65,6 @@
             </div>
           </div>
         </div>
-        
       </div>
       <div v-else class="spinner">
         <md-progress-spinner :md-diameter="30" :md-stroke="3" md-mode="indeterminate"></md-progress-spinner>
@@ -84,7 +87,10 @@ export default {
       DataByAffectedCountryDetail: "",
       search: "",
       updatedTime: "",
-      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en",
+      darkmode: localStorage.getItem("darkmode")
+        ? JSON.parse(localStorage.getItem("darkmode"))
+        : false
     };
   },
   mounted() {
@@ -115,8 +121,13 @@ export default {
   //working with event bus
   created() {
     this.$eventHub.$on("change-name", this.changeName);
+
+    this.$darkModeBus.$on("dark-mode", this.changeDark);
   },
   methods: {
+    changeDark(value) {
+      this.darkmode = value;
+    },
     //recieved emit event
     changeName(name) {
       // lang will be automatically transported to the parameter.
@@ -165,14 +176,22 @@ export default {
 
 <style scoped>
 .countrybycasescontainer {
-  background-color:#fff;
+  background-color: #fff;
   margin-top: 80px;
   justify-content: center;
   width: 95%;
   align-items: center;
   height: auto;
-
 }
+.countrybycasescontainerDark {
+  background-color: #121212;
+  margin-top: 80px;
+  justify-content: center;
+  width: 95%;
+  align-items: center;
+  height: auto;
+}
+
 .toggle {
   flex-direction: row;
   display: flex;
@@ -253,24 +272,61 @@ export default {
   outline: none;
   border-bottom: 1px solid #eee;
   font-size: 15px;
-  align-items:center;
-  justify-content:center;
+  align-items: center;
+  justify-content: center;
 }
+.collapsibleDark {
+  border: 0;
+  background-color: #121212;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  padding: 20px;
+  width: 100%;
+  text-align: left;
+  outline: none;
+  border-bottom: 1px solid #212121;
+  font-size: 15px;
+  align-items: center;
+  justify-content: center;
+  color: #f5f5f5;
+}
+
 .col1 {
-  color:#212121;
+  color: #212121;
   align-items: center;
   display: flex;
   flex: 2;
 }
+.col1Dark {
+  align-items: center;
+  display: flex;
+  flex: 2;
+  color: #f5f5f5;
+}
 .col2 {
-   color:#212121;
+  color: #212121;
   align-items: center;
   justify-content: flex-end;
   display: flex;
   flex: 10;
 }
-.col3{
-   color:#212121;
+.col2Dark {
+  color: #f5f5f5;
+  align-items: center;
+  justify-content: flex-end;
+  display: flex;
+  flex: 10;
+}
+.col3 {
+  color: #212121;
+  align-items: center;
+  justify-content: flex-end;
+  display: flex;
+  flex: 1;
+}
+.col3Dark {
+  color: #f5f5f5;
   align-items: center;
   justify-content: flex-end;
   display: flex;
@@ -281,9 +337,8 @@ export default {
   background-color: #eee;
 }
 
-
 .measuringWrapper {
-  width:100%;
+  width: 100%;
   border-bottom: 1px solid red;
 }
 .gflex1 {
@@ -321,6 +376,19 @@ export default {
   justify-content: center;
   background-color: #e8f5e9;
 }
+.recoveredboxDark {
+  text-align: center;
+  border-radius: 15px;
+  width: 100px;
+  margin: 0 5px;
+  height: 90px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #212121;
+}
 .recoveredcasesnumber {
   font-size: 24px;
   color: #4caf50;
@@ -337,6 +405,18 @@ export default {
   align-items: center;
   justify-content: center;
   background-color: #fff8e1;
+}
+.newcaseboxDark {
+  margin: 0 5px;
+  border-radius: 15px;
+  width: 100px;
+  height: 90px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #212121;
 }
 .newcasesnumber {
   font-size: 24px;
@@ -355,6 +435,18 @@ export default {
   justify-content: center;
   background-color: #ffebee;
 }
+.deathcaseboxDark {
+  margin: 0 5px;
+  border-radius: 15px;
+  width: 100px;
+  height: 90px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #212121;
+}
 .deathcasesnumber {
   font-size: 24px;
   color: #f44336;
@@ -371,9 +463,24 @@ export default {
   align-items: center;
   justify-content: center;
 }
+.boxDark {
+  margin: 0 5px;
+  border-radius: 15px;
+  width: 100px;
+  height: 90px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .gflex2 .box {
   background-color: #eee;
   color: black;
+}
+.gflex2 .boxDark {
+  background-color: #212121;
+  color: #f5f5f5;
 }
 .casesnumber {
   font-size: 24px;
@@ -387,6 +494,15 @@ export default {
   flex-direction: row;
   height: 50px;
   background-color: #f5f5f5;
+}
+.searchcontainerDark {
+  border-radius: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  background-color: #212121;
 }
 .placeholdercontainer {
   display: flex;
