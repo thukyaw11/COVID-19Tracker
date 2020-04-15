@@ -691,7 +691,7 @@ export default {
   .headercontainer {
     top: 0;
     position: fixed;
-    background-color: #ffffff;
+    background-color: #fff;
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -702,12 +702,12 @@ export default {
     color: white;
     top: 0;
     position: fixed;
-    background-color: #192734;
+    background-color: #121212;
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 75px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #212121;
   }
 
   .menubutton {
@@ -759,11 +759,11 @@ export default {
     color: black;
   }
   .toggleDark {
-    border-top: 1px solid #eee;
+    border-top: 1px solid #212121;
     flex-direction: row;
     display: flex;
     flex: 1;
-    background-color: #192734;
+    background-color: #121212;
     height: 90px;
     position: fixed;
     width: 100%;
@@ -798,7 +798,7 @@ export default {
     align-items: center;
   }
   .containerDark {
-    background: #192734;
+    background: #121212;
     display: flex;
     flex: 1;
     width: 100%;
@@ -826,7 +826,7 @@ export default {
     height: 120px;
     border-radius: 15px;
     margin-top: 5px;
-    background-color: #253542;
+    background-color: #212121;
   }
   .DeathCase {
     background-color: #ffebee;
@@ -836,7 +836,7 @@ export default {
     margin-top: 5px;
   }
   .DeathCaseDark {
-    background-color: #253542;
+    background-color: #212121;
     display: flex;
     height: 120px;
     border-radius: 15px;
@@ -849,6 +849,30 @@ export default {
     align-items: flex-end;
   }
   .number {
+    display: flex;
+    flex: 2;
+    align-items: center;
+  }
+  .numberrecover {
+    color:#4CAF50;
+    display: flex;
+    flex: 2;
+    align-items: center;
+  }
+   .numberrecoverdark {
+    color:#81c784;
+    display: flex;
+    flex: 2;
+    align-items: center;
+  }
+  .numberdeath {
+    color:#F44336;
+    display: flex;
+    flex: 2;
+    align-items: center;
+  }
+  .numberdeathdark {
+    color:#e57373;
     display: flex;
     flex: 2;
     align-items: center;

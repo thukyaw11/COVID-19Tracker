@@ -38,13 +38,13 @@
         <div :class="darkmode? 'RecoverCaseDark' : 'RecoverCase'">
           <div class="ConfirmedCaseContainer">
             <div class="caseheading">{{$t('globaldashboard.recover')}}</div>
-            <div class="number" style="font-size:42px; color:#4CAF50">{{WorldTotal.total_recovered}}</div>
+            <div :class="darkmode? 'numberrecoverdark' : 'numberrecover'" style="font-size:42px; ">{{WorldTotal.total_recovered}}</div>
           </div>
         </div>
         <div :class="darkmode? 'DeathCaseDark' : 'DeathCase'">
           <div class="ConfirmedCaseContainer">
             <div class="caseheading">{{$t('globaldashboard.death')}}</div>
-            <div class="number" style="font-size:42px; color:#F44336">{{WorldTotal.total_deaths}}</div>
+            <div :class="darkmode? 'numberdeathdark' : 'numberdeath'"  style="font-size:42px;">{{WorldTotal.total_deaths}}</div>
           </div>
         </div>
         <div class="ConfirmedCaseContainer">
@@ -208,7 +208,7 @@ export default {
   color: black;
 }
 .darkmodetext{
-  color: white;
+  color: red;
 }
 .mapvector {
   display: flex;
