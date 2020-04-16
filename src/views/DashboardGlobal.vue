@@ -49,7 +49,7 @@
         </div>
         <div class="ConfirmedCaseContainer">
           <div class="caseheading">{{$t('globaldashboard.countries')}}</div>
-          <div class="number" style="font-size:42px; color:#616161">{{affectedCountry}}</div>
+          <div class="number" style="font-size:42px;">{{affectedCountry}}</div>
         </div>
         <div
           style="text-align:center; color:#757575; margin-bottom:100px;"

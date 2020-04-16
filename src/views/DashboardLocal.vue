@@ -98,8 +98,8 @@
             <div class="ConfirmedCaseContainer">
               <div class="caseheading">{{$t('localdashboard.recover')}}</div>
               <div
-                class="number"
-                style="font-size:42px; color:#4CAF50"
+                :class="darkmode? 'numberrecoverdark' : 'numberrecover'"
+                style="font-size:42px;"
                 v-if="caseinMyanmar[0].total_recovered"
               >{{casesmm.total_recovered}}</div>
               <div class="number" style="font-size:42px;" v-else>0</div>
@@ -109,8 +109,8 @@
             <div class="ConfirmedCaseContainer">
               <div class="caseheading">{{$t('localdashboard.death')}}</div>
               <div
-                class="number"
-                style="font-size:42px; color:#F44336"
+                :class="darkmode? 'numberdeathdark' : 'numberdeath'" 
+                style="font-size:42px;"
                 v-if="caseinMyanmar[0].total_deaths"
               >{{casesmm.total_deaths}}</div>
               <div class="number" style="font-size:42px;" v-else>0</div>

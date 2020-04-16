@@ -27,14 +27,14 @@
             <a
               v-bind:href="'tel:'+phone.phoneNumber"
               :class="darkmode? 'flex2Dark' : 'flex2'"
-              style="color: white; text-decoration: none"
+              style="text-decoration: none"
             >
-              <div class="box3">
+              <div :class="darkmode? 'box3dark' : 'box3'">
                 <span>
                   <i class="material-icons">call</i>
                 </span>
               </div>
-              <div class="box4">Call Now</div>
+              <div :class="darkmode? 'box4dark' : 'box4'">Call Now</div>
             </a>
           </div>
         </div>
@@ -120,7 +120,7 @@ export default {
   justify-content: center;
   width: 100%;
   align-items: center;
-  height: 100%;
+  height: auto;
 }
 .contactscontainer {
   margin-top: 15px;
@@ -172,17 +172,33 @@ export default {
   display: flex;
   flex: 1;
   flex-direction: column;
-  background-color: #5ba55e;
-  color: #fff;
+  background-color: #81c784;
+  color: #000;
 }
 
 .box3 {
+  color:#f5f5f5;
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+  justify-content: center;
+}
+.box3dark {
+  color:#212121;
   display: flex;
   flex: 1;
   align-items: flex-end;
   justify-content: center;
 }
 .box4 {
+  color:#f5f5f5;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+.box4dark {
+  color:#212121;
   display: flex;
   flex: 1;
   align-items: center;

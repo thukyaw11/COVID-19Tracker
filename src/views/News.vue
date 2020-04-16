@@ -21,15 +21,15 @@
               <div :class="darkmode? 'contentdescriptionDark' : 'contentdescription'">
                 <p class="comment more">{{news.title | truncate(140, '...')}}</p>
               </div>
-              <div class="contentsource">source : {{news.source}}</div>
+              <div :class="darkmode? 'contentsourcedark' : 'contentsource'">source : {{news.source}}</div>
             </div>
-            <div class="contentflex2">
+            <div :class="darkmode? 'contentflex2Dark' : 'contentflex2'">
               <i class="material-icons" style="font-size:20px;">arrow_forward_ios</i>
             </div>
           </a>
         </div>
       </div>
-      <div v-else class="contentcontainer">
+      <div v-else :class="darkmode? 'contentcontainerDark' : 'contentcontainer'" >
         <h3 style="padding: 0px 30px">No Post Yet</h3>
       </div>
 
@@ -45,16 +45,16 @@
               <div :class="darkmode? 'contentdescriptionDark' : 'contentdescription'">
                 <p>{{news.title | truncate(140, '...')}}</p>
               </div>
-              <div class="contentsource">source : {{news.source}}</div>
+              <div :class="darkmode? 'contentsourcedark' : 'contentsource'">source : {{news.source}}</div>
             </div>
 
-            <div class="contentflex2">
+            <div :class="darkmode? 'contentflex2Dark' : 'contentflex2'">
               <i class="material-icons" style="font-size:20px;">arrow_forward_ios</i>
             </div>
           </a>
         </div>
       </div>
-      <div v-else class="contentcontainer">
+      <div v-else :class="darkmode? 'contentcontainerDark' : 'contentcontainer'">
         <h3 style="padding: 0px 30px">No Post Yet</h3>
       </div>
 
@@ -70,16 +70,16 @@
               <div :class="darkmode? 'contentdescriptionDark' : 'contentdescription'">
                 <p>{{news.title | truncate(120, '...')}}</p>
               </div>
-              <div class="contentsource">source : {{news.source}}</div>
+              <div :class="darkmode? 'contentsourcedark' : 'contentsource'">source : {{news.source}}</div>
             </div>
 
-            <div class="contentflex2">
+            <div :class="darkmode? 'contentflex2Dark' : 'contentflex2'">
               <i class="material-icons" style="font-size:20px;">arrow_forward_ios</i>
             </div>
           </a>
         </div>
       </div>
-      <div v-else class="contentcontainer">
+      <div v-else :class="darkmode? 'contentcontainerDark' : 'contentcontainer'">
         <h3 style="padding: 0px 30px">No Post Yet</h3>
       </div>
       <br />
@@ -208,7 +208,7 @@ export default {
   justify-content: center;
   width: 95%;
   align-items: center;
-  height: 100%;
+  height: auto;
 }
 .contentflex1 {
   display: flex;
@@ -230,6 +230,13 @@ export default {
 .contentsource {
   font-weight: bold;
   color: #ff5722;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.contentsourcedark {
+  font-weight: bold;
+  color: #ff8a65;
   display: flex;
   align-items: flex-start;
   margin-bottom: 10px;
@@ -272,6 +279,14 @@ export default {
   font-size: 15px;
 }
 .contentflex2 {
+  color:#212121;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+.contentflex2Dark {
+  color:#f5f5f5;
   display: flex;
   flex: 1;
   align-items: center;
