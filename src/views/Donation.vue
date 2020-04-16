@@ -13,6 +13,7 @@
         :style="darkmode? 'color: #f5f5f5' : 'color : #121212'"
       >{{$t('donationPage.donationContent')}}</div>
     </div>
+    <br>
     <div class="donatebuttoncontainer">
       <button class="donatebutton" v-scroll-to="'#element'">{{$t('donationPage.donationButton')}}</button>
       <span
@@ -195,7 +196,7 @@ export default {
   background: #fff;
 }
 .container-donationDark {
-  background: #212121;
+  background: #121212;
   margin-bottom: 100px;
   margin-top: 10px;
   display: flex;
@@ -262,7 +263,7 @@ export default {
   flex-direction: column;
   width: 95%;
   height: 690px;
-  background-color: #121212;
+  background-color: #212121;
   margin-bottom: 30px;
 }
 .donateheading {
@@ -312,7 +313,7 @@ export default {
 }
 .bankcontainerDark {
   border-radius: 10px;
-  background-color: #212121;
+  background-color: #121212;
   display: flex;
   height: 65px;
   width: 95%;

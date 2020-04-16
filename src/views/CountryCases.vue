@@ -10,6 +10,7 @@
               style="font-size:14px;"
               placeholder="Search ..."
               v-model="search"
+              :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
             />
           </div>
           <div class="searchicon">

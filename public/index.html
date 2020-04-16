@@ -24,7 +24,6 @@
   <title>COVID19 MM</title>
   <style>
     body {
-
       background-color: #ffffff;
     }
   </style>
@@ -39,6 +38,17 @@
   <!-- built files will be auto injected -->
 </body>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+
+    const darkmode = localStorage.getItem('darkmode')? JSON.parse(localStorage.getItem('darkmode')) : 'false';
+
+
+    if(darkmode){
+      document.getElementsByTagName('body')[0].style.backgroundColor = "#121212";
+    }else{
+      document.getElementsByTagName('body')[0].style.backgroundColor = "#ffffff";
+    }
+</script>
 <!-- <script type="text/javascript" src="/src/toggle.js"></script> -->
 
 </html>

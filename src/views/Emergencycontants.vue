@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <div :class="darkmode? 'containerDark' : 'container'">
     <div class="emergencycontainer">
-      <form class="searchcontainer">
+      <form :class="darkmode? 'searchcontainerDark' : 'searchcontainer'">
         <div class="placeholdercontainer">
           <input
             type="text"
@@ -9,6 +9,7 @@
             style="font-size:14px;"
             placeholder="Search ..."
             v-model="search"
+            :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
           />
         </div>
         <div class="searchicon">
@@ -18,14 +19,14 @@
       <!-- yangon -->
       <div v-if="phone_numbers.length > 0">
         <div v-for="phone in comMessage" v-bind:key="phone.index">
-          <div class="contactscontainer">
+          <div :class="darkmode? 'contactscontainerDark' : 'contactscontainer'">
             <div class="flex1">
               <div class="box1">{{phone.name}}</div>
               <div class="box2">{{phone.phoneNumber}}</div>
             </div>
             <a
               v-bind:href="'tel:'+phone.phoneNumber"
-              class="flex2"
+              :class="darkmode? 'flex2Dark' : 'flex2'"
               style="color: white; text-decoration: none"
             >
               <div class="box3">
@@ -55,7 +56,10 @@ export default {
       request_msg: "no request",
       phone_numbers: [],
       search: "",
-      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en",
+      darkmode: localStorage.getItem("darkmode")
+        ? JSON.parse(localStorage.getItem("darkmode"))
+        : false
     };
   },
   mounted() {
@@ -76,6 +80,9 @@ export default {
     }
   },
   methods: {
+    changeDark(value) {
+      this.darkmode = value;
+    },
     fetchContent() {
       this.request_msg = "ph no request began";
       return axios.get("https://covid19mm.info/api/contact/list");
@@ -101,6 +108,8 @@ export default {
   //working with event bus
   created() {
     this.$eventHub.$on("change-name", this.changeName);
+
+    this.$darkModeBus.$on("dark-mode", this.changeDark);
   }
 };
 </script>
@@ -121,6 +130,15 @@ export default {
   height: 100px;
   border-bottom: 1px solid #eee;
 }
+.contactscontainerDark {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  height: 100px;
+  border-bottom: 1px solid #212121;
+}
+
 .container-contacts {
   margin-top: 80px;
 }
@@ -150,6 +168,13 @@ export default {
   background-color: #4caf50;
   color: #fff;
 }
+.flex2Dark {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  background-color: #5ba55e;
+  color: #fff;
+}
 
 .box3 {
   display: flex;
@@ -173,6 +198,17 @@ export default {
   flex-direction: row;
   height: 50px;
   background-color: #f5f5f5;
+}
+.searchcontainerDark {
+  color: #f5f5f5;
+  border-radius: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  height: 50px;
+  background-color: #212121;
 }
 .placeholdercontainer {
   display: flex;
