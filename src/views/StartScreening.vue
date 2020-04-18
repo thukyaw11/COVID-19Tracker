@@ -83,7 +83,7 @@ export default {
   height: auto;
 }
 .questioncontainerDark {
-  background-color: #212121;
+  background-color: #121212;
   justify-content: center;
   width: 100%;
   align-items: center;
@@ -107,7 +107,7 @@ export default {
   justify-content: center;
 }
 .quesbuttoncontainerDark {
-  background-color: #212121;
+  background-color: #121212;
   padding: 30px;
   display: flex;
   flex: 1;

@@ -73,7 +73,7 @@
 
       <div class="space">
         <router-link to="/contants" style="text-decoration: none;">
-          <div class="Emergencybutton">
+          <div :class="darkmode? 'EmergencybuttonDark' : 'Emergencybutton'">
             <i class="fas fa-star-of-life" id="Emergencyicon"></i>
           </div>
         </router-link>
@@ -597,11 +597,13 @@ export default {
   }
   #app {
     background-color: #ffffff;
-    font-family: "Poppins", sans-serif;
+    font-family: "Poppins", sans-serif,'Noto Sans Myanmar' ;
+    font-size:14px;
   }
   #appDark {
     background-color: #121212;
-    font-family: "Poppins", sans-serif;
+    font-family: "Poppins", sans-serif, 'Noto Sans Myanmar';
+    font-size:14px;
   }
 
   .desktopcontainer {
@@ -810,6 +812,15 @@ export default {
   .Emergencybutton {
     display: flex;
     background-color: #e53935;
+    color:#f5f5f5;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+   .EmergencybuttonDark {
+    display: flex;
+    background-color: #e57373;
+    color:#121212;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -821,7 +832,7 @@ export default {
     align-items: center;
     justify-content: center;
     font-size: 20px;
-    color: #fff;
+  
   }
 
   .toggle {
