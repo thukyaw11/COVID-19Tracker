@@ -74,28 +74,22 @@ export default {
 </script>
 
 <style scoped>
-/* question home */
-.questioncontainer {
-  background-color: #fff;
-  justify-content: center;
-  width: 100%;
-  align-items: center;
-  height: auto;
-}
-.questioncontainerDark {
-  background-color: #121212;
-  justify-content: center;
-  width: 100%;
-  align-items: center;
-  height: auto;
-}
-
-.quesheading {
-  margin-left: 12px;
-  margin-right: 12px;
-  display: flex;
+.container-question
+{
+  display:flex;
   flex-direction: column;
-  flex: 1;
+  flex:1;
+  height: 100%;
+}
+  /* question home */
+  .quesheading
+{
+
+  margin-left:20px;
+  margin-right:20px;
+  display:flex;
+  flex-direction:column;
+  flex:1;
 }
 .quesbuttoncontainer {
   background-color: #ffffff;

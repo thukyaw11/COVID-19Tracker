@@ -164,7 +164,7 @@ export default {
       }
     },
     selectOption(index) {
-      console.log(this.userResponses);
+
       if (this.questionIndex != 2) {
         Vue.set(this.userResponses, this.questionIndex, index);
       }
