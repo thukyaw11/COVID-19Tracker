@@ -11,7 +11,7 @@
     </div>
 
     <div class="container-question" v-if="questionIndex<ques.questions.length">
-      <div class="questioncontainer">
+      <div class="questioncontainer" v-if="questionIndex != 2">
         <div class="questionname">
           <h2>{{questionIndex + 1}}</h2>
           <div style="text-align:center; padding:10px;">{{ ques.questions[questionIndex].text }}</div>
@@ -28,6 +28,86 @@
             {{ response.text }}
           </div>
           <br />
+        </div>
+      </div>
+      <div class="questioncontainer" v-else>
+        <div class="questionname">
+          <h2>{{questionIndex + 1}}</h2>
+          <div style="text-align:center; padding:10px;">{{ ques.questions[questionIndex].text }}</div>
+        </div>
+        <div class="questionbody">
+          <div class="optioncontainerCheckbox">
+            <input type="checkbox" v-model="array" value="1" id="check1" name="mycheckbox" />
+            <label
+              for="check1"
+              class="clickable"
+              @click="selectMultipleOption()"
+              style="text-align : center; padding : 20px"
+            >ရင်ကြပ်ရောဂါရှိသည်။</label>
+          </div>
+          <div class="optioncontainerCheckbox">
+            <input type="checkbox" v-model="array" value="2" id="check2" name="mycheckbox" />
+            <label
+              for="check2"
+              class="clickable"
+              @click="selectMultipleOption()"
+              style="text-align : center; padding : 20px"
+            >ကိုယ်၀န်ဆောင်မိခင်ဖြစ်သည်။</label>
+          </div>
+          <div class="optioncontainerCheckbox">
+            <input type="checkbox" v-model="array" value="3" id="check3" name="mycheckbox" />
+            <label
+              for="check3"
+              class="clickable"
+              @click="selectMultipleOption()"
+              style="text-align : center; padding : 20px"
+            >ဆီးချို/‌သွေးချိုရှိသည်။</label>
+          </div>
+          <div class="optioncontainerCheckbox">
+            <input type="checkbox" v-model="array" value="4" id="check4" name="mycheckbox" />
+            <label
+              for="check4"
+              class="clickable"
+              @click="selectMultipleOption()"
+              style="text-align : center; padding : 20px"
+            >နှလုံးရောဂါ သို့မဟုတ် သွေးတိုးရှိသည်။</label>
+          </div>
+          <div class="optioncontainerCheckbox">
+            <input type="checkbox" v-model="array" value="5" id="check5" name="mycheckbox" />
+            <label
+              for="check5"
+              class="clickable"
+              @click="selectMultipleOption()"
+              style="text-align : center; padding : 20px"
+            >အဆုတ်ရောင်ရှိသည်။</label>
+          </div>
+          <div class="optioncontainerCheckbox">
+            <input type="checkbox" v-model="array" value="6" id="check6" name="mycheckbox" />
+            <label
+              for="check6"
+              class="clickable"
+              @click="selectMultipleOption()"
+              style="text-align : center; padding : 20px"
+            >ကင်ဆာရောဂါရှိသည်။</label>
+          </div>
+          <div class="optioncontainerCheckbox">
+            <input type="checkbox" v-model="array" value="7" id="check7" name="mycheckbox" />
+            <label
+              for="check7"
+              class="clickable"
+              @click="selectMultipleOption()"
+              style="text-align : center; padding : 20px"
+            >HIV/AIDS ရောဂါပိုးရှိသည်။</label>
+          </div>
+          <div class="optioncontainerCheckbox">
+            <input type="checkbox" v-model="array" value="8" id="check8" name="mycheckbox" />
+            <label
+              for="check8"
+              class="clickable"
+              @click="selectMultipleOption()"
+              style="text-align : center; padding : 20px"
+            >မည်သည့် လက္ခဏာမှမရှိပါ။</label>
+          </div>
         </div>
       </div>
       <br />
@@ -59,6 +139,7 @@ export default {
   },
   data() {
     return {
+      array: [],
       ques: ques,
       questionIndex: 0,
       selected: false,
@@ -83,9 +164,19 @@ export default {
       }
     },
     selectOption(index) {
-      Vue.set(this.userResponses, this.questionIndex, index);
+      console.log(this.userResponses);
+      if (this.questionIndex != 2) {
+        Vue.set(this.userResponses, this.questionIndex, index);
+      }
 
       this.selected = true;
+    },
+    selectMultipleOption() {
+      if (this.array) {
+        this.selected = true;
+      } else if (!this.array) {
+        this.selected = false;
+      }
     },
     compare(arr1, arr2) {
       // Check if all items exist and are in the same order
@@ -121,7 +212,7 @@ export default {
 
       let localStorageValue = {
         resultLocal: this.finalResult,
-        dateTime : datestring
+        dateTime: datestring
       };
 
       this.localStorageArray.push(localStorageValue);
@@ -139,12 +230,21 @@ export default {
 </script>
 
 <style scoped>
+input[name="mycheckbox"]:checked + .clickable {
+  border-color: #3f51b5;
+  box-shadow: 0px 0px 0px 3px #3f51b5;
+}
+
+input[name="myradio"]:checked + .clickable .checked-box {
+  display: block;
+}
+
+/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
 .visible {
   display: none;
 }
 
 .container-question {
- 
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -158,9 +258,13 @@ export default {
   opacity: 0;
   cursor: pointer;
 }
-
+.optioncontainerCheckbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
 .questioncontainer {
-  margin-top:100px;
+  margin-top: 100px;
   width: 95%;
   display: flex;
   height: auto;
@@ -211,7 +315,32 @@ export default {
   align-items: center;
   justify-content: center;
 }
-
+.optioncontainerCheckbox {
+  display: flex;
+  position: relative;
+  margin-top: 10px;
+  border-radius: 10px;
+  color: #212121;
+  font-size: 14px;
+  border: 0px;
+  outline: none;
+  width: 95%;
+  height: 65px;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
 .optioncontainer {
   display: flex;
   position: relative;
@@ -239,7 +368,7 @@ export default {
   transition: all 0.25s ease-in-out;
 }
 .optioncontainer:hover {
-  border:3px solid #3F51B5;
+  border: 3px solid #3f51b5;
   -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
     0 6px 6px rgba(0, 0, 0, 0.23);
   -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
@@ -259,7 +388,6 @@ export default {
   transition: all ease 0.6s;
   z-index: 10;
 }
-
 
 .headercontainer {
   top: 0;
