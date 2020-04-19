@@ -11,7 +11,8 @@
     </div>
 
     <div class="container-question" v-if="questionIndex<ques.questions.length">
-      <div class="questioncontainer" v-if="questionIndex != 2">
+      <div class="questioncontainer" v-if="checkQuestionIndex">
+
         <div class="questionname">
           <h2>{{questionIndex + 1}}</h2>
           <div style="text-align:center; padding:10px;">{{ ques.questions[questionIndex].text }}</div>
@@ -30,7 +31,90 @@
           <br />
         </div>
       </div>
-      <div class="questioncontainer" v-else>
+
+      <div class="questioncontainer" v-if="questionIndex == 1">
+        <div class="questionname">
+          <h2>{{questionIndex + 1}}</h2>
+          <div style="text-align:center; padding:10px;">{{ ques.questions[questionIndex].text }}</div>
+        </div>
+        <div class="questionbody">
+          <div class="optioncontainerCheckbox">
+            <input type="checkbox" v-model="array" value="1" id="check1" name="mycheckbox" />
+            <label
+              for="check1"
+              class="clickable"
+              @click="selectMultipleOption()"
+              style="text-align : center; padding : 20px"
+            >leelee</label>
+          </div>
+          <div class="optioncontainerCheckbox">
+            <input type="checkbox" v-model="array" value="2" id="check2" name="mycheckbox" />
+            <label
+              for="check2"
+              class="clickable"
+              @click="selectMultipleOption()"
+              style="text-align : center; padding : 20px"
+            >ကိုယ်၀န်ဆောင်မိခင်ဖြစ်သည်။</label>
+          </div>
+          <div class="optioncontainerCheckbox">
+            <input type="checkbox" v-model="array" value="3" id="check3" name="mycheckbox" />
+            <label
+              for="check3"
+              class="clickable"
+              @click="selectMultipleOption()"
+              style="text-align : center; padding : 20px"
+            >ဆီးချို/‌သွေးချိုရှိသည်။</label>
+          </div>
+          <div class="optioncontainerCheckbox">
+            <input type="checkbox" v-model="array" value="4" id="check4" name="mycheckbox" />
+            <label
+              for="check4"
+              class="clickable"
+              @click="selectMultipleOption()"
+              style="text-align : center; padding : 20px"
+            >နှလုံးရောဂါ သို့မဟုတ် သွေးတိုးရှိသည်။</label>
+          </div>
+          <div class="optioncontainerCheckbox">
+            <input type="checkbox" v-model="array" value="5" id="check5" name="mycheckbox" />
+            <label
+              for="check5"
+              class="clickable"
+              @click="selectMultipleOption()"
+              style="text-align : center; padding : 20px"
+            >အဆုတ်ရောင်ရှိသည်။</label>
+          </div>
+          <div class="optioncontainerCheckbox">
+            <input type="checkbox" v-model="array" value="6" id="check6" name="mycheckbox" />
+            <label
+              for="check6"
+              class="clickable"
+              @click="selectMultipleOption()"
+              style="text-align : center; padding : 20px"
+            >ကင်ဆာရောဂါရှိသည်။</label>
+          </div>
+          <div class="optioncontainerCheckbox">
+            <input type="checkbox" v-model="array" value="7" id="check7" name="mycheckbox" />
+            <label
+              for="check7"
+              class="clickable"
+              @click="selectMultipleOption()"
+              style="text-align : center; padding : 20px"
+            >HIV/AIDS ရောဂါပိုးရှိသည်။</label>
+          </div>
+          <div class="optioncontainerCheckbox">
+            <input type="checkbox" v-model="array" value="8" id="check8" name="mycheckbox" />
+            <label
+              for="check8"
+              class="clickable"
+              @click="selectMultipleOption()"
+              style="text-align : center; padding : 20px"
+            >မည်သည့် လက္ခဏာမှမရှိပါ။</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- for question no three -->
+      <div class="questioncontainer" v-if="questionIndex == 2">
         <div class="questionname">
           <h2>{{questionIndex + 1}}</h2>
           <div style="text-align:center; padding:10px;">{{ ques.questions[questionIndex].text }}</div>
@@ -162,9 +246,12 @@ export default {
       if (this.questionIndex >= this.ques.questions.length) {
         this.arrayMatch();
       }
+      if(this.questionIndex == 1 || this.questionIndex == 2){
+      var element1 = document.getElementById('check1').checked;
+      console.log(element1);
+      }
     },
     selectOption(index) {
-
       if (this.questionIndex != 2) {
         Vue.set(this.userResponses, this.questionIndex, index);
       }
@@ -225,6 +312,11 @@ export default {
 
   mounted() {
     this.userResponses = Array(this.ques.questions.length).fill(null);
+  },
+  computed :{
+    checkQuestionIndex(){
+      return this.questionIndex != 1 && this.questionIndex != 2;
+    }
   }
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div :class="darkmode? 'containerDark' : 'container'">
     <div :class="darkmode? 'questioncontainerDark' : 'questioncontainer'">
       <img src="../assets/cold.jpg" width="1000" height="300" style="margin-top: 75px;" />
 
