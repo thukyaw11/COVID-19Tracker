@@ -12,7 +12,6 @@
 
     <div class="container-question" v-if="questionIndex<ques.questions.length">
       <div class="questioncontainer" v-if="checkQuestionIndex">
-
         <div class="questionname">
           <h2>{{questionIndex + 1}}</h2>
           <div style="text-align:center; padding:10px;">{{ ques.questions[questionIndex].text }}</div>
@@ -39,7 +38,7 @@
         </div>
         <div class="questionbody">
           <div class="optioncontainerCheckbox">
-            <input type="checkbox" v-model="array" value="1" id="check1" name="mycheckbox" />
+            <input type="checkbox" v-model="array1" value="1" id="check1" name="mycheckbox" />
             <label
               for="check1"
               class="clickable"
@@ -48,7 +47,7 @@
             >leelee</label>
           </div>
           <div class="optioncontainerCheckbox">
-            <input type="checkbox" v-model="array" value="2" id="check2" name="mycheckbox" />
+            <input type="checkbox" v-model="array1" value="2" id="check2" name="mycheckbox" />
             <label
               for="check2"
               class="clickable"
@@ -57,7 +56,7 @@
             >ကိုယ်၀န်ဆောင်မိခင်ဖြစ်သည်။</label>
           </div>
           <div class="optioncontainerCheckbox">
-            <input type="checkbox" v-model="array" value="3" id="check3" name="mycheckbox" />
+            <input type="checkbox" v-model="array1" value="3" id="check3" name="mycheckbox" />
             <label
               for="check3"
               class="clickable"
@@ -66,7 +65,7 @@
             >ဆီးချို/‌သွေးချိုရှိသည်။</label>
           </div>
           <div class="optioncontainerCheckbox">
-            <input type="checkbox" v-model="array" value="4" id="check4" name="mycheckbox" />
+            <input type="checkbox" v-model="array1" value="4" id="check4" name="mycheckbox" />
             <label
               for="check4"
               class="clickable"
@@ -75,7 +74,7 @@
             >နှလုံးရောဂါ သို့မဟုတ် သွေးတိုးရှိသည်။</label>
           </div>
           <div class="optioncontainerCheckbox">
-            <input type="checkbox" v-model="array" value="5" id="check5" name="mycheckbox" />
+            <input type="checkbox" v-model="array1" value="5" id="check5" name="mycheckbox" />
             <label
               for="check5"
               class="clickable"
@@ -84,7 +83,7 @@
             >အဆုတ်ရောင်ရှိသည်။</label>
           </div>
           <div class="optioncontainerCheckbox">
-            <input type="checkbox" v-model="array" value="6" id="check6" name="mycheckbox" />
+            <input type="checkbox" v-model="array1" value="6" id="check6" name="mycheckbox" />
             <label
               for="check6"
               class="clickable"
@@ -93,7 +92,7 @@
             >ကင်ဆာရောဂါရှိသည်။</label>
           </div>
           <div class="optioncontainerCheckbox">
-            <input type="checkbox" v-model="array" value="7" id="check7" name="mycheckbox" />
+            <input type="checkbox" v-model="array1" value="7" id="check7" name="mycheckbox" />
             <label
               for="check7"
               class="clickable"
@@ -102,11 +101,11 @@
             >HIV/AIDS ရောဂါပိုးရှိသည်။</label>
           </div>
           <div class="optioncontainerCheckbox">
-            <input type="checkbox" v-model="array" value="8" id="check8" name="mycheckbox" />
+            <input type="checkbox" value="8" id="check8" name="mycheckbox" />
             <label
               for="check8"
               class="clickable"
-              @click="selectMultipleOption()"
+              @click="deselectAll()"
               style="text-align : center; padding : 20px"
             >မည်သည့် လက္ခဏာမှမရှိပါ။</label>
           </div>
@@ -188,7 +187,7 @@
             <label
               for="check8"
               class="clickable"
-              @click="selectMultipleOption()"
+              @click="deselectAll()"
               style="text-align : center; padding : 20px"
             >မည်သည့် လက္ခဏာမှမရှိပါ။</label>
           </div>
@@ -224,6 +223,7 @@ export default {
   data() {
     return {
       array: [],
+      array1: [],
       ques: ques,
       questionIndex: 0,
       selected: false,
@@ -239,6 +239,10 @@ export default {
   },
 
   methods: {
+    deselectAll() {
+      this.selected = true;
+      this.array1 = [];
+    },
     next() {
       if (this.questionIndex < this.ques.questions.length) this.questionIndex++;
       this.selected = false;
@@ -246,19 +250,22 @@ export default {
       if (this.questionIndex >= this.ques.questions.length) {
         this.arrayMatch();
       }
-      if(this.questionIndex == 1 || this.questionIndex == 2){
-      var element1 = document.getElementById('check1').checked;
-      console.log(element1);
+      console.log(this.questionIndex);
+      if (this.questionIndex == 3 || this.questionIndex == 2) {
+        for (var checkindex = 1; checkindex < 9; checkindex++) {
+          var el = "check" + checkindex;
+          document.getElementById(el).checked = false;
+        }
       }
     },
     selectOption(index) {
       if (this.questionIndex != 2) {
         Vue.set(this.userResponses, this.questionIndex, index);
       }
-
       this.selected = true;
     },
     selectMultipleOption() {
+      document.getElementById('check8').checked = false;
       if (this.array) {
         this.selected = true;
       } else if (!this.array) {
@@ -313,8 +320,8 @@ export default {
   mounted() {
     this.userResponses = Array(this.ques.questions.length).fill(null);
   },
-  computed :{
-    checkQuestionIndex(){
+  computed: {
+    checkQuestionIndex() {
       return this.questionIndex != 1 && this.questionIndex != 2;
     }
   }
