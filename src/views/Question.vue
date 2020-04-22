@@ -242,7 +242,7 @@ export default {
       if (this.questionIndex >= this.ques.questions.length) {
         this.arrayMatch();
       }
-      console.log(this.questionIndex);
+  
       if (this.questionIndex == 3 || this.questionIndex == 2) {
         for (var checkindex = 1; checkindex < 9; checkindex++) {
           var el = "check" + checkindex;
@@ -277,7 +277,7 @@ export default {
     },
     arrayMatch() {
       const finalArray = [...this.userResponses, ...this.array1];
-      console.log(finalArray);
+ 
       if (finalArray.length == 10) {
         this.seeResultClick = true;
 
