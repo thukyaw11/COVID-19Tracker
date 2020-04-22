@@ -311,74 +311,46 @@
           </div>
         </div>
       </div>
-
+      <br />
+      <!---Updateddddd--------->
+      <div
+        style="text-align:center; color:#757575; font-size:14px;"
+      >Proudly Collaborated with Good Hope</div>
       <br />
 
-      <div class="bar"></div>
-
-      <h4 style="color:#757575;">Developed By</h4>
-
-      <div class="profilecontainer">
-        <div class="profileflex1">
-          <div class="flexbox1">
-            <div class="profile">
-              <img src="../assets/heinthanth.jpg" />
-            </div>
-            <div class="name">Hein Thanth</div>
-          </div>
-          <div class="flexbox2">
-            <div class="profile">
-              <img src="../assets/phonemyatkhine.jpg" />
-            </div>
-            <div class="name">Phone Myat Khine</div>
-          </div>
-          <div class="flexbox3">
-            <div class="profile">
-              <img src="../assets/phyoheinkyaw.jpg" />
-            </div>
-            <div class="name">Phyo Hein Kyaw</div>
+      <div :class="darkmode? 'GoodhopecontainerDark' : 'Goodhopecontainer'">
+        <div class="GHflex1">
+          <div class="GHheading">Good Hope</div>
+          <div class="GHlogo">
+            <img src="../assets/goodhope.jpg" width="55" height="55" />
           </div>
         </div>
-        <div class="profileflex2">
-          <div class="flexbox1">
-            <div class="profile">
-              <img src="../assets/aunghtetnyein.jpg" />
-            </div>
-            <div class="name">Aung Htet Nyein</div>
-          </div>
-          <div class="flexbox2">
-            <div class="profile">
-              <img src="../assets/kaungkhant.jpg" />
-            </div>
-            <div class="name">Kaung Khant</div>
-          </div>
-          <div class="flexbox3">
-            <div class="profile">
-              <img src="../assets/aungkhantthaw.jpg" />
-            </div>
-            <div class="name">Aung Khant Thaw</div>
-          </div>
-        </div>
-        <div class="profileflex3">
-          <div class="flexbox1">
-            <div class="profile">
-              <img src="../assets/myatnoeaein.jpg" />
-            </div>
-            <div class="name">Myat Noe Aein</div>
-          </div>
-          <div class="flexbox2">
-            <div class="profile">
-              <img src="../assets/male-avatar-icon-png-7.png" width="55" height="55" />
-            </div>
-            <div class="name">Min Thu Kyaw</div>
-          </div>
-          <div class="flexbox3"></div>
+        <div class="GHflex2">
+          <p>
+              {{$t('goodHope.para1')}}
+            <br />
+            <br />
+            {{$t('goodHope.para2')}}
+          </p>
         </div>
       </div>
 
       <br />
-      <p style="color:#757575;">Copyright 2020 Covid 19 | Myanmar | UIT-SU</p>
+      <div class="bar"></div>
       <br />
+
+      <div style="color:#757575;">Developed by UITSU | Good Hope</div>
+
+      <div class="profilecontainer">
+        <div class="image1">
+          <img src="../assets/uitsu.jpg" width="65" height="65" />
+        </div>
+        <div class="image2">
+          <img src="../assets/goodhope.jpg" width="65" height="65" />
+        </div>
+      </div>
+
+      <div style="color:#757575;">Copyright 2020 Covid 19 | Myanamr</div>
     </div>
   </div>
 </template>
@@ -550,9 +522,11 @@ export default {
 }
 .profilecontainer {
   width: 100%;
-  height: 300px;
+  height: 125px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 .profileflex1 {
   display: flex;
@@ -607,5 +581,71 @@ img {
   border-radius: 100px;
   width: 55px;
   height: 55px;
+}
+
+/*updatedddddddddddd*/
+
+.Goodhopecontainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #f5f5f5;
+  height: 300px;
+  border-radius: 15px;
+  align-items: center;
+}
+.GoodhopecontainerDark {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #212121;
+  height: 300px;
+  border-radius: 15px;
+  align-items: center;
+}
+.GHflex1 {
+  display: flex;
+  flex: 2;
+  width: 90%;
+  margin-top: 10px;
+}
+.GHheading {
+  display: flex;
+  flex: 1;
+  font-size: 24px;
+  font-weight: bold;
+  align-items: center;
+}
+.GHlogo {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: flex-end;
+}
+.GHflex2 {
+  display: flex;
+  flex: 4;
+  padding: 12px;
+  align-items: flex-end;
+  justify-content: center;
+}
+.image1 {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: -10px;
+  z-index: 0.5;
+}
+.image1 img {
+  border: 2px solid #fbbf3c;
+}
+.image2 {
+  display: flex;
+  flex: 1;
+  margin-left: -10px;
+  align-items: center;
+  justify-content: flex-start;
+  
 }
 </style>

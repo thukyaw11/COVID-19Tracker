@@ -62,6 +62,10 @@ const messages = {
             serious : "Serious Cirtical",
             newDeath : "New Death",
             casepermin : "Case per 1 min"
+        },
+        goodHope : {
+            para1 : 'Good Hope is a student organization based in Yangon University of Economics, currently operating Online Knowledge Sharing Platform and Research projects.',
+            para2 : ' Here, we collaborate with UITSU to create more effective features, to help the community to be aware of COVID-19.'
         }
 
     },
@@ -123,6 +127,10 @@ const messages = {
             serious : "ပြင်းထန်",
             newDeath : "ထပ်မံ သေဆုံး",
             casepermin : "၁မိနစ် ဖြစ်ပွားမှုနှုန်း"
+        },
+        goodHope : {
+            para1 : 'Good Hope သည် ရန်ကုန်စီးပွားရေးတက္ကသိုလ်မှ ကျောင်းသားအဖွဲ့အစည်းတစ်ခုဖြစ်ပြီး လက်ရှိတွင် အင်တာနက်အခြေပြု စီးပွားရေးဆိုင်ရာဗဟုသုတများ မျှဝေခြင်းနှင့် သုတေသနအစီအစဉ်များအား လုပ်ဆောင်လျက်ရှိသည်။',
+            para2 : 'ပြည်သူများအား ကိုဗစ် - ၁၉ အကြောင်း ပိုမိုထိရောက်စွာ အသိပညာပေးနိုင်ရန်ရည်ရွယ်၍ သတင်းအချက်အလက်နည်းပညာတက္ကသိုလ် ကျောင်းသားများသမဂ္ဂနှင့် ပူးပေါင်းဆောင်ရွက်လျက်ရှိသည်။'
         }
 
 

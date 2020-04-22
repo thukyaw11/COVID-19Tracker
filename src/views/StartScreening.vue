@@ -1,5 +1,6 @@
+ 
 <template>
-  <div class="container">
+  <div :class="darkmode? 'containerDark' : 'container'">
     <div :class="darkmode? 'questioncontainerDark' : 'questioncontainer'">
       <img src="../assets/cold.jpg" width="1000" height="300" style="margin-top: 75px;" />
 
@@ -40,7 +41,6 @@ export default {
   },
   mounted() {
     // lang will be automatically transported to the parameter.
-
     if (this.lang == "mm") {
       this.$root.$data.title = "ကျန်းမာရေး စစ်ဆေးခြင်း";
     }
@@ -69,7 +69,6 @@ export default {
     }
   }
 };
-
 /* eslint-enable no-console */
 </script>
 
@@ -84,7 +83,6 @@ export default {
   /* question home */
   .quesheading
 {
-
   margin-left:20px;
   margin-right:20px;
   display:flex;

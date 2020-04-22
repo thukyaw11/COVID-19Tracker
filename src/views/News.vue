@@ -19,9 +19,9 @@
           >
             <div class="contentflex1">
               <div :class="darkmode? 'contentdescriptionDark' : 'contentdescription'">
-                <p class="comment more">{{news.title | truncate(140, '...')}}</p>
+                <p class="comment more">{{news.title | truncate(130, '...')}}</p>
               </div>
-              <div :class="darkmode? 'contentsourcedark' : 'contentsource'">source : {{news.source}}</div>
+              <div :class="darkmode? 'contentsourcedark' : 'contentsource'">source : {{news.sourceId}}</div>
             </div>
             <div :class="darkmode? 'contentflex2Dark' : 'contentflex2'">
               <i class="material-icons" style="font-size:20px;">arrow_forward_ios</i>
@@ -29,7 +29,7 @@
           </a>
         </div>
       </div>
-      <div v-else :class="darkmode? 'contentcontainerDark' : 'contentcontainer'" >
+      <div v-else :class="darkmode? 'contentcontainerDark' : 'contentcontainer'">
         <h3 style="padding: 0px 30px">No Post Yet</h3>
       </div>
 
@@ -43,9 +43,9 @@
           >
             <div class="contentflex1">
               <div :class="darkmode? 'contentdescriptionDark' : 'contentdescription'">
-                <p>{{news.title | truncate(140, '...')}}</p>
+                <p>{{news.title | truncate(130, '...')}}</p>
               </div>
-              <div :class="darkmode? 'contentsourcedark' : 'contentsource'">source : {{news.source}}</div>
+              <div :class="darkmode? 'contentsourcedark' : 'contentsource'">source : {{news.sourceId}}</div>
             </div>
 
             <div :class="darkmode? 'contentflex2Dark' : 'contentflex2'">
@@ -58,7 +58,7 @@
         <h3 style="padding: 0px 30px">No Post Yet</h3>
       </div>
 
-      <h1 style="margin-left: 5px;">Uploaded</h1>
+      <!-- <h1 style="margin-left: 5px;">Uploaded</h1>
       <div v-if="uploadedNews.length > 0">
         <div v-for="news in uploadedNews" v-bind:key="news._id">
           <a
@@ -68,7 +68,7 @@
           >
             <div class="contentflex1">
               <div :class="darkmode? 'contentdescriptionDark' : 'contentdescription'">
-                <p>{{news.title | truncate(120, '...')}}</p>
+                <p>{{news.title | truncate(100, '...')}}</p>
               </div>
               <div :class="darkmode? 'contentsourcedark' : 'contentsource'">source : {{news.source}}</div>
             </div>
@@ -81,7 +81,7 @@
       </div>
       <div v-else :class="darkmode? 'contentcontainerDark' : 'contentcontainer'">
         <h3 style="padding: 0px 30px">No Post Yet</h3>
-      </div>
+      </div>-->
       <br />
     </div>
   </div>
@@ -95,11 +95,11 @@ export default {
   data() {
     return {
       contracted: true,
-      baseURL: "https://covid19mm.info/api/news",
+      tdybaseURL: "",
+      yesbaseURL: "",
       newsRequest: [],
       latestNews: [],
       yesterdayNews: [],
-      uploadedNews: [],
       newsReqMessage: "",
       today: "",
       yesterday: "",
@@ -110,19 +110,6 @@ export default {
     };
   },
   mounted() {
-    //yesterday, today and uploaded
-    const todayDate = new Date();
-    const yesterdayDate = new Date(todayDate);
-
-    yesterdayDate.setDate(yesterdayDate.getDate() - 1);
-
-    this.today = todayDate.toDateString();
-    this.yesterday = yesterdayDate.toDateString();
-    var isoToday = todayDate.toISOString().slice(0, 10);
-    var isoYesterday = yesterdayDate.toISOString().slice(0, 10);
-
-    console.log("today " + this.today);
-    console.log("yesterday " + this.yesterday);
     //change the nav bar content
     if (this.lang == "mm") {
       this.$root.$data.title = "သတင်း";
@@ -133,35 +120,16 @@ export default {
 
     this.newsReqMessage = "news in progress";
 
-    axios.all([this.fetchNews()]).then(
-      axios.spread(newsContent => {
-        console.log(newsContent.data);
-        this.newsRequest = newsContent.data;
-        this.setData(newsContent.data);
-        newsContent.data.forEach(dates => {
-          var mydate = new Date(dates.date);
+    axios.all([this.fetchTdyNews(), this.fetchYesNews()]).then(
+      axios.spread((newsContentToday, newsContentYesterday) => {
+        console.log(newsContentYesterday);
+        if (newsContentToday.status == 200) {
+          this.latestNews = newsContentToday.data.items;
+        }
 
-          if (mydate.toDateString() == this.today) {
-            this.latestNews = this.newsRequest.filter(function(date) {
-              return date.date == isoToday;
-            });
-          }
-
-          if (mydate.toDateString() == this.yesterday) {
-            this.yesterdayNews = this.newsRequest.filter(function(date) {
-              return date.date == isoYesterday;
-            });
-          }
-
-          if (
-            mydate.toDateString() != this.yesterday &&
-            mydate.toDateString() != this.today
-          ) {
-            this.uploadedNews = this.newsRequest.filter(function(date) {
-              return date.date != isoYesterday && date.date != isoToday;
-            });
-          }
-        });
+        if (newsContentYesterday.status == 200) {
+          this.yesterdayNews = newsContentYesterday.data.items;
+        }
       })
     );
   },
@@ -179,9 +147,13 @@ export default {
         this.$root.$data.title = "Donation";
       }
     },
-    fetchNews() {
+    fetchTdyNews() {
       this.newsReqMessage = "news request began";
-      return axios.get(this.baseURL);
+      return axios.get(this.tdybaseURL);
+    },
+    fetchYesNews() {
+      this.newsReqMessage = "news request began";
+      return axios.get(this.yesbaseURL);
     },
     linkIt(url) {
       return url;
@@ -191,6 +163,18 @@ export default {
     }
   },
   created() {
+    //yesterday, today and uploaded
+    const todayDate = new Date().toISOString().slice(0, 10);
+    const tmrDate = new Date(todayDate);
+
+    tmrDate.setDate(tmrDate.getDate() + 1);
+
+    const tmrIsoDate = tmrDate.toISOString().slice(0, 10);
+
+    this.tdybaseURL = `https://aa56zbybij.execute-api.ap-southeast-1.amazonaws.com/v1/news/covid-19?from=${tmrIsoDate}`;
+    this.yesbaseURL = `https://aa56zbybij.execute-api.ap-southeast-1.amazonaws.com/v1/news/covid-19?from=${todayDate}`;
+
+
     this.$eventHub.$on("change-name", this.changeName);
 
     this.$darkModeBus.$on("dark-mode", this.changeDark);
@@ -279,14 +263,14 @@ export default {
   font-size: 15px;
 }
 .contentflex2 {
-  color:#212121;
+  color: #212121;
   display: flex;
   flex: 1;
   align-items: center;
   justify-content: center;
 }
 .contentflex2Dark {
-  color:#f5f5f5;
+  color: #f5f5f5;
   display: flex;
   flex: 1;
   align-items: center;

@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <div id="myNav" :class="darkmode? 'overlayDark' : 'overlay'">
-      <div style="position:relative; top:5%;" :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">{{$t ('menutitle')}}</div>
+      <div
+        style="position:relative; top:5%;"
+        :style="darkmode? 'color: #f5f5f5' : 'color : #121212'"
+      >{{$t ('menutitle')}}</div>
       <div :class="darkmode? 'overlay-contentDark' : 'overlay-content'">
         <router-link
           to="/global"
@@ -43,7 +46,10 @@
       </div>
       <br />
       <div class="languageswitcher">
-        <div class="switchheading" :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">{{$t ('langdesc')}}</div>
+        <div
+          class="switchheading"
+          :style="darkmode? 'color: #f5f5f5' : 'color : #121212'"
+        >{{$t ('langdesc')}}</div>
         <div class="switchcontainer">
           <div
             :class="darkmode? 'switch1Dark' : 'switch1'"
@@ -55,7 +61,9 @@
           >{{$t ('langswitchMyanmar')}}</div>
         </div>
       </div>
-      <md-switch class="md-primary" v-model="darkmode" @change="closeChange(darkmode)"><span :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">Dark Mode</span></md-switch>
+      <md-switch class="md-primary" v-model="darkmode" @change="closeChange(darkmode)">
+        <span :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">Dark Mode</span>
+      </md-switch>
       <div
         class="closebtn"
         @click="closeNav()"
@@ -240,7 +248,7 @@
                 >
                   <div class="desnewscontent">
                     <div class="box1">{{latest.title}}</div>
-                    <div class="box2">Source :{{latest.source}}</div>
+                    <div class="box2">Source :{{latest.sourceId}}</div>
                   </div>
                 </a>
               </div>
@@ -261,7 +269,7 @@
                 >
                   <div class="desnewscontent">
                     <div class="box1">{{yesterday.title}}</div>
-                    <div class="box2">Source : {{yesterday.source}}</div>
+                    <div class="box2">Source : {{yesterday.sourceId}}</div>
                   </div>
                 </a>
               </div>
@@ -273,28 +281,6 @@
 
             <br />
 
-            <div class="desnewsheading">Uploaded</div>
-            <br />
-            <div v-if="uploadedNews.length > 0">
-              <div class="desnewsbody" v-for="uploaded in uploadedNews" :key="uploaded._id">
-                <a
-                  class="contentcontainer"
-                  :href="linkIt(uploaded.url)"
-                  style="color : black; text-decoration: none;"
-                >
-                  <div class="desnewscontent">
-                    <div class="box1">{{uploaded.title | truncate(140, '...')}}</div>
-                    <div class="box2">Source : {{uploaded.source}}</div>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div v-else class="contentcontainer">
-              <h3 style="padding: 0px 20px;  color:#757575;">No Post Yet</h3>
-              <hr style="border:1px solid #eee; width:95%; margin-left:0;" />
-            </div>
-
-            <br />
           </div>
         </div>
       </div>
@@ -343,7 +329,8 @@ export default {
       newsRequest: [],
       latestNews: [],
       yesterdayNews: [],
-      uploadedNews: [],
+      tdybaseURL : '',
+      yesbaseURL : '',
       propCountryName: "",
       contactlist: [],
       searchContacts: "",
@@ -408,8 +395,11 @@ export default {
         }
       );
     },
-    fetchNews() {
-      return axios.get("https://covid19mm.info/api/news");
+    fetchTdyNews() {
+      return axios.get(this.tdybaseURL);
+    },
+    fetchYesNews(){
+      return axios.get(this.yesbaseURL)
     },
     fetchConacts() {
       return axios.get("https://covid19mm.info/api/contact/list");
@@ -440,6 +430,18 @@ export default {
   },
   created() {
     this.urlLocation = window.location.href.split("/").pop();
+    //yesterday, today and uploaded
+    const todayDate = new Date().toISOString().slice(0, 10);
+    const tmrDate = new Date(todayDate);
+
+    tmrDate.setDate(tmrDate.getDate() + 1);
+
+    const tmrIsoDate = tmrDate.toISOString().slice(0, 10);
+
+    this.tdybaseURL = `https://aa56zbybij.execute-api.ap-southeast-1.amazonaws.com/v1/news/covid-19?from=${tmrIsoDate}`;
+    this.yesbaseURL = `https://aa56zbybij.execute-api.ap-southeast-1.amazonaws.com/v1/news/covid-19?from=${todayDate}`;
+
+
   },
   mounted() {
     console.log(this.darkmode);
@@ -467,20 +469,12 @@ export default {
     //yesterday, today and uploaded
     document.getElementById("myNav").style.height = "0%";
 
-    const todayDate = new Date();
-    const yesterdayDate = new Date(todayDate);
 
-    yesterdayDate.setDate(yesterdayDate.getDate() - 1);
-
-    this.today = todayDate.toDateString();
-    this.yesterday = yesterdayDate.toDateString();
-    var isoToday = todayDate.toISOString().slice(0, 10);
-    var isoYesterday = yesterdayDate.toISOString().slice(0, 10);
 
     axios
-      .all([this.fetchCountriesCases(), this.fetchNews(), this.fetchConacts()])
+      .all([this.fetchCountriesCases(), this.fetchTdyNews(), this.fetchYesNews(), this.fetchConacts()])
       .then(
-        axios.spread((countrycasesResponse, newsResponse, contactsResponse) => {
+        axios.spread((countrycasesResponse, newsContentToday, newsContentYesterday, contactsResponse) => {
           //country response
           countrycasesResponse.json().then(data => {
             this.CountryByCases = data.countries_stat;
@@ -488,32 +482,14 @@ export default {
           });
           //news response
           // news request filter by yesterday, tomorrow and today
-          this.newsRequest = newsResponse.data;
-          this.setNews(newsResponse.data);
-          newsResponse.data.forEach(dates => {
-            var mydate = new Date(dates.date);
 
-            if (mydate.toDateString() == this.today) {
-              this.latestNews = this.newsRequest.filter(function(date) {
-                return date.date == isoToday;
-              });
-            }
+          if (newsContentToday.status == 200) {
+          this.latestNews = newsContentToday.data.items;
+        }
 
-            if (mydate.toDateString() == this.yesterday) {
-              this.yesterdayNews = this.newsRequest.filter(function(date) {
-                return date.date == isoYesterday;
-              });
-            }
-
-            if (
-              mydate.toDateString() != this.yesterday &&
-              mydate.toDateString() != this.today
-            ) {
-              this.uploadedNews = this.newsRequest.filter(function(date) {
-                return date.date != isoYesterday && date.date != isoToday;
-              });
-            }
-          });
+        if (newsContentYesterday.status == 200) {
+          this.yesterdayNews = newsContentYesterday.data.items;
+        }
 
           //contacts response
           this.contactlist = contactsResponse.data;
@@ -597,13 +573,13 @@ export default {
   }
   #app {
     background-color: #ffffff;
-    font-family: "Poppins", sans-serif,'Noto Sans Myanmar' ;
-    font-size:14px;
+    font-family: "Poppins", sans-serif, "Noto Sans Myanmar";
+    font-size: 14px;
   }
   #appDark {
     background-color: #121212;
-    font-family: "Poppins", sans-serif, 'Noto Sans Myanmar';
-    font-size:14px;
+    font-family: "Poppins", sans-serif, "Noto Sans Myanmar";
+    font-size: 14px;
   }
 
   .desktopcontainer {
@@ -812,15 +788,15 @@ export default {
   .Emergencybutton {
     display: flex;
     background-color: #e53935;
-    color:#f5f5f5;
+    color: #f5f5f5;
     width: 40px;
     height: 40px;
     border-radius: 50%;
   }
-   .EmergencybuttonDark {
+  .EmergencybuttonDark {
     display: flex;
     background-color: #e57373;
-    color:#121212;
+    color: #121212;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -832,7 +808,6 @@ export default {
     align-items: center;
     justify-content: center;
     font-size: 20px;
-  
   }
 
   .toggle {
