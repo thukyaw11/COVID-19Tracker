@@ -107,6 +107,8 @@ export default {
     )
       .then(response => {
         response.json().then(data => {
+          this.updatedTime = data.statistic_taken_at;
+
           this.DataByAffectedCountryDetail = data.countries_stat;
           this.setData(data.countries_stat);
         });
@@ -147,7 +149,7 @@ export default {
         return bCases - aCases;
       });
       this.DataByAffectedCountryDetail = sortedArray;
-      this.updatedTime = this.$root.$data.updatedTime;
+
     },
     toggleData(index) {
       var growDiv = document.getElementsByClassName("grow")[index];

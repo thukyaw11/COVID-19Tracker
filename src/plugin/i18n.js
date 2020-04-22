@@ -24,6 +24,7 @@ const messages = {
             heading : "Global Dashboard"
         },
         localdashboard : {
+            tested : "Tested",
             confirmcase : "Infected",
             newcases : "New Cases",
             recover : "Recover",
@@ -88,7 +89,8 @@ const messages = {
             countries : "နိုင်ငံပေါင်း",
             heading : "ကမ္ဘာတစ်ဝှမ်း"
         },
-        localdashboard : {
+        localdashboard : {            
+            tested : "စစ်ဆေးပြီး",
             confirmcase : "ကူးစက်ခံ လူနာ",
             newcases : "ယနေ့ ထပ်တိုးလူနာ",
             recover : "ရောဂါပျောက်ဆုံးလူနာ",

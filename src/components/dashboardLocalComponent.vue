@@ -9,8 +9,8 @@
             >Confirmed Cases</div>
             <div
               style="font-size:36px; color:#757575; padding-top:20px"
-              v-if="caseinMyanmar[0].total_cases"
-            >{{myanmarStat.total_cases}}</div>
+              v-if="caseinMyanmar[0][0].total_cases"
+            >{{myanmarStat[0].total_cases}}</div>
             <div style="font-size:36px; color:#4CAF50; padding-top:20px" v-else>0</div>
           </div>
         </div>
@@ -19,8 +19,8 @@
             <div>Recover</div>
             <div
               style="font-size:36px; color:#4CAF50; padding-top:20px"
-              v-if="caseinMyanmar[0].total_recovered"
-            >{{myanmarStat.total_recovered}}</div>
+              v-if="caseinMyanmar[0][0].total_recovered"
+            >{{myanmarStat[0].total_recovered}}</div>
             <div style="font-size:36px; color:#4CAF50; padding-top:20px" v-else>0</div>
           </div>
         </div>
@@ -29,8 +29,8 @@
             <div>Deaths</div>
             <div
               style="font-size:36px; color:#F44336; padding-top:20px"
-              v-if="caseinMyanmar[0].total_deaths"
-            >{{myanmarStat.total_deaths}}</div>
+              v-if="caseinMyanmar[0][0].total_deaths"
+            >{{myanmarStat[0].total_deaths}}</div>
             <div style="font-size:36px; color:#4CAF50; padding-top:20px" v-else>0</div>
           </div>
         </div>

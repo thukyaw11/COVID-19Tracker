@@ -7,20 +7,20 @@
       <div class="descomfirmedcase">
         <div class="numbercontainer1">
           <div style="display:flex; align-items:flex-start; justify-content:flex-start;">Confirmed</div>
-          <div style="font-size:36px; color:#757575; padding-top:20px">{{caseByCountry.total_cases}}</div>
+          <div style="font-size:36px; color:#757575; padding-top:20px">{{caseByCountry[0].total_cases}}</div>
         </div>
       </div>
       <div class="desrecover">
         <div class="numbercontainer2">
           <div>Recover</div>
-          <div style="font-size:36px; color:#4CAF50; padding-top:20px" v-if="statusCountry[0].total_recovered">{{caseByCountry.total_recovered}}</div>
+          <div style="font-size:36px; color:#4CAF50; padding-top:20px" v-if="statusCountry[0][0].total_recovered">{{caseByCountry[0].total_recovered}}</div>
           <div style="font-size:36px; color:#4CAF50; padding-top:20px" v-else>0</div>
         </div>
       </div>
       <div class="desdeath">
         <div class="numbercontainer3">
           <div>Deaths</div>
-          <div style="font-size:36px; color:#F44336; padding-top:20px" v-if="statusCountry[0].total_deaths">{{caseByCountry.total_deaths}}</div>
+          <div style="font-size:36px; color:#F44336; padding-top:20px" v-if="statusCountry[0][0].total_deaths">{{caseByCountry[0].total_deaths}}</div>
           <div style="font-size:36px; color:#F44336; padding-top:20px" v-else>0</div>
         </div>
       </div>
@@ -81,6 +81,7 @@ export default {
         })
         .then(response => {
           response.json().then(statusByCountry => {
+            console.log(statusByCountry);
             this.statusCountry = statusByCountry.latest_stat_by_country;
             this.setData(statusByCountry.latest_stat_by_country);
           });

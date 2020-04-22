@@ -1,11 +1,17 @@
-
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
+  <!-- facebook sharing -->
+  <meta property="og:url"
+    content="https://covid19mm.netlify.com" />
+  <meta property="og:type" content="cvoid tracker" />
+  <meta property="og:title" content="COVID19 MM" />
+  <meta property="og:description" content="We hope to bring an information source that rolls updates on COVID-19, especially for cases in Myanmar, to our citizens.This website is built by the University of Information Technology Students' Union. APIs below are still in development stage and later will be published for further development purposes." />
+  <meta property="og:image"
+    content="https://i.postimg.cc/9Fm1LXyb/COVID-19-Cover-2.png" />
   <!-- add icon link -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -18,7 +24,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/v4-shims.css">
   <link rel="stylesheet" href="https://web.zetamm.com/fonts/1.5.0/css/Pyidaungsu">
-        <link href='http://fonts.googleapis.com/earlyaccess/notosansmyanmar.css' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/earlyaccess/notosansmyanmar.css' rel='stylesheet' type='text/css'>
   <!-- material icon -->
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons">
 
@@ -39,16 +45,19 @@
   <!-- built files will be auto injected -->
 </body>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
 
-    const darkmode = localStorage.getItem('darkmode')? JSON.parse(localStorage.getItem('darkmode')) : 'false';
+  const darkmode = localStorage.getItem('darkmode') ? JSON.parse(localStorage.getItem('darkmode')) : 'false';
 
 
-    if(darkmode){
-      document.getElementsByTagName('body')[0].style.backgroundColor = "#121212";
-    }else{
-      document.getElementsByTagName('body')[0].style.backgroundColor = "#ffffff";
-    }
+  if (darkmode) {
+    document.getElementsByTagName('body')[0].style.backgroundColor = "#121212";
+  } else {
+    document.getElementsByTagName('body')[0].style.backgroundColor = "#ffffff";
+  }
+
+
 </script>
 <!-- <script type="text/javascript" src="/src/toggle.js"></script> -->
 

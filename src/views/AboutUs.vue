@@ -326,12 +326,12 @@
           </div>
         </div>
         <div class="GHflex2">
-          <p>
+          
               {{$t('goodHope.para1')}}
             <br />
             <br />
             {{$t('goodHope.para2')}}
-          </p>
+          
         </div>
       </div>
 
@@ -590,7 +590,7 @@ img {
   flex-direction: column;
   width: 100%;
   background-color: #f5f5f5;
-  height: 300px;
+  height: 350px;
   border-radius: 15px;
   align-items: center;
 }
@@ -599,7 +599,7 @@ img {
   flex-direction: column;
   width: 100%;
   background-color: #212121;
-  height: 300px;
+  height: 350px;
   border-radius: 15px;
   align-items: center;
 }
@@ -625,9 +625,11 @@ img {
 .GHflex2 {
   display: flex;
   flex: 4;
-  padding: 12px;
-  align-items: flex-end;
-  justify-content: center;
+  margin-left:20px;
+  margin-right:20px;
+  text-align:left;
+  align-items:flex-start;
+  justify-content:flex-start;
 }
 .image1 {
   display: flex;

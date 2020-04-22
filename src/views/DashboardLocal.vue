@@ -6,21 +6,21 @@
           <div class="mapvector">
             <div class="mapflex1">
               <div class="ConfirmedCaseContainer">
+                <div class="caseheading">{{$t('localdashboard.tested')}}</div>
+                <div
+                  class="number"
+                  style="font-size:42px; font-weight: bold"
+                  v-if="caseinMyanmar[0][0].total_tests"
+                >{{casesmm[0].total_tests}}</div>
+                <div class="number" style="font-size:42px;" v-else>0</div>
+              </div>
+              <div class="ConfirmedCaseContainer">
                 <div class="caseheading">{{$t('localdashboard.confirmcase')}}</div>
                 <div
                   class="number"
                   style="font-size:42px; font-weight: bold"
-                  v-if="caseinMyanmar[0].total_cases"
-                >{{casesmm.total_cases}}</div>
-                <div class="number" style="font-size:42px;" v-else>0</div>
-              </div>
-              <div class="ConfirmedCaseContainer">
-                <div class="caseheading">{{$t('localdashboard.newcases')}}</div>
-                <div
-                  class="number"
-                  style="font-size:42px;"
-                  v-if="caseinMyanmar[0].new_cases"
-                >{{casesmm.new_cases}}</div>
+                  v-if="caseinMyanmar[0][0].total_cases"
+                >{{casesmm[0].total_cases}}</div>
                 <div class="number" style="font-size:42px;" v-else>0</div>
               </div>
             </div>
@@ -93,15 +93,23 @@
               </svg>
             </div>
           </div>
-
+          <div class="ConfirmedCaseContainer">
+            <div class="caseheading">{{$t('localdashboard.newcases')}}</div>
+            <div
+              class="number"
+              style="font-size:42px;"
+              v-if="caseinMyanmar[0][0].new_cases"
+            >{{casesmm[0].new_cases}}</div>
+            <div class="number" style="font-size:42px;" v-else>0</div>
+          </div>
           <div :class="darkmode? 'RecoverCaseDark' : 'RecoverCase'">
             <div class="ConfirmedCaseContainer">
               <div class="caseheading">{{$t('localdashboard.recover')}}</div>
               <div
                 :class="darkmode? 'numberrecoverdark' : 'numberrecover'"
                 style="font-size:42px;"
-                v-if="caseinMyanmar[0].total_recovered"
-              >{{casesmm.total_recovered}}</div>
+                v-if="caseinMyanmar[0][0].total_recovered"
+              >{{casesmm[0].total_recovered}}</div>
               <div class="number" style="font-size:42px;" v-else>0</div>
             </div>
           </div>
@@ -109,10 +117,10 @@
             <div class="ConfirmedCaseContainer">
               <div class="caseheading">{{$t('localdashboard.death')}}</div>
               <div
-                :class="darkmode? 'numberdeathdark' : 'numberdeath'" 
+                :class="darkmode? 'numberdeathdark' : 'numberdeath'"
                 style="font-size:42px;"
-                v-if="caseinMyanmar[0].total_deaths"
-              >{{casesmm.total_deaths}}</div>
+                v-if="caseinMyanmar[0][0].total_deaths"
+              >{{casesmm[0].total_deaths}}</div>
               <div class="number" style="font-size:42px;" v-else>0</div>
             </div>
           </div>
@@ -121,14 +129,14 @@
             <div
               class="number"
               style="font-size:42px;"
-              v-if="caseinMyanmar[0].serious_critical"
-            >{{casesmm.serious_critical}}</div>
+              v-if="caseinMyanmar[0][0].serious_critical"
+            >{{casesmm[0].serious_critical}}</div>
             <div class="number" style="font-size:42px;" v-else>0</div>
           </div>
 
           <div
             style="text-align:center; color:#757575; margin-bottom:100px;"
-          >Last updated: {{addHour(casesmm.record_date)}}</div>
+        >Last updated: {{addHour(casesmm[0].record_date)}}</div>
         </div>
       </div>
       <div v-else class="spinner">
@@ -139,7 +147,10 @@
       <div class="global">
         <div class="toggleheading">
           <router-link to="/">
-            <a style="text-decoration:none;" :style="darkmode? 'color : #fff' : 'color : black'">{{$t('bottomBar.global')}}</a>
+            <a
+              style="text-decoration:none;"
+              :style="darkmode? 'color : #fff' : 'color : black'"
+            >{{$t('bottomBar.global')}}</a>
           </router-link>
         </div>
         <div class="inactivedots"></div>
@@ -147,7 +158,10 @@
       <div class="local">
         <div class="toggleheading">
           <router-link to="/local">
-            <a style="text-decoration:none;" :style="darkmode? 'color : #fff' : 'color : black'">{{$t('bottomBar.local')}}</a>
+            <a
+              style="text-decoration:none;"
+              :style="darkmode? 'color : #fff' : 'color : black'"
+            >{{$t('bottomBar.local')}}</a>
           </router-link>
         </div>
         <div class="activedots"></div>
@@ -165,12 +179,12 @@ export default {
       caseinMyanmar: [],
       errorMsg: "",
       lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en",
-      darkmode: localStorage.getItem("darkmode") ? JSON.parse(localStorage.getItem("darkmode")) : false
-      
+      darkmode: localStorage.getItem("darkmode")
+        ? JSON.parse(localStorage.getItem("darkmode"))
+        : false
     };
   },
   mounted() {
-
     console.log(this.darkmode + "from local");
     fetch(
       "https://coronavirus-monitor.p.rapidapi.com/coronavirus/latest_stat_by_country.php?country=myanmar",
@@ -202,11 +216,11 @@ export default {
   //working with event bus
   created() {
     this.$eventHub.$on("change-name", this.changeName);
-    this.$darkModeBus.$on("dark-mode",this.changeDark)
+    this.$darkModeBus.$on("dark-mode", this.changeDark);
   },
 
   methods: {
-    changeDark(value){
+    changeDark(value) {
       this.darkmode = value;
       console.log("dark from local" + value);
     },
@@ -221,11 +235,33 @@ export default {
       }
     },
     addHour(recordDate) {
-      var dateTime = new Date(recordDate);
+      var dateParts = recordDate.substring(0, 10).split("-");
+      var timePart = recordDate.substr(11);
+      var hour = timePart.substring(0, 2);
+      var minute = timePart.substring(3, 5);
+      var second = timePart.substring(6, 9);
 
-      dateTime.setHours(dateTime.getHours() + 3);
-      dateTime.setMinutes(dateTime.getMinutes() + 30);
-      return dateTime;
+      var numHour = Number(hour) + 3;
+      var numMinute = Number(minute) + 30;
+
+      if (numMinute > 60) {
+        numHour = numHour + 1;
+        numMinute = "00";
+      }
+
+      var finalTimePart = numHour + ":" + numMinute + ":" + second;
+
+      var finalDateTime =
+        dateParts[1] +
+        "/" +
+        dateParts[2] +
+        "/" +
+        dateParts[0] +
+        " " +
+        finalTimePart;
+      this.$root.$data.updatedTime = finalDateTime;
+
+      return finalDateTime;
     }
   }
 };
