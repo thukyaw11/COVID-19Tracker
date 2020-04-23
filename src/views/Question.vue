@@ -51,7 +51,7 @@
               @click="selectMultipleOption()"
               style="text-align : center; padding : 20px"
             >
-            <span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">ဖျားနာ နေသည်။</span>
+              <span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">ဖျားနာ နေသည်။</span>
             </label>
           </div>
           <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
@@ -62,7 +62,8 @@
               @click="selectMultipleOption()"
               style="text-align : center; padding : 20px"
             >
-            <span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">အသက်ရှူရခက်ခဲသည်။</span></label>
+              <span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">အသက်ရှူရခက်ခဲသည်။</span>
+            </label>
           </div>
           <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
             <input type="checkbox" v-model.number="array1" value="3" id="check3" name="mycheckbox" />
@@ -71,7 +72,11 @@
               class="clickable"
               @click="selectMultipleOption()"
               style="text-align : center; padding : 20px"
-            ><span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">အော့အန်ခြင်း/၀မ်းလျှောခြင်း။</span></label>
+            >
+              <span
+                :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+              >အော့အန်ခြင်း/၀မ်းလျှောခြင်း။</span>
+            </label>
           </div>
           <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
             <input type="checkbox" v-model.number="array1" value="4" id="check4" name="mycheckbox" />
@@ -80,7 +85,11 @@
               class="clickable"
               @click="selectMultipleOption()"
               style="text-align : center; padding : 20px"
-            ><span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">နှလုံးရောဂါ သို့မဟုတ် သွေးတိုးရှိသည်။</span></label>
+            >
+              <span
+                :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+              >နှလုံးရောဂါ သို့မဟုတ် သွေးတိုးရှိသည်။</span>
+            </label>
           </div>
 
           <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
@@ -90,7 +99,11 @@
               class="clickable"
               @click="deselectAll()"
               style="text-align : center; padding : 20px"
-            ><span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">မည်သည့် လက္ခဏာမှမရှိပါ။</span></label>
+            >
+              <span
+                :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+              >မည်သည့် လက္ခဏာမှမရှိပါ။</span>
+            </label>
           </div>
         </div>
       </div>
@@ -112,7 +125,9 @@
               class="clickable"
               @click="selectMultipleOption()"
               style="text-align : center; padding : 20px"
-            ><span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">ရင်ကြပ်ရောဂါရှိသည်။</span></label>
+            >
+              <span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">ရင်ကြပ်ရောဂါရှိသည်။</span>
+            </label>
           </div>
           <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
             <input type="checkbox" v-model="array" value="2" id="check2" name="mycheckbox" />
@@ -121,7 +136,11 @@
               class="clickable"
               @click="selectMultipleOption()"
               style="text-align : center; padding : 20px"
-            ><span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">ကိုယ်၀န်ဆောင်မိခင်ဖြစ်သည်။</span></label>
+            >
+              <span
+                :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+              >ကိုယ်၀န်ဆောင်မိခင်ဖြစ်သည်။</span>
+            </label>
           </div>
           <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
             <input type="checkbox" v-model="array" value="3" id="check3" name="mycheckbox" />
@@ -130,7 +149,11 @@
               class="clickable"
               @click="selectMultipleOption()"
               style="text-align : center; padding : 20px"
-            > <span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">ဆီးချို/‌သွေးချိုရှိသည်။</span></label>
+            >
+              <span
+                :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+              >ဆီးချို/‌သွေးချိုရှိသည်။</span>
+            </label>
           </div>
           <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
             <input type="checkbox" v-model="array" value="4" id="check4" name="mycheckbox" />
@@ -139,7 +162,11 @@
               class="clickable"
               @click="selectMultipleOption()"
               style="text-align : center; padding : 20px"
-            > <span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">နှလုံးရောဂါ သို့မဟုတ် သွေးတိုးရှိသည်။</span></label>
+            >
+              <span
+                :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+              >နှလုံးရောဂါ သို့မဟုတ် သွေးတိုးရှိသည်။</span>
+            </label>
           </div>
           <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
             <input type="checkbox" v-model="array" value="5" id="check5" name="mycheckbox" />
@@ -148,7 +175,9 @@
               class="clickable"
               @click="selectMultipleOption()"
               style="text-align : center; padding : 20px"
-            > <span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">အဆုတ်ရောင်ရှိသည်။</span></label>
+            >
+              <span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">အဆုတ်ရောင်ရှိသည်။</span>
+            </label>
           </div>
           <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
             <input type="checkbox" v-model="array" value="6" id="check6" name="mycheckbox" />
@@ -157,7 +186,9 @@
               class="clickable"
               @click="selectMultipleOption()"
               style="text-align : center; padding : 20px"
-            > <span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">ကင်ဆာရောဂါရှိသည်။</span></label>
+            >
+              <span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">ကင်ဆာရောဂါရှိသည်။</span>
+            </label>
           </div>
           <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
             <input type="checkbox" v-model="array" value="7" id="check7" name="mycheckbox" />
@@ -166,7 +197,11 @@
               class="clickable"
               @click="selectMultipleOption()"
               style="text-align : center; padding : 20px"
-            > <span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">HIV/AIDS ရောဂါပိုးရှိသည်။</span></label>
+            >
+              <span
+                :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+              >HIV/AIDS ရောဂါပိုးရှိသည်။</span>
+            </label>
           </div>
           <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
             <input type="checkbox" v-model="array" value="8" id="check8" name="mycheckbox" />
@@ -175,7 +210,11 @@
               class="clickable"
               @click="deselectAll()"
               style="text-align : center; padding : 20px"
-            > <span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">မည်သည့် လက္ခဏာမှမရှိပါ။</span></label>
+            >
+              <span
+                :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+              >မည်သည့် လက္ခဏာမှမရှိပါ။</span>
+            </label>
           </div>
         </div>
       </div>
@@ -242,7 +281,7 @@ export default {
       if (this.questionIndex >= this.ques.questions.length) {
         this.arrayMatch();
       }
-  
+
       if (this.questionIndex == 3 || this.questionIndex == 2) {
         for (var checkindex = 1; checkindex < 9; checkindex++) {
           var el = "check" + checkindex;
@@ -277,7 +316,7 @@ export default {
     },
     arrayMatch() {
       const finalArray = [...this.userResponses, ...this.array1];
- 
+
       if (finalArray.length == 10) {
         this.seeResultClick = true;
 
@@ -464,6 +503,34 @@ input[name="myradio"]:checked + .clickable .checked-box {
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
+.optioncontainerCheckboxFive {
+  display: flex;
+  position: relative;
+  margin-top: 10px;
+  border-radius: 10px;
+  color: #212121;
+  font-size: 14px;
+  border: 0px;
+  outline: none;
+  width: 95%;
+  height: 65px;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  border-color: #3f51b5;
+  box-shadow: 0px 0px 0px 3px #3f51b5;
+}
 .optioncontainerCheckboxDark {
   display: flex;
   position: relative;
@@ -542,6 +609,7 @@ input[name="myradio"]:checked + .clickable .checked-box {
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
+
 .optioncontainer:hover {
   border: 3px solid #3f51b5;
   -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),

@@ -5,7 +5,7 @@
         <div class="deletebuttonParent" v-if="results.length >= 3">
           <div class="deletebutton" @click="removeHistory()">
             <span class="material-icons">delete</span>
-            &nbsp;&nbsp;Delete all history
+            &nbsp;&nbsp;{{$t('resultPage.deleteall')}}
           </div>
         </div>
         <br />
@@ -28,14 +28,14 @@
                 class="responseflex1"
                 v-if="result.resultLocal==true"
                 :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
-              >StayHome Response</div>
+              >{{$t('resultPage.stayhomeResponse')}}</div>
               <div
                 class="responseflex1"
                 v-if="result.resultLocal==false"
                 :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
-              >Emergency Response</div>
+              >{{$t('resultPage.emergencyResponse')}}</div>
 
-              <div class="responseflex2" @click="viewResponse(result.resultLocal)">View</div>
+              <div class="responseflex2" @click="viewResponse(result.resultLocal)">{{$t('resultPage.view')}}</div>
             </div>
           </div>
           <br />
@@ -45,7 +45,7 @@
         <router-link to="question" class="quesbutton">
           <p
             style="color : #fff; font-size:14px; font-weight : bold; text-align: center;"
-          >Start Screening Myself</p>
+          >{{$t('screening.screeningButton')}}</p>
         </router-link>
       </div>
     </div>

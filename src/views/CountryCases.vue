@@ -130,6 +130,12 @@ export default {
   methods: {
     changeDark(value) {
       this.darkmode = value;
+
+      if (this.darkmode == true) {
+        document.body.className = "home";
+      } else {
+        document.body.className = "intro";
+      }
     },
     //recieved emit event
     changeName(name) {
@@ -149,7 +155,6 @@ export default {
         return bCases - aCases;
       });
       this.DataByAffectedCountryDetail = sortedArray;
-
     },
     toggleData(index) {
       var growDiv = document.getElementsByClassName("grow")[index];

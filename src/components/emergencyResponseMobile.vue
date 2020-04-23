@@ -1,10 +1,10 @@
 <template>
   <div class="container-emergency">
     <goback :darkmode="darkmode"/>
-    <img src="../assets/emergency.jpg" width="1000" height="300" />
+    <img src="../assets/emergency_contact.png" width="1000" height="300" />
     <div>
       <div class="splashheader">
-        <h2>Emergency Response</h2>
+        <h2>{{$t('resultPage.emergencyResponse')}}</h2>
       </div>
       <div class="splashbody">
         <span
@@ -15,12 +15,12 @@
     </div>
 
     <div :class="darkmode? 'splashbuttoncontainerDark':'splashbuttoncontainer'" >
-      <a href="tel:911" class="splashbutton" style="color : #fff">Call 911</a>
+      <a href="tel:911" class="splashbutton" style="color : #fff">{{$t('resultPage.contactnine')}}</a>
       <router-link
         to="/contants"
         class="splashbuttonsecondary"
         style="color : #e6403a;"
-      >Emergency Contacts</router-link>
+      >{{$t('resultPage.phno')}}</router-link>
     </div>
   </div>
 </template>

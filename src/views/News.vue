@@ -3,7 +3,7 @@
     <div class="newscontainer">
       <div class="datecontainer">
         <div class="dateflex1">
-          <h1>Latest</h1>
+          <h1>{{$t('newsPage.latest')}}</h1>
         </div>
         <div class="dateflex2">
           <h5 style="color:#757575">{{this.today}}</h5>
@@ -33,7 +33,7 @@
         <h3 style="padding: 0px 30px">No Post Yet</h3>
       </div>
 
-      <h1 style="margin-left: 5px;">Yesterday</h1>
+      <h1 style="margin-left: 5px;">{{$t('newsPage.yesterday')}}</h1>
       <div v-if="yesterdayNews.length > 0">
         <div v-for="news in yesterdayNews" v-bind:key="news._id">
           <a
