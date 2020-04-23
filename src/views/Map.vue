@@ -1,31 +1,64 @@
 <template>
-<!--<div class="iframe-container">
-  <iframe src="https://datawrapper.dwcdn.net/Z16wj/8/" allowfullscreen></iframe>
-</div>-->
-
-<div class="spinner">
-    <md-progress-spinner class="md-accent" :md-stroke="3" md-mode="indeterminate"></md-progress-spinner>
-  <h3 style="color : grey; text-align:center;">Coming soon ...</h3>
-</div>
-
+  <div class="container" style="margin-top: 70px">
+    <iframe
+      title
+      aria-label="Myanmar states choropleth map"
+      id="datawrapper-chart-BtcmN"
+      src="//datawrapper.dwcdn.net/BtcmN/2/"
+      scrolling="no"
+      frameborder="0"
+      style="height: 1000px; width: 100% !important; border: none; background : black"
+      :style="darkmode? 'background: black': 'background: white'"
+      height="400"
+    ></iframe>
+  </div>
 </template>
 
+
 <script>
-  export default
-  {
-    mounted() {
-    // var scripts = [
-    //   "countrymap.js",
-    //   "mapdata.js"
-    // ]; 
-    // scripts.forEach(script => {
-    //   let tag = document.createElement("script");
-    //   tag.setAttribute("src", script);
-    //   document.head.appendChild(tag);
-    // });
-
-    this.$root.$data.title = "Map";
+export default {
+  data() {
+    return {
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en",
+      darkmode: localStorage.getItem("darkmode")
+        ? JSON.parse(localStorage.getItem("darkmode"))
+        : false
+    };
+  },
+  mounted() {
+    // lang will be automatically transported to the parameter.
+    if (this.lang == "mm") {
+      this.$root.$data.title = "မြေပုံ";
+    }
+    if (this.lang == "en") {
+      this.$root.$data.title = "Map";
+    }
+  },
+  //working with event bus
+  created() {
+    this.$eventHub.$on("change-name", this.changeName);
+    this.$darkModeBus.$on("dark-mode", this.changeDark);
+  },
+  methods: {
+    changeDark(value) {
+      this.darkmode = value;
+      if (this.darkmode == true) {
+        document.body.className = "home";
+      } else {
+        document.body.className = "intro";
+      }
+    },
+    changeName(name) {
+      // lang will be automatically transported to the parameter.
+      this.lang = name;
+      if (name == "mm") {
+        this.$root.$data.title = "မြေပုံ";
+      }
+      if (name == "en") {
+        this.$root.$data.title = "Map";
+      }
+    }
   }
-  }
+};
+/* eslint-enable no-console */
 </script>
-

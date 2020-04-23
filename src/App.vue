@@ -12,6 +12,18 @@
           :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
           @click.native="closeNav()"
         >{{$t ('global')}}</router-link>
+        <router-link
+          to="/local"
+          style="text-decoration: none"
+          :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+          @click.native="closeNav()"
+        >{{$t ('local')}}</router-link>
+        <router-link
+          to="/map"
+          style="text-decoration: none"
+          :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+          @click.native="closeNav()"
+        >{{$t('map')}}</router-link>
 
         <router-link
           to="/countrycases"
@@ -280,7 +292,6 @@
             </div>
 
             <br />
-
           </div>
         </div>
       </div>
@@ -329,8 +340,8 @@ export default {
       newsRequest: [],
       latestNews: [],
       yesterdayNews: [],
-      tdybaseURL : '',
-      yesbaseURL : '',
+      tdybaseURL: "",
+      yesbaseURL: "",
       propCountryName: "",
       contactlist: [],
       searchContacts: "",
@@ -398,8 +409,8 @@ export default {
     fetchTdyNews() {
       return axios.get(this.tdybaseURL);
     },
-    fetchYesNews(){
-      return axios.get(this.yesbaseURL)
+    fetchYesNews() {
+      return axios.get(this.yesbaseURL);
     },
     fetchConacts() {
       return axios.get("https://covid19mm.info/api/contact/list");
@@ -440,8 +451,6 @@ export default {
 
     this.tdybaseURL = `https://aa56zbybij.execute-api.ap-southeast-1.amazonaws.com/v1/news/covid-19?from=${tmrIsoDate}`;
     this.yesbaseURL = `https://aa56zbybij.execute-api.ap-southeast-1.amazonaws.com/v1/news/covid-19?from=${todayDate}`;
-
-
   },
   mounted() {
     console.log(this.darkmode);
@@ -469,32 +478,42 @@ export default {
     //yesterday, today and uploaded
     document.getElementById("myNav").style.height = "0%";
 
-
-
     axios
-      .all([this.fetchCountriesCases(), this.fetchTdyNews(), this.fetchYesNews(), this.fetchConacts()])
+      .all([
+        this.fetchCountriesCases(),
+        this.fetchTdyNews(),
+        this.fetchYesNews(),
+        this.fetchConacts()
+      ])
       .then(
-        axios.spread((countrycasesResponse, newsContentToday, newsContentYesterday, contactsResponse) => {
-          //country response
-          countrycasesResponse.json().then(data => {
-            this.CountryByCases = data.countries_stat;
-            this.setCountryCases(data.countries_stat);
-          });
-          //news response
-          // news request filter by yesterday, tomorrow and today
+        axios.spread(
+          (
+            countrycasesResponse,
+            newsContentToday,
+            newsContentYesterday,
+            contactsResponse
+          ) => {
+            //country response
+            countrycasesResponse.json().then(data => {
+              this.CountryByCases = data.countries_stat;
+              this.setCountryCases(data.countries_stat);
+            });
+            //news response
+            // news request filter by yesterday, tomorrow and today
 
-          if (newsContentToday.status == 200) {
-          this.latestNews = newsContentToday.data.items;
-        }
+            if (newsContentToday.status == 200) {
+              this.latestNews = newsContentToday.data.items;
+            }
 
-        if (newsContentYesterday.status == 200) {
-          this.yesterdayNews = newsContentYesterday.data.items;
-        }
+            if (newsContentYesterday.status == 200) {
+              this.yesterdayNews = newsContentYesterday.data.items;
+            }
 
-          //contacts response
-          this.contactlist = contactsResponse.data;
-          this.setContacts(contactsResponse.data);
-        })
+            //contacts response
+            this.contactlist = contactsResponse.data;
+            this.setContacts(contactsResponse.data);
+          }
+        )
       );
   },
   watch: {

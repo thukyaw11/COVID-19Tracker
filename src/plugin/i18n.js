@@ -7,6 +7,8 @@ const messages = {
     'en': {
         menutitle: 'Coronavirus disease Situation Menu',
         global: 'Global',
+        local: 'Local',
+        map : 'Map',
         countrycase: ' Countries By Cases',
         start: 'Screening Kit',
         donation: 'Donation',
@@ -86,6 +88,8 @@ const messages = {
     'mm': {
         menutitle: 'ကိုရိုနာကူးစက်ခံရမှုပြ မာတိကာ',
         global: 'ကမ္ဘာတစ်ဝှမ်း',
+        local : 'မြန်မာ',
+        map : 'မြေပုံ',
         countrycase: 'နိုင်ငံအလိုက်',
         start: 'ကူးစက်ခံရမှုရှိ/မရှိ စစ်ဆေးခြင်း',
         donation: 'အလှူစာရင်း',
