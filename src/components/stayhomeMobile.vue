@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="containerDark">
     <div class="container-stayhome">
       <goback :darkmode="darkmode" />
 

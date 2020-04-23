@@ -2,7 +2,7 @@
   <div :class="darkmode?  'containerDark' : 'container'">
     <div class="aboutuscontainer">
       <div class="versioncontent">
-        <div class="numberflex">1.1</div>
+        <div class="numberflex">2.0</div>
         <div class="versionflex">Version</div>
       </div>
       <br />

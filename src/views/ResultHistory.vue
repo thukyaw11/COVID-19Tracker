@@ -35,23 +35,21 @@
                 :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
               >{{$t('resultPage.emergencyResponse')}}</div>
 
-              <div class="responseflex2" @click="viewResponse(result.resultLocal)">{{$t('resultPage.view')}}</div>
+              <div
+                class="responseflex2"
+                @click="viewResponse(result.resultLocal)"
+              >{{$t('resultPage.view')}}</div>
             </div>
           </div>
           <br />
         </div>
       </div>
       <div class="resulthistorycontainer" v-else style="margin-top: 200px;color : grey;">
-        <router-link to="question" class="quesbutton">
-          <p
-            style="color : #fff; font-size:14px; font-weight : bold; text-align: center;"
-          >{{$t('screening.screeningButton')}}</p>
-        </router-link>
       </div>
     </div>
     <div v-if="click == true">
-      <stayhome v-show="response == true"/>
-      <emergency v-show="response == false"/>
+      <stayhome v-show="response == true" />
+      <emergency v-show="response == false" />
     </div>
   </div>
 </template>
@@ -66,15 +64,14 @@ export default {
   },
   data() {
     return {
-      results: localStorage.getItem("resultSession")
-        ? JSON.parse(localStorage.getItem("resultSession"))
-        : [],
       click: false,
       response: "",
       lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en",
       darkmode: localStorage.getItem("darkmode")
         ? JSON.parse(localStorage.getItem("darkmode"))
-        : false
+        : false,
+      interval: "",
+      results : ''
     };
   },
   mounted() {
@@ -89,8 +86,18 @@ export default {
   created() {
     this.$eventHub.$on("change-name", this.changeName);
     this.$darkModeBus.$on("dark-mode", this.changeDark);
+    this.interval = setInterval(this.getData, 100);
+  },
+  beforeDestroy() {
+    clearInterval(this.interval);
   },
   methods: {
+    getData() {
+      const results = localStorage.getItem("resultSession")
+        ? JSON.parse(localStorage.getItem("resultSession"))
+        : [];
+      this.results = results;
+    },
     changeDark(value) {
       this.darkmode = value;
 
@@ -101,8 +108,9 @@ export default {
       }
     },
     removeHistory() {
-      localStorage.clear();
-      window.location.reload();
+      localStorage.removeItem('resultSession')
+      this.results = '';
+      this.$router.push('/start');
     },
     viewResponse(responseCheck) {
       this.click = true;
