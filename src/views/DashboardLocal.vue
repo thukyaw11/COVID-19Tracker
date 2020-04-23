@@ -6,21 +6,21 @@
           <div class="mapvector">
             <div class="mapflex1">
               <div class="ConfirmedCaseContainer">
-                <div class="caseheading">{{$t('localdashboard.tested')}}</div>
-                <div
-                  class="number"
-                  style="font-size:42px; font-weight: bold"
-                  v-if="caseinMyanmar[0][0].total_tests"
-                >{{casesmm[0].total_tests}}</div>
-                <div class="number" style="font-size:42px;" v-else>0</div>
-              </div>
-              <div class="ConfirmedCaseContainer">
                 <div class="caseheading">{{$t('localdashboard.confirmcase')}}</div>
                 <div
                   class="number"
                   style="font-size:42px; font-weight: bold"
-                  v-if="caseinMyanmar[0][0].total_cases"
-                >{{casesmm[0].total_cases}}</div>
+                  v-if="caseinMyanmar[0].total_cases"
+                >{{casesmm.total_cases}}</div>
+                <div class="number" style="font-size:42px;" v-else>0</div>
+              </div>
+              <div class="ConfirmedCaseContainer">
+                <div class="caseheading">{{$t('localdashboard.newcases')}}</div>
+                <div
+                  class="number"
+                  style="font-size:42px;"
+                  v-if="caseinMyanmar[0].new_cases"
+                >{{casesmm.new_cases}}</div>
                 <div class="number" style="font-size:42px;" v-else>0</div>
               </div>
             </div>
@@ -93,23 +93,15 @@
               </svg>
             </div>
           </div>
-          <div class="ConfirmedCaseContainer">
-            <div class="caseheading">{{$t('localdashboard.newcases')}}</div>
-            <div
-              class="number"
-              style="font-size:42px;"
-              v-if="caseinMyanmar[0][0].new_cases"
-            >{{casesmm[0].new_cases}}</div>
-            <div class="number" style="font-size:42px;" v-else>0</div>
-          </div>
+
           <div :class="darkmode? 'RecoverCaseDark' : 'RecoverCase'">
             <div class="ConfirmedCaseContainer">
               <div class="caseheading">{{$t('localdashboard.recover')}}</div>
               <div
                 :class="darkmode? 'numberrecoverdark' : 'numberrecover'"
                 style="font-size:42px;"
-                v-if="caseinMyanmar[0][0].total_recovered"
-              >{{casesmm[0].total_recovered}}</div>
+                v-if="caseinMyanmar[0].total_recovered"
+              >{{casesmm.total_recovered}}</div>
               <div class="number" style="font-size:42px;" v-else>0</div>
             </div>
           </div>
@@ -119,8 +111,8 @@
               <div
                 :class="darkmode? 'numberdeathdark' : 'numberdeath'"
                 style="font-size:42px;"
-                v-if="caseinMyanmar[0][0].total_deaths"
-              >{{casesmm[0].total_deaths}}</div>
+                v-if="caseinMyanmar[0].total_deaths"
+              >{{casesmm.total_deaths}}</div>
               <div class="number" style="font-size:42px;" v-else>0</div>
             </div>
           </div>
@@ -129,14 +121,14 @@
             <div
               class="number"
               style="font-size:42px;"
-              v-if="caseinMyanmar[0][0].serious_critical"
-            >{{casesmm[0].serious_critical}}</div>
+              v-if="caseinMyanmar[0].serious_critical"
+            >{{casesmm.serious_critical}}</div>
             <div class="number" style="font-size:42px;" v-else>0</div>
           </div>
 
           <div
             style="text-align:center; color:#757575; margin-bottom:100px;"
-        >Last updated: {{addHour(casesmm[0].record_date)}}</div>
+          >Last updated: {{addHour(casesmm.record_date)}}</div>
         </div>
       </div>
       <div v-else class="spinner">
@@ -221,8 +213,13 @@ export default {
 
   methods: {
     changeDark(value) {
+
       this.darkmode = value;
-      console.log("dark from local" + value);
+      if(this.darkmode == true){
+      document.body.className = "home";
+      }else{
+        document.body.className = "intro";
+      }
     },
     changeName(name) {
       // lang will be automatically transported to the parameter.

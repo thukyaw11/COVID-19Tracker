@@ -50,8 +50,8 @@
       </div>
     </div>
     <div v-if="click == true">
-      <stayhome v-show="response == true" />
-      <emergency v-show="response == false" />
+      <stayhome v-show="response == true"/>
+      <emergency v-show="response == false"/>
     </div>
   </div>
 </template>
@@ -88,12 +88,17 @@ export default {
   //working with event bus
   created() {
     this.$eventHub.$on("change-name", this.changeName);
-
-    this.$darkModeBus.$on("dark-mode", this.chageDark);
+    this.$darkModeBus.$on("dark-mode", this.changeDark);
   },
   methods: {
-    chageDark(value) {
+    changeDark(value) {
       this.darkmode = value;
+
+      if (this.darkmode == true) {
+        document.body.className = "home";
+      } else {
+        document.body.className = "intro";
+      }
     },
     removeHistory() {
       localStorage.clear();
@@ -148,7 +153,6 @@ export default {
   height: 100px;
   background-color: #212121;
 }
-
 .resultContainerParent {
   margin-bottom: 15px;
   display: flex;

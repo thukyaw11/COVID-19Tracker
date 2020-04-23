@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="container-stayhome">
-      <goback />
+      <goback :darkmode="darkmode" />
 
       <img src="../assets/stayhome.jpg" width="1000" height="300" />
 
@@ -52,8 +52,23 @@
 <script>
 import goback from "../components/goback";
 export default {
+  data() {
+    return {
+      darkmode: localStorage.getItem("darkmode")
+        ? JSON.parse(localStorage.getItem("darkmode"))
+        : false
+    };
+  },
   components: {
     goback
+  },
+  methods: {
+    changeDark(value) {
+      this.darkmode = value;
+    }
+  },
+  created() {
+    this.$darkModeBus.$on("dark-mode", this.changeDark);
   }
 };
 </script>
