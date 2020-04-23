@@ -592,12 +592,12 @@ export default {
   }
   #app {
     background-color: #ffffff;
-    font-family: "Poppins", sans-serif, "Noto Sans Myanmar";
+    font-family: "Poppins", sans-serif, 'Myanmar3';
     font-size: 14px;
   }
   #appDark {
     background-color: #121212;
-    font-family: "Poppins", sans-serif, "Noto Sans Myanmar";
+    font-family: "Poppins", sans-serif, 'Myanmar3';
     font-size: 14px;
   }
 
@@ -607,7 +607,9 @@ export default {
   .languageswitcher {
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 100%;
+    padding-left:15px;
+    padding-right:15px;
     height: 100px;
     border-top: 1px solid #eee;
     align-items: center;
@@ -669,53 +671,54 @@ export default {
     justify-content: center;
   }
   .overlay {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    overflow-y: scroll;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    border-radius: 5px;
-    background-color: #fff;
-    overflow-y: hidden;
-    overflow-x: hidden;
-    transition: 0.5s;
+  
+  text-align:center;
+  align-items:center;
+  height: 0%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color:#ffffff;
+  overflow-y: auto;
+  transition: 0.5s;
   }
   .overlayDark {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    overflow-y: scroll;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    border-radius: 5px;
-    background-color: #121212;
-    overflow-y: hidden;
-    overflow-x: hidden;
-    transition: 0.5s;
+    text-align:center;
+  align-items:center;
+  height: 0%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color:#121212;
+  overflow-y: auto;
+  transition: 0.5s;
+
   }
 
   .overlay-content {
+  
     display: flex;
     flex-direction: column;
     line-height: 50px;
     margin-top: 80px;
-    width: 90%;
+    height:auto;
+    width: 100%;
+    padding-left:15px;
+    padding-right:15px;
   }
   .overlay-contentDark {
     display: flex;
     flex-direction: column;
     line-height: 50px;
     margin-top: 80px;
-    width: 90%;
+    height:auto;
+    width: 100%;
+    padding-left:15px;
+    padding-right:15px;
   }
 
   .overlay a {
@@ -736,15 +739,19 @@ export default {
     display: flex;
     flex-direction: row;
     flex: 1;
+    align-items:center;
+    
   }
   .overlayDark .router-link {
     display: flex;
     flex-direction: row;
     flex: 1;
+     align-items:center;
   }
 
   .overlay .router-link-active {
     border-radius: 50px;
+    align-items:center;
     background-color: #f5f5f5;
     width: 100%;
     font-weight: bold;
@@ -752,6 +759,7 @@ export default {
   .overlayDark .router-link-active {
     border-radius: 50px;
     background-color: #212121;
+    align-items:center;
     width: 100%;
     font-weight: bold;
   }

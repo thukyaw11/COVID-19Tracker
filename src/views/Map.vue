@@ -7,9 +7,9 @@
       src="//datawrapper.dwcdn.net/BtcmN/2/"
       scrolling="no"
       frameborder="0"
-      style="height: 1000px; width: 100% !important; border: none; background : black"
+      style="padding-left:20px; padding-right:20px; padding-top:30px; height: 590px; width: 100% !important; border: none; background : black"
       :style="darkmode? 'background: black': 'background: white'"
-      height="400"
+     
     ></iframe>
   </div>
 </template>
@@ -62,3 +62,4 @@ export default {
 };
 /* eslint-enable no-console */
 </script>
+

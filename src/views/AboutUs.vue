@@ -289,7 +289,7 @@
           </div>
         </div>
         <div class="aboutbody">
-          <p align="justify" style="line-height:22px;">{{$t('aboutusPage.content')}}</p>
+          <p align="left" style="line-height:22px;">{{$t('aboutusPage.content')}}</p>
         </div>
       </div>
       <br />

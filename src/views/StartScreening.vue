@@ -6,7 +6,7 @@
 
       <div class="quesheading">
         <br />
-        <h2 :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">{{$t('screening.screeningHeader')}}</h2>
+        <h2 :style="darkmode? 'color: #f5f5f5; font-size:20px;' : 'color : #121212; font-size:20px ;'">{{$t('screening.screeningHeader')}}</h2>
 
         <div style="line-height:22px;" :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">{{$t('screening.screeningContent')}}</div>
       </div>
@@ -83,6 +83,7 @@ export default {
   /* question home */
   .quesheading
 {
+  line-height:30px;
   margin-left:20px;
   margin-right:20px;
   display:flex;

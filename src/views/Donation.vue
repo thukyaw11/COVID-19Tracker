@@ -7,7 +7,7 @@
       <h2
         :style="darkmode? 'color: #f5f5f5' : 'color : #121212'"
       >{{$t('donationPage.donationHeader')}}</h2>
-
+      <br>
       <div
         class="bodycontent"
         :style="darkmode? 'color: #f5f5f5' : 'color : #121212'"
@@ -184,7 +184,6 @@ export default {
 .bodycontent {
   line-height: 22px;
   width: 90%;
-  text-align: justify;
 }
 .container-donation {
   margin-bottom: 100px;
@@ -217,7 +216,7 @@ export default {
   width: 100%;
   height: 200px;
   align-items: center;
-  text-align: center;
+  justify-content:center;
   flex-direction: column;
 }
 .donatebuttoncontainer {

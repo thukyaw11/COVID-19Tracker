@@ -82,7 +82,7 @@ const messages = {
             view : 'View',
             deleteall : 'Delete all history'
         },
-        
+
 
     },
     'mm': {
@@ -106,7 +106,7 @@ const messages = {
             countries : "နိုင်ငံပေါင်း",
             heading : "ကမ္ဘာတစ်ဝှမ်း"
         },
-        localdashboard : {            
+        localdashboard : {
             tested : "စစ်ဆေးပြီး",
             confirmcase : "ကူးစက်ခံ လူနာ",
             newcases : "ယနေ့ ထပ်တိုးလူနာ",
