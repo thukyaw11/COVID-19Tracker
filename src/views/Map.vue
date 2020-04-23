@@ -1,5 +1,5 @@
 <template>
-  <div  style="margin-top: 70px">
+  <div  style="margin-top:0px">
     <iframe
       title
       aria-label="Myanmar states choropleth map"
@@ -7,8 +7,8 @@
       src="//datawrapper.dwcdn.net/krD5T/1/"
       scrolling="no"
       frameborder="0"
-      style="padding-left:20px; padding-right:20px; padding-top:30px; height: 590px; width: 100% !important; border: none; background : black"
-      :style="darkmode? 'background: #121212': 'background: #f5f5f5'"
+      style="padding-left:20px; padding-right:20px; padding-top:100px; height: 100%; width: 100% !important; border: none; background : black"
+      :style="darkmode? 'background: #121212': 'background: #ffffff'"
      
     ></iframe>
   </div>

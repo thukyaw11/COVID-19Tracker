@@ -67,7 +67,7 @@ export default {
   margin-left: 20px;
   margin-right: 20px;
   display: flex;
-  flex: 1;
+  margin-bottom:150px;
   flex-direction: column;
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="containerDark">
+  <div :class="darkmode? 'containerDark':'container'">
     <div class="container-stayhome">
       <goback :darkmode="darkmode" />
 
@@ -74,10 +74,11 @@ export default {
 </script>
 <style>
 .container-stayhome {
+ 
   justify-content: center;
   width: 100%;
   align-items: center;
-  height: 100%;
+  height: auto;
   margin-top: 70px;
 }
 .splashheader {
@@ -123,6 +124,7 @@ img {
   display: flex;
   width: 100%;
   flex: 1;
+  background-color:#ffffff;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -134,6 +136,7 @@ img {
   display: flex;
   width: 100%;
   flex: 1;
+  background-color:#121212;
   flex-direction: column;
   align-items: center;
   justify-content: center;

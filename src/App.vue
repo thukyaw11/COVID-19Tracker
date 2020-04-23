@@ -588,7 +588,7 @@ export default {
 @media only screen and (max-width: 1100px) {
   .spinner {
     text-align: center;
-    margin-top: 300px;
+    margin-top: 280px;
   }
   #app {
     background-color: #ffffff;
@@ -882,6 +882,8 @@ export default {
     flex-direction: column;
   }
   .container {
+    color: #212121;
+    background-color: #ffffff;
     display: flex;
     flex: 1;
     width: 100%;
@@ -889,13 +891,13 @@ export default {
     align-items: center;
   }
   .containerDark {
-    background: #121212;
+    background-color: #121212;
     display: flex;
     flex: 1;
     width: 100%;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: #f5f5f5;
   }
 
   .ConfirmedCaseContainer {
