@@ -53,13 +53,17 @@
               name="mycheckbox"
             />
             <label :for="option.id" class="clickable" @change="updateCheckall()"></label>
-            {{ option.text }}
+            <span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">{{ option.text }}</span>
           </div>
         </div>
         <div class="questionbody">
-          <div class="optioncontainer">
+          <div :class="darkmode? 'optioncontainerDark' : 'optioncontainer'">
             <input type="checkbox" v-model="isCheckAll" @click="decheckAll()" id="nosym" />
-            <label for="nosym">မည်သည့် လက္ခဏာမှ မရှိပါ။</label>
+
+            <label
+              for="nosym"
+              :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+            >မည်သည့် လက္ခဏာမှ မရှိပါ။</label>
           </div>
         </div>
       </div>
@@ -256,6 +260,11 @@ export default {
     },
     changeDark(value) {
       this.darkmode = value;
+      if (this.darkmode == true) {
+        document.body.className = "home";
+      } else {
+        document.body.className = "intro";
+      }
     },
 
     next() {
@@ -292,7 +301,6 @@ export default {
     },
     arrayMatch() {
       const finalArray = [...this.userResponses, ...this.resultTwo];
-    
 
       if (finalArray.length == 9) {
         this.seeResultClick = true;

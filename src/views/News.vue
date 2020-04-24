@@ -21,7 +21,9 @@
               <div :class="darkmode? 'contentdescriptionDark' : 'contentdescription'">
                 <p class="comment more">{{news.title | truncate(130, '...')}}</p>
               </div>
-              <div :class="darkmode? 'contentsourcedark' : 'contentsource'">source : {{news.sourceId}}</div>
+              <div
+                :class="darkmode? 'contentsourcedark' : 'contentsource'"
+              >source : {{news.sourceId}}</div>
             </div>
             <div :class="darkmode? 'contentflex2Dark' : 'contentflex2'">
               <i class="material-icons" style="font-size:20px;">arrow_forward_ios</i>
@@ -45,7 +47,9 @@
               <div :class="darkmode? 'contentdescriptionDark' : 'contentdescription'">
                 <p>{{news.title | truncate(130, '...')}}</p>
               </div>
-              <div :class="darkmode? 'contentsourcedark' : 'contentsource'">source : {{news.sourceId}}</div>
+              <div
+                :class="darkmode? 'contentsourcedark' : 'contentsource'"
+              >source : {{news.sourceId}}</div>
             </div>
 
             <div :class="darkmode? 'contentflex2Dark' : 'contentflex2'">
@@ -136,6 +140,11 @@ export default {
   methods: {
     changeDark(value) {
       this.darkmode = value;
+      if (this.darkmode == true) {
+        document.body.className = "home";
+      } else {
+        document.body.className = "intro";
+      }
     },
     changeName(name) {
       // lang will be automatically transported to the parameter.
@@ -173,7 +182,6 @@ export default {
 
     this.tdybaseURL = `https://aa56zbybij.execute-api.ap-southeast-1.amazonaws.com/v1/news/covid-19?from=${tmrIsoDate}`;
     this.yesbaseURL = `https://aa56zbybij.execute-api.ap-southeast-1.amazonaws.com/v1/news/covid-19?from=${todayDate}`;
-
 
     this.$eventHub.$on("change-name", this.changeName);
 
