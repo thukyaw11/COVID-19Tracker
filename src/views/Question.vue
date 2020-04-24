@@ -9,7 +9,7 @@
       <div class="heading">Question</div>
       <div class="space"></div>
     </div>
-
+    <!-- +++++++++++++++++++++++++++++++++ -->
     <div class="container-question" v-if="questionIndex<ques.questions.length">
       <div
         :class="darkmode? 'questioncontainerDark' : 'questioncontainer'"
@@ -33,7 +33,7 @@
           <br />
         </div>
       </div>
-
+      <!-- for question no 2 -->
       <div
         :class="darkmode? 'questioncontainerDark' : 'questioncontainer'"
         v-if="questionIndex == 1"
@@ -42,71 +42,29 @@
           <h2>{{questionIndex + 1}}</h2>
           <div style="text-align:center; padding:10px;">{{ ques.questions[questionIndex].text }}</div>
         </div>
+        <!-- Checkboxes list -->
+        <div class="questionbody" v-for="option in questionTwo" v-bind:key="option.id">
+          <div :class="darkmode? 'optioncontainerDark' : 'optioncontainer'">
+            <input
+              v-bind:value="option.id"
+              v-model="resultTwo"
+              :id="option.id"
+              type="checkbox"
+              name="mycheckbox"
+            />
+            <label :for="option.id" class="clickable" @change="updateCheckall()"></label>
+            {{ option.text }}
+          </div>
+        </div>
         <div class="questionbody">
-          <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
-            <input type="checkbox" v-model.number="array1" value="1" id="check1" name="mycheckbox" />
-            <label
-              for="check1"
-              class="clickable"
-              @click="selectMultipleOption()"
-              style="text-align : center; padding : 20px"
-            >
-              <span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">ဖျားနာ နေသည်။</span>
-            </label>
-          </div>
-          <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
-            <input type="checkbox" v-model.number="array1" value="2" id="check2" name="mycheckbox" />
-            <label
-              for="check2"
-              class="clickable"
-              @click="selectMultipleOption()"
-              style="text-align : center; padding : 20px"
-            >
-              <span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">အသက်ရှူရခက်ခဲသည်။</span>
-            </label>
-          </div>
-          <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
-            <input type="checkbox" v-model.number="array1" value="3" id="check3" name="mycheckbox" />
-            <label
-              for="check3"
-              class="clickable"
-              @click="selectMultipleOption()"
-              style="text-align : center; padding : 20px"
-            >
-              <span
-                :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
-              >အော့အန်ခြင်း/၀မ်းလျှောခြင်း။</span>
-            </label>
-          </div>
-          <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
-            <input type="checkbox" v-model.number="array1" value="4" id="check4" name="mycheckbox" />
-            <label
-              for="check4"
-              class="clickable"
-              @click="selectMultipleOption()"
-              style="text-align : center; padding : 20px"
-            >
-              <span
-                :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
-              >နှလုံးရောဂါ သို့မဟုတ် သွေးတိုးရှိသည်။</span>
-            </label>
-          </div>
-
-          <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
-            <input type="checkbox" value="5" id="check5" name="mycheckbox" v-model.number="array1" />
-            <label
-              for="check5"
-              class="clickable"
-              @click="deselectAll()"
-              style="text-align : center; padding : 20px"
-            >
-              <span
-                :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
-              >မည်သည့် လက္ခဏာမှမရှိပါ။</span>
-            </label>
+          <div class="optioncontainer">
+            <input type="checkbox" v-model="isCheckAll" @click="decheckAll()" id="nosym" />
+            <label for="nosym">မည်သည့် လက္ခဏာမှ မရှိပါ။</label>
           </div>
         </div>
       </div>
+
+      <!-- question no two end -->
 
       <!-- for question no three -->
       <div
@@ -248,7 +206,16 @@ export default {
   data() {
     return {
       array: [],
-      array1: [],
+      isCheckAll: false,
+
+      questionTwo: [
+        { text: "ဖျားနာ နေသည်။", id: 1 },
+        { text: "အသက်ရှူရခက်ခဲသည်။", id: 2 },
+        { text: "အော့အန်ခြင်း/၀မ်းလျှောခြင်း", id: 3 },
+        { text: "ချောင်းဆိုးနေသည်။", id: 4 }
+      ],
+      resultTwo: [],
+      selectedlang: "",
       ques: ques,
       questionIndex: 0,
       selected: false,
@@ -267,13 +234,30 @@ export default {
   },
 
   methods: {
-    changeDark(value) {
-      this.darkmode = value;
+    selectMultipleOption() {
+      document.getElementById("check8").checked = false;
+      if (this.array) {
+        this.selected = true;
+      } else if (!this.array) {
+        this.selected = false;
+      }
     },
     deselectAll() {
       this.selected = true;
-      this.array1 = [5];
+      this.array = [];
     },
+    decheckAll: function() {
+      this.resultTwo = [];
+      this.selected = true;
+    },
+    updateCheckall: function() {
+      this.isCheckAll = false;
+      this.selected = true;
+    },
+    changeDark(value) {
+      this.darkmode = value;
+    },
+
     next() {
       if (this.questionIndex < this.ques.questions.length) this.questionIndex++;
       this.selected = false;
@@ -295,14 +279,6 @@ export default {
       }
       this.selected = true;
     },
-    selectMultipleOption() {
-      document.getElementById("check5").checked = false;
-      if (this.array) {
-        this.selected = true;
-      } else if (!this.array) {
-        this.selected = false;
-      }
-    },
     compare(arr1, arr2) {
       // Check if all items exist and are in the same order
       for (var i = 0; i < arr1.length; i++) {
@@ -315,9 +291,10 @@ export default {
       return true;
     },
     arrayMatch() {
-      const finalArray = [...this.userResponses, ...this.array1];
+      const finalArray = [...this.userResponses, ...this.resultTwo];
+    
 
-      if (finalArray.length == 10) {
+      if (finalArray.length == 9) {
         this.seeResultClick = true;
 
         for (var i = 0; i < this.answer.length; i++) {
