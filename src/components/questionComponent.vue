@@ -1,6 +1,5 @@
 <template>
-  <div class="desktopcontainer">
-    <div class="desbody">
+    <div class="classdesbody">
       <div class="mainflex">
         <div class="questionheader">
           <div class="desheader1">Question 3</div>
@@ -56,65 +55,19 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <style scoped>
-#myNav {
-  display: none;
-}
-.headercontainer {
-  display: none;
-}
-.container {
-  display: none;
-}
-.toggle {
-  display: none;
-}
-
-.desktopcontainer {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  height: 100%;
-  background-color: #fff;
-  font-size: 18px;
-}
-.desheading {
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  height: 120px;
-}
-.desheadingname {
-  display: flex;
-  flex: 1;
-  height: 120px;
-  align-items: center;
-  justify-content: flex-start;
-  margin-left: 25px;
-  font-size: 42px;
-}
-.desbody {
-  flex-direction: column;
-  display: flex;
-  flex: 1;
-  height: 930px;
-  align-items: center;
-  justify-content: center;
-}
-
-.deslink {
-  display: flex;
-  flex: 1;
-  height: 120px;
-  align-items: center;
-  justify-content: flex-end;
-  margin-right: 25px;
-}
 
 /*updated latest desktop ui*/
+ .classdesbody {
+    flex-direction: row;
+    display: flex;
+    width: 100%;
+    height: 88%;
+    align-items:center;
+    justify-content:center;
+  }
 .mainflex {
   width: 1129px;
   height: 871px;

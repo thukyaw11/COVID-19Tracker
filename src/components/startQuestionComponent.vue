@@ -25,7 +25,7 @@
           <img src="../assets/sick.png" width="500" height="500" />
         </div>
       </div>
-      <div class="desfooter">Copyright 2020 Covid 19 | Myanamr</div>
+  
     </div>
   </div>
 </template>
@@ -39,32 +39,32 @@ export default {
 }
 </script>
 <style scoped>
-@media only screen and (min-width: 1100px) {
+ 
   .desktopcontainer {
     display: flex;
-    flex: 1;
+    background-color:#DCE3EF;
     flex-direction: column;
-    height: 100%;
-    width:90%;
-    background-color: #dce3ef;
+    flex:1;
+    align-items:center;
+    justify-content:center;
     font-size: 18px;
+    font-family: "Poppins", sans-serif;
   }
-  .desbody {
-    flex-direction: column;
-    display: flex;
-    flex: 1;
-    height: 930px;
-  }
+ 
   /*updated latest desktop ui*/
-  .mainflex {
+  .classdesbody {
+    flex-direction: row;
     display: flex;
-    flex: 1;
+    width: 100%;
+    height: 88%;
+    align-items:center;
+    justify-content:center;
   }
-  .desfooter {
-    height: 80px;
+  .mainflex {
+    
     display: flex;
-    margin-right: 35px;
-    justify-content: flex-end;
+    flex:1;
+
   }
   .flexbody {
     display: flex;
@@ -85,6 +85,7 @@ export default {
     display: flex;
     flex: 1;
     font-size: 70px;
+    line-height: 100px;
     font-weight: bold;
   }
   .flexbodycontent {
@@ -111,5 +112,5 @@ export default {
     justify-content: center;
     border-radius: 10px;
   }
-}
+
 </style>

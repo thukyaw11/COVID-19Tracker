@@ -476,18 +476,33 @@ export default {
     if (this.urlLocation == "aboutus") {
       document.getElementById("desbody").style.display = "none";
       document.getElementById("desaboutusbody").style.display = "flex";
+      document.getElementById("desscreeningbody").style.display = "none";
+      document.getElementById("desdonationbody").style.display = "none";
+      document.getElementById("desquestionbody").style.display = "none";
     } else if (this.urlLocation == "start") {
-      document.getElementById("desbody").style.display = "none";
-      document.getElementById("desdonationbody").style.display = "flex";
-    } else if (this.urlLocation == "donation") {
-      document.getElementById("desbody").style.display = "none";
+        document.getElementById("desbody").style.display = "none";
+      document.getElementById("desaboutusbody").style.display = "none";
       document.getElementById("desscreeningbody").style.display = "flex";
+      document.getElementById("desdonationbody").style.display = "none";
+      document.getElementById("desquestionbody").style.display = "none";
+    } else if (this.urlLocation == "donation") {
+        document.getElementById("desbody").style.display = "none";
+      document.getElementById("desaboutusbody").style.display = "none";
+      document.getElementById("desscreeningbody").style.display = "none";
+      document.getElementById("desdonationbody").style.display = "flex";
+      document.getElementById("desquestionbody").style.display = "none";
     } else if (this.urlLocation == "question") {
-      document.getElementById("desbody").style.display = "none";
+        document.getElementById("desbody").style.display = "none";
+      document.getElementById("desaboutusbody").style.display = "none";
+      document.getElementById("desscreeningbody").style.display = "none";
+      document.getElementById("desdonationbody").style.display = "none";
       document.getElementById("desquestionbody").style.display = "flex";
     } else {
+    
       document.getElementById("desaboutusbody").style.display = "none";
-      document.getElementById("desbody").style.display = "flex";
+      document.getElementById("desscreeningbody").style.display = "none";
+      document.getElementById("desdonationbody").style.display = "none";
+      document.getElementById("desquestionbody").style.display = "none";
     }
 
     console.log(this.urlLocation);
@@ -562,20 +577,35 @@ export default {
       this.urlLocation = to.path.split("/").pop();
 
       if (this.urlLocation == "aboutus") {
-        document.getElementById("desbody").style.display = "none";
-        document.getElementById("desaboutusbody").style.display = "flex";
+         document.getElementById("desbody").style.display = "none";
+      document.getElementById("desaboutusbody").style.display = "flex";
+      document.getElementById("desscreeningbody").style.display = "none";
+      document.getElementById("desdonationbody").style.display = "none";
+      document.getElementById("desquestionbody").style.display = "none";
       } else if (this.urlLocation == "start") {
-        document.getElementById("desbody").style.display = "none";
-        document.getElementById("desdonationbody").style.display = "flex";
+          document.getElementById("desbody").style.display = "none";
+      document.getElementById("desaboutusbody").style.display = "none";
+      document.getElementById("desscreeningbody").style.display = "flex";
+      document.getElementById("desdonationbody").style.display = "none";
+      document.getElementById("desquestionbody").style.display = "none";
       } else if (this.urlLocation == "question") {
         document.getElementById("desbody").style.display = "none";
-        document.getElementById("desquestionbody").style.display = "flex";
+      document.getElementById("desaboutusbody").style.display = "none";
+      document.getElementById("desscreeningbody").style.display = "none";
+      document.getElementById("desdonationbody").style.display = "none";
+      document.getElementById("desquestionbody").style.display = "flex";
       } else if (this.urlLocation == "donation") {
-        document.getElementById("desbody").style.display = "none";
-        document.getElementById("desscreeningbody").style.display = "flex";
+     document.getElementById("desbody").style.display = "none";
+      document.getElementById("desaboutusbody").style.display = "none";
+      document.getElementById("desscreeningbody").style.display = "none";
+      document.getElementById("desdonationbody").style.display = "flex";
+      document.getElementById("desquestionbody").style.display = "none";
       } else {
-        document.getElementById("desaboutusbody").style.display = "none";
-        document.getElementById("desbody").style.display = "flex";
+      
+      document.getElementById("desaboutusbody").style.display = "none";
+      document.getElementById("desscreeningbody").style.display = "none";
+      document.getElementById("desdonationbody").style.display = "none";
+      document.getElementById("desquestionbody").style.display = "none";
       }
 
       console.log(from);
@@ -1141,149 +1171,7 @@ export default {
     margin-top: 100px;
   }
 
-  /* aboutus css */
-  .developername {
-    font-size: 14px;
-  }
-  .footer {
-    color: #757575;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .desaboutuscontainer {
-    background-color: blue;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-    height: 871px;
-    border-radius: 10px;
-    box-shadow: 0 8px 10px 1px rgba(238, 238, 238, 238),
-      0 3px 14px 2px rgba(238, 238, 238, 238),
-      0 5px 5px -3px rgba(238, 238, 238, 238);
-  }
-  .desaboutusheading {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    height: 411px;
-  }
-  .desaboutusflex1 {
-    margin-left: 35px;
-    display: flex;
-    flex: 1;
-  }
-  .desaboutusflex1box1 {
-    font-size: 28px;
-    font-weight: bold;
-    display: flex;
-    flex: 5;
-    align-items: center;
-  }
-  .desaboutusflex1box2 {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-  }
-  .desaboutusflex2 {
-    margin-left: 35px;
-    margin-right: 35px;
-    display: flex;
-    flex: 1;
-  }
-  .desaboutusflex3 {
-    display: flex;
-    flex: 1;
-    flex-direction: row;
-  }
-  .desapicontainer1 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: 30px;
-    border-radius: 15px;
-    width: 100%;
-    height: 100px;
-    background-color: #eee;
-  }
-  .desapicontainer2 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: 30px;
-    border-radius: 15px;
-    width: 100%;
-    height: 100px;
-    background-color: #eee;
-  }
-  .desapicontainer3 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: 30px;
-    margin-right: 30px;
-    border-radius: 15px;
-    width: 100%;
-    height: 100px;
-    background-color: #eee;
-  }
-  .desaboutusdevelop {
-    display: flex;
-    flex: 1;
-    margin: 30px;
-    flex-direction: row;
-    height: 450px;
-  }
-  .desdevelop {
-    display: flex;
-    flex: 2;
-    flex-direction: column;
-  }
-  .developheading {
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    display: flex;
-    font-weight: bold;
-    color: #757575;
-
-    flex: 1;
-  }
-  .developmemberflex1 {
-    padding: 20px;
-    display: flex;
-    flex: 3;
-  }
-  .member {
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    display: flex;
-    flex: 1;
-  }
-  .developmemberflex2 {
-    padding: 20px;
-    display: flex;
-    flex: 3;
-  }
-
-  .desversionflex1 {
-    display: flex;
-    margin-right: 20px;
-    flex: 7;
-    align-items: flex-end;
-  }
-  .desversionflex2 {
-    display: flex;
-    margin-right: 20px;
-    flex: 1;
-  }
-
-  .container-aboutus {
-    display: none;
-  }
+ 
   .searchcontainer-custom {
     border-radius: 50px;
     display: flex;
@@ -1328,7 +1216,6 @@ export default {
     font-family: "Poppins", sans-serif;
   }
   .desheading {
-    background-color: #fafafa;
     display: flex;
     position: fixed;
     flex: 1;
@@ -1344,7 +1231,40 @@ export default {
     height: 88%;
   }
   #desaboutusbody {
-    margin-top: 130px;
+    margin-top:100px;
+    flex:1;
+    align-items:center;
+    justify-content:center;
+    flex-direction: row;
+    display: flex;
+    width: 100%;
+    height: 88%;
+  }
+  #desdonationbody {
+    margin-top:100px;
+    flex:1;
+    align-items:center;
+    justify-content:center;
+    flex-direction: row;
+    display: flex;
+    width: 100%;
+    height: 88%;
+  }
+  #desscreeningbody {
+    margin-top:100px;
+    flex:1;
+    align-items:center;
+    justify-content:center;
+    flex-direction: row;
+    display: flex;
+    width: 100%;
+    height: 88%;
+  }
+   #desquestionbody {
+    margin-top:100px;
+    flex:1;
+    align-items:center;
+    justify-content:center;
     flex-direction: row;
     display: flex;
     width: 100%;

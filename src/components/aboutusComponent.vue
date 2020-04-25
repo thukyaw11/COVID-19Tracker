@@ -1,6 +1,5 @@
 <template>
-  <div class="desktopcontainer">
-    <div class="desbody">
+    <div class="classdesbody">
       <div class="mainflex">
         <div class="flexbody">
           <div class="flexbodycontainer">
@@ -58,7 +57,7 @@
         <div class="footerRight">Copyright 2020 Covid 19 | Myanamr</div>
       </div>
     </div>
-  </div>
+
 </template>
 
 <style scoped>
@@ -66,42 +65,26 @@
 
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
 /* for desktop version css */
-::-webkit-scrollbar {
-  -webkit-appearance: none;
-  width: 3px;
-}
-::-webkit-scrollbar-thumb {
-  background-color: #d6d6d6;
-  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
-  display: block;
-}
 
-@media only screen and (min-width: 1100px) {
-
-  .desktopcontainer {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    height: 100%;
-    font-size: 18px;
-    margin-top: 100px;
-  }
-
-  .deslink {
-    display: flex;
-    flex: 1;
-    height: 120px;
-    align-items: center;
-    justify-content: flex-end;
-    margin-right: 25px;
-  }
 
   /*updated latest desktop ui*/
-  .mainflex {
+  .classdesbody {
+    flex-direction: row;
     display: flex;
-    flex: 1;
+    width: 100%;
+    height: 88%;
+    align-items:center;
+    justify-content:center;
+  }
+  .mainflex {
+    
+    display: flex;
+    flex:1;
+
   }
   .desfooter {
+    position:fixed;
+    bottom:0;
     width: 98%;
     height: 80px;
     display: flex;
@@ -185,7 +168,7 @@
     align-items: center;
     justify-content: flex-end;
     margin-right: -10px;
-    z-index: 0.5;
+    z-index: 1;
     border-radius: 50%;
     height: 120px;
     width: 120px;
@@ -198,8 +181,6 @@
   }
   .desimage2 img {
     border-radius: 50%;
-    border: 3px solid #fbbf3c;
-
     height: 120px;
     width: 120px;
   }
@@ -209,39 +190,12 @@
     margin-left: -10px;
     align-items: center;
     justify-content: flex-start;
-    z-index: -1;
+    z-index: 0.5;
     height: 120px;
     width: 120px;
   }
 
-  .deslink ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
+ 
 
-  .deslink li {
-    float: left;
-  }
-
-  .deslink li a {
-    width: 98px;
-    height: 100%;
-    display: block;
-    color: #212121;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-
-  .deslink li a:hover:not(.active) {
-    border-bottom: 3px solid #eee;
-  }
-
-  .deslink .active {
-    border-bottom: 3px solid #3f51b5;
-  }
-}
 </style>
 

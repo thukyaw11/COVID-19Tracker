@@ -1,6 +1,5 @@
 <template>
-  <div class="desktopcontainer">
-    <div class="desbody">
+    <div class="classdesbody">
       <div class="mainflex">
         <div class="flexbody">
           <div class="flexbodycontainer">
@@ -23,57 +22,38 @@
           <i class="fas fa-heartbeat" style="font-size:300px; color:#EC407A;"></i>
         </div>
       </div>
-      <div class="desfooter"></div>
+      <div class="desfooter">ss</div>
     </div>
-  </div>
+  
 </template>
 
 <style scoped>
-@media only screen and (min-width: 1100px) {
-  #myNav {
-    display: none;
-  }
-  .headercontainer {
-    display: none;
-  }
-  .container {
-    display: none;
-  }
-  .toggle {
-    display: none;
-  }
 
-  .desktopcontainer {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    height: 100%;
-    padding-top: 100px;
-    font-size: 18px;
-  }
-  .desheading {
-    display: flex;
-    flex: 1;
-    flex-direction: row;
-    height: 120px;
-  }
-  .desbody {
-    flex-direction: column;
-    display: flex;
-    flex: 1;
-    height: 930px;
-  }
 
   /*updated latest desktop ui*/
-  .mainflex {
+  .classdesbody {
+    flex-direction: row;
     display: flex;
-    flex: 1;
+    width: 100%;
+    height: 88%;
+    align-items:center;
+    justify-content:center;
   }
-  .desfooter {
+  .mainflex {
+    
+    display: flex;
+    flex:1;
+
+  }
+ .desfooter {
+    position:fixed;
+    bottom:0;
+    width: 98%;
     height: 80px;
     display: flex;
-    margin-right: 35px;
-    justify-content: flex-end;
+    justify-content: center;
+    color: #212121;
+    border-top: 1px solid #eee;
   }
   .flexbody {
     display: flex;
@@ -121,5 +101,5 @@
     justify-content: center;
     border-radius: 10px;
   }
-}
+
 </style>
