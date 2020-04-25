@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
+import store from './store/store'
 import VueMarkDown from 'vue-markdown';
 import i18n from './plugin/i18n';
 import Meta from 'vue-meta';
@@ -41,6 +42,7 @@ Vue.prototype.$darkModeBus = new Vue(); //second darkmode event bus
 Vue.config.productionTip = false
 
 new Vue({
+  store,
   i18n,
   router,
   data: sourceOfTruth,

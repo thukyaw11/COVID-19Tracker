@@ -52,20 +52,21 @@
               type="checkbox"
               name="mycheckbox"
             />
-            <label :for="option.id" class="clickable" @change="updateCheckall()"></label>
+            <label :for="option.id" class="clickable" @click="updateCheckall()"></label>
             <span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">{{ option.text }}</span>
           </div>
         </div>
         <div class="questionbody">
-          <div :class="darkmode? 'optioncontainerDark' : 'optioncontainer'">
+          <div :class="darkmode? 'optioncontainerDark' : 'optioncontainer'"  @click="decheckAll()">
             <input type="checkbox" v-model="isCheckAll" @click="decheckAll()" id="nosym" />
 
             <label
               for="nosym"
-              :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+              :style="darkmode? 'color : #f5f5f5' : 'color : #212121' " 
             >မည်သည့် လက္ခဏာမှ မရှိပါ။</label>
           </div>
         </div>
+        <h1>{{resultTwo}}</h1>
       </div>
 
       <!-- question no two end -->

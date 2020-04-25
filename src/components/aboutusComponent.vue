@@ -60,7 +60,10 @@
     </div>
   </div>
 </template>
+
 <style scoped>
+
+
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
 /* for desktop version css */
 ::-webkit-scrollbar {
@@ -74,6 +77,7 @@
 }
 
 @media only screen and (min-width: 1100px) {
+
   .desktopcontainer {
     display: flex;
     flex: 1;

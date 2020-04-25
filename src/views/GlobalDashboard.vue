@@ -128,7 +128,7 @@
             <div
               class="descountrybycasesheading"
               style="color:#3F51B5;"
-            >Countries, areas or territories with cases </div>
+            >Countries, areas or territories with cases {{storeVal}}</div>
             <br />
             <div class="dessearchbar">
               <form class="searchcontainer-custom">
@@ -444,8 +444,6 @@ export default {
   created() {
 
     this.urlLocation = window.location.href.split("/").pop();
-
-
     //yesterday, today and uploaded
     const todayDate = new Date().toISOString().slice(0, 10);
     const tmrDate = new Date(todayDate);
@@ -458,17 +456,6 @@ export default {
     this.yesbaseURL = `https://aa56zbybij.execute-api.ap-southeast-1.amazonaws.com/v1/news/covid-19?from=${todayDate}`;
   },
   mounted() {
-    this.urlLocation = window.location.href.split("/").pop();
-
-          if (this.urlLocation == "aboutus") {
-        document.getElementById("desbody").style.display = "none";
-        document.getElementById("desaboutusbody").style.display = "flex";
-      } else {
-        document.getElementById("desaboutusbody").style.display = "none";
-        document.getElementById("desbody").style.display = "flex";
-      }
-
-      console.log(this.urlLocation);
         this.$store.dispatch('getCountryCases');
 
     //language switching
@@ -538,8 +525,6 @@ export default {
       //display none country cases view in about us page desktop
 
       this.urlLocation = to.path.split("/").pop();
-
-      console.log("From watch " + this.urlLocation)
       console.log(this.urlLocation);
       if (this.urlLocation == "aboutus") {
         document.getElementById("desbody").style.display = "none";
