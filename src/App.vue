@@ -128,7 +128,7 @@
             <div
               class="descountrybycasesheading"
               style="color:#3F51B5;"
-            >Countries, areas or territories with cases </div>
+            >Countries, areas or territories with cases</div>
             <br />
             <div class="dessearchbar">
               <form class="searchcontainer-custom">
@@ -298,6 +298,15 @@
       <div id="desaboutusbody">
         <AboutusComponent v-if="this.urlLocation == 'aboutus'" />
       </div>
+      <div id="desscreeningbody">
+        <ScreeningComponent v-if="this.urlLocation == 'start'" />
+      </div>
+      <div id="desdonationbody">
+        <DontaionComponent v-if="this.urlLocation == 'donation'" />
+      </div>
+      <div id="desquestionbody">
+        <QuestionComponent v-if="this.urlLocation == 'question'" />
+      </div>
     </div>
   </div>
 </template>
@@ -315,6 +324,9 @@ import dashboardGlobalComponent from "./components/dashboardGlobalComponent";
 import dashboardLocalComponent from "./components/dashboardLocalComponent";
 import countryCases from "./components/dynamicCountryCases";
 import AboutusComponent from "./components/aboutusComponent";
+import ScreeningComponent from "./components/startQuestionComponent";
+import DontaionComponent from "./components/donationComponent";
+import QuestionComponent from "./components/questionComponent";
 import isoCountries from "./assets/content/countryCode";
 import i18n from "./plugin/i18n";
 // import store from './store/store'
@@ -328,7 +340,10 @@ export default {
     dashboardLocalComponent,
     countryCases,
     vueTopprogress,
-    AboutusComponent
+    AboutusComponent,
+    ScreeningComponent,
+    DontaionComponent,
+    QuestionComponent
   },
   data() {
     return {
@@ -442,9 +457,7 @@ export default {
     }
   },
   created() {
-
     this.urlLocation = window.location.href.split("/").pop();
-
 
     //yesterday, today and uploaded
     const todayDate = new Date().toISOString().slice(0, 10);
@@ -460,16 +473,25 @@ export default {
   mounted() {
     this.urlLocation = window.location.href.split("/").pop();
 
-          if (this.urlLocation == "aboutus") {
-        document.getElementById("desbody").style.display = "none";
-        document.getElementById("desaboutusbody").style.display = "flex";
-      } else {
-        document.getElementById("desaboutusbody").style.display = "none";
-        document.getElementById("desbody").style.display = "flex";
-      }
+    if (this.urlLocation == "aboutus") {
+      document.getElementById("desbody").style.display = "none";
+      document.getElementById("desaboutusbody").style.display = "flex";
+    } else if (this.urlLocation == "start") {
+      document.getElementById("desbody").style.display = "none";
+      document.getElementById("desdonationbody").style.display = "flex";
+    } else if (this.urlLocation == "donation") {
+      document.getElementById("desbody").style.display = "none";
+      document.getElementById("desscreeningbody").style.display = "flex";
+    } else if (this.urlLocation == "question") {
+      document.getElementById("desbody").style.display = "none";
+      document.getElementById("desquestionbody").style.display = "flex";
+    } else {
+      document.getElementById("desaboutusbody").style.display = "none";
+      document.getElementById("desbody").style.display = "flex";
+    }
 
-      console.log(this.urlLocation);
-        this.$store.dispatch('getCountryCases');
+    console.log(this.urlLocation);
+    this.$store.dispatch("getCountryCases");
 
     //language switching
     i18n.locale = this.lang;
@@ -539,11 +561,18 @@ export default {
 
       this.urlLocation = to.path.split("/").pop();
 
-      console.log("From watch " + this.urlLocation)
-      console.log(this.urlLocation);
       if (this.urlLocation == "aboutus") {
         document.getElementById("desbody").style.display = "none";
         document.getElementById("desaboutusbody").style.display = "flex";
+      } else if (this.urlLocation == "start") {
+        document.getElementById("desbody").style.display = "none";
+        document.getElementById("desdonationbody").style.display = "flex";
+      } else if (this.urlLocation == "question") {
+        document.getElementById("desbody").style.display = "none";
+        document.getElementById("desquestionbody").style.display = "flex";
+      } else if (this.urlLocation == "donation") {
+        document.getElementById("desbody").style.display = "none";
+        document.getElementById("desscreeningbody").style.display = "flex";
       } else {
         document.getElementById("desaboutusbody").style.display = "none";
         document.getElementById("desbody").style.display = "flex";
@@ -560,7 +589,6 @@ export default {
     }
   },
   computed: {
-  
     filteredListDetail() {
       return this.CountryByCases.filter(name => {
         return name.country_name
@@ -575,7 +603,7 @@ export default {
           .includes(this.searchContacts.toLowerCase());
       });
     },
-    storeVal(){
+    storeVal() {
       return this.$store.getters.countrycases;
     }
   },
@@ -615,12 +643,12 @@ export default {
   }
   #app {
     background-color: #ffffff;
-    font-family: "Poppins", sans-serif ;
+    font-family: "Poppins", sans-serif;
     font-size: 14px;
   }
   #appDark {
     background-color: #121212;
-    font-family: "Poppins", sans-serif ;
+    font-family: "Poppins", sans-serif;
     font-size: 14px;
   }
 
@@ -631,8 +659,8 @@ export default {
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding-left:15px;
-    padding-right:15px;
+    padding-left: 15px;
+    padding-right: 15px;
     height: 100px;
     border-top: 1px solid #eee;
     align-items: center;
@@ -694,54 +722,51 @@ export default {
     justify-content: center;
   }
   .overlay {
-  
-  text-align:center;
-  align-items:center;
-  height: 0%;
-  width: 100%;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color:#ffffff;
-  overflow-y: auto;
-  transition: 0.5s;
+    text-align: center;
+    align-items: center;
+    height: 0%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    overflow-y: auto;
+    transition: 0.5s;
   }
   .overlayDark {
-    text-align:center;
-  align-items:center;
-  height: 0%;
-  width: 100%;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color:#121212;
-  overflow-y: auto;
-  transition: 0.5s;
-
+    text-align: center;
+    align-items: center;
+    height: 0%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #121212;
+    overflow-y: auto;
+    transition: 0.5s;
   }
 
   .overlay-content {
-  
     display: flex;
     flex-direction: column;
     line-height: 50px;
     margin-top: 80px;
-    height:auto;
+    height: auto;
     width: 100%;
-    padding-left:15px;
-    padding-right:15px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
   .overlay-contentDark {
     display: flex;
     flex-direction: column;
     line-height: 50px;
     margin-top: 80px;
-    height:auto;
+    height: auto;
     width: 100%;
-    padding-left:15px;
-    padding-right:15px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .overlay a {
@@ -762,19 +787,18 @@ export default {
     display: flex;
     flex-direction: row;
     flex: 1;
-    align-items:center;
-    
+    align-items: center;
   }
   .overlayDark .router-link {
     display: flex;
     flex-direction: row;
     flex: 1;
-     align-items:center;
+    align-items: center;
   }
 
   .overlay .router-link-active {
     border-radius: 50px;
-    align-items:center;
+    align-items: center;
     background-color: #f5f5f5;
     width: 100%;
     font-weight: bold;
@@ -782,7 +806,7 @@ export default {
   .overlayDark .router-link-active {
     border-radius: 50px;
     background-color: #212121;
-    align-items:center;
+    align-items: center;
     width: 100%;
     font-weight: bold;
   }
@@ -1069,6 +1093,10 @@ export default {
   }
 }
 @media only screen and (min-width: 1100px) {
+  .container-donationDark,
+  .container-donation {
+    display: none;
+  }
   .headercontainer {
     display: none;
   }

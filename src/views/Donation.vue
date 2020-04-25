@@ -181,6 +181,7 @@ export default {
 </script>
 
 <style scoped>
+@media only screen and (max-width: 1100px){
 .bodycontent {
   line-height: 22px;
   width: 90%;
@@ -352,6 +353,7 @@ export default {
   height: 50px;
   align-items: center;
   justify-content: center;
+}
 }
 </style>
     
