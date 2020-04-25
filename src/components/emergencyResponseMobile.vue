@@ -15,11 +15,11 @@
     </div>
 
     <div :class="darkmode? 'splashbuttoncontainerDark':'splashbuttoncontainer'" >
-      <a href="tel:911" class="splashbutton" style="color : #fff">{{$t('resultPage.contactnine')}}</a>
+     
       <router-link
         to="/contants"
-        class="splashbuttonsecondary"
-        style="color : #e6403a;"
+        class="splashbutton"
+        style="color : #f5f5f5; text-decoration:none;"
       >{{$t('resultPage.phno')}}</router-link>
     </div>
   </div>
@@ -116,20 +116,5 @@ img {
   justify-content: center;
   text-align: center;
 }
-.splashbuttonsecondary {
-  margin-top: 8px;
-  border-radius: 10px;
-  font-weight: bold;
-  color: #e6403a;
-  font-size: 14px;
-  border: 0px;
-  outline: none;
-  background-color: #ffcdd2;
-  width: 100%;
-  height: 50px;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 15px;
-}
+
 </style>

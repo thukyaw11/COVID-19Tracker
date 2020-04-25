@@ -43,7 +43,7 @@
         </div>
       </div>
       <div :class="darkmode? 'splashbuttoncontainerDark':'splashbuttoncontainer'">
-        <router-link to="/contants" class="splashbutton" style="color : #fff;">{{$t('resultPage.phno')}}</router-link>
+        <router-link to="/contants" class="splashbutton" style="color : #fff; text-decoration:none;">{{$t('resultPage.phno')}}</router-link>
       </div>
     </div>
   </div>
@@ -72,7 +72,7 @@ export default {
   }
 };
 </script>
-<style>
+<style >
 .container-stayhome {
  
   justify-content: center;

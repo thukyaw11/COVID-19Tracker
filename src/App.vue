@@ -592,12 +592,12 @@ export default {
   }
   #app {
     background-color: #ffffff;
-    /* font-family: "Poppins", sans-serif, 'Myanmar3'; */
+    font-family: "Poppins", sans-serif ;
     font-size: 14px;
   }
   #appDark {
     background-color: #121212;
-    /* font-family: "Poppins", sans-serif, 'Myanmar3'; */
+    font-family: "Poppins", sans-serif ;
     font-size: 14px;
   }
 
