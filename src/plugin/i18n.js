@@ -7,6 +7,8 @@ const messages = {
     'en': {
         menutitle: 'Coronavirus disease Situation Menu',
         global: 'Global',
+        local: 'Local',
+        map : 'Map',
         countrycase: ' Countries By Cases',
         start: 'Screening Kit',
         donation: 'Donation',
@@ -24,6 +26,7 @@ const messages = {
             heading : "Global Dashboard"
         },
         localdashboard : {
+            tested : "Tested",
             confirmcase : "Infected",
             newcases : "New Cases",
             recover : "Recover",
@@ -62,12 +65,31 @@ const messages = {
             serious : "Serious Cirtical",
             newDeath : "New Death",
             casepermin : "Case per 1 min"
-        }
+        },
+        goodHope : {
+            para1 : 'Good Hope is a student organization based in Yangon University of Economics, currently operating Online Knowledge Sharing Platform and Research projects.',
+            para2 : ' Here, we collaborate with UITSU to create more effective features, to help the community to be aware of COVID-19.'
+        },
+        newsPage : {
+            latest : "Latest",
+            yesterday : "Yesterday"
+        },
+        resultPage : {
+            emergencyResponse : 'Emergency Response',
+            stayhomeResponse : 'Stayhome Response',
+            contactnine : 'Call 911',
+            phno : 'Emergency Contacts',
+            view : 'View',
+            deleteall : 'Delete all history'
+        },
+
 
     },
     'mm': {
         menutitle: 'ကိုရိုနာကူးစက်ခံရမှုပြ မာတိကာ',
         global: 'ကမ္ဘာတစ်ဝှမ်း',
+        local : 'မြန်မာ',
+        map : 'မြေပုံ',
         countrycase: 'နိုင်ငံအလိုက်',
         start: 'ကူးစက်ခံရမှုရှိ/မရှိ စစ်ဆေးခြင်း',
         donation: 'အလှူစာရင်း',
@@ -85,6 +107,7 @@ const messages = {
             heading : "ကမ္ဘာတစ်ဝှမ်း"
         },
         localdashboard : {
+            tested : "စစ်ဆေးပြီး",
             confirmcase : "ကူးစက်ခံ လူနာ",
             newcases : "ယနေ့ ထပ်တိုးလူနာ",
             recover : "ရောဂါပျောက်ဆုံးလူနာ",
@@ -100,7 +123,7 @@ const messages = {
             screeningContent : `ရောဂါကူးစက်ခံရမှု ရှိ/မရှိ ယေဘုယျ စစ်ဆေးရာတွင် သင့်အနေဖြင့် မေးခွန်း ၉ ခုဖြေဆိုရမည်ဖြစ်ပြီး ရောဂါလက္ခဏာများအကြောင်း၊ ခရီးသွားရာဇ၀င်နှင့် လူအများနှင့်ထိတွေ့မှု အကြောင်း မေးမြန်းသွားပါမည်။
             ၎င်းသည် ယေဘုယျ စစ်ဆေးခြင်းသာဖြစ်ပြီး သင့်၌ ပြင်းထန်သော ရောဂါလက္ခဏာများရှိပါက အရေးပေါ် ကျန်းမာရေးဌာနများသို့ အလျင်အမြန်ဆက်သွယ်ပါ။
             ဖြေဆိုထားသောအဖြေများအား လုံခြုံစွာ ထိန်းသိမ်းထားမည်ဖြစ်ပြီး သင်၏ခွင့်ပြုချက်မရှိပဲ မည်သူကိုမှ မျှဝေသွားမည် မဟုတ်ပါ။`,
-            screeningHeader : "ကိုဗစ် ၁၉ ရောဂါယေဘုယျစစ်ဆေးခြင်း",
+            screeningHeader : "ကိုဗစ် ၁၉ ယေဘုယျစစ်ဆေးခြင်း",
             screeningButton : "စတင်‌စစ်ဆေးမည်",
             screeningHistory : "စစ်ဆေးမှု မှတ်တမ်း"
         },
@@ -123,6 +146,23 @@ const messages = {
             serious : "ပြင်းထန်",
             newDeath : "ထပ်မံ သေဆုံး",
             casepermin : "၁မိနစ် ဖြစ်ပွားမှုနှုန်း"
+        },
+        goodHope : {
+            para1 : 'Good Hope သည် ရန်ကုန်စီးပွားရေးတက္ကသိုလ်မှ ကျောင်းသားအဖွဲ့အစည်းတစ်ခုဖြစ်ပြီး လက်ရှိတွင် အင်တာနက်အခြေပြု စီးပွားရေးဆိုင်ရာဗဟုသုတများ မျှဝေခြင်းနှင့် သုတေသနအစီအစဉ်များအား လုပ်ဆောင်လျက်ရှိသည်။',
+            para2 : 'ပြည်သူများအား ကိုဗစ် - ၁၉ အကြောင်း ပိုမိုထိရောက်စွာ အသိပညာပေးနိုင်ရန်ရည်ရွယ်၍ သတင်းအချက်အလက်နည်းပညာတက္ကသိုလ် ကျောင်းသားများသမဂ္ဂနှင့် ပူးပေါင်းဆောင်ရွက်လျက်ရှိသည်။'
+        },
+        newsPage : {
+            latest : "နောက်ဆုံးရ",
+            yesterday : "လွန်ခဲ့သောနေ့က"
+        },
+        resultPage : {
+            emergencyResponse : 'အရေးပေါ် အခြေအနေ',
+            stayhomeResponse : 'အိမ်၌သာနေရန်',
+            contactnine : '၁၉၉ သို့ဆက်သွယ်ရန်',
+            phno : 'အရေးပေါ်ဖုန်းနံပါတ်များ',
+            view : 'ကြည့်ရန်',
+            deleteall : 'အားလုံးဖျက်မည်'
+
         }
 
 
@@ -135,4 +175,4 @@ const i18n = new VueI18n({
     messages, // set locale messages
 });
 
-export default i18n;
+export default i18n;    

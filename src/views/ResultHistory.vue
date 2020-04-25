@@ -5,7 +5,7 @@
         <div class="deletebuttonParent" v-if="results.length >= 3">
           <div class="deletebutton" @click="removeHistory()">
             <span class="material-icons">delete</span>
-            &nbsp;&nbsp;Delete all history
+            &nbsp;&nbsp;{{$t('resultPage.deleteall')}}
           </div>
         </div>
         <br />
@@ -28,25 +28,23 @@
                 class="responseflex1"
                 v-if="result.resultLocal==true"
                 :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
-              >StayHome Response</div>
+              >{{$t('resultPage.stayhomeResponse')}}</div>
               <div
                 class="responseflex1"
                 v-if="result.resultLocal==false"
                 :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
-              >Emergency Response</div>
+              >{{$t('resultPage.emergencyResponse')}}</div>
 
-              <div class="responseflex2" @click="viewResponse(result.resultLocal)">View</div>
+              <div
+                class="responseflex2"
+                @click="viewResponse(result.resultLocal)"
+              >{{$t('resultPage.view')}}</div>
             </div>
           </div>
           <br />
         </div>
       </div>
       <div class="resulthistorycontainer" v-else style="margin-top: 200px;color : grey;">
-        <router-link to="question" class="quesbutton">
-          <p
-            style="color : #fff; font-size:14px; font-weight : bold; text-align: center;"
-          >Start Screening Myself</p>
-        </router-link>
       </div>
     </div>
     <div v-if="click == true">
@@ -66,15 +64,14 @@ export default {
   },
   data() {
     return {
-      results: localStorage.getItem("resultSession")
-        ? JSON.parse(localStorage.getItem("resultSession"))
-        : [],
       click: false,
       response: "",
       lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en",
       darkmode: localStorage.getItem("darkmode")
         ? JSON.parse(localStorage.getItem("darkmode"))
-        : false
+        : false,
+      interval: "",
+      results : ''
     };
   },
   mounted() {
@@ -88,16 +85,32 @@ export default {
   //working with event bus
   created() {
     this.$eventHub.$on("change-name", this.changeName);
-
-    this.$darkModeBus.$on("dark-mode", this.chageDark);
+    this.$darkModeBus.$on("dark-mode", this.changeDark);
+    this.interval = setInterval(this.getData, 100);
+  },
+  beforeDestroy() {
+    clearInterval(this.interval);
   },
   methods: {
-    chageDark(value) {
+    getData() {
+      const results = localStorage.getItem("resultSession")
+        ? JSON.parse(localStorage.getItem("resultSession"))
+        : [];
+      this.results = results;
+    },
+    changeDark(value) {
       this.darkmode = value;
+
+      if (this.darkmode == true) {
+        document.body.className = "home";
+      } else {
+        document.body.className = "intro";
+      }
     },
     removeHistory() {
-      localStorage.clear();
-      window.location.reload();
+      localStorage.removeItem('resultSession')
+      this.results = '';
+      this.$router.push('/start');
     },
     viewResponse(responseCheck) {
       this.click = true;
@@ -148,7 +161,6 @@ export default {
   height: 100px;
   background-color: #212121;
 }
-
 .resultContainerParent {
   margin-bottom: 15px;
   display: flex;

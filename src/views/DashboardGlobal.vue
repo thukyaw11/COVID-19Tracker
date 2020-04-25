@@ -205,6 +205,14 @@ export default {
 
 
 <style scoped>
+.global a:hover
+{
+  text-decoration:none;
+}
+.local a:hover
+{
+  text-decoration:none;
+}
 .lightmodetext{
   color: black;
 }

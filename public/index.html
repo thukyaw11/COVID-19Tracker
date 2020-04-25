@@ -1,11 +1,17 @@
-
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
+  <!-- facebook sharing -->
+  <meta property="og:url" content="https://covid19mm.netlify.app/" />
+  <meta property="og:type" content="cvoid tracker" />
+  <meta property="og:title" content="COVID19 MM" />
+  <meta property="og:description" content="Built by UIT SU | For news about covid-19">
+  <meta property="og:image" content="https://i.postimg.cc/C5RzZgSc/COVID-19-Tracker.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <!-- add icon link -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -15,17 +21,21 @@
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
 
 
+
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/v4-shims.css">
-  <link rel="stylesheet" href="https://web.zetamm.com/fonts/1.5.0/css/Pyidaungsu">
-        <link href='http://fonts.googleapis.com/earlyaccess/notosansmyanmar.css' rel='stylesheet' type='text/css'>
+  <!-- <link rel="stylesheet" href="https://web.zetamm.com/fonts/2.0.0/css/myanmar3"> -->
   <!-- material icon -->
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons">
 
   <title>COVID19 MM</title>
   <style>
-    body {
-      background-color: #ffffff;
+    body.home {
+      background: #121212;
+    }
+
+    body.intro {
+      background: white;
     }
   </style>
 </head>
@@ -39,16 +49,19 @@
   <!-- built files will be auto injected -->
 </body>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
 
-    const darkmode = localStorage.getItem('darkmode')? JSON.parse(localStorage.getItem('darkmode')) : 'false';
+  const darkmode = localStorage.getItem('darkmode') ? JSON.parse(localStorage.getItem('darkmode')) : false;
 
 
-    if(darkmode){
-      document.getElementsByTagName('body')[0].style.backgroundColor = "#121212";
-    }else{
-      document.getElementsByTagName('body')[0].style.backgroundColor = "#ffffff";
-    }
+  if (darkmode) {
+    document.getElementsByTagName('body')[0].className = "home";
+  } else {
+    document.getElementsByTagName('body')[0].className = "intro";
+  }
+
+
 </script>
 <!-- <script type="text/javascript" src="/src/toggle.js"></script> -->
 

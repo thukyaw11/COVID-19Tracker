@@ -1,17 +1,20 @@
 <template>
-  <div>
-    <div class="headercontainer">
+  <div :class="darkmode? 'containerDark' : 'container'">
+    <div :class="darkmode? 'headercontainerDark' : 'headercontainer'">
       <div class="backbutton" style="font-size:24px;cursor:pointer">
-        <router-link to="/start" style="color : black">
+        <router-link to="/start" :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">
           <span class="material-icons">arrow_back</span>
         </router-link>
       </div>
       <div class="heading">Question</div>
       <div class="space"></div>
     </div>
-
+    <!-- +++++++++++++++++++++++++++++++++ -->
     <div class="container-question" v-if="questionIndex<ques.questions.length">
-      <div class="questioncontainer" v-if="checkQuestionIndex">
+      <div
+        :class="darkmode? 'questioncontainerDark' : 'questioncontainer'"
+        v-if="checkQuestionIndex"
+      >
         <div class="questionname">
           <h2>{{questionIndex + 1}}</h2>
           <div style="text-align:center; padding:10px;">{{ ques.questions[questionIndex].text }}</div>
@@ -22,174 +25,158 @@
           :key="index"
         >
           <!-- create the product container the user sees -->
-          <div class="optioncontainer">
+          <div :class="darkmode? 'optioncontainerDark' : 'optioncontainer'">
             <input :id="response.id" type="radio" name="myradio" />
             <label :for="response.id" class="clickable" @click="selectOption(response.id)"></label>
-            {{ response.text }}
+            <span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">{{ response.text }}</span>
           </div>
           <br />
         </div>
       </div>
-
-      <div class="questioncontainer" v-if="questionIndex == 1">
+      <!-- for question no 2 -->
+      <div
+        :class="darkmode? 'questioncontainerDark' : 'questioncontainer'"
+        v-if="questionIndex == 1"
+      >
         <div class="questionname">
           <h2>{{questionIndex + 1}}</h2>
           <div style="text-align:center; padding:10px;">{{ ques.questions[questionIndex].text }}</div>
         </div>
+        <!-- Checkboxes list -->
+        <div class="questionbody" v-for="option in questionTwo" v-bind:key="option.id">
+          <div :class="darkmode? 'optioncontainerDark' : 'optioncontainer'">
+            <input
+              v-bind:value="option.id"
+              v-model="resultTwo"
+              :id="option.id"
+              type="checkbox"
+              name="mycheckbox"
+            />
+            <label :for="option.id" class="clickable" @change="updateCheckall()"></label>
+            <span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">{{ option.text }}</span>
+          </div>
+        </div>
         <div class="questionbody">
-          <div class="optioncontainerCheckbox">
-            <input type="checkbox" v-model="array1" value="1" id="check1" name="mycheckbox" />
+          <div :class="darkmode? 'optioncontainerDark' : 'optioncontainer'">
+            <input type="checkbox" v-model="isCheckAll" @click="decheckAll()" id="nosym" />
+
             <label
-              for="check1"
-              class="clickable"
-              @click="selectMultipleOption()"
-              style="text-align : center; padding : 20px"
-            >leelee</label>
-          </div>
-          <div class="optioncontainerCheckbox">
-            <input type="checkbox" v-model="array1" value="2" id="check2" name="mycheckbox" />
-            <label
-              for="check2"
-              class="clickable"
-              @click="selectMultipleOption()"
-              style="text-align : center; padding : 20px"
-            >ကိုယ်၀န်ဆောင်မိခင်ဖြစ်သည်။</label>
-          </div>
-          <div class="optioncontainerCheckbox">
-            <input type="checkbox" v-model="array1" value="3" id="check3" name="mycheckbox" />
-            <label
-              for="check3"
-              class="clickable"
-              @click="selectMultipleOption()"
-              style="text-align : center; padding : 20px"
-            >ဆီးချို/‌သွေးချိုရှိသည်။</label>
-          </div>
-          <div class="optioncontainerCheckbox">
-            <input type="checkbox" v-model="array1" value="4" id="check4" name="mycheckbox" />
-            <label
-              for="check4"
-              class="clickable"
-              @click="selectMultipleOption()"
-              style="text-align : center; padding : 20px"
-            >နှလုံးရောဂါ သို့မဟုတ် သွေးတိုးရှိသည်။</label>
-          </div>
-          <div class="optioncontainerCheckbox">
-            <input type="checkbox" v-model="array1" value="5" id="check5" name="mycheckbox" />
-            <label
-              for="check5"
-              class="clickable"
-              @click="selectMultipleOption()"
-              style="text-align : center; padding : 20px"
-            >အဆုတ်ရောင်ရှိသည်။</label>
-          </div>
-          <div class="optioncontainerCheckbox">
-            <input type="checkbox" v-model="array1" value="6" id="check6" name="mycheckbox" />
-            <label
-              for="check6"
-              class="clickable"
-              @click="selectMultipleOption()"
-              style="text-align : center; padding : 20px"
-            >ကင်ဆာရောဂါရှိသည်။</label>
-          </div>
-          <div class="optioncontainerCheckbox">
-            <input type="checkbox" v-model="array1" value="7" id="check7" name="mycheckbox" />
-            <label
-              for="check7"
-              class="clickable"
-              @click="selectMultipleOption()"
-              style="text-align : center; padding : 20px"
-            >HIV/AIDS ရောဂါပိုးရှိသည်။</label>
-          </div>
-          <div class="optioncontainerCheckbox">
-            <input type="checkbox" value="8" id="check8" name="mycheckbox" />
-            <label
-              for="check8"
-              class="clickable"
-              @click="deselectAll()"
-              style="text-align : center; padding : 20px"
-            >မည်သည့် လက္ခဏာမှမရှိပါ။</label>
+              for="nosym"
+              :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+            >မည်သည့် လက္ခဏာမှ မရှိပါ။</label>
           </div>
         </div>
       </div>
 
+      <!-- question no two end -->
+
       <!-- for question no three -->
-      <div class="questioncontainer" v-if="questionIndex == 2">
+      <div
+        :class="darkmode? 'questioncontainerDark' : 'questioncontainer'"
+        v-if="questionIndex == 2"
+      >
         <div class="questionname">
           <h2>{{questionIndex + 1}}</h2>
           <div style="text-align:center; padding:10px;">{{ ques.questions[questionIndex].text }}</div>
         </div>
         <div class="questionbody">
-          <div class="optioncontainerCheckbox">
+          <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
             <input type="checkbox" v-model="array" value="1" id="check1" name="mycheckbox" />
             <label
               for="check1"
               class="clickable"
               @click="selectMultipleOption()"
               style="text-align : center; padding : 20px"
-            >ရင်ကြပ်ရောဂါရှိသည်။</label>
+            >
+              <span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">ရင်ကြပ်ရောဂါရှိသည်။</span>
+            </label>
           </div>
-          <div class="optioncontainerCheckbox">
+          <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
             <input type="checkbox" v-model="array" value="2" id="check2" name="mycheckbox" />
             <label
               for="check2"
               class="clickable"
               @click="selectMultipleOption()"
               style="text-align : center; padding : 20px"
-            >ကိုယ်၀န်ဆောင်မိခင်ဖြစ်သည်။</label>
+            >
+              <span
+                :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+              >ကိုယ်၀န်ဆောင်မိခင်ဖြစ်သည်။</span>
+            </label>
           </div>
-          <div class="optioncontainerCheckbox">
+          <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
             <input type="checkbox" v-model="array" value="3" id="check3" name="mycheckbox" />
             <label
               for="check3"
               class="clickable"
               @click="selectMultipleOption()"
               style="text-align : center; padding : 20px"
-            >ဆီးချို/‌သွေးချိုရှိသည်။</label>
+            >
+              <span
+                :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+              >ဆီးချို/‌သွေးချိုရှိသည်။</span>
+            </label>
           </div>
-          <div class="optioncontainerCheckbox">
+          <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
             <input type="checkbox" v-model="array" value="4" id="check4" name="mycheckbox" />
             <label
               for="check4"
               class="clickable"
               @click="selectMultipleOption()"
               style="text-align : center; padding : 20px"
-            >နှလုံးရောဂါ သို့မဟုတ် သွေးတိုးရှိသည်။</label>
+            >
+              <span
+                :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+              >နှလုံးရောဂါ သို့မဟုတ် သွေးတိုးရှိသည်။</span>
+            </label>
           </div>
-          <div class="optioncontainerCheckbox">
+          <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
             <input type="checkbox" v-model="array" value="5" id="check5" name="mycheckbox" />
             <label
               for="check5"
               class="clickable"
               @click="selectMultipleOption()"
               style="text-align : center; padding : 20px"
-            >အဆုတ်ရောင်ရှိသည်။</label>
+            >
+              <span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">အဆုတ်ရောင်ရှိသည်။</span>
+            </label>
           </div>
-          <div class="optioncontainerCheckbox">
+          <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
             <input type="checkbox" v-model="array" value="6" id="check6" name="mycheckbox" />
             <label
               for="check6"
               class="clickable"
               @click="selectMultipleOption()"
               style="text-align : center; padding : 20px"
-            >ကင်ဆာရောဂါရှိသည်။</label>
+            >
+              <span :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">ကင်ဆာရောဂါရှိသည်။</span>
+            </label>
           </div>
-          <div class="optioncontainerCheckbox">
+          <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
             <input type="checkbox" v-model="array" value="7" id="check7" name="mycheckbox" />
             <label
               for="check7"
               class="clickable"
               @click="selectMultipleOption()"
               style="text-align : center; padding : 20px"
-            >HIV/AIDS ရောဂါပိုးရှိသည်။</label>
+            >
+              <span
+                :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+              >HIV/AIDS ရောဂါပိုးရှိသည်။</span>
+            </label>
           </div>
-          <div class="optioncontainerCheckbox">
+          <div :class="darkmode? 'optioncontainerCheckboxDark' : 'optioncontainerCheckbox'">
             <input type="checkbox" v-model="array" value="8" id="check8" name="mycheckbox" />
             <label
               for="check8"
               class="clickable"
               @click="deselectAll()"
               style="text-align : center; padding : 20px"
-            >မည်သည့် လက္ခဏာမှမရှိပါ။</label>
+            >
+              <span
+                :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+              >မည်သည့် လက္ခဏာမှမရှိပါ။</span>
+            </label>
           </div>
         </div>
       </div>
@@ -223,7 +210,16 @@ export default {
   data() {
     return {
       array: [],
-      array1: [],
+      isCheckAll: false,
+
+      questionTwo: [
+        { text: "ဖျားနာ နေသည်။", id: 1 },
+        { text: "အသက်ရှူရခက်ခဲသည်။", id: 2 },
+        { text: "အော့အန်ခြင်း/၀မ်းလျှောခြင်း", id: 3 },
+        { text: "ချောင်းဆိုးနေသည်။", id: 4 }
+      ],
+      resultTwo: [],
+      selectedlang: "",
       ques: ques,
       questionIndex: 0,
       selected: false,
@@ -234,15 +230,43 @@ export default {
       seeResultClick: false,
       localStorageArray: localStorage.getItem("resultSession")
         ? JSON.parse(localStorage.getItem("resultSession"))
-        : []
+        : [],
+      darkmode: localStorage.getItem("darkmode")
+        ? JSON.parse(localStorage.getItem("darkmode"))
+        : false
     };
   },
 
   methods: {
+    selectMultipleOption() {
+      document.getElementById("check8").checked = false;
+      if (this.array) {
+        this.selected = true;
+      } else if (!this.array) {
+        this.selected = false;
+      }
+    },
     deselectAll() {
       this.selected = true;
-      this.array1 = [];
+      this.array = [];
     },
+    decheckAll: function() {
+      this.resultTwo = [];
+      this.selected = true;
+    },
+    updateCheckall: function() {
+      this.isCheckAll = false;
+      this.selected = true;
+    },
+    changeDark(value) {
+      this.darkmode = value;
+      if (this.darkmode == true) {
+        document.body.className = "home";
+      } else {
+        document.body.className = "intro";
+      }
+    },
+
     next() {
       if (this.questionIndex < this.ques.questions.length) this.questionIndex++;
       this.selected = false;
@@ -250,7 +274,6 @@ export default {
       if (this.questionIndex >= this.ques.questions.length) {
         this.arrayMatch();
       }
-      console.log(this.questionIndex);
       if (this.questionIndex == 3 || this.questionIndex == 2) {
         for (var checkindex = 1; checkindex < 9; checkindex++) {
           var el = "check" + checkindex;
@@ -264,14 +287,6 @@ export default {
       }
       this.selected = true;
     },
-    selectMultipleOption() {
-      document.getElementById('check8').checked = false;
-      if (this.array) {
-        this.selected = true;
-      } else if (!this.array) {
-        this.selected = false;
-      }
-    },
     compare(arr1, arr2) {
       // Check if all items exist and are in the same order
       for (var i = 0; i < arr1.length; i++) {
@@ -284,14 +299,21 @@ export default {
       return true;
     },
     arrayMatch() {
-      this.seeResultClick = true;
-      for (var i = 0; i < this.answer.length; i++) {
-        var result = this.compare(this.userResponses, this.answer[i]);
-        this.resultArray.push(result);
+      const finalArray = [...this.userResponses, ...this.resultTwo];
+
+      if (finalArray.length == 9) {
+        this.seeResultClick = true;
+
+        for (var i = 0; i < this.answer.length; i++) {
+          var result = this.compare(finalArray, this.answer[i]);
+          this.resultArray.push(result);
+        }
+        this.finalResult = this.resultArray.includes(true);
+      } else {
+        this.seeResultClick = true;
+
+        this.finalResult = false;
       }
-
-      this.finalResult = this.resultArray.includes(true);
-
       var d = new Date();
       var datestring =
         d.getDate() +
@@ -320,6 +342,9 @@ export default {
   mounted() {
     this.userResponses = Array(this.ques.questions.length).fill(null);
   },
+  created() {
+    this.$darkModeBus.$on("dark-mode", this.changeDark);
+  },
   computed: {
     checkQuestionIndex() {
       return this.questionIndex != 1 && this.questionIndex != 2;
@@ -337,7 +362,10 @@ input[name="mycheckbox"]:checked + .clickable {
 input[name="myradio"]:checked + .clickable .checked-box {
   display: block;
 }
-
+.checked {
+  border-color: #3f51b5;
+  box-shadow: 0px 0px 0px 3px #3f51b5;
+}
 /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
 .visible {
   display: none;
@@ -352,6 +380,16 @@ input[name="myradio"]:checked + .clickable .checked-box {
   height: auto;
 }
 /* Hide the browser's default radio button*/
+.optioncontainerDark input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+.optioncontainerCheckboxDark input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
 .optioncontainer input {
   position: absolute;
   opacity: 0;
@@ -370,6 +408,15 @@ input[name="myradio"]:checked + .clickable .checked-box {
   flex-direction: column;
   border-radius: 15px;
   background-color: #f5f5f5;
+}
+.questioncontainerDark {
+  margin-top: 100px;
+  width: 95%;
+  display: flex;
+  height: auto;
+  flex-direction: column;
+  border-radius: 15px;
+  background-color: #212121;
 }
 
 .questionname {
@@ -440,6 +487,60 @@ input[name="myradio"]:checked + .clickable .checked-box {
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
+.optioncontainerCheckboxFive {
+  display: flex;
+  position: relative;
+  margin-top: 10px;
+  border-radius: 10px;
+  color: #212121;
+  font-size: 14px;
+  border: 0px;
+  outline: none;
+  width: 95%;
+  height: 65px;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  border-color: #3f51b5;
+  box-shadow: 0px 0px 0px 3px #3f51b5;
+}
+.optioncontainerCheckboxDark {
+  display: flex;
+  position: relative;
+  margin-top: 10px;
+  border-radius: 10px;
+  color: #212121;
+  font-size: 14px;
+  border: 0px;
+  outline: none;
+  width: 95%;
+  height: 65px;
+  align-items: center;
+  justify-content: center;
+  background-color: #212121;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
 .optioncontainer {
   display: flex;
   position: relative;
@@ -466,7 +567,44 @@ input[name="myradio"]:checked + .clickable .checked-box {
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
+.optioncontainerDark {
+  display: flex;
+  position: relative;
+  margin-top: 10px;
+  border-radius: 10px;
+  color: #212121;
+  font-size: 14px;
+  border: 0px;
+  outline: none;
+  width: 95%;
+  height: 65px;
+  align-items: center;
+  justify-content: center;
+  background-color: #212121;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+
 .optioncontainer:hover {
+  border: 3px solid #3f51b5;
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+    0 6px 6px rgba(0, 0, 0, 0.23);
+  -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+    0 6px 6px rgba(0, 0, 0, 0.23);
+  -ms-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  -o-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+.optioncontainerDark:hover {
   border: 3px solid #3f51b5;
   -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
     0 6px 6px rgba(0, 0, 0, 0.23);
@@ -498,6 +636,17 @@ input[name="myradio"]:checked + .clickable .checked-box {
   width: 100%;
   height: 75px;
   border-bottom: 1px solid #eee;
+}
+.headercontainerDark {
+  top: 0;
+  z-index: 20;
+  position: fixed;
+  background-color: #121212;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 75px;
+  border-bottom: 1px solid #212121;
 }
 
 .backbutton {

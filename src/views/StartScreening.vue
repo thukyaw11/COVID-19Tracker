@@ -1,11 +1,12 @@
+ 
 <template>
   <div :class="darkmode? 'containerDark' : 'container'">
     <div :class="darkmode? 'questioncontainerDark' : 'questioncontainer'">
-      <img src="../assets/cold.jpg" width="1000" height="300" style="margin-top: 75px;" />
+      <img src="../assets/sick.png" width="1000" height="300" style="margin-top: 75px;" />
 
       <div class="quesheading">
         <br />
-        <h2 :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">{{$t('screening.screeningHeader')}}</h2>
+        <h2 :style="darkmode? 'color: #f5f5f5; font-size:20px;' : 'color : #121212; font-size:20px ;'">{{$t('screening.screeningHeader')}}</h2>
 
         <div style="line-height:22px;" :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">{{$t('screening.screeningContent')}}</div>
       </div>
@@ -40,7 +41,6 @@ export default {
   },
   mounted() {
     // lang will be automatically transported to the parameter.
-
     if (this.lang == "mm") {
       this.$root.$data.title = "ကျန်းမာရေး စစ်ဆေးခြင်း";
     }
@@ -69,7 +69,6 @@ export default {
     }
   }
 };
-
 /* eslint-enable no-console */
 </script>
 
@@ -84,7 +83,7 @@ export default {
   /* question home */
   .quesheading
 {
-
+  line-height:30px;
   margin-left:20px;
   margin-right:20px;
   display:flex;

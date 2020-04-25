@@ -35,15 +35,15 @@
               <div class="gflex1">
                 <div :class="darkmode? 'recoveredboxDark' : 'recoveredbox'">
                   <div class="cases">{{$t('casesPage.recovered')}}</div>
-                  <div class="recoveredcasesnumber">{{data.total_recovered}}</div>
+                  <div :class="darkmode? 'recoveredcasesnumberDark' : 'recoveredcasesnumber'">{{data.total_recovered}}</div>
                 </div>
                 <div :class="darkmode? 'newcaseboxDark' : 'newcasebox'">
                   <div class="cases">{{$t('casesPage.newcases')}}</div>
-                  <div class="newcasesnumber">{{data.new_cases}}</div>
+                  <div :class="darkmode? 'newcasesnumberDark' : 'newcasesnumber'">{{data.new_cases}}</div>
                 </div>
                 <div :class="darkmode? 'deathcaseboxDark' : 'deathcasebox'">
                   <div class="cases">{{$t('casesPage.death')}}</div>
-                  <div class="deathcasesnumber">{{data.deaths}}</div>
+                  <div :class="darkmode? 'deathcasesnumberDark' : 'deathcasesnumber'">{{data.deaths}}</div>
                 </div>
               </div>
               <div class="gflex2">
@@ -107,6 +107,8 @@ export default {
     )
       .then(response => {
         response.json().then(data => {
+          this.updatedTime = data.statistic_taken_at;
+
           this.DataByAffectedCountryDetail = data.countries_stat;
           this.setData(data.countries_stat);
         });
@@ -128,6 +130,12 @@ export default {
   methods: {
     changeDark(value) {
       this.darkmode = value;
+
+      if (this.darkmode == true) {
+        document.body.className = "home";
+      } else {
+        document.body.className = "intro";
+      }
     },
     //recieved emit event
     changeName(name) {
@@ -147,7 +155,6 @@ export default {
         return bCases - aCases;
       });
       this.DataByAffectedCountryDetail = sortedArray;
-      this.updatedTime = this.$root.$data.updatedTime;
     },
     toggleData(index) {
       var growDiv = document.getElementsByClassName("grow")[index];
@@ -395,6 +402,11 @@ export default {
   color: #4caf50;
   padding-top: 10px;
 }
+.recoveredcasesnumberDark {
+  font-size: 24px;
+  color: #81c784;
+  padding-top: 10px;
+}
 .newcasebox {
   margin: 0 5px;
   border-radius: 15px;
@@ -424,6 +436,12 @@ export default {
   color: #ffc107;
   padding-top: 10px;
 }
+.newcasesnumberDark {
+  font-size: 24px;
+  color: #ffe082;
+  padding-top: 10px;
+}
+
 .deathcasebox {
   margin: 0 5px;
   border-radius: 15px;
@@ -451,6 +469,11 @@ export default {
 .deathcasesnumber {
   font-size: 24px;
   color: #f44336;
+  padding-top: 10px;
+}
+.deathcasesnumberDark {
+  font-size: 24px;
+  color: #e57373;
   padding-top: 10px;
 }
 .box {

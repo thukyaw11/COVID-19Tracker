@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <div id="myNav" :class="darkmode? 'overlayDark' : 'overlay'">
-      <div style="position:relative; top:5%;" :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">{{$t ('menutitle')}}</div>
+      <div
+        style="position:relative; top:5%;"
+        :style="darkmode? 'color: #f5f5f5' : 'color : #121212'"
+      >{{$t ('menutitle')}}</div>
       <div :class="darkmode? 'overlay-contentDark' : 'overlay-content'">
         <router-link
           to="/global"
@@ -9,6 +12,18 @@
           :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
           @click.native="closeNav()"
         >{{$t ('global')}}</router-link>
+        <router-link
+          to="/local"
+          style="text-decoration: none"
+          :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+          @click.native="closeNav()"
+        >{{$t ('local')}}</router-link>
+        <router-link
+          to="/map"
+          style="text-decoration: none"
+          :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+          @click.native="closeNav()"
+        >{{$t('map')}}</router-link>
 
         <router-link
           to="/countrycases"
@@ -43,7 +58,10 @@
       </div>
       <br />
       <div class="languageswitcher">
-        <div class="switchheading" :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">{{$t ('langdesc')}}</div>
+        <div
+          class="switchheading"
+          :style="darkmode? 'color: #f5f5f5' : 'color : #121212'"
+        >{{$t ('langdesc')}}</div>
         <div class="switchcontainer">
           <div
             :class="darkmode? 'switch1Dark' : 'switch1'"
@@ -55,7 +73,9 @@
           >{{$t ('langswitchMyanmar')}}</div>
         </div>
       </div>
-      <md-switch class="md-primary" v-model="darkmode" @change="closeChange(darkmode)"><span :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">Dark Mode</span></md-switch>
+      <md-switch class="md-primary" v-model="darkmode" @change="closeChange(darkmode)">
+        <span :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">Dark Mode</span>
+      </md-switch>
       <div
         class="closebtn"
         @click="closeNav()"
@@ -240,7 +260,7 @@
                 >
                   <div class="desnewscontent">
                     <div class="box1">{{latest.title}}</div>
-                    <div class="box2">Source :{{latest.source}}</div>
+                    <div class="box2">Source :{{latest.sourceId}}</div>
                   </div>
                 </a>
               </div>
@@ -261,30 +281,7 @@
                 >
                   <div class="desnewscontent">
                     <div class="box1">{{yesterday.title}}</div>
-                    <div class="box2">Source : {{yesterday.source}}</div>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div v-else class="contentcontainer">
-              <h3 style="padding: 0px 20px;  color:#757575;">No Post Yet</h3>
-              <hr style="border:1px solid #eee; width:95%; margin-left:0;" />
-            </div>
-
-            <br />
-
-            <div class="desnewsheading">Uploaded</div>
-            <br />
-            <div v-if="uploadedNews.length > 0">
-              <div class="desnewsbody" v-for="uploaded in uploadedNews" :key="uploaded._id">
-                <a
-                  class="contentcontainer"
-                  :href="linkIt(uploaded.url)"
-                  style="color : black; text-decoration: none;"
-                >
-                  <div class="desnewscontent">
-                    <div class="box1">{{uploaded.title | truncate(140, '...')}}</div>
-                    <div class="box2">Source : {{uploaded.source}}</div>
+                    <div class="box2">Source : {{yesterday.sourceId}}</div>
                   </div>
                 </a>
               </div>
@@ -343,7 +340,8 @@ export default {
       newsRequest: [],
       latestNews: [],
       yesterdayNews: [],
-      uploadedNews: [],
+      tdybaseURL: "",
+      yesbaseURL: "",
       propCountryName: "",
       contactlist: [],
       searchContacts: "",
@@ -408,8 +406,11 @@ export default {
         }
       );
     },
-    fetchNews() {
-      return axios.get("https://covid19mm.info/api/news");
+    fetchTdyNews() {
+      return axios.get(this.tdybaseURL);
+    },
+    fetchYesNews() {
+      return axios.get(this.yesbaseURL);
     },
     fetchConacts() {
       return axios.get("https://covid19mm.info/api/contact/list");
@@ -440,6 +441,16 @@ export default {
   },
   created() {
     this.urlLocation = window.location.href.split("/").pop();
+    //yesterday, today and uploaded
+    const todayDate = new Date().toISOString().slice(0, 10);
+    const tmrDate = new Date(todayDate);
+
+    tmrDate.setDate(tmrDate.getDate() + 1);
+
+    const tmrIsoDate = tmrDate.toISOString().slice(0, 10);
+
+    this.tdybaseURL = `https://aa56zbybij.execute-api.ap-southeast-1.amazonaws.com/v1/news/covid-19?from=${tmrIsoDate}`;
+    this.yesbaseURL = `https://aa56zbybij.execute-api.ap-southeast-1.amazonaws.com/v1/news/covid-19?from=${todayDate}`;
   },
   mounted() {
     console.log(this.darkmode);
@@ -467,58 +478,42 @@ export default {
     //yesterday, today and uploaded
     document.getElementById("myNav").style.height = "0%";
 
-    const todayDate = new Date();
-    const yesterdayDate = new Date(todayDate);
-
-    yesterdayDate.setDate(yesterdayDate.getDate() - 1);
-
-    this.today = todayDate.toDateString();
-    this.yesterday = yesterdayDate.toDateString();
-    var isoToday = todayDate.toISOString().slice(0, 10);
-    var isoYesterday = yesterdayDate.toISOString().slice(0, 10);
-
     axios
-      .all([this.fetchCountriesCases(), this.fetchNews(), this.fetchConacts()])
+      .all([
+        this.fetchCountriesCases(),
+        this.fetchTdyNews(),
+        this.fetchYesNews(),
+        this.fetchConacts()
+      ])
       .then(
-        axios.spread((countrycasesResponse, newsResponse, contactsResponse) => {
-          //country response
-          countrycasesResponse.json().then(data => {
-            this.CountryByCases = data.countries_stat;
-            this.setCountryCases(data.countries_stat);
-          });
-          //news response
-          // news request filter by yesterday, tomorrow and today
-          this.newsRequest = newsResponse.data;
-          this.setNews(newsResponse.data);
-          newsResponse.data.forEach(dates => {
-            var mydate = new Date(dates.date);
+        axios.spread(
+          (
+            countrycasesResponse,
+            newsContentToday,
+            newsContentYesterday,
+            contactsResponse
+          ) => {
+            //country response
+            countrycasesResponse.json().then(data => {
+              this.CountryByCases = data.countries_stat;
+              this.setCountryCases(data.countries_stat);
+            });
+            //news response
+            // news request filter by yesterday, tomorrow and today
 
-            if (mydate.toDateString() == this.today) {
-              this.latestNews = this.newsRequest.filter(function(date) {
-                return date.date == isoToday;
-              });
+            if (newsContentToday.status == 200) {
+              this.latestNews = newsContentToday.data.items;
             }
 
-            if (mydate.toDateString() == this.yesterday) {
-              this.yesterdayNews = this.newsRequest.filter(function(date) {
-                return date.date == isoYesterday;
-              });
+            if (newsContentYesterday.status == 200) {
+              this.yesterdayNews = newsContentYesterday.data.items;
             }
 
-            if (
-              mydate.toDateString() != this.yesterday &&
-              mydate.toDateString() != this.today
-            ) {
-              this.uploadedNews = this.newsRequest.filter(function(date) {
-                return date.date != isoYesterday && date.date != isoToday;
-              });
-            }
-          });
-
-          //contacts response
-          this.contactlist = contactsResponse.data;
-          this.setContacts(contactsResponse.data);
-        })
+            //contacts response
+            this.contactlist = contactsResponse.data;
+            this.setContacts(contactsResponse.data);
+          }
+        )
       );
   },
   watch: {
@@ -593,17 +588,17 @@ export default {
 @media only screen and (max-width: 1100px) {
   .spinner {
     text-align: center;
-    margin-top: 300px;
+    margin-top: 280px;
   }
   #app {
     background-color: #ffffff;
-    font-family: "Poppins", sans-serif,'Noto Sans Myanmar' ;
-    font-size:14px;
+    /* font-family: "Poppins", sans-serif, 'Myanmar3'; */
+    font-size: 14px;
   }
   #appDark {
     background-color: #121212;
-    font-family: "Poppins", sans-serif, 'Noto Sans Myanmar';
-    font-size:14px;
+    /* font-family: "Poppins", sans-serif, 'Myanmar3'; */
+    font-size: 14px;
   }
 
   .desktopcontainer {
@@ -612,7 +607,9 @@ export default {
   .languageswitcher {
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 100%;
+    padding-left:15px;
+    padding-right:15px;
     height: 100px;
     border-top: 1px solid #eee;
     align-items: center;
@@ -674,53 +671,54 @@ export default {
     justify-content: center;
   }
   .overlay {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    overflow-y: scroll;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    border-radius: 5px;
-    background-color: #fff;
-    overflow-y: hidden;
-    overflow-x: hidden;
-    transition: 0.5s;
+  
+  text-align:center;
+  align-items:center;
+  height: 0%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color:#ffffff;
+  overflow-y: auto;
+  transition: 0.5s;
   }
   .overlayDark {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    overflow-y: scroll;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    border-radius: 5px;
-    background-color: #121212;
-    overflow-y: hidden;
-    overflow-x: hidden;
-    transition: 0.5s;
+    text-align:center;
+  align-items:center;
+  height: 0%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color:#121212;
+  overflow-y: auto;
+  transition: 0.5s;
+
   }
 
   .overlay-content {
+  
     display: flex;
     flex-direction: column;
     line-height: 50px;
     margin-top: 80px;
-    width: 90%;
+    height:auto;
+    width: 100%;
+    padding-left:15px;
+    padding-right:15px;
   }
   .overlay-contentDark {
     display: flex;
     flex-direction: column;
     line-height: 50px;
     margin-top: 80px;
-    width: 90%;
+    height:auto;
+    width: 100%;
+    padding-left:15px;
+    padding-right:15px;
   }
 
   .overlay a {
@@ -741,15 +739,19 @@ export default {
     display: flex;
     flex-direction: row;
     flex: 1;
+    align-items:center;
+    
   }
   .overlayDark .router-link {
     display: flex;
     flex-direction: row;
     flex: 1;
+     align-items:center;
   }
 
   .overlay .router-link-active {
     border-radius: 50px;
+    align-items:center;
     background-color: #f5f5f5;
     width: 100%;
     font-weight: bold;
@@ -757,6 +759,7 @@ export default {
   .overlayDark .router-link-active {
     border-radius: 50px;
     background-color: #212121;
+    align-items:center;
     width: 100%;
     font-weight: bold;
   }
@@ -812,15 +815,15 @@ export default {
   .Emergencybutton {
     display: flex;
     background-color: #e53935;
-    color:#f5f5f5;
+    color: #f5f5f5;
     width: 40px;
     height: 40px;
     border-radius: 50%;
   }
-   .EmergencybuttonDark {
+  .EmergencybuttonDark {
     display: flex;
     background-color: #e57373;
-    color:#121212;
+    color: #121212;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -832,7 +835,6 @@ export default {
     align-items: center;
     justify-content: center;
     font-size: 20px;
-  
   }
 
   .toggle {
@@ -880,6 +882,8 @@ export default {
     flex-direction: column;
   }
   .container {
+    color: #212121;
+    background-color: #ffffff;
     display: flex;
     flex: 1;
     width: 100%;
@@ -887,13 +891,13 @@ export default {
     align-items: center;
   }
   .containerDark {
-    background: #121212;
+    background-color: #121212;
     display: flex;
     flex: 1;
     width: 100%;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: #f5f5f5;
   }
 
   .ConfirmedCaseContainer {
