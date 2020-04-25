@@ -350,7 +350,7 @@
         </div>
       </div>
 
-      <div style="color:#757575;">Copyright 2020 Covid 19 | Myanamr</div>
+      <div style="color:#757575;">Copyright 2020 Covid 19 | Myanamr</div><br><br>
     </div>
   </div>
 </template>

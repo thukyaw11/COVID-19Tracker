@@ -5,8 +5,7 @@
       <img src="../assets/sick.png" width="1000" height="300" style="margin-top: 75px;" />
 
       <div class="quesheading">
-        <br />
-        <h2 :style="darkmode? 'color: #f5f5f5; font-size:20px;' : 'color : #121212; font-size:20px ;'">{{$t('screening.screeningHeader')}}</h2>
+        <h2 :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">{{$t('screening.screeningHeader')}}</h2>
 
         <div style="line-height:22px;" :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">{{$t('screening.screeningContent')}}</div>
       </div>
@@ -98,6 +97,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+ 
 }
 .quesbuttoncontainerDark {
   background-color: #121212;
@@ -121,6 +121,11 @@ export default {
   align-items: center;
   justify-content: center;
   margin-bottom: 5px;
+  
+}
+.quesbutton:hover
+{
+  text-decoration: none;
 }
 .viewhistorybutton {
   border-radius: 10px;
@@ -134,6 +139,10 @@ export default {
   height: 50px;
   align-items: center;
   justify-content: center;
+}
+.viewhistorybutton:hover
+{
+  text-decoration: none;
 }
 img {
   width: 100%;
