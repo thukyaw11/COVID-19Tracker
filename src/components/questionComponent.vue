@@ -54,21 +54,140 @@
               v-for="(response, index) in ques.questions[questionIndex].responses"
               :key="index"
             >
-              <input :id="response.tagId" type="checkbox" name="desradio" />
-              <label :for="response.tagId" class="desclickable" @click="selectOption(response.id)"></label>
+              <input
+                :id="response.tagId"
+                type="checkbox"
+                name="desradio"
+                v-model="resultTwo"
+                :value="response.id"
+              />
+              <label :for="response.tagId" class="desclickable" @click="updateCheckall()"></label>
               {{response.text}}
             </div>
+
+            <div class="optioncontainer" @click="decheckAll()">
+              <input
+                type="checkbox"
+                v-model="isCheckAll"
+                @click="decheckAll()"
+                id="nosym"
+                name="mycheckbox"
+              />
+              <label for="nosym" class="desclickable"></label>
+              မည်သည့် လက္ခဏာမှ မရှိပါ။
+            </div>
+          </div>
+
+          <div class="desquestion2">
+            <button
+              :class="selected ? 'nextbutton':'nextbutton-disable'"
+              @click="next"
+              :disabled="!selected"
+            >Next</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- for question three -->
+      <div v-if="questionIndex == 2" class="mainflex">
+        <div class="questionheader">
+          <div class="desheader1">
+            <router-link to="/start">
+              <span class="material-icons">arrow_back</span>
+            </router-link>
+            Question {{questionIndex + 1}}
+          </div>
+          <div class="desheader2">{{ ques.questions[questionIndex].text }}</div>
+        </div>
+        <div class="questionbody">
+          <div class="desquestion1">
+            <!-- create the product container the user sees -->
             <div class="optioncontainer">
-              <input type="checkbox" name="mycheckbox" />
+              <input type="checkbox" v-model="array" value="1" id="check1" name="mycheckbox" />
+              <label
+                for="check1"
+                class="desclickable"
+                @click="selectMultipleOption()"
+                style="text-align : center; padding : 20px"
+              >
+                <span>ရင်ကြပ်ရောဂါရှိသည်။</span>
+              </label>
+            </div>
+            <div class="optioncontainer">
+              <input type="checkbox" v-model="array" value="2" id="check2" name="mycheckbox" />
+              <label
+                for="check2"
+                class="desclickable"
+                @click="selectMultipleOption()"
+                style="text-align : center; padding : 20px"
+              >
+                <span>ကိုယ်၀န်ဆောင်မိခင်ဖြစ်သည်။</span>
+              </label>
+            </div>
+            <div class="optioncontainer">
+              <input type="checkbox" v-model="array" value="3" id="check3" name="mycheckbox" />
+              <label
+                for="check3"
+                class="desclickable"
+                @click="selectMultipleOption()"
+                style="text-align : center; padding : 20px"
+              >
+                <span>ဆီးချို/‌သွေးချိုရှိသည်။</span>
+              </label>
+            </div>
+            <div class="optioncontainer">
+              <input type="checkbox" v-model="array" value="4" id="check4" name="mycheckbox" />
+              <label
+                for="check4"
+                class="desclickable"
+                @click="selectMultipleOption()"
+                style="text-align : center; padding : 20px"
+              >
+                <span>နှလုံးရောဂါ သို့မဟုတ် သွေးတိုးရှိသည်။</span>
+              </label>
+            </div>
+            <div class="optioncontainer">
+              <input type="checkbox" v-model="array" value="5" id="check5" name="mycheckbox" />
+              <label
+                for="check5"
+                class="desclickable"
+                @click="selectMultipleOption()"
+                style="text-align : center; padding : 20px"
+              >
+                <span>အဆုတ်ရောင်ရှိသည်။</span>
+              </label>
+            </div>
+            <div class="optioncontainer">
+              <input type="checkbox" v-model="array" value="6" id="check6" name="mycheckbox" />
+              <label
+                for="check6"
+                class="desclickable"
+                @click="selectMultipleOption()"
+                style="text-align : center; padding : 20px"
+              >
+                <span>ကင်ဆာရောဂါရှိသည်။</span>
+              </label>
+            </div>
+            <div class="optioncontainer">
+              <input type="checkbox" v-model="array" value="7" id="check7" name="mycheckbox" />
+              <label
+                for="check7"
+                class="desclickable"
+                @click="selectMultipleOption()"
+                style="text-align : center; padding : 20px"
+              >
+                <span>HIV/AIDS ရောဂါပိုးရှိသည်။</span>
+              </label>
+            </div>
+            <div class="optioncontainer">
+              <input type="checkbox" v-model="array" value="8" id="check8" name="mycheckbox" />
               <label
                 for="check8"
-                class="clickable"
+                class="desclickable"
                 @click="deselectAll()"
                 style="text-align : center; padding : 20px"
               >
-                <span
-                  :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
-                >မည်သည့် လက္ခဏာမှမရှိပါ။</span>
+                <span>မည်သည့် လက္ခဏာမှမရှိပါ။</span>
               </label>
             </div>
           </div>
@@ -82,6 +201,10 @@
         </div>
       </div>
     </div>
+    <div v-if="seeResultClick == true">
+      <stayhome v-show="finalResult == true" />
+      <emergency v-show="finalResult == false" />
+    </div>
   </div>
 </template>
 
@@ -90,19 +213,75 @@
 import { ques } from "../assets/content/question";
 import answer from "../assets/content/answer";
 import Vue from "vue";
+import stayhome from "../components/stayhomeDesktop";
+import emergency from "../components/emergencyDesktop";
+
 export default {
+  components: {
+    stayhome,
+    emergency
+  },
   data() {
     return {
+      array: [],
+      isCheckAll: false,
+
+      questionTwo: [
+        { text: "ဖျားနာ နေသည်။", id: 1 },
+        { text: "အသက်ရှူရခက်ခဲသည်။", id: 2 },
+        { text: "အော့အန်ခြင်း/၀မ်းလျှောခြင်း", id: 3 },
+        { text: "ချောင်းဆိုးနေသည်။", id: 4 }
+      ],
+      resultTwo: [],
+      selectedlang: "",
       ques: ques,
-      answer: answer,
       questionIndex: 0,
+      selected: false,
       userResponses: "",
-      selected: false
+      answer: answer,
+      resultArray: [],
+      finalResult: "",
+      seeResultClick: false,
+      localStorageArray: localStorage.getItem("resultSession")
+        ? JSON.parse(localStorage.getItem("resultSession"))
+        : [],
+      darkmode: localStorage.getItem("darkmode")
+        ? JSON.parse(localStorage.getItem("darkmode"))
+        : false
     };
   },
+
   methods: {
+    selectMultipleOption() {
+      document.getElementById("check8").checked = false;
+      if (this.array) {
+        this.selected = true;
+      } else if (!this.array) {
+        this.selected = false;
+      }
+    },
+    deselectAll() {
+      this.selected = true;
+      this.array = [];
+    },
+    decheckAll: function() {
+      this.resultTwo = [];
+      this.selected = true;
+    },
+    updateCheckall: function() {
+      this.isCheckAll = false;
+      this.selected = true;
+    },
+    changeDark(value) {
+      this.darkmode = value;
+      if (this.darkmode == true) {
+        document.body.className = "home";
+      } else {
+        document.body.className = "intro";
+      }
+    },
+
     next() {
-      console.log("hello");
       if (this.questionIndex < this.ques.questions.length) this.questionIndex++;
       this.selected = false;
 
@@ -113,17 +292,75 @@ export default {
       for (var checkindex = 1; checkindex < 9; checkindex++) {
         var el = "check" + checkindex;
         document.getElementById(el).checked = false;
+        console.log(document.getElementById(el));
       }
-
-     
     },
     selectOption(index) {
-      Vue.set(this.userResponses, this.questionIndex, index);
+      if (this.questionIndex != 2) {
+        Vue.set(this.userResponses, this.questionIndex, index);
+      }
       this.selected = true;
+    },
+    compare(arr1, arr2) {
+      // Check if all items exist and are in the same order
+      for (var i = 0; i < arr1.length; i++) {
+        if (arr1[i] !== arr2[i]) {
+          return false;
+        }
+      }
+
+      // Otherwise, return true
+      return true;
+    },
+    arrayMatch() {
+      const finalArray = [...this.userResponses, ...this.resultTwo];
+      console.log(finalArray);
+      if (finalArray.length == 9) {
+        this.seeResultClick = true;
+
+        for (var i = 0; i < this.answer.length; i++) {
+          var result = this.compare(finalArray, this.answer[i]);
+          this.resultArray.push(result);
+        }
+        this.finalResult = this.resultArray.includes(true);
+      } else {
+        this.seeResultClick = true;
+
+        this.finalResult = false;
+      }
+
+      console.log(this.finalResult);
+      var d = new Date();
+      var datestring =
+        d.getDate() +
+        "-" +
+        (d.getMonth() + 1) +
+        "-" +
+        d.getFullYear() +
+        " " +
+        d.getHours() +
+        ":" +
+        d.getMinutes();
+
+      let localStorageValue = {
+        resultLocal: this.finalResult,
+        dateTime: datestring
+      };
+
+      this.localStorageArray.push(localStorageValue);
+      localStorage.setItem(
+        "resultSession",
+        JSON.stringify(this.localStorageArray)
+      );
     }
   },
+
   mounted() {
     this.userResponses = Array(this.ques.questions.length).fill(null);
+    this.$root.$data.title = "Question";
+  },
+  created() {
+    this.$darkModeBus.$on("dark-mode", this.changeDark);
   },
   computed: {
     checkQuestionIndex() {
@@ -260,5 +497,10 @@ input[name="desradio"]:checked + .desclickable {
 
 input[name="desradio"]:checked + .desclickable .checked-box {
   display: block;
+}
+
+input[name="mycheckbox"]:checked + .desclickable {
+  border-color: #3f51b5;
+  box-shadow: 0px 0px 0px 3px #3f51b5;
 }
 </style>

@@ -27,8 +27,7 @@ export let ques = {
             { text: "နှလုံးရောဂါ သို့မဟုတ် သွေးတိုးရှိသည်။ ", id: 4 , tagId : 'check4'},
             { text: "အဆုတ်ရောင်ရှိသည်။", id: 5 , tagId : 'check5'},
             { text: "ကင်ဆာရောဂါရှိသည်။", id: 6 , tagId : 'check6'},
-            { text: "HIV/AIDS ရောဂါပိုးရှိသည်။", id: 7 , tagId : 'check7'},
-            { text: "မည်သည့် လက္ခဏာမှမရှိပါ။", id: 8 ,   tagId : 'check8'}
+            { text: "HIV/AIDS ရောဂါပိုးရှိသည်။", id: 7 , tagId : 'check7'}
          ]
       },
 
