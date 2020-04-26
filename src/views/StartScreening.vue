@@ -1,6 +1,6 @@
  
 <template>
-  <div :class="darkmode? 'containerDark' : 'container'">
+  <div class="darkmode? 'containerDark' : 'container'">
     <div :class="darkmode? 'questioncontainerDark' : 'questioncontainer'">
       <img src="../assets/sick.png" width="1000" height="300" style="margin-top: 75px;" />
 

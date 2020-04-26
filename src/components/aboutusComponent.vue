@@ -1,16 +1,16 @@
 <template>
-    <div class="classdesbody">
+    <div class="classdesbody"> 
       <div class="mainflex">
         <div class="flexbody">
           <div class="flexbodycontainer">
-            <div class="flexbodyheader">
+            <div class="flexbodyheader"  :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">
               Coronavirus Disease
               <br />Situation Dashboard
             </div>
             <div class="flexbodycontent">
               <hr style="width:100px; margin-left:0px; border:3px solid #000; background : black" />
               <br />
-              <div style="width:90%; color:#757575;">
+              <div :style="darkmode? 'color : #757575' : 'color : #212121' ">
                 We hope to bring an information source that rolls updates on COVID-19, especially for cases in Myanmar, to our citizens. This website is built by
                 the University of Information Technology Students’ Union. APIs below are still in development stage and later will be published for further
                 development purposes.
@@ -22,15 +22,15 @@
 
               <br />
               <div class="desapicontainer">
-                <div class="desapi">
+                <div :class="darkmode? 'desapiDark' : 'desapi'">
                   Current API
                   <br />https://rapidapi.com/
                 </div>
-                <div class="desapi" style="margin-left:10px;">
+                <div :class="darkmode? 'desapiDark' : 'desapi'" style="margin-left:10px;">
                   Current API
                   <br />Contact via UIT-SU
                 </div>
-                <div class="desapi" style=" margin-left:10px;">
+                <div :class="darkmode? 'desapiDark' : 'desapi'" style=" margin-left:10px;">
                   Version
                   <br />1.1 beta
                 </div>
@@ -49,17 +49,37 @@
       </div>
       <div class="desaboutusfooter">
         <div class="footerLeft">
-          <i class="fab fa-facebook"></i>
-          <i class="fab fa-facebook-messenger"></i>
-          <i class="fab fa-instagram"></i>
-          <div style="margin-left:50px;">+959 253095270</div>
+          <i class="fab fa-facebook" :style="darkmode? 'color : #757575' : 'color : #212121' "></i>
+          <i class="fab fa-facebook-messenger" :style="darkmode? 'color : #757575' : 'color : #212121' "></i>
+          <i class="fab fa-instagram" :style="darkmode? 'color : #757575' : 'color : #212121' "></i>
+          <div style="margin-left:50px;" :style="darkmode? 'color : #757575' : 'color : #212121' ">+959 253095270</div>
         </div>
-        <div class="footerRight">Copyright 2020 Covid 19 | Myanamr</div>
+        <div class="footerRight" :style="darkmode? 'color : #757575' : 'color : #212121' ">Copyright 2020 Covid 19 | Myanamr</div>
       </div>
     </div>
 
 </template>
+<script>
+export default {
+  data() {
+    return {
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en",
+      darkmode: localStorage.getItem("darkmode")
+        ? JSON.parse(localStorage.getItem("darkmode"))
+        : false
+    };
+  },
 
+  created() {
+    this.$darkModeBus.$on("dark-mode", this.changeDark);
+  },
+  methods: {
+    changeDark(value) {
+      this.darkmode = value;
+    }
+  }
+};
+</script>
 <style scoped>
 
 
@@ -157,6 +177,17 @@
     width: 300px;
     height: 100px;
     background-color: #f5f5f5;
+    border-radius: 15px;
+    padding-left: 30px;
+    align-items: center;
+    justify-content: flex-start;
+  }
+    .desapiDark {
+      color: #f5f5f5;
+    display: flex;
+    width: 300px;
+    height: 100px;
+    background-color: #212121;
     border-radius: 15px;
     padding-left: 30px;
     align-items: center;

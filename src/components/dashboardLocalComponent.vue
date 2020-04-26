@@ -3,9 +3,10 @@
     <div class="middlecontainer" v-if="caseinMyanmar.length > 0">
       <div class="desnumber" v-for="myanmarStat in caseinMyanmar" :key="myanmarStat.id">
         <div class="descomfirmedcase">
-          <div class="numbercontainer1">
+          <div :class="darkmode? 'numbercontainer1Dark' : 'numbercontainer1'">
             <div
               style="display:flex; align-items:flex-start; justify-content:flex-start;"
+              :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
             >Confirmed Cases</div>
             <div
               style="font-size:36px; color:#757575; padding-top:20px"
@@ -15,8 +16,8 @@
           </div>
         </div>
         <div class="desrecover">
-          <div class="numbercontainer2">
-            <div>Recover</div>
+          <div :class="darkmode? 'numbercontainer2Dark' : 'numbercontainer2'">
+            <div :style="darkmode? 'color : #f5f5f5' : 'color : #212121'">Recover</div>
             <div
               style="font-size:36px; color:#4CAF50; padding-top:20px"
               v-if="caseinMyanmar[0].total_recovered"
@@ -25,8 +26,8 @@
           </div>
         </div>
         <div class="desdeath">
-          <div class="numbercontainer3">
-            <div>Deaths</div>
+          <div :class="darkmode? 'numbercontainer3Dark' : 'numbercontainer3'">
+            <div :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"> Deaths</div>
             <div
               style="font-size:36px; color:#F44336; padding-top:20px"
               v-if="caseinMyanmar[0].total_deaths"
@@ -57,8 +58,7 @@
     <div v-else class="spinner-des">
       <md-progress-spinner :md-diameter="30" :md-stroke="3" md-mode="indeterminate"></md-progress-spinner>
     </div>
-    </div>
-
+  </div>
 </template>
 
 
@@ -69,7 +69,11 @@
 export default {
   data() {
     return {
-      caseinMyanmar: []
+      caseinMyanmar: [],
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en",
+      darkmode: localStorage.getItem("darkmode")
+        ? JSON.parse(localStorage.getItem("darkmode"))
+        : false
     };
   },
   mounted() {
@@ -94,7 +98,13 @@ export default {
 
     this.$root.$data.title = "Local Dashboard";
   },
+  created() {
+    this.$darkModeBus.$on("dark-mode", this.changeDark);
+  },
   methods: {
+    changeDark(value) {
+      this.darkmode = value;
+    },
     addHour(recordDate) {
       var dateTime = new Date(recordDate);
 

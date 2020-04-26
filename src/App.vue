@@ -73,9 +73,20 @@
           >{{$t ('langswitchMyanmar')}}</div>
         </div>
       </div>
-      <md-switch class="md-primary" v-model="darkmode" @change="closeChange(darkmode)">
-        <span :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">Dark Mode</span>
-      </md-switch>
+
+      <span
+        class="material-icons"
+        v-if="darkmode"
+        @click="closeChange()"
+        :style="darkmode? 'color : #f5f5f5': 'color : #121212'"
+      >brightness_7</span>
+      <span
+        class="material-icons"
+        v-if="!darkmode"
+        @click="closeChange()"
+        :style="darkmode? 'color : #f5f5f5': 'color : #121212'"
+      >brightness_4</span>
+
       <div
         class="closebtn"
         @click="closeNav()"
@@ -107,30 +118,78 @@
     <vue-topprogress ref="topProgress"></vue-topprogress>
 
     <div class="desktopcontainer">
-      <div class="desheading">
-       
+      <div :class="darkmode? 'desheadingDark' : 'desheading'">
         <div class="deslinkcontainer">
-             <div class="deslink"> <router-link to="/global" style="text-decoration : none; color: #212121;">Global</router-link></div> 
-              <div class="deslink"><router-link to="/local" style="text-decoration : none; color: #212121;">Local</router-link></div> 
-              <div class="deslink"><router-link to="#" style="text-decoration : none; color: #212121;">Map</router-link></div> 
-             
-              <div class="deslink"><router-link to="/start" style="text-decoration : none; color: #212121;">Screening Kit</router-link></div> 
-              <div class="deslink"><router-link to="/donation" style="text-decoration : none; color: #212121;">Donation</router-link></div> 
-               <div class="deslink"><router-link to="/aboutus" style="text-decoration : none; color: #212121;">About Us</router-link></div> 
-              <div class="deslink" style="text-decoration : none; color: #757575; font-size:18px;"><i class="fas fa-moon"></i></div> 
-               <div class="deslink" style="text-decoration : none; color: #757575; font-size:18px;"><span class="material-icons">g_translate</span></div> 
+          <div class="deslink">
+            <router-link
+              to="/global"
+              style="text-decoration : none;"
+              :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+            >Global</router-link>
+          </div>
+          <div class="deslink">
+            <router-link
+              to="/local"
+              style="text-decoration : none; color: #212121;"
+              :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+            >Local</router-link>
+          </div>
+          <div class="deslink">
+            <router-link
+              to="#"
+              style="text-decoration : none; color: #212121;"
+              :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+            >Map</router-link>
+          </div>
+
+          <div class="deslink">
+            <router-link
+              to="/start"
+              style="text-decoration : none; color: #212121;"
+              :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+            >Screening Kit</router-link>
+          </div>
+          <div class="deslink">
+            <router-link
+              to="/donation"
+              style="text-decoration : none; color: #212121;"
+              :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+            >Donation</router-link>
+          </div>
+          <div class="deslink">
+            <router-link
+              to="/aboutus"
+              style="text-decoration : none; color: #212121;"
+              :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+            >About Us</router-link>
+          </div>
+          <div
+            class="deslink"
+            style="text-decoration : none; color: #757575; font-size:18px;"
+            @click="closeChange()"
+          >
+            <span
+              class="material-icons"
+              v-if="darkmode"
+              @click="closeChange()"
+              :style="darkmode? 'color : #f5f5f5': 'color : #121212'"
+            >brightness_7</span>
+            <span
+              class="material-icons"
+              v-if="!darkmode"
+              @click="closeChange()"
+              :style="darkmode? 'color : #f5f5f5': 'color : #121212'"
+            >brightness_4</span>
+          </div>
+          <div class="deslink" style="text-decoration : none; color: #757575; font-size:18px;">
+            <span class="material-icons">g_translate</span>
+          </div>
         </div>
-       
-        
-        
-
-
-        
       </div>
 
       <div id="desbody">
         <div class="mainflex1">
-          <div class="descountrybycases">
+          <div :class="darkmode? 'descountrybycasesDark' : 'descountrybycases'">
             <br />
 
             <div
@@ -139,7 +198,7 @@
             >Countries, areas or territories with cases</div>
             <br />
             <div class="dessearchbar">
-              <form class="searchcontainer-custom">
+              <form :class="darkmode? 'searchcontainer-customDark' : 'searchcontainer-custom'">
                 <div class="placeholdercontainer">
                   <input
                     type="text"
@@ -147,10 +206,14 @@
                     id="search-bar"
                     placeholder="Search ..."
                     v-model="search"
+                    :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
                   />
                 </div>
                 <div class="searchicon">
-                  <i class="material-icons">search</i>
+                  <i
+                    class="material-icons"
+                    :style="darkmode? 'color : #f5f5f5': 'color : #121212'"
+                  >search</i>
                 </div>
               </form>
             </div>
@@ -158,14 +221,21 @@
             <div class="descountrybycasesbody">
               <router-link to="countrycases" style="text-decoration : none; color:black">
                 <div
-                  class="descasescontainer"
+                  :class="darkmode? 'descasescontainerDark': 'descasescontainer'"
                   v-for="country in filteredListDetail"
                   :key="country.index"
                   @click="toggleData(country.country_name)"
                 >
                   <img style="margin-left:20px" :src="getCountryCode(country.country_name)" />
-                  <div class="descasesflex1" style="margin-left:20px;">{{country.country_name}}</div>
-                  <div class="descasesflex2">{{country.cases}}</div>
+                  <div
+                    class="descasesflex1"
+                    style="margin-left:20px;"
+                    :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+                  >{{country.country_name}}</div>
+                  <div
+                    class="descasesflex2"
+                    :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+                  >{{country.cases}}</div>
                 </div>
               </router-link>
               <span
@@ -196,7 +266,7 @@
 
           <div id="myModal" class="modal">
             <!-- Modal content -->
-            <div class="modal-content">
+            <div :class="darkmode? 'modal-contentDark' : 'modal-content'">
               <div class="modalheading">
                 <div class="closecontainer close" @click="closeModal()">
                   <span class="material-icons" style="font-size:40px;">close</span>
@@ -206,7 +276,9 @@
                   <br />
                   <br />
                   <div>
-                    <form class="searchcontainer-custom">
+                    <form
+                      :class="darkmode? 'searchcontainer-customDark' : 'searchcontainer-custom'"
+                    >
                       <div class="placeholdercontainer">
                         <input
                           style="font-size:14px;"
@@ -214,6 +286,7 @@
                           id="search-bar"
                           placeholder="Search ..."
                           v-model="searchContacts"
+                          :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
                         />
                       </div>
                       <div class="searchicon">
@@ -226,16 +299,20 @@
 
               <div class="modalbody">
                 <div
-                  class="descontactscontainer"
+                  :class="darkmode? 'descontactscontainerDark' : 'descontactscontainer'"
                   v-for="contacts in filterListContacts"
                   v-bind:key="contacts._id"
                 >
                   <div class="desflex1">
-                    <div class="desbox1">{{contacts.name}}</div>
+                    <div
+                      class="desbox1"
+                      :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+                    >{{contacts.name}}</div>
                     <div
                       class="desbox2"
                       style="line-height:50px"
                       :phoneNumCopy="copyCode"
+                      :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
                     >{{contacts.phoneNumber}}</div>
                   </div>
                   <div
@@ -243,21 +320,21 @@
                     v-clipboard:copy="contacts.phoneNumber"
                     v-clipboard:success="onCopy"
                   >
-                    <div class="desbox3">
+                    <div :class="darkmode? 'desbox3Dark':'desbox3'">
                       <span>
                         <i class="far fa-clone"></i>
                       </span>
                     </div>
-                    <div class="desbox4">Copy</div>
+                    <div :class="darkmode? 'desbox4Dark':'desbox4'">Copy</div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div style="height:1%"></div>
-          <div class="desnews">
+          <div :class="darkmode? 'desnewsDark' : 'desnews'">
             <br />
-            <div class="desnewsheading">Latest</div>
+            <div class="desnewsheading" :style="darkmode? 'color: #f5f5f5': 'color: #121212'">Latest</div>
             <br />
             <div v-if="latestNews.length > 0">
               <div class="desnewsbody" v-for="latest in latestNews" :key="latest._id">
@@ -266,7 +343,7 @@
                   :href="linkIt(latest.url)"
                   style="color : black; text-decoration: none;"
                 >
-                  <div class="desnewscontent">
+                  <div class="desnewscontent" :style="darkmode? 'color: #f5f5f5': 'color: #121212'">
                     <div class="box1">{{latest.title}}</div>
                     <div class="box2">Source :{{latest.sourceId}}</div>
                   </div>
@@ -407,9 +484,11 @@ export default {
       console.log("close nav");
       document.getElementById("myNav").style.height = "0%";
     },
-    closeChange(value) {
+    closeChange() {
+      this.darkmode = !this.darkmode;
+      console.log(this.darkmode);
       document.getElementById("myNav").style.height = "0%";
-      localStorage.setItem("darkmode", value);
+      localStorage.setItem("darkmode", this.darkmode);
       this.$darkModeBus.$emit("dark-mode", this.darkmode);
     },
     openModal() {
@@ -462,10 +541,19 @@ export default {
     },
     onCopy() {
       alert("copied");
+    },
+    changeDark(value) {
+      this.darkmode = value;
+      if (this.darkmode == true) {
+        document.body.className = "home";
+      } else {
+        document.body.className = "intro";
+      }
     }
   },
   created() {
     this.urlLocation = window.location.href.split("/").pop();
+    this.$darkModeBus.$on("dark-mode", this.changeDark);
 
     //yesterday, today and uploaded
     const todayDate = new Date().toISOString().slice(0, 10);
@@ -488,25 +576,25 @@ export default {
       document.getElementById("desdonationbody").style.display = "none";
       document.getElementById("desquestionbody").style.display = "none";
     } else if (this.urlLocation == "start") {
-        document.getElementById("desbody").style.display = "none";
+      document.getElementById("desbody").style.display = "none";
       document.getElementById("desaboutusbody").style.display = "none";
       document.getElementById("desscreeningbody").style.display = "flex";
       document.getElementById("desdonationbody").style.display = "none";
       document.getElementById("desquestionbody").style.display = "none";
     } else if (this.urlLocation == "donation") {
-        document.getElementById("desbody").style.display = "none";
+      document.getElementById("desbody").style.display = "none";
       document.getElementById("desaboutusbody").style.display = "none";
       document.getElementById("desscreeningbody").style.display = "none";
       document.getElementById("desdonationbody").style.display = "flex";
       document.getElementById("desquestionbody").style.display = "none";
     } else if (this.urlLocation == "question") {
-        document.getElementById("desbody").style.display = "none";
+      document.getElementById("desbody").style.display = "none";
       document.getElementById("desaboutusbody").style.display = "none";
       document.getElementById("desscreeningbody").style.display = "none";
       document.getElementById("desdonationbody").style.display = "none";
       document.getElementById("desquestionbody").style.display = "flex";
     } else {
-       document.getElementById("desbody").style.display = "flex";
+      document.getElementById("desbody").style.display = "flex";
       document.getElementById("desaboutusbody").style.display = "none";
       document.getElementById("desscreeningbody").style.display = "none";
       document.getElementById("desdonationbody").style.display = "none";
@@ -585,35 +673,35 @@ export default {
       this.urlLocation = to.path.split("/").pop();
 
       if (this.urlLocation == "aboutus") {
-         document.getElementById("desbody").style.display = "none";
-      document.getElementById("desaboutusbody").style.display = "flex";
-      document.getElementById("desscreeningbody").style.display = "none";
-      document.getElementById("desdonationbody").style.display = "none";
-      document.getElementById("desquestionbody").style.display = "none";
+        document.getElementById("desbody").style.display = "none";
+        document.getElementById("desaboutusbody").style.display = "flex";
+        document.getElementById("desscreeningbody").style.display = "none";
+        document.getElementById("desdonationbody").style.display = "none";
+        document.getElementById("desquestionbody").style.display = "none";
       } else if (this.urlLocation == "start") {
-          document.getElementById("desbody").style.display = "none";
-      document.getElementById("desaboutusbody").style.display = "none";
-      document.getElementById("desscreeningbody").style.display = "flex";
-      document.getElementById("desdonationbody").style.display = "none";
-      document.getElementById("desquestionbody").style.display = "none";
+        document.getElementById("desbody").style.display = "none";
+        document.getElementById("desaboutusbody").style.display = "none";
+        document.getElementById("desscreeningbody").style.display = "flex";
+        document.getElementById("desdonationbody").style.display = "none";
+        document.getElementById("desquestionbody").style.display = "none";
       } else if (this.urlLocation == "question") {
         document.getElementById("desbody").style.display = "none";
-      document.getElementById("desaboutusbody").style.display = "none";
-      document.getElementById("desscreeningbody").style.display = "none";
-      document.getElementById("desdonationbody").style.display = "none";
-      document.getElementById("desquestionbody").style.display = "flex";
+        document.getElementById("desaboutusbody").style.display = "none";
+        document.getElementById("desscreeningbody").style.display = "none";
+        document.getElementById("desdonationbody").style.display = "none";
+        document.getElementById("desquestionbody").style.display = "flex";
       } else if (this.urlLocation == "donation") {
-     document.getElementById("desbody").style.display = "none";
-      document.getElementById("desaboutusbody").style.display = "none";
-      document.getElementById("desscreeningbody").style.display = "none";
-      document.getElementById("desdonationbody").style.display = "flex";
-      document.getElementById("desquestionbody").style.display = "none";
+        document.getElementById("desbody").style.display = "none";
+        document.getElementById("desaboutusbody").style.display = "none";
+        document.getElementById("desscreeningbody").style.display = "none";
+        document.getElementById("desdonationbody").style.display = "flex";
+        document.getElementById("desquestionbody").style.display = "none";
       } else {
-       document.getElementById("desbody").style.display = "flex";
-      document.getElementById("desaboutusbody").style.display = "none";
-      document.getElementById("desscreeningbody").style.display = "none";
-      document.getElementById("desdonationbody").style.display = "none";
-      document.getElementById("desquestionbody").style.display = "none";
+        document.getElementById("desbody").style.display = "flex";
+        document.getElementById("desaboutusbody").style.display = "none";
+        document.getElementById("desscreeningbody").style.display = "none";
+        document.getElementById("desdonationbody").style.display = "none";
+        document.getElementById("desquestionbody").style.display = "none";
       }
 
       console.log(from);
@@ -1179,7 +1267,6 @@ export default {
     margin-top: 100px;
   }
 
- 
   .searchcontainer-custom {
     border-radius: 50px;
     display: flex;
@@ -1189,6 +1276,17 @@ export default {
     height: 55px;
     flex-direction: row;
     background-color: #eee;
+  }
+  .searchcontainer-customDark {
+    border-radius: 50px;
+    display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 90%;
+    height: 55px;
+    flex-direction: row;
+    background-color: #121212;
+    color: #f5f5f5;
   }
   #myNav {
     display: none;
@@ -1220,37 +1318,45 @@ export default {
     flex-direction: column;
     height: 100%;
     font-size: 18px;
-    align-items:center;
+    align-items: center;
     font-family: "Poppins", sans-serif;
   }
   .desheading {
     display: flex;
     position: fixed;
     flex: 1;
-    border-radius:10px;
+    border-radius: 10px;
     width: 100%;
-    font-size:14px;
+    font-size: 14px;
     flex-direction: row;
     height: 65px;
-    border-bottom:1px solid #eee;
+    border-bottom: 1px solid #eee;
   }
-  .deslinkcontainer
-  {
-    padding-left:100px;
-    padding-right:100px;
-    display:flex;
-    flex:5;
+  .desheadingDark {
+    display: flex;
+    position: fixed;
+    flex: 1;
+    border-radius: 10px;
+    width: 100%;
+    font-size: 14px;
+    flex-direction: row;
+    height: 65px;
+    border-bottom: 1px solid #212121;
   }
-  .deslink
-  {
-    display:flex;
-    flex:1;
-    justify-content:center;
-    align-items:center;
+  .deslinkcontainer {
+    padding-left: 100px;
+    padding-right: 100px;
+    display: flex;
+    flex: 5;
   }
-  .deslink:hover
-  {
-    background-color:#eee ;
+  .deslink {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+  }
+  .deslink:hover {
+    background-color: #eee;
     transition: 0.8s;
   }
   #desbody {
@@ -1261,40 +1367,40 @@ export default {
     height: 88%;
   }
   #desaboutusbody {
-    margin-top:65px;
-    flex:1;
-    align-items:center;
-    justify-content:center;
+    margin-top: 65px;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
     flex-direction: row;
     display: flex;
     width: 100%;
     height: 88%;
   }
   #desdonationbody {
-    margin-top:65px;
-    flex:1;
-    align-items:center;
-    justify-content:center;
+    margin-top: 65px;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
     flex-direction: row;
     display: flex;
     width: 100%;
     height: 88%;
   }
   #desscreeningbody {
-    margin-top:65px;
-    flex:1;
-    align-items:center;
-    justify-content:center;
+    margin-top: 65px;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
     flex-direction: row;
     display: flex;
     width: 100%;
     height: 88%;
   }
-   #desquestionbody {
-    margin-top:65px;
-    flex:1;
-    align-items:center;
-    justify-content:center;
+  #desquestionbody {
+    margin-top: 65px;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
     flex-direction: row;
     display: flex;
     width: 100%;
@@ -1318,6 +1424,18 @@ export default {
     align-items: center;
     justify-content: center;
   }
+  .descountrybycasesDark {
+    background-color: #212121;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 95%;
+    border-radius: 10px;
+    box-shadow: 0 8px 10px 1px rgba(1, 1, 1, 1), 0 3px 14px 2px rgba(1, 1, 1, 1),
+      0 5px 5px -3px rgba(1, 1, 1, 1);
+  }
   .descountrybycases {
     background-color: #ffffff;
     overflow-x: hidden;
@@ -1327,6 +1445,7 @@ export default {
     width: 90%;
     height: 95%;
     border-radius: 10px;
+
     box-shadow: 0 8px 10px 1px rgba(238, 238, 238, 238),
       0 3px 14px 2px rgba(238, 238, 238, 238),
       0 5px 5px -3px rgba(238, 238, 238, 238);
@@ -1348,12 +1467,29 @@ export default {
     border-bottom: 1px solid #eee;
     cursor: pointer;
   }
+  .descasescontainerDark {
+    font-size: 14px;
+    align-items: center;
+    display: flex;
+    height: 50px;
+    width: 100%;
+    flex-direction: row;
+    border-bottom: 1px solid #121212;
+    cursor: pointer;
+  }
+  .descasescontainerDark img {
+    width: 24px;
+    height: 24px;
+  }
   .descasescontainer img {
     width: 24px;
     height: 24px;
   }
   .descasescontainer:hover {
     background: #eee;
+  }
+  .descasescontainerDark:hover {
+    background: #121212;
   }
   .descasesflex1 {
     display: flex;
@@ -1421,6 +1557,16 @@ export default {
     justify-content: center;
     background-color: #f5f5f5;
   }
+  .numbercontainer1Dark {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 90%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #212121;
+  }
   .numbercontainer2 {
     display: flex;
     flex: 1;
@@ -1432,6 +1578,17 @@ export default {
     justify-content: center;
     background-color: #e8f5e9;
   }
+  .numbercontainer2Dark {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 90%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #212121;
+  }
   .numbercontainer3 {
     display: flex;
     flex-direction: column;
@@ -1441,6 +1598,16 @@ export default {
     align-items: center;
     justify-content: center;
     background-color: #ffebee;
+  }
+  .numbercontainer3Dark {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 90%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #212121;
   }
   .desmap {
     display: flex;
@@ -1499,6 +1666,18 @@ export default {
       0 3px 14px 2px rgba(238, 238, 238, 238),
       0 5px 5px -3px rgba(238, 238, 238, 238);
   }
+  .desnewsDark {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 74%;
+    border-radius: 10px;
+    background-color: #212121;
+    box-shadow: 0 8px 10px 1px rgba(1, 1, 1, 1), 0 3px 14px 2px rgba(1, 1, 1, 1),
+      0 5px 5px -3px rgba(1, 1, 1, 1);
+  }
   .desnewsheading {
     margin-top: 20px;
     display: flex;
@@ -1527,8 +1706,6 @@ export default {
     color: #ff5722;
     font-weight: bold;
   }
-
-
 
   /* The Modal (background) */
   .modal {
@@ -1563,7 +1740,20 @@ export default {
     animation-name: slideIn;
     animation-duration: 0.4s;
   }
-
+  .modal-contentDark {
+    position: fixed;
+    right: 0;
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    background-color: #212121;
+    width: 446px;
+    height: 100%;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s;
+  }
   /* The Close Button */
   .close {
     color: #757575;
@@ -1613,6 +1803,13 @@ export default {
     border-bottom: 1px solid #eee;
     flex-direction: row;
   }
+  .descontactscontainerDark {
+    width: 446px;
+    height: 135px;
+    display: flex;
+    border-bottom: 1px solid #121212;
+    flex-direction: row;
+  }
   .desflex1 {
     display: flex;
     flex: 2;
@@ -1645,12 +1842,27 @@ export default {
     align-items: flex-end;
     justify-content: center;
   }
+  .desbox3Dark {
+    display: flex;
+    flex: 1;
+    background: #212121;
+    align-items: flex-end;
+    justify-content: center;
+  }
   .desbox4 {
     display: flex;
     flex: 1;
     align-items: center;
     justify-content: center;
   }
+  .desbox4Dark {
+    display: flex;
+    flex: 1;
+    background: #212121;
+    align-items: center;
+    justify-content: center;
+  }
+
   .topnav {
     margin-right: 15px;
     overflow: hidden;
@@ -1665,7 +1877,6 @@ export default {
     font-size: 17px;
   }
   .router-link-active {
-
     font-weight: bold;
   }
 

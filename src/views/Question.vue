@@ -66,7 +66,7 @@
             >မည်သည့် လက္ခဏာမှ မရှိပါ။</label>
           </div>
         </div>
- 
+        <h1>{{resultTwo}}</h1>
       </div>
 
       <!-- question no two end -->
@@ -488,7 +488,34 @@ input[name="myradio"]:checked + .clickable .checked-box {
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
-
+.optioncontainerCheckboxFive {
+  display: flex;
+  position: relative;
+  margin-top: 10px;
+  border-radius: 10px;
+  color: #212121;
+  font-size: 14px;
+  border: 0px;
+  outline: none;
+  width: 95%;
+  height: 65px;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  border-color: #3f51b5;
+  box-shadow: 0px 0px 0px 3px #3f51b5;
+}
 .optioncontainerCheckboxDark {
   display: flex;
   position: relative;
