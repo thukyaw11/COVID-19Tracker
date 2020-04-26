@@ -4,10 +4,13 @@
       <div v-if="checkQuestionIndex" class="mainflex">
         <div class="questionheader">
           <div class="desheader1">
+              <div class="desheadflex1">  
             <router-link to="/start">
-              <span class="material-icons">arrow_back</span>
-            </router-link>
-            Question {{questionIndex + 1}}
+              <span class="material-icons" style="color:#212121;">arrow_back</span>
+            </router-link></div>
+            <div class="desheadflex2">Question {{questionIndex + 1}}</div>
+          
+        
           </div>
           <div class="desheader2">{{ ques.questions[questionIndex].text }}</div>
         </div>
@@ -39,10 +42,13 @@
       <div v-if="questionIndex == 1" class="mainflex">
         <div class="questionheader">
           <div class="desheader1">
+              <div class="desheadflex1">  
             <router-link to="/start">
-              <span class="material-icons">arrow_back</span>
-            </router-link>
-            Question {{questionIndex + 1}}
+              <span class="material-icons" style="color:#212121;">arrow_back</span>
+            </router-link></div>
+            <div class="desheadflex2">Question {{questionIndex + 1}}</div>
+          
+        
           </div>
           <div class="desheader2">{{ ques.questions[questionIndex].text }}</div>
         </div>
@@ -92,10 +98,13 @@
       <div v-if="questionIndex == 2" class="mainflex">
         <div class="questionheader">
           <div class="desheader1">
+              <div class="desheadflex1">  
             <router-link to="/start">
-              <span class="material-icons">arrow_back</span>
-            </router-link>
-            Question {{questionIndex + 1}}
+              <span class="material-icons" style="color:#212121;">arrow_back</span>
+            </router-link></div>
+            <div class="desheadflex2">Question {{questionIndex + 1}}</div>
+          
+        
           </div>
           <div class="desheader2">{{ ques.questions[questionIndex].text }}</div>
         </div>
@@ -377,7 +386,7 @@ export default {
   flex-direction: row;
   display: flex;
   width: 100%;
-  height: 88%;
+  height: 80%;
   align-items: center;
   justify-content: center;
 }
@@ -414,11 +423,25 @@ export default {
   display: flex;
   flex: 4;
 }
+.desheadflex1
+{
+  display:flex;
+  flex:1;
+  padding-left:10px;
+  align-items:center;
+  justify-content:flex-start;
+
+}
+.desheadflex2
+{
+  display:flex;
+  flex:20;
+}
 .desquestion1 {
   display: flex;
   flex: 2;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 }
 .desquestion2 {
   display: flex;

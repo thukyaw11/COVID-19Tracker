@@ -1,5 +1,6 @@
 <template>
   <div class="desktopcontainer">
+ 
     <div class="desbody">
       <div class="mainflex">
         <div class="flexbody">
@@ -39,15 +40,15 @@ export default {
 }
 </script>
 <style scoped>
- 
-  .desktopcontainer {
+
+   .desktopcontainer {
     display: flex;
-    background-color:#DCE3EF;
+    background-color: #DCE3EF;
     flex-direction: column;
-    flex:1;
+    height: 100%;
+    font-size: 18px;
     align-items:center;
     justify-content:center;
-    font-size: 18px;
     font-family: "Poppins", sans-serif;
   }
  

@@ -47,7 +47,7 @@
           </div>
         </div>
       </div>
-      <div class="desfooter">
+      <div class="desaboutusfooter">
         <div class="footerLeft">
           <i class="fab fa-facebook"></i>
           <i class="fab fa-facebook-messenger"></i>
@@ -82,7 +82,7 @@
     flex:1;
 
   }
-  .desfooter {
+  .desaboutusfooter {
     position:fixed;
     bottom:0;
     width: 98%;

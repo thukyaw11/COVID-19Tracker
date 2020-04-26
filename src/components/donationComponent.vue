@@ -58,7 +58,6 @@
   .flexbody {
     display: flex;
     flex: 3;
-
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -73,6 +72,7 @@
   .flexbodyheader {
     display: flex;
     flex: 1;
+    line-height: 100px;
     font-size: 70px;
     font-weight: bold;
   }

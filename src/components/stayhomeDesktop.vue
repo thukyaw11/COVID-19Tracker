@@ -1,5 +1,5 @@
 <template>
-  <div class="desktopcontainer">
+
     <div class="desbody">
       <div class="mainflex">
         <div class="flexbody">
@@ -51,43 +51,26 @@
         </div>
       </div>
     </div>
-  </div>
+
 </template>
 
 <style scoped>
+  
+ /*updated latest desktop ui*/
+  .classdesbody {
+    flex-direction: row;
+    display: flex;
+    width: 100%;
+    height: 88%;
+    align-items:center;
+    justify-content:center;
+  }
+  .mainflex {
     
-.desktopcontainer
-{
+    display: flex;
+    flex:1;
 
-  display:flex;
-  flex:1;
-  flex-direction: column;
-  height: 100%;
-  background-color: #FBF0E8;
-  font-size: 18px;
-
-
-}
-
-.desbody
-{
-
-  flex-direction: column;
-  display: flex;
-  flex:1;
-  height: 930px;
-
-
-}
-
-/*updated latest desktop ui*/
-.mainflex
-{
-  display: flex;
-  flex:1;
-
-
-}
+  }
 .desfooter
 {
   height: 80px;
@@ -173,6 +156,7 @@
 {
   display: flex;
   flex:15;
+  line-height:45px;
   margin-left: 15px;
   align-items: flex-start;
 

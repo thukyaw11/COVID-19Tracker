@@ -108,16 +108,24 @@
 
     <div class="desktopcontainer">
       <div class="desheading">
-        <div class="desheadingname">{{this.$root.$data.title}}</div>
-        <div class="deslink">
-          <div class="topnav">
-            <router-link to="/global" style="text-decoration : none; color: #212121;">Global</router-link>
-            <router-link to="/local" style="text-decoration : none; color: #212121;">Local</router-link>
-            <router-link to="/aboutus" style="text-decoration : none; color: #212121;">About Us</router-link>
-            <router-link to="/start" style="text-decoration : none; color: #212121;">Screening Kit</router-link>
-            <router-link to="/donation" style="text-decoration : none; color: #212121;">Donation</router-link>
-          </div>
+       
+        <div class="deslinkcontainer">
+             <div class="deslink"> <router-link to="/global" style="text-decoration : none; color: #212121;">Global</router-link></div> 
+              <div class="deslink"><router-link to="/local" style="text-decoration : none; color: #212121;">Local</router-link></div> 
+              <div class="deslink"><router-link to="#" style="text-decoration : none; color: #212121;">Map</router-link></div> 
+             
+              <div class="deslink"><router-link to="/start" style="text-decoration : none; color: #212121;">Screening Kit</router-link></div> 
+              <div class="deslink"><router-link to="/donation" style="text-decoration : none; color: #212121;">Donation</router-link></div> 
+               <div class="deslink"><router-link to="/aboutus" style="text-decoration : none; color: #212121;">About Us</router-link></div> 
+              <div class="deslink" style="text-decoration : none; color: #757575; font-size:18px;"><i class="fas fa-moon"></i></div> 
+               <div class="deslink" style="text-decoration : none; color: #757575; font-size:18px;"><span class="material-icons">g_translate</span></div> 
         </div>
+       
+        
+        
+
+
+        
       </div>
 
       <div id="desbody">
@@ -498,7 +506,7 @@ export default {
       document.getElementById("desdonationbody").style.display = "none";
       document.getElementById("desquestionbody").style.display = "flex";
     } else {
-    
+       document.getElementById("desbody").style.display = "flex";
       document.getElementById("desaboutusbody").style.display = "none";
       document.getElementById("desscreeningbody").style.display = "none";
       document.getElementById("desdonationbody").style.display = "none";
@@ -601,7 +609,7 @@ export default {
       document.getElementById("desdonationbody").style.display = "flex";
       document.getElementById("desquestionbody").style.display = "none";
       } else {
-      
+       document.getElementById("desbody").style.display = "flex";
       document.getElementById("desaboutusbody").style.display = "none";
       document.getElementById("desscreeningbody").style.display = "none";
       document.getElementById("desdonationbody").style.display = "none";
@@ -1209,29 +1217,51 @@ export default {
   }
   .desktopcontainer {
     display: flex;
-    background-color: #fafafa;
     flex-direction: column;
     height: 100%;
     font-size: 18px;
+    align-items:center;
     font-family: "Poppins", sans-serif;
   }
   .desheading {
     display: flex;
     position: fixed;
     flex: 1;
+    border-radius:10px;
     width: 100%;
+    font-size:14px;
     flex-direction: row;
-    height: 120px;
+    height: 65px;
+    border-bottom:1px solid #eee;
+  }
+  .deslinkcontainer
+  {
+    padding-left:100px;
+    padding-right:100px;
+    display:flex;
+    flex:5;
+  }
+  .deslink
+  {
+    display:flex;
+    flex:1;
+    justify-content:center;
+    align-items:center;
+  }
+  .deslink:hover
+  {
+    background-color:#eee ;
+    transition: 0.8s;
   }
   #desbody {
-    margin-top: 130px;
+    margin-top: 90px;
     flex-direction: row;
     display: flex;
     width: 100%;
     height: 88%;
   }
   #desaboutusbody {
-    margin-top:100px;
+    margin-top:65px;
     flex:1;
     align-items:center;
     justify-content:center;
@@ -1241,7 +1271,7 @@ export default {
     height: 88%;
   }
   #desdonationbody {
-    margin-top:100px;
+    margin-top:65px;
     flex:1;
     align-items:center;
     justify-content:center;
@@ -1251,7 +1281,7 @@ export default {
     height: 88%;
   }
   #desscreeningbody {
-    margin-top:100px;
+    margin-top:65px;
     flex:1;
     align-items:center;
     justify-content:center;
@@ -1261,7 +1291,7 @@ export default {
     height: 88%;
   }
    #desquestionbody {
-    margin-top:100px;
+    margin-top:65px;
     flex:1;
     align-items:center;
     justify-content:center;
@@ -1498,12 +1528,7 @@ export default {
     font-weight: bold;
   }
 
-  .deslink {
-    display: flex;
-    flex: 2;
-    align-items: center;
-    justify-content: flex-end;
-  }
+
 
   /* The Modal (background) */
   .modal {
@@ -1640,8 +1665,7 @@ export default {
     font-size: 17px;
   }
   .router-link-active {
-    border-radius: 5px;
-    background-color: #eee;
+
     font-weight: bold;
   }
 

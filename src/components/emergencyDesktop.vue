@@ -1,6 +1,6 @@
 <template>
-  <div class="desktopcontainer">
-    <div class="desbody">
+  
+    <div class="classdesbody">
       <div class="mainflex">
         <div class="flexbody">
           <div class="flexbodycontainer">
@@ -24,7 +24,7 @@
           <img src="../assets/emergency_contact.png" width="500" height="500" />
         </div>
       </div>
-      <div class="desfooter"></div>
+      
 
       <!-- <div id="myModal" class="modal">
     
@@ -197,36 +197,27 @@
 
       <!-- Modal content end-->
     </div>
-  </div>
+ 
 </template>
 
 <style scoped>
-.desktopcontainer {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  height: 100%;
-  background-color: #94d8d6;
-  font-size: 18px;
-}
-.desheading {
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  height: 120px;
-}
 
-/*updated latest desktop ui*/
-.mainflex {
-  display: flex;
-  flex: 1;
-}
-.desfooter {
-  height: 80px;
-  display: flex;
-  margin-right: 35px;
-  justify-content: flex-end;
-}
+ /*updated latest desktop ui*/
+  .classdesbody {
+    flex-direction: row;
+    display: flex;
+    width: 100%;
+    height: 88%;
+    align-items:center;
+    justify-content:center;
+  }
+  .mainflex {
+    
+    display: flex;
+    flex:1;
+
+  }
+
 .flexbody {
   display: flex;
   flex: 3;
@@ -245,6 +236,7 @@
 .flexbodyheader {
   display: flex;
   flex: 1;
+  line-height:100px;
   font-size: 70px;
   font-weight: bold;
 }
