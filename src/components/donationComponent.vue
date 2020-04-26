@@ -22,7 +22,7 @@
           <i class="fas fa-heartbeat" style="font-size:300px; color:#EC407A;"></i>
         </div>
       </div>
-      <div class="desfooter">ss</div>
+      
     </div>
   
 </template>

@@ -1,73 +1,149 @@
 <template>
-    <div class="classdesbody">
-      <div class="mainflex">
+  <div class="classdesbody">
+    <div v-if="questionIndex<ques.questions.length">
+      <div v-if="checkQuestionIndex" class="mainflex">
         <div class="questionheader">
-          <div class="desheader1">Question 3</div>
-          <div class="desheader2">ယခု သင့်ကျန်းမာရေးအခြေအနေကို ဖြေဆိုပါ? (ရောဂါအခံရှိ/မရှိ)</div>
+          <div class="desheader1">
+            <router-link to="/start">
+              <span class="material-icons">arrow_back</span>
+            </router-link>
+            Question {{questionIndex + 1}}
+          </div>
+          <div class="desheader2">{{ ques.questions[questionIndex].text }}</div>
         </div>
         <div class="questionbody">
           <div class="desquestion1">
             <!-- create the product container the user sees -->
-            <div class="optioncontainer">
-              <input id="desopt1" type="radio" name="desradio" />
-              <label for="desopt1" class="desclickable"></label>
-              ရင်ကြပ်ရောဂါရှိသည်။ (Asthma)
-            </div>
-            <div class="optioncontainer">
-              <input id="desopt2" type="radio" name="desradio" />
-              <label for="desopt2" class="desclickable"></label>
-              ကိုယ်၀န်ဆောင်မိခင်ဖြစ်သည်။
-            </div>
-            <div class="optioncontainer">
-              <input id="desopt3" type="radio" name="desradio" />
-              <label for="desopt3" class="desclickable"></label>
-              ဆီးချို/သွေးချိုရှိသည်။
-            </div>
-            <div class="optioncontainer">
-              <input id="desopt4" type="radio" name="desradio" />
-              <label for="desopt4" class="desclickable"></label>
-              နှလုံးရောဂါရှိသည်။
-            </div>
-            <div class="optioncontainer">
-              <input id="desopt5" type="radio" name="desradio" />
-              <label for="desopt5" class="desclickable"></label>
-              အဆုတ်ရောဂါရှိသည်။
-            </div>
-            <div class="optioncontainer">
-              <input id="desopt6" type="radio" name="desradio" />
-              <label for="desopt6" class="desclickable"></label>
-              ကင်ဆာရောဂါရှိသည်။
-            </div>
-            <div class="optioncontainer">
-              <input id="desopt7" type="radio" name="desradio" />
-              <label for="desopt7" class="desclickable"></label>
-              HIV/AIDS ရောဂါပိုးရှိသည်။
-            </div>
-            <div class="optioncontainer">
-              <input id="desopt8" type="radio" name="desradio" />
-              <label for="desopt8" class="desclickable"></label>
-              HIV/AIDS ရောဂါပိုးရှိသည်။
+            <div
+              class="optioncontainer"
+              v-for="(response, index) in ques.questions[questionIndex].responses"
+              :key="index"
+            >
+              <input :id="response.tagId" type="radio" name="desradio" />
+              <label :for="response.tagId" class="desclickable" @click="selectOption(response.id)"></label>
+              {{response.text}}
             </div>
           </div>
           <div class="desquestion2">
-            <button class="nextbutton">Next</button>
+            <button
+              :class="selected ? 'nextbutton':'nextbutton-disable'"
+              @click="next"
+              :disabled="!selected"
+            >Next</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- for question two -->
+
+      <div v-if="questionIndex == 1" class="mainflex">
+        <div class="questionheader">
+          <div class="desheader1">
+            <router-link to="/start">
+              <span class="material-icons">arrow_back</span>
+            </router-link>
+            Question {{questionIndex + 1}}
+          </div>
+          <div class="desheader2">{{ ques.questions[questionIndex].text }}</div>
+        </div>
+        <div class="questionbody">
+          <div class="desquestion1">
+            <!-- create the product container the user sees -->
+            <div
+              class="optioncontainer"
+              v-for="(response, index) in ques.questions[questionIndex].responses"
+              :key="index"
+            >
+              <input :id="response.tagId" type="checkbox" name="desradio" />
+              <label :for="response.tagId" class="desclickable" @click="selectOption(response.id)"></label>
+              {{response.text}}
+            </div>
+            <div class="optioncontainer">
+              <input type="checkbox" name="mycheckbox" />
+              <label
+                for="check8"
+                class="clickable"
+                @click="deselectAll()"
+                style="text-align : center; padding : 20px"
+              >
+                <span
+                  :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+                >မည်သည့် လက္ခဏာမှမရှိပါ။</span>
+              </label>
+            </div>
+          </div>
+          <div class="desquestion2">
+            <button
+              :class="selected ? 'nextbutton':'nextbutton-disable'"
+              @click="next"
+              :disabled="!selected"
+            >Next</button>
           </div>
         </div>
       </div>
     </div>
+  </div>
 </template>
 
-<style scoped>
 
-/*updated latest desktop ui*/
- .classdesbody {
-    flex-direction: row;
-    display: flex;
-    width: 100%;
-    height: 88%;
-    align-items:center;
-    justify-content:center;
+<script>
+import { ques } from "../assets/content/question";
+import answer from "../assets/content/answer";
+import Vue from "vue";
+export default {
+  data() {
+    return {
+      ques: ques,
+      answer: answer,
+      questionIndex: 0,
+      userResponses: "",
+      selected: false
+    };
+  },
+  methods: {
+    next() {
+      console.log("hello");
+      if (this.questionIndex < this.ques.questions.length) this.questionIndex++;
+      this.selected = false;
+
+      if (this.questionIndex >= this.ques.questions.length) {
+        this.arrayMatch();
+      }
+
+      for (var checkindex = 1; checkindex < 9; checkindex++) {
+        var el = "check" + checkindex;
+        document.getElementById(el).checked = false;
+      }
+
+     
+    },
+    selectOption(index) {
+      Vue.set(this.userResponses, this.questionIndex, index);
+      this.selected = true;
+    }
+  },
+  mounted() {
+    this.userResponses = Array(this.ques.questions.length).fill(null);
+  },
+  computed: {
+    checkQuestionIndex() {
+      return this.questionIndex != 1 && this.questionIndex != 2;
+    }
   }
+};
+</script>
+
+
+<style scoped>
+/*updated latest desktop ui*/
+.classdesbody {
+  flex-direction: row;
+  display: flex;
+  width: 100%;
+  height: 88%;
+  align-items: center;
+  justify-content: center;
+}
 .mainflex {
   width: 1129px;
   height: 871px;
@@ -127,6 +203,22 @@
   margin-bottom: 15px;
   align-items: center;
   justify-content: center;
+}
+.nextbutton-disable {
+  border-radius: 10px;
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 14px;
+  border: 0px;
+  outline: none;
+  background-color: #3f51b5;
+  width: 315px;
+  height: 65px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
 }
 /* Hide the browser's default radio button*/
 .optioncontainer input {
