@@ -1,6 +1,5 @@
 <template>
   <div class="desktopcontainer">
- 
     <div class="desbody">
       <div class="mainflex">
         <div class="flexbody">

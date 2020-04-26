@@ -19,7 +19,7 @@
           <div :class="darkmode? 'numbercontainer2Dark' : 'numbercontainer2'">
             <div :style="darkmode? 'color : #f5f5f5' : 'color : #212121'">Recover</div>
             <div
-              style="font-size:36px; color:#4CAF50; padding-top:20px"
+              :style="darkmode? 'color : #a5d6a7; font-size:36px; font-weight:bold; padding-top:20px' : 'color : #4CAF50;font-size:36px; font-weight:bold; padding-top:20px '"
               v-if="caseinMyanmar[0].total_recovered"
             >{{myanmarStat.total_recovered}}</div>
             <div style="font-size:36px; color:#4CAF50; padding-top:20px" v-else>0</div>
@@ -29,7 +29,7 @@
           <div :class="darkmode? 'numbercontainer3Dark' : 'numbercontainer3'">
             <div :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"> Deaths</div>
             <div
-              style="font-size:36px; color:#F44336; padding-top:20px"
+              :style="darkmode? 'color : #ef9a9a; font-size:36px; font-weight:bold; padding-top:20px' : 'color : #F44336;font-size:36px; font-weight:bold; padding-top:20px '"
               v-if="caseinMyanmar[0].total_deaths"
             >{{myanmarStat.total_deaths}}</div>
             <div style="font-size:36px; color:#4CAF50; padding-top:20px" v-else>0</div>

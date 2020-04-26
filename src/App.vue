@@ -194,7 +194,8 @@
 
             <div
               class="descountrybycasesheading"
-              style="color:#3F51B5;"
+              :style="darkmode? 'color : #9fa8da': 'color : #3F51B5'"
+          
             >Countries, areas or territories with cases</div>
             <br />
             <div class="dessearchbar">
@@ -257,11 +258,11 @@
           </div>
         </div>
         <div class="mainflex3">
-          <div class="desemergency" id="myBtn" @click="openModal()">
-            <div class="desemergencyflex1">
-              <span class="material-icons" style="font-size:40px;">add_ic_call</span>
+          <div :class="darkmode? 'desemergencyDark' : 'desemergency'" id="myBtn" @click="openModal()">
+            <div :class="darkmode? 'desemergencyflex1Dark' : 'desemergencyflex1'">
+              <i class="fas fa-star-of-life" style="font-size:36px;"></i>
             </div>
-            <div class="desemergencyflex2">Emergency Contacts</div>
+            <div :class="darkmode? 'desemergencyflex2Dark' : 'desemergencyflex2'">Emergency Contacts</div>
           </div>
 
           <div id="myModal" class="modal">
@@ -345,7 +346,7 @@
                 >
                   <div class="desnewscontent" :style="darkmode? 'color: #f5f5f5': 'color: #121212'">
                     <div class="box1">{{latest.title}}</div>
-                    <div class="box2">Source :{{latest.sourceId}}</div>
+                    <div class="box2" :style="darkmode? 'color: #ffab91': 'color: #ff5722'">Source : {{latest.sourceId}}</div>
                   </div>
                 </a>
               </div>
@@ -355,7 +356,7 @@
               <hr style="border:1px solid #eee; width:95%; margin-left:0;" />
             </div>
             <br />
-            <div class="desnewsheading">Yesterday</div>
+            <div class="desnewsheading" :style="darkmode? 'color: #f5f5f5': 'color: #121212'">Yesterday</div>
             <br />
             <div v-if="yesterdayNews.length > 0">
               <div class="desnewsbody" v-for="yesterday in yesterdayNews" :key="yesterday._id">
@@ -364,9 +365,9 @@
                   :href="linkIt(yesterday.url)"
                   style="color : black; text-decoration: none;"
                 >
-                  <div class="desnewscontent">
+                  <div class="desnewscontent" :style="darkmode? 'color: #f5f5f5': 'color: #121212'">
                     <div class="box1">{{yesterday.title}}</div>
-                    <div class="box2">Source : {{yesterday.sourceId}}</div>
+                    <div class="box2" :style="darkmode? 'color: #ffab91': 'color: #ff5722'">Source : {{yesterday.sourceId}}</div>
                   </div>
                 </a>
               </div>
@@ -1433,8 +1434,8 @@ export default {
     width: 90%;
     height: 95%;
     border-radius: 10px;
-    box-shadow: 0 8px 10px 1px rgba(1, 1, 1, 1), 0 3px 14px 2px rgba(1, 1, 1, 1),
-      0 5px 5px -3px rgba(1, 1, 1, 1);
+    box-shadow: 0 8px 10px 1px rgba(18, 18, 18, 18), 0 3px 14px 2px rgba(18, 18, 18, 18),
+      0 5px 5px -3px rgba(18, 18, 18, 18);
   }
   .descountrybycases {
     background-color: #ffffff;
@@ -1445,7 +1446,6 @@ export default {
     width: 90%;
     height: 95%;
     border-radius: 10px;
-
     box-shadow: 0 8px 10px 1px rgba(238, 238, 238, 238),
       0 3px 14px 2px rgba(238, 238, 238, 238),
       0 5px 5px -3px rgba(238, 238, 238, 238);
@@ -1634,11 +1634,19 @@ export default {
   }
   .desemergency {
     display: flex;
-    height: 20%;
+    height: 20.5%;
     width: 90%;
     border-radius: 10px;
     align-items: center;
     background-color: #f44336;
+  }
+  .desemergencyDark{
+    display: flex;
+    height: 20.5%;
+    width: 90%;
+    border-radius: 10px;
+    align-items: center;
+    background-color: #e57373;
   }
   .desemergencyflex1 {
     display: flex;
@@ -1647,10 +1655,25 @@ export default {
     justify-content: flex-end;
     margin-right: 10px;
   }
+  .desemergencyflex1Dark {
+    display: flex;
+    flex: 1;
+    color: #121212;
+    justify-content: flex-end;
+    margin-right: 10px;
+  }
   .desemergencyflex2 {
     display: flex;
-    flex: 3;
+    font-weight:bold;
+    flex: 4;
     color: #ffffff;
+    justify-content: center;
+  }
+  .desemergencyflex2Dark {
+    display: flex;
+    font-weight:bold;
+    flex: 4;
+    color: #121212;
     justify-content: center;
   }
   .desnews {
@@ -1675,8 +1698,8 @@ export default {
     height: 74%;
     border-radius: 10px;
     background-color: #212121;
-    box-shadow: 0 8px 10px 1px rgba(1, 1, 1, 1), 0 3px 14px 2px rgba(1, 1, 1, 1),
-      0 5px 5px -3px rgba(1, 1, 1, 1);
+    box-shadow: 0 8px 10px 1px rgba(18, 18, 18, 18), 0 3px 14px 2px rgba(18, 18, 18, 18),
+      0 5px 5px -3px rgba(18, 18, 18, 18);
   }
   .desnewsheading {
     margin-top: 20px;
@@ -1703,9 +1726,9 @@ export default {
   }
   .box2 {
     margin-left: 20px;
-    color: #ff5722;
     font-weight: bold;
   }
+
 
   /* The Modal (background) */
   .modal {

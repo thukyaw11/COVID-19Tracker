@@ -21,7 +21,105 @@
       <div class="fleximage">
         <i class="fas fa-heartbeat" style="font-size:300px; color:#EC407A;"></i>
       </div>
-    </div>
+
+      </div>
+
+            <div class="donatablecontacts">
+
+              <div class="backward">
+                  <div class="backwardbutton">
+                    <i class="material-icons" style="font-size:50px; color:#212121;">keyboard_arrow_left</i>
+                  </div>
+
+
+              </div>
+              <div class="middle">
+                      <div class="donationcard">
+                          <div class="dcardheader">
+                            University Of Information Technology
+
+                          </div>
+                          <div class="dcardbody">
+                              <div class="dcardbodyleft">
+
+                                    <div class="donatetypeoforg">
+                                        <div style="color:#757575;">Type of organization</div>
+                                        <div style="font-size:20px;">University</div>
+
+                                    </div>
+                                    <div class="donatephno">
+                                      <div style="color:#757575;">Phone Number</div>
+                                      <div style="font-size:20px;">0934534923</div>
+
+                                    </div>
+                                    <div class="donatename">
+                                      <div style="color:#757575;">Name</div>
+                                      <div style="font-size:20px;">Sai Kaw Yount</div>
+
+                                    </div>
+                                    <div class="donatedescirption">
+                                      <div style="color:#757575;">Description</div>
+                                      <div style="font-size:20px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </div>
+
+                                    </div>
+
+                              </div>
+                              <div class="dcardbodyright">
+                                  <div class="bankcard">
+                                        <div class="bankcardheader">
+                                          Donateable Bank Accounts
+
+                                        </div>
+                                        <div class="bankcardchip">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="45.225" height="35.145" viewBox="0 0 45.225 35.145">
+                                            <path id="Path_127" data-name="Path 127" d="M41.943,6.2H5.846a4.568,4.568,0,0,0-4.563,4.563V36.781a4.569,4.569,0,0,0,4.563,4.564h36.1a4.569,4.569,0,0,0,4.563-4.564V10.765A4.568,4.568,0,0,0,41.943,6.2ZM3.282,20.675H10.09V27.16H3.282ZM44.507,27.16H37.7V20.675h6.808Zm0-15.021v6.535H33.135a2.768,2.768,0,1,1,0-5.535,1,1,0,1,0,0-2,4.768,4.768,0,1,0,0,9.535H35.7V27.16H33.135a4.768,4.768,0,1,0,0,9.535,1,1,0,1,0,0-2,2.768,2.768,0,1,1,0-5.535H44.507v7.621a2.567,2.567,0,0,1-2.563,2.564H5.846a2.567,2.567,0,0,1-2.563-2.564V29.16H14.653a2.768,2.768,0,1,1,0,5.535,1,1,0,0,0,0,2,4.768,4.768,0,1,0,0-9.535H12.09V20.675h2.563a4.768,4.768,0,1,0,0-9.535,1,1,0,1,0,0,2,2.768,2.768,0,1,1,0,5.535H3.282v-7.91A2.567,2.567,0,0,1,5.846,8.2h36.1a2.567,2.567,0,0,1,2.563,2.563Z" transform="translate(-1.282 -6.201)"/>
+                                            </svg>
+
+                                        </div>
+                                        <div class="bankcardacc">
+                                              <div class="accname">KBZ</div>
+                                              <div class="accnumber" style="margin-left:50px;">2342 2324 2333 2323</div>
+
+                                        </div>
+                                        <div class="bankcardacc">
+                                              <div class="accname">CB</div>
+                                              <div class="accnumber" style="margin-left:50px;">2342 2324 2333 2323</div>
+
+                                        </div>
+
+
+
+                                  </div>
+
+                              </div>
+
+                          </div>
+
+
+                      </div>
+
+              </div>
+              <div class="forward">
+                <div class="backwardbutton">
+                  <i class="material-icons" style="font-size:50px; color:#212121;">keyboard_arrow_right</i>
+                </div>
+              </div>
+
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+    
   </div>
 </template>
 
@@ -50,16 +148,20 @@ export default {
 <style scoped>
 /*updated latest desktop ui*/
 .classdesbody {
-  flex-direction: row;
+  flex-direction: column;
   display: flex;
+  flex:1;
   width: 100%;
-  height: 88%;
+  height: 100%;
   align-items: center;
   justify-content: center;
 }
+
 .mainflex {
   display: flex;
-  flex: 1;
+   align-items: center;
+  justify-content: center;
+  height:1080px;
 }
 .desfooter {
   position: fixed;
@@ -118,5 +220,210 @@ export default {
   align-items: center;
   justify-content: center;
   border-radius: 10px;
+}
+
+
+
+/*donationcarddddddddddddddddddddddddddddd*/
+.forward
+{
+  display:flex;
+  flex:1;
+  align-items:center;
+  justify-content:center;
+
+}
+.forwardbutton
+{
+  cursor:pointer;
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background-color:#eee;
+  display:flex;
+  transition: all .3s ease;
+  align-items:center;
+  justify-content:center;
+
+}
+.forwardbutton:hover
+{
+    color:#212121;
+    background-color:#e0e0e0;
+}
+.backward
+{
+  display:flex;
+  flex:1;
+  align-items:center;
+  justify-content:center;
+}
+.backwardbutton
+{
+      cursor:pointer;
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background-color:#eee;
+  display:flex;
+    transition: all .3s ease;
+  align-items:center;
+  justify-content:center;
+
+}
+.backwardbutton:hover
+{
+    color:#212121;
+    background-color:#e0e0e0;
+}
+.middle
+{
+  display:flex;
+  flex:5;
+}
+.donationcard
+{
+  display:flex;
+  flex-direction:column;
+  width:1330px;
+  height:585px;
+  background-color:#f5f5f5;
+  border-radius:20px;
+  transition: all .25s linear;
+
+}
+.dcardheader
+{
+  font-weight:bold;
+  font-size:36px;
+  display:flex;
+  flex:1;
+  margin-left:30px;
+  padding-top:30px;
+}
+.dcardbody
+{
+  display:flex;
+  flex:6;
+  align-items:center;
+  padding-bottom:20px;
+
+
+}
+.dcardbodyleft
+{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  margin-left:30px;
+  justify-content:center;
+
+}
+.dcardbodyright
+{
+  display:flex;
+  flex:1;
+
+}
+.donatetypeoforg
+{
+  display:flex;
+  flex-direction: column;
+  height:80px;
+  padding:10px;
+
+}
+.donatephno
+{
+  display:flex;
+  flex-direction: column;
+  height:80px;
+  padding:10px;
+
+}
+.donatename
+{
+  display:flex;
+  flex-direction: column;
+  height:80px;
+  padding:10px;
+
+}
+.donatedescirption
+{
+  display:flex;
+  flex-direction: column;
+  padding:10px;
+}
+.bankcard
+{
+
+  padding-bottom:20px;
+  display:flex;
+  flex-direction:column;
+  width:599px;
+  height:354px;
+  background-color:#fff;
+  border:6px solid #EC407A;
+  border-radius:25px;
+  transition: all .25s linear;
+  box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.4);
+
+
+}
+.bankcard:hover{
+
+  box-shadow: -1px 10px 29px 0px rgba(158, 158, 158);
+}
+.bankcardheader
+{
+
+  color:#757575;
+  margin-left:50px;
+  font-size:20px;
+  align-items:center;
+  display:flex;
+  flex:1;
+
+}
+.bankcardchip
+{
+  margin-left:50px;
+  display:flex;
+  align-items:center;
+  flex:1;
+}
+.bankcardacc
+{
+  font-weight:bold;
+  margin-left:50px;
+  font-size:36px;
+  align-items:center;
+  display:flex;
+  flex:1;
+  flex-direction:row;
+}
+.accname
+{
+  display:flex;
+  flex:1;
+
+
+}
+.accnumber
+{
+  display:flex;
+  flex:5;
+
+}
+.donatablecontacts
+{
+  background:blue;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction: row;
+  flex:1;
+  height: 600px;
 }
 </style>
