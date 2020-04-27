@@ -121,14 +121,14 @@
       <div :class="darkmode? 'desheadingDark' : 'desheading'">
         <div class="deslinkcontainer">
           <router-link
-            class="deslink"
+            :class="darkmode? 'deslinkDark' : 'deslink'"
             to="/global"
             style="text-decoration : none;"
             :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
           >{{$t('global')}}</router-link>
 
           <router-link
-            class="deslink"
+            :class="darkmode? 'deslinkDark' : 'deslink'"
             to="/local"
             style="text-decoration : none; color: #212121;"
             :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
@@ -142,28 +142,28 @@
           >{{$t('map')}}</router-link>
 
           <router-link
-            class="deslink"
+            :class="darkmode? 'deslinkDark' : 'deslink'"
             to="/start"
             style="text-decoration : none; color: #212121;"
             :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
           >{{$t('start')}}</router-link>
 
           <router-link
-            class="deslink"
+            :class="darkmode? 'deslinkDark' : 'deslink'"
             to="/donation"
             style="text-decoration : none; color: #212121;"
             :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
           >{{$t('donation')}}</router-link>
 
           <router-link
-            class="deslink"
+            :class="darkmode? 'deslinkDark' : 'deslink'"
             to="/aboutus"
             style="text-decoration : none; color: #212121;"
             :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
           >{{$t('aboutus')}}</router-link>
 
           <div
-            class="deslink"
+            :class="darkmode? 'deslinkDark' : 'deslink'"
             style="text-decoration : none; color: #757575; font-size:18px; cursor: pointer"
             @click="closeChange()"
           >
@@ -181,7 +181,7 @@
             >brightness_4</span>
           </div>
           <div
-            class="deslink"
+            :class="darkmode? 'deslinkDark' : 'deslink'"
             style="text-decoration : none; color: #757575; font-size:18px; cursor: pointer"
           >
             <span class="material-icons" @click="changeLocaleDesk()">g_translate</span>
@@ -281,7 +281,7 @@
                 </div>
                 <div class="headingcontainer">
                   <div
-                    style="margin-left:20px; color:#F44336; font-weight:bold;"
+                    style="margin-left:20px; font-weight:bold;"  :style="darkmode? 'color: #ef9a9a': 'color: #F44336'"
                   >{{$t('resultPage.phno')}}</div>
                   <br />
                   <br />
@@ -326,7 +326,7 @@
                     >{{contacts.phoneNumber}}</div>
                   </div>
                   <div
-                    class="desflex2"
+                    :class="darkmode? 'desflex2Dark' : 'desflex2'"
                     v-clipboard:copy="contacts.phoneNumber"
                     v-clipboard:success="onCopy"
                   >
@@ -1295,7 +1295,7 @@ export default {
     width: 90%;
     height: 55px;
     flex-direction: row;
-    background-color: #121212;
+    background-color: #424242;
     color: #f5f5f5;
   }
   #myNav {
@@ -1335,7 +1335,8 @@ export default {
     display: flex;
     position: fixed;
     flex: 1;
-    border-radius: 10px;
+    background-color:#f5f5f5;
+    position:fixed;
     width: 100%;
     font-size: 14px;
     flex-direction: row;
@@ -1346,8 +1347,9 @@ export default {
     display: flex;
     position: fixed;
     flex: 1;
-    border-radius: 10px;
     width: 100%;
+     background-color:#121212;
+     position:fixed;
     font-size: 14px;
     flex-direction: row;
     height: 65px;
@@ -1367,6 +1369,16 @@ export default {
   }
   .deslink:hover {
     background-color: #eee;
+    transition: 0.8s;
+  }
+  .deslinkDark {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+  }
+  .deslinkDark:hover {
+    background-color: #212121;
     transition: 0.8s;
   }
   #desbody {
@@ -1865,6 +1877,13 @@ export default {
     background-color: #fafafa;
     color: #1976d2;
   }
+  .desflex2Dark {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    background-color: #fafafa;
+    color: #90CAF9;
+  }
   .desbox3 {
     display: flex;
     flex: 1;
@@ -1874,7 +1893,7 @@ export default {
   .desbox3Dark {
     display: flex;
     flex: 1;
-    background: #212121;
+    background: #424242 ;
     align-items: flex-end;
     justify-content: center;
   }
@@ -1887,23 +1906,9 @@ export default {
   .desbox4Dark {
     display: flex;
     flex: 1;
-    background: #212121;
+    background: #424242;
     align-items: center;
     justify-content: center;
-  }
-
-  .topnav {
-    margin-right: 15px;
-    overflow: hidden;
-  }
-  .topnav a {
-    margin-left: 10px;
-    width: 120px;
-    float: left;
-    text-align: center;
-    padding: 18px;
-    text-decoration: none;
-    font-size: 17px;
   }
   .router-link-active {
     font-weight: bold;

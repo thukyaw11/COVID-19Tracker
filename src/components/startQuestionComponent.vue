@@ -14,7 +14,7 @@
                 :style="darkmode? 'background : #f5f5f5; border:3px solid #f5f5f5;' : 'background : #212121;  border:3px solid #000;'"
               />
               <br />
-              <div style="width:90%;" :style="darkmode? 'color: #f5f5f5': 'color: #212121'">
+              <div style="width:100%; line-height:25px; font-size:16px;" :style="darkmode? 'color: #f5f5f5': 'color: #212121'">
                 {{$t('screening.screeningContent')}}
               </div>
 
@@ -92,6 +92,7 @@ export default {
 .mainflex {
   display: flex;
   flex: 1;
+
 }
 .flexbody {
   display: flex;
@@ -105,13 +106,14 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 625px;
+  height: 700px;
   padding-left: 10%;
 }
 .flexbodyheader {
   display: flex;
   flex: 1;
-  font-size: 70px;
+  width:100%;
+  font-size: 60px;
   line-height: 100px;
   font-weight: bold;
 }

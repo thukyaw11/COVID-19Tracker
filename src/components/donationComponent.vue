@@ -9,7 +9,7 @@
                 <div class="flexbodycontent">
                   <hr style="width:100px; margin-left:0px;" :style="darkmode? 'background : #f5f5f5; border:3px solid #f5f5f5;' : 'background : #212121;  border:3px solid #000;'"/>
                   <br />
-                  <div style="width:90%; color:#757575;">
+                  <div style="width:100%; line-height:25px; font-size:16px;" :style="darkmode? 'color : #f5f5f5' : 'color : #757575' ">
                   {{$t('donationPage.donationContent')}}
                   </div>
 
@@ -28,8 +28,8 @@
 
 
               <div class="backward">
-                  <div class="backwardbutton">
-                    <i class="material-icons" style="font-size:50px; color:#212121;">keyboard_arrow_left</i>
+                  <div :class="darkmode? 'backwardbuttonDark' : 'backwardbutton'">
+                    <i class="material-icons" :style="darkmode? 'color : #f5f5f5; font-size:50px;' : 'color : #212121; font-size:50px;' ">keyboard_arrow_left</i>
                   </div>
 
 
@@ -44,7 +44,7 @@
                               <div class="dcardbodyleft">
 
                                     <div class="donatetypeoforg">
-                                        <div style="color:#757575;">Type of organization</div>
+                                        <div style="color:#757575; font-size:14px;">Type of organization</div>
                                         <div style="font-size:20px;">University</div>
 
                                     </div>
@@ -73,7 +73,7 @@
                                         </div>
                                         <div class="bankcardchip">
                                           <svg xmlns="http://www.w3.org/2000/svg" width="45.225" height="35.145" viewBox="0 0 45.225 35.145">
-                                            <path id="Path_127" data-name="Path 127" d="M41.943,6.2H5.846a4.568,4.568,0,0,0-4.563,4.563V36.781a4.569,4.569,0,0,0,4.563,4.564h36.1a4.569,4.569,0,0,0,4.563-4.564V10.765A4.568,4.568,0,0,0,41.943,6.2ZM3.282,20.675H10.09V27.16H3.282ZM44.507,27.16H37.7V20.675h6.808Zm0-15.021v6.535H33.135a2.768,2.768,0,1,1,0-5.535,1,1,0,1,0,0-2,4.768,4.768,0,1,0,0,9.535H35.7V27.16H33.135a4.768,4.768,0,1,0,0,9.535,1,1,0,1,0,0-2,2.768,2.768,0,1,1,0-5.535H44.507v7.621a2.567,2.567,0,0,1-2.563,2.564H5.846a2.567,2.567,0,0,1-2.563-2.564V29.16H14.653a2.768,2.768,0,1,1,0,5.535,1,1,0,0,0,0,2,4.768,4.768,0,1,0,0-9.535H12.09V20.675h2.563a4.768,4.768,0,1,0,0-9.535,1,1,0,1,0,0,2,2.768,2.768,0,1,1,0,5.535H3.282v-7.91A2.567,2.567,0,0,1,5.846,8.2h36.1a2.567,2.567,0,0,1,2.563,2.563Z" transform="translate(-1.282 -6.201)"/>
+                                            <path id="Path_127" :fill="darkmode? '#f5f5f5' : '#212121' " data-name="Path 127" d="M41.943,6.2H5.846a4.568,4.568,0,0,0-4.563,4.563V36.781a4.569,4.569,0,0,0,4.563,4.564h36.1a4.569,4.569,0,0,0,4.563-4.564V10.765A4.568,4.568,0,0,0,41.943,6.2ZM3.282,20.675H10.09V27.16H3.282ZM44.507,27.16H37.7V20.675h6.808Zm0-15.021v6.535H33.135a2.768,2.768,0,1,1,0-5.535,1,1,0,1,0,0-2,4.768,4.768,0,1,0,0,9.535H35.7V27.16H33.135a4.768,4.768,0,1,0,0,9.535,1,1,0,1,0,0-2,2.768,2.768,0,1,1,0-5.535H44.507v7.621a2.567,2.567,0,0,1-2.563,2.564H5.846a2.567,2.567,0,0,1-2.563-2.564V29.16H14.653a2.768,2.768,0,1,1,0,5.535,1,1,0,0,0,0,2,4.768,4.768,0,1,0,0-9.535H12.09V20.675h2.563a4.768,4.768,0,1,0,0-9.535,1,1,0,1,0,0,2,2.768,2.768,0,1,1,0,5.535H3.282v-7.91A2.567,2.567,0,0,1,5.846,8.2h36.1a2.567,2.567,0,0,1,2.563,2.563Z" transform="translate(-1.282 -6.201)"/>
                                             </svg>
 
                                         </div>
@@ -101,8 +101,8 @@
 
               </div>
               <div class="forward">
-                <div class="backwardbutton">
-                  <i class="material-icons" style="font-size:50px; color:#212121;">keyboard_arrow_right</i>
+                <div :class="darkmode? 'forwardbuttonDark' : 'forwardbutton'">
+                  <i class="material-icons" :style="darkmode? 'color : #f5f5f5; font-size:50px;' : 'color : #212121; font-size:50px;' ">keyboard_arrow_right</i>
                 </div>
               </div>
       
@@ -144,7 +144,6 @@ export default {
 .classdesbody {
   width:100%;
   height:2160px;
-
   display:flex;
   flex-direction:column;
 
@@ -212,7 +211,7 @@ background-color:#121212;
   display: flex;
   flex: 1;
   line-height: 100px;
-  font-size: 70px;
+  font-size: 60px;
   font-weight: bold;
 }
 
@@ -241,7 +240,18 @@ background-color:#121212;
   justify-content: center;
   border-radius: 10px;
 }
-
+.buttonDark {
+  color: #212121;
+  margin-top: 35px;
+  display: flex;
+  padding: auto;
+  width: 300px;
+  height: 90px;
+  background-color: #f06292;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
 
 
 /*donationcarddddddddddddddddddddddddddddd*/
@@ -271,6 +281,19 @@ background-color:#121212;
     color:#212121;
     background-color:#e0e0e0;
 }
+.forwardbuttonDark
+{
+  cursor:pointer;
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background-color:#212121;
+  display:flex;
+  transition: all .3s ease;
+  align-items:center;
+  justify-content:center;
+
+}
 .backward
 {
   display:flex;
@@ -280,7 +303,7 @@ background-color:#121212;
 }
 .backwardbutton
 {
-      cursor:pointer;
+  cursor:pointer;
   width:70px;
   height:70px;
   border-radius:50%;
@@ -296,16 +319,29 @@ background-color:#121212;
     color:#212121;
     background-color:#e0e0e0;
 }
+.backwardbuttonDark
+{
+  cursor:pointer;
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background-color:#212121;
+  display:flex;
+    transition: all .3s ease;
+  align-items:center;
+  justify-content:center;
+
+}
 .middle
 {
   display:flex;
-  flex:5;
+  flex:12;
 }
 .donationcard
 {
   display:flex;
   flex-direction:column;
-  width:1330px;
+  width:100%;
   height:585px;
   background-color:#f5f5f5;
   border-radius:20px;
@@ -316,7 +352,7 @@ background-color:#121212;
 {
   display:flex;
   flex-direction:column;
-  width:1330px;
+  width:100%;
   height:585px;
   background-color:#212121;
   color:#f5f5f5;
@@ -355,6 +391,7 @@ background-color:#121212;
 {
   display:flex;
   flex:1;
+  padding:30px;
 
 }
 .donatetypeoforg
@@ -416,7 +453,7 @@ background-color:#121212;
   width:599px;
   height:354px;
   background-color:#121212;
-  border:6px solid #EC407A;
+  border:6px solid #f06292;
   border-radius:25px;
   transition: all .25s linear;
   box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.4);
@@ -468,5 +505,6 @@ background-color:#121212;
   flex:5;
 
 }
+
 
 </style>
