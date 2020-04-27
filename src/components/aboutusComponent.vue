@@ -8,9 +8,9 @@
               <br />{{$t('aboutusPage.headingTwo')}}
             </div>
             <div class="flexbodycontent">
-              <hr style="width:100px; margin-left:0px; border:3px solid #000; background : black" />
+               <hr style="width:100px; margin-left:0px;" :style="darkmode? 'background : #f5f5f5; border:3px solid #f5f5f5;' : 'background : #212121;  border:3px solid #000;'"/>
               <br />
-              <div :style="darkmode? 'color : #757575' : 'color : #212121' ">
+              <div style="width:100%; line-height:25px; font-size:16px; " :style="darkmode? 'color : #f5f5f5' : 'color : #757575' ">
                 {{$t('goodHope.para1')}}
                 <br />
                 <br />
@@ -144,7 +144,7 @@ export default {
   .flexbodyheader {
     display: flex;
     flex: 1;
-    font-size: 70px;
+    font-size: 60px;
     font-weight: bold;
     line-height: 100px;
   }

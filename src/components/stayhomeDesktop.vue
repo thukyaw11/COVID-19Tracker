@@ -9,7 +9,7 @@
           >{{$t('resultPage.stayhomeResponse')}}</div>
           <div class="flexbodycontent">
             <br />
-            <div style="width:90%; color:#757575;">
+            <div  :style="darkmode? 'color: #f5f5f5 ; width:90%;': 'color: #757575; width:90%;'">
               <div class="divcontainer">
                 <div class="div1">
                   <i class="fas fa-thermometer-half" style="font-size:28px;"></i>

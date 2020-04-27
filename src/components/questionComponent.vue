@@ -395,8 +395,8 @@ export default {
   justify-content: center;
 }
 .mainflex {
-  width: 1129px;
-  height: 871px;
+  width: 1080px;
+  height: 750px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -406,15 +406,15 @@ export default {
     0 5px 5px -3px rgba(238, 238, 238, 238);
 }
 .mainflexDark {
-  width: 1129px;
-  height: 871px;
+  width: 1080px;
+  height: 750px;
   background-color: #212121;
   display: flex;
   flex-direction: column;
   border-radius: 20px;
-  box-shadow: 0 8px 10px 1px rgba(1, 1, 1, 1),
-    0 3px 14px 2px rgba(1, 1, 1, 1),
-    0 5px 5px -3px rgba(1, 1, 1, 1);
+  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0),
+    0 3px 14px 2px rgba(0, 0, 0, 0),
+    0 5px 5px -3px rgba(0, 0, 0, 0);
 }
 .questionheader {
   margin-left: 15px;
@@ -453,6 +453,7 @@ export default {
   flex:20;
 }
 .desquestion1 {
+  margin-bottom:10px;
   display: flex;
   flex: 2;
   flex-direction: column;
