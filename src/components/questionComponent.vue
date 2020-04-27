@@ -69,7 +69,7 @@
                 v-model="resultTwo"
                 :value="response.id"
               />
-              <label :for="response.tagId" class="desclickable" @click="updateCheckall()"></label>
+              <label :for="response.tagId" class="desclickable" @click="updateCheckall()" style="cursor: pointer"></label>
               {{response.text}}
             </div>
 
@@ -81,7 +81,7 @@
                 id="nosym"
                 name="mycheckbox"
               />
-              <label for="nosym" class="desclickable"></label>
+              <label for="nosym" class="desclickable" style="cursor: pointer"></label>
               မည်သည့် လက္ခဏာမှ မရှိပါ။
             </div>
           </div>
@@ -120,7 +120,7 @@
                 for="check1"
                 class="desclickable"
                 @click="selectMultipleOption()"
-                style="text-align : center; padding : 20px"
+                style="text-align : center; padding : 20px; cursor: pointer"
               >
                 <span>ရင်ကြပ်ရောဂါရှိသည်။</span>
               </label>
@@ -131,7 +131,7 @@
                 for="check2"
                 class="desclickable"
                 @click="selectMultipleOption()"
-                style="text-align : center; padding : 20px"
+                style="text-align : center; padding : 20px; cursor: pointer"
               >
                 <span>ကိုယ်၀န်ဆောင်မိခင်ဖြစ်သည်။</span>
               </label>
@@ -142,7 +142,7 @@
                 for="check3"
                 class="desclickable"
                 @click="selectMultipleOption()"
-                style="text-align : center; padding : 20px"
+                style="text-align : center; padding : 20px; cursor: pointer"
               >
                 <span>ဆီးချို/‌သွေးချိုရှိသည်။</span>
               </label>
@@ -153,7 +153,7 @@
                 for="check4"
                 class="desclickable"
                 @click="selectMultipleOption()"
-                style="text-align : center; padding : 20px"
+                style="text-align : center; padding : 20px; cursor: pointer"
               >
                 <span>နှလုံးရောဂါ သို့မဟုတ် သွေးတိုးရှိသည်။</span>
               </label>
@@ -164,7 +164,7 @@
                 for="check5"
                 class="desclickable"
                 @click="selectMultipleOption()"
-                style="text-align : center; padding : 20px"
+                style="text-align : center; padding : 20px; cursor: pointer"
               >
                 <span>အဆုတ်ရောင်ရှိသည်။</span>
               </label>
@@ -175,7 +175,7 @@
                 for="check6"
                 class="desclickable"
                 @click="selectMultipleOption()"
-                style="text-align : center; padding : 20px"
+                style="text-align : center; padding : 20px; cursor: pointer"
               >
                 <span>ကင်ဆာရောဂါရှိသည်။</span>
               </label>
@@ -186,7 +186,7 @@
                 for="check7"
                 class="desclickable"
                 @click="selectMultipleOption()"
-                style="text-align : center; padding : 20px"
+                style="text-align : center; padding : 20px; cursor : pointer"
               >
                 <span>HIV/AIDS ရောဂါပိုးရှိသည်။</span>
               </label>
@@ -197,7 +197,7 @@
                 for="check8"
                 class="desclickable"
                 @click="deselectAll()"
-                style="text-align : center; padding : 20px"
+                style="text-align : center; padding : 20px; cursor : pointer"
               >
                 <span>မည်သည့် လက္ခဏာမှမရှိပါ။</span>
               </label>

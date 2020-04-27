@@ -80,12 +80,14 @@
         @click="closeChange()"
         :style="darkmode? 'color : #f5f5f5': 'color : #121212'"
       >brightness_7</span>
+      <p v-if="darkmode" style="color: white">off</p>
       <span
         class="material-icons"
         v-if="!darkmode"
         @click="closeChange()"
         :style="darkmode? 'color : #f5f5f5': 'color : #121212'"
       >brightness_4</span>
+      <p v-if="!darkmode" style="color: #121212">on</p>
 
       <div
         class="closebtn"
@@ -135,7 +137,7 @@
           >{{$t('local')}}</router-link>
 
           <router-link
-            to="#"
+            to="/map"
             class="deslink"
             style="text-decoration : none; color: #212121;"
             :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
@@ -183,8 +185,9 @@
           <div
             class="deslink"
             style="text-decoration : none; color: #757575; font-size:18px; cursor: pointer"
+            @click="changeLocaleDesk()"
           >
-            <span class="material-icons" @click="changeLocaleDesk()">g_translate</span>
+            <span class="material-icons" :style="count%2 == 0? 'color:#ffd54f' : ''">g_translate</span>
           </div>
         </div>
       </div>
@@ -252,6 +255,7 @@
             <dashboardGlobalComponent v-if="this.urlLocation == ''" />
             <dashboardGlobalComponent v-if="this.urlLocation == 'global'" />
             <dashboardLocalComponent v-if="this.urlLocation == 'local'" />
+            <mapDesktop v-if="this.urlLocation == 'map'" />
             <countryCases
               v-if="this.urlLocation == 'countrycases'"
               v-bind:value="this.propCountryName"
@@ -414,6 +418,7 @@
       <div id="desquestionbody">
         <QuestionComponent v-if="this.urlLocation == 'question'" />
       </div>
+
     </div>
   </div>
 </template>
@@ -434,8 +439,10 @@ import AboutusComponent from "./components/aboutusComponent";
 import ScreeningComponent from "./components/startQuestionComponent";
 import DontaionComponent from "./components/donationComponent";
 import QuestionComponent from "./components/questionComponent";
+import mapDesktop from "./components/mapDesktop";
 import isoCountries from "./assets/content/countryCode";
 import i18n from "./plugin/i18n";
+
 // import store from './store/store'
 
 Vue.use(VueClipboard);
@@ -450,7 +457,8 @@ export default {
     AboutusComponent,
     ScreeningComponent,
     DontaionComponent,
-    QuestionComponent
+    QuestionComponent,
+    mapDesktop
   },
   data() {
     return {
@@ -618,6 +626,7 @@ export default {
       document.getElementById("desscreeningbody").style.display = "none";
       document.getElementById("desdonationbody").style.display = "none";
       document.getElementById("desquestionbody").style.display = "none";
+
     } else if (this.urlLocation == "start") {
       document.getElementById("desbody").style.display = "none";
       document.getElementById("desaboutusbody").style.display = "none";
@@ -685,38 +694,40 @@ export default {
       //display none country cases view in about us page desktop
 
       this.urlLocation = to.path.split("/").pop();
+      console.log(this.urlLocation);
 
       if (this.urlLocation == "aboutus") {
-        document.getElementById("desbody").style.display = "none";
-        document.getElementById("desaboutusbody").style.display = "flex";
-        document.getElementById("desscreeningbody").style.display = "none";
-        document.getElementById("desdonationbody").style.display = "none";
-        document.getElementById("desquestionbody").style.display = "none";
-      } else if (this.urlLocation == "start") {
-        document.getElementById("desbody").style.display = "none";
-        document.getElementById("desaboutusbody").style.display = "none";
-        document.getElementById("desscreeningbody").style.display = "flex";
-        document.getElementById("desdonationbody").style.display = "none";
-        document.getElementById("desquestionbody").style.display = "none";
-      } else if (this.urlLocation == "question") {
-        document.getElementById("desbody").style.display = "none";
-        document.getElementById("desaboutusbody").style.display = "none";
-        document.getElementById("desscreeningbody").style.display = "none";
-        document.getElementById("desdonationbody").style.display = "none";
-        document.getElementById("desquestionbody").style.display = "flex";
-      } else if (this.urlLocation == "donation") {
-        document.getElementById("desbody").style.display = "none";
-        document.getElementById("desaboutusbody").style.display = "none";
-        document.getElementById("desscreeningbody").style.display = "none";
-        document.getElementById("desdonationbody").style.display = "flex";
-        document.getElementById("desquestionbody").style.display = "none";
-      } else {
-        document.getElementById("desbody").style.display = "flex";
-        document.getElementById("desaboutusbody").style.display = "none";
-        document.getElementById("desscreeningbody").style.display = "none";
-        document.getElementById("desdonationbody").style.display = "none";
-        document.getElementById("desquestionbody").style.display = "none";
-      }
+      document.getElementById("desbody").style.display = "none";
+      document.getElementById("desaboutusbody").style.display = "flex";
+      document.getElementById("desscreeningbody").style.display = "none";
+      document.getElementById("desdonationbody").style.display = "none";
+      document.getElementById("desquestionbody").style.display = "none";
+    } else if (this.urlLocation == "start") {
+      document.getElementById("desbody").style.display = "none";
+      document.getElementById("desaboutusbody").style.display = "none";
+      document.getElementById("desscreeningbody").style.display = "flex";
+      document.getElementById("desdonationbody").style.display = "none";
+      document.getElementById("desquestionbody").style.display = "none";
+    } else if (this.urlLocation == "donation") {
+      document.getElementById("desbody").style.display = "none";
+      document.getElementById("desaboutusbody").style.display = "none";
+      document.getElementById("desscreeningbody").style.display = "none";
+      document.getElementById("desdonationbody").style.display = "flex";
+      document.getElementById("desquestionbody").style.display = "none";
+    } else if (this.urlLocation == "question") {
+      document.getElementById("desbody").style.display = "none";
+      document.getElementById("desaboutusbody").style.display = "none";
+      document.getElementById("desscreeningbody").style.display = "none";
+      document.getElementById("desdonationbody").style.display = "none";
+      document.getElementById("desquestionbody").style.display = "flex";
+    } else {
+      document.getElementById("desbody").style.display = "flex";
+      document.getElementById("desaboutusbody").style.display = "none";
+      document.getElementById("desscreeningbody").style.display = "none";
+      document.getElementById("desdonationbody").style.display = "none";
+      document.getElementById("desquestionbody").style.display = "none";
+    }
+
 
       console.log(from);
       //top progress
@@ -1230,7 +1241,8 @@ export default {
 }
 @media only screen and (min-width: 1100px) {
   .container-donationDark,
-  .container-donation {
+  .container-donation ,
+  .mapbody{
     display: none;
   }
   .headercontainer {

@@ -18,7 +18,7 @@
             >သင့်၌ ရောဂါပိုးကူးစက်ခံထားရနိုင်ချေ မြင့်မားသဖြင့်ကျန်းမာရေး၀န်ထမ်းများသို့ အလျင်အမြန်ဆက်သွယ်ပါ။</div>
 
             <br />
-            <div type class="button" id="myBtn" @click="openModal">{{($t('resultPage.phno'))}}</div>
+            <div type class="button" id="myBtn" @click="openModal" style="cursor: pointer">{{($t('resultPage.phno'))}}</div>
           </div>
         </div>
       </div>

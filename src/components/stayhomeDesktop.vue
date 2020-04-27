@@ -44,7 +44,7 @@
               </div>
             </div>
 
-            <div type class="button">{{($t('resultPage.phno'))}}</div>
+            <div type class="button" @click="openModal()" style="cursor: pointer">{{($t('resultPage.phno'))}}</div>
           </div>
         </div>
       </div>

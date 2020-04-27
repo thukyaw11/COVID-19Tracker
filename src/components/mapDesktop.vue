@@ -1,5 +1,5 @@
 <template>
-  <div  style="margin-top:0px" class="mapbody">
+  <div class="middlecontainer">
     <iframe
       title
       aria-label="Myanmar states choropleth map"
