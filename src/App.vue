@@ -120,52 +120,51 @@
     <div class="desktopcontainer">
       <div :class="darkmode? 'desheadingDark' : 'desheading'">
         <div class="deslinkcontainer">
-          <div class="deslink">
-            <router-link
-              to="/global"
-              style="text-decoration : none;"
-              :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
-            >Global</router-link>
-          </div>
-          <div class="deslink">
-            <router-link
-              to="/local"
-              style="text-decoration : none; color: #212121;"
-              :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
-            >Local</router-link>
-          </div>
-          <div class="deslink">
-            <router-link
-              to="#"
-              style="text-decoration : none; color: #212121;"
-              :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
-            >Map</router-link>
-          </div>
+          <router-link
+            class="deslink"
+            to="/global"
+            style="text-decoration : none;"
+            :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+          >{{$t('global')}}</router-link>
 
-          <div class="deslink">
-            <router-link
-              to="/start"
-              style="text-decoration : none; color: #212121;"
-              :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
-            >Screening Kit</router-link>
-          </div>
-          <div class="deslink">
-            <router-link
-              to="/donation"
-              style="text-decoration : none; color: #212121;"
-              :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
-            >Donation</router-link>
-          </div>
-          <div class="deslink">
-            <router-link
-              to="/aboutus"
-              style="text-decoration : none; color: #212121;"
-              :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
-            >About Us</router-link>
-          </div>
+          <router-link
+            class="deslink"
+            to="/local"
+            style="text-decoration : none; color: #212121;"
+            :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+          >{{$t('local')}}</router-link>
+
+          <router-link
+            to="#"
+            class="deslink"
+            style="text-decoration : none; color: #212121;"
+            :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+          >{{$t('map')}}</router-link>
+
+          <router-link
+            class="deslink"
+            to="/start"
+            style="text-decoration : none; color: #212121;"
+            :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+          >{{$t('start')}}</router-link>
+
+          <router-link
+            class="deslink"
+            to="/donation"
+            style="text-decoration : none; color: #212121;"
+            :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+          >{{$t('donation')}}</router-link>
+
+          <router-link
+            class="deslink"
+            to="/aboutus"
+            style="text-decoration : none; color: #212121;"
+            :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+          >{{$t('aboutus')}}</router-link>
+
           <div
             class="deslink"
-            style="text-decoration : none; color: #757575; font-size:18px;"
+            style="text-decoration : none; color: #757575; font-size:18px; cursor: pointer"
             @click="closeChange()"
           >
             <span
@@ -181,8 +180,11 @@
               :style="darkmode? 'color : #f5f5f5': 'color : #121212'"
             >brightness_4</span>
           </div>
-          <div class="deslink" style="text-decoration : none; color: #757575; font-size:18px;">
-            <span class="material-icons">g_translate</span>
+          <div
+            class="deslink"
+            style="text-decoration : none; color: #757575; font-size:18px; cursor: pointer"
+          >
+            <span class="material-icons" @click="changeLocaleDesk()">g_translate</span>
           </div>
         </div>
       </div>
@@ -195,8 +197,7 @@
             <div
               class="descountrybycasesheading"
               :style="darkmode? 'color : #9fa8da': 'color : #3F51B5'"
-          
-            >Countries, areas or territories with cases</div>
+            >{{$t('countrycase')}}</div>
             <br />
             <div class="dessearchbar">
               <form :class="darkmode? 'searchcontainer-customDark' : 'searchcontainer-custom'">
@@ -258,11 +259,17 @@
           </div>
         </div>
         <div class="mainflex3">
-          <div :class="darkmode? 'desemergencyDark' : 'desemergency'" id="myBtn" @click="openModal()">
+          <div
+            :class="darkmode? 'desemergencyDark' : 'desemergency'"
+            id="myBtn"
+            @click="openModal()"
+          >
             <div :class="darkmode? 'desemergencyflex1Dark' : 'desemergencyflex1'">
               <i class="fas fa-star-of-life" style="font-size:36px;"></i>
             </div>
-            <div :class="darkmode? 'desemergencyflex2Dark' : 'desemergencyflex2'">Emergency Contacts</div>
+            <div
+              :class="darkmode? 'desemergencyflex2Dark' : 'desemergencyflex2'"
+            >{{$t('resultPage.phno')}}</div>
           </div>
 
           <div id="myModal" class="modal">
@@ -273,7 +280,9 @@
                   <span class="material-icons" style="font-size:40px;">close</span>
                 </div>
                 <div class="headingcontainer">
-                  <div style="margin-left:20px; color:#F44336; font-weight:bold;">Emergency Contacts</div>
+                  <div
+                    style="margin-left:20px; color:#F44336; font-weight:bold;"
+                  >{{$t('resultPage.phno')}}</div>
                   <br />
                   <br />
                   <div>
@@ -335,7 +344,10 @@
           <div style="height:1%"></div>
           <div :class="darkmode? 'desnewsDark' : 'desnews'">
             <br />
-            <div class="desnewsheading" :style="darkmode? 'color: #f5f5f5': 'color: #121212'">Latest</div>
+            <div
+              class="desnewsheading"
+              :style="darkmode? 'color: #f5f5f5': 'color: #121212'"
+            >{{$t('newsPage.latest')}}</div>
             <br />
             <div v-if="latestNews.length > 0">
               <div class="desnewsbody" v-for="latest in latestNews" :key="latest._id">
@@ -346,17 +358,23 @@
                 >
                   <div class="desnewscontent" :style="darkmode? 'color: #f5f5f5': 'color: #121212'">
                     <div class="box1">{{latest.title}}</div>
-                    <div class="box2" :style="darkmode? 'color: #ffab91': 'color: #ff5722'">Source : {{latest.sourceId}}</div>
+                    <div
+                      class="box2"
+                      :style="darkmode? 'color: #ffab91': 'color: #ff5722'"
+                    >Source : {{latest.sourceId}}</div>
                   </div>
                 </a>
               </div>
             </div>
             <div v-else class="contentcontainer">
-              <h3 style="padding: 0px 20px;  color:#757575;">No Post Yet</h3>
+              <h3 style="padding: 0px 20px;  color:#757575;">{{$t('nopost')}}</h3>
               <hr style="border:1px solid #eee; width:95%; margin-left:0;" />
             </div>
             <br />
-            <div class="desnewsheading" :style="darkmode? 'color: #f5f5f5': 'color: #121212'">Yesterday</div>
+            <div
+              class="desnewsheading"
+              :style="darkmode? 'color: #f5f5f5': 'color: #121212'"
+            >{{$t('newsPage.yesterday')}}</div>
             <br />
             <div v-if="yesterdayNews.length > 0">
               <div class="desnewsbody" v-for="yesterday in yesterdayNews" :key="yesterday._id">
@@ -367,7 +385,10 @@
                 >
                   <div class="desnewscontent" :style="darkmode? 'color: #f5f5f5': 'color: #121212'">
                     <div class="box1">{{yesterday.title}}</div>
-                    <div class="box2" :style="darkmode? 'color: #ffab91': 'color: #ff5722'">Source : {{yesterday.sourceId}}</div>
+                    <div
+                      class="box2"
+                      :style="darkmode? 'color: #ffab91': 'color: #ff5722'"
+                    >Source : {{yesterday.sourceId}}</div>
                   </div>
                 </a>
               </div>
@@ -453,7 +474,8 @@ export default {
       lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en",
       darkmode: localStorage.getItem("darkmode")
         ? JSON.parse(localStorage.getItem("darkmode"))
-        : false
+        : false,
+      count: ""
     };
   },
   methods: {
@@ -469,6 +491,21 @@ export default {
           "https://img.icons8.com/emoji/24/000000/ship.png";
         return default_img_url;
       }
+    },
+    changeLocaleDesk() {
+      if (this.count % 2 == 0) {
+        i18n.locale = "en";
+        localStorage.setItem("lang", "en");
+        this.$eventHub.$emit("change-name", "en");
+      } else {
+        i18n.locale = "mm";
+        localStorage.setItem("lang", "mm");
+        this.$eventHub.$emit("change-name", "mm");
+      }
+
+      this.count++;
+
+      console.log(this.count);
     },
     changeLocale(locale) {
       i18n.locale = locale;
@@ -531,9 +568,6 @@ export default {
     setNews(data) {
       this.newsData = data;
     },
-    setContacts(data) {
-      this.contactlist = data;
-    },
     linkIt(url) {
       return url;
     },
@@ -553,6 +587,14 @@ export default {
     }
   },
   created() {
+    if (this.lang == "mm") {
+      this.count = 0;
+    } else {
+      this.count = 1;
+    }
+    this.$store.dispatch("getContacts");
+    this.$store.dispatch("getCountryCases");
+
     this.urlLocation = window.location.href.split("/").pop();
     this.$darkModeBus.$on("dark-mode", this.changeDark);
 
@@ -602,29 +644,10 @@ export default {
       document.getElementById("desquestionbody").style.display = "none";
     }
 
-    console.log(this.urlLocation);
-    this.$store.dispatch("getCountryCases");
-
     //language switching
     i18n.locale = this.lang;
 
-    if (this.urlLocation == "" || this.urlLocation == "global") {
-      if (this.lang == "mm") {
-        this.$root.$data.title = "ကမ္ဘာတစ်ဝှမ်း";
-      }
-      if (this.lang == "en") {
-        this.$root.$data.title = "Global Dashboard";
-      }
-    }
-
-    if (this.urlLocation == "local") {
-      if (this.lang == "mm") {
-        this.$root.$data.title = "မြန်မာ";
-      }
-      if (this.lang == "en") {
-        this.$root.$data.title = "Local Dashboard";
-      }
-    }
+    console.log(this.lang);
 
     //yesterday, today and uploaded
     document.getElementById("myNav").style.height = "0%";
@@ -633,17 +656,11 @@ export default {
       .all([
         this.fetchCountriesCases(),
         this.fetchTdyNews(),
-        this.fetchYesNews(),
-        this.fetchConacts()
+        this.fetchYesNews()
       ])
       .then(
         axios.spread(
-          (
-            countrycasesResponse,
-            newsContentToday,
-            newsContentYesterday,
-            contactsResponse
-          ) => {
+          (countrycasesResponse, newsContentToday, newsContentYesterday) => {
             //country response
             countrycasesResponse.json().then(data => {
               this.CountryByCases = data.countries_stat;
@@ -659,10 +676,6 @@ export default {
             if (newsContentYesterday.status == 200) {
               this.yesterdayNews = newsContentYesterday.data.items;
             }
-
-            //contacts response
-            this.contactlist = contactsResponse.data;
-            this.setContacts(contactsResponse.data);
           }
         )
       );
@@ -724,11 +737,7 @@ export default {
       });
     },
     filterListContacts() {
-      return this.contactlist.filter(contact => {
-        return contact.name
-          .toLowerCase()
-          .includes(this.searchContacts.toLowerCase());
-      });
+      return this.$store.getters.contacts;
     },
     storeVal() {
       return this.$store.getters.countrycases;
@@ -1379,13 +1388,11 @@ export default {
   }
   #desdonationbody {
     margin-top: 65px;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
     flex-direction: row;
     display: flex;
+    flex: 1;
     width: 100%;
-    height: 88%;
+    height: 100%;
   }
   #desscreeningbody {
     margin-top: 65px;
@@ -1434,8 +1441,8 @@ export default {
     width: 90%;
     height: 95%;
     border-radius: 10px;
-    box-shadow: 0 8px 10px 1px rgba(18, 18, 18, 18), 0 3px 14px 2px rgba(18, 18, 18, 18),
-      0 5px 5px -3px rgba(18, 18, 18, 18);
+    box-shadow: 0 8px 10px 1px rgba(18, 18, 18, 18),
+      0 3px 14px 2px rgba(18, 18, 18, 18), 0 5px 5px -3px rgba(18, 18, 18, 18);
   }
   .descountrybycases {
     background-color: #ffffff;
@@ -1640,7 +1647,7 @@ export default {
     align-items: center;
     background-color: #f44336;
   }
-  .desemergencyDark{
+  .desemergencyDark {
     display: flex;
     height: 20.5%;
     width: 90%;
@@ -1664,14 +1671,14 @@ export default {
   }
   .desemergencyflex2 {
     display: flex;
-    font-weight:bold;
+    font-weight: bold;
     flex: 4;
     color: #ffffff;
     justify-content: center;
   }
   .desemergencyflex2Dark {
     display: flex;
-    font-weight:bold;
+    font-weight: bold;
     flex: 4;
     color: #121212;
     justify-content: center;
@@ -1698,8 +1705,8 @@ export default {
     height: 74%;
     border-radius: 10px;
     background-color: #212121;
-    box-shadow: 0 8px 10px 1px rgba(18, 18, 18, 18), 0 3px 14px 2px rgba(18, 18, 18, 18),
-      0 5px 5px -3px rgba(18, 18, 18, 18);
+    box-shadow: 0 8px 10px 1px rgba(18, 18, 18, 18),
+      0 3px 14px 2px rgba(18, 18, 18, 18), 0 5px 5px -3px rgba(18, 18, 18, 18);
   }
   .desnewsheading {
     margin-top: 20px;
@@ -1728,7 +1735,6 @@ export default {
     margin-left: 20px;
     font-weight: bold;
   }
-
 
   /* The Modal (background) */
   .modal {

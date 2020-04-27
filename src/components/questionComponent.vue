@@ -1,29 +1,30 @@
 <template>
   <div class="classdesbody">
     <div v-if="questionIndex<ques.questions.length">
-      <div v-if="checkQuestionIndex" class="mainflex">
+      <div v-if="checkQuestionIndex" :class="darkmode? 'mainflexDark': 'mainflex'">
         <div class="questionheader">
           <div class="desheader1">
               <div class="desheadflex1">  
             <router-link to="/start">
-              <span class="material-icons" style="color:#212121;">arrow_back</span>
+              <span class="material-icons" :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">arrow_back</span>
             </router-link></div>
             <div class="desheadflex2">Question {{questionIndex + 1}}</div>
           
         
           </div>
-          <div class="desheader2">{{ ques.questions[questionIndex].text }}</div>
+          <div class="desheader2" :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">{{ ques.questions[questionIndex].text }}</div>
         </div>
         <div class="questionbody">
           <div class="desquestion1">
             <!-- create the product container the user sees -->
             <div
-              class="optioncontainer"
+              :class="darkmode? 'optioncontainerDark': 'optioncontainer'"
               v-for="(response, index) in ques.questions[questionIndex].responses"
               :key="index"
+              
             >
               <input :id="response.tagId" type="radio" name="desradio" />
-              <label :for="response.tagId" class="desclickable" @click="selectOption(response.id)"></label>
+              <label :for="response.tagId" class="desclickable" style="cursor: pointer" @click="selectOption(response.id)"></label>
               {{response.text}}
             </div>
           </div>
@@ -32,6 +33,7 @@
               :class="selected ? 'nextbutton':'nextbutton-disable'"
               @click="next"
               :disabled="!selected"
+              style="cursor: pointer"
             >Next</button>
           </div>
         </div>
@@ -39,24 +41,24 @@
 
       <!-- for question two -->
 
-      <div v-if="questionIndex == 1" class="mainflex">
+      <div v-if="questionIndex == 1" :class="darkmode? 'mainflexDark': 'mainflex'">
         <div class="questionheader">
           <div class="desheader1">
               <div class="desheadflex1">  
             <router-link to="/start">
-              <span class="material-icons" style="color:#212121;">arrow_back</span>
+              <span class="material-icons" :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">arrow_back</span>
             </router-link></div>
             <div class="desheadflex2">Question {{questionIndex + 1}}</div>
           
         
           </div>
-          <div class="desheader2">{{ ques.questions[questionIndex].text }}</div>
+          <div class="desheader2" :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">{{ ques.questions[questionIndex].text }}</div>
         </div>
         <div class="questionbody">
           <div class="desquestion1">
             <!-- create the product container the user sees -->
             <div
-              class="optioncontainer"
+              :class="darkmode? 'optioncontainerDark': 'optioncontainer'"
               v-for="(response, index) in ques.questions[questionIndex].responses"
               :key="index"
             >
@@ -71,7 +73,7 @@
               {{response.text}}
             </div>
 
-            <div class="optioncontainer" @click="decheckAll()">
+            <div :class="darkmode? 'optioncontainerDark': 'optioncontainer'" @click="decheckAll()">
               <input
                 type="checkbox"
                 v-model="isCheckAll"
@@ -89,29 +91,30 @@
               :class="selected ? 'nextbutton':'nextbutton-disable'"
               @click="next"
               :disabled="!selected"
+              style="cursor: pointer"
             >Next</button>
           </div>
         </div>
       </div>
 
       <!-- for question three -->
-      <div v-if="questionIndex == 2" class="mainflex">
+      <div v-if="questionIndex == 2" :class="darkmode? 'mainflexDark': 'mainflex'">
         <div class="questionheader">
           <div class="desheader1">
               <div class="desheadflex1">  
             <router-link to="/start">
-              <span class="material-icons" style="color:#212121;">arrow_back</span>
+              <span class="material-icons" :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">arrow_back</span>
             </router-link></div>
             <div class="desheadflex2">Question {{questionIndex + 1}}</div>
           
         
           </div>
-          <div class="desheader2">{{ ques.questions[questionIndex].text }}</div>
+          <div class="desheader2" :style="darkmode? 'color: #f5f5f5' : 'color : #121212'">{{ ques.questions[questionIndex].text }}</div>
         </div>
         <div class="questionbody">
           <div class="desquestion1">
             <!-- create the product container the user sees -->
-            <div class="optioncontainer">
+            <div :class="darkmode? 'optioncontainerDark': 'optioncontainer'">
               <input type="checkbox" v-model="array" value="1" id="check1" name="mycheckbox" />
               <label
                 for="check1"
@@ -122,7 +125,7 @@
                 <span>ရင်ကြပ်ရောဂါရှိသည်။</span>
               </label>
             </div>
-            <div class="optioncontainer">
+            <div :class="darkmode? 'optioncontainerDark': 'optioncontainer'">
               <input type="checkbox" v-model="array" value="2" id="check2" name="mycheckbox" />
               <label
                 for="check2"
@@ -133,7 +136,7 @@
                 <span>ကိုယ်၀န်ဆောင်မိခင်ဖြစ်သည်။</span>
               </label>
             </div>
-            <div class="optioncontainer">
+            <div :class="darkmode? 'optioncontainerDark': 'optioncontainer'">
               <input type="checkbox" v-model="array" value="3" id="check3" name="mycheckbox" />
               <label
                 for="check3"
@@ -144,7 +147,7 @@
                 <span>ဆီးချို/‌သွေးချိုရှိသည်။</span>
               </label>
             </div>
-            <div class="optioncontainer">
+            <div :class="darkmode? 'optioncontainerDark': 'optioncontainer'">
               <input type="checkbox" v-model="array" value="4" id="check4" name="mycheckbox" />
               <label
                 for="check4"
@@ -155,7 +158,7 @@
                 <span>နှလုံးရောဂါ သို့မဟုတ် သွေးတိုးရှိသည်။</span>
               </label>
             </div>
-            <div class="optioncontainer">
+            <div :class="darkmode? 'optioncontainerDark': 'optioncontainer'">
               <input type="checkbox" v-model="array" value="5" id="check5" name="mycheckbox" />
               <label
                 for="check5"
@@ -166,7 +169,7 @@
                 <span>အဆုတ်ရောင်ရှိသည်။</span>
               </label>
             </div>
-            <div class="optioncontainer">
+            <div :class="darkmode? 'optioncontainerDark': 'optioncontainer'">
               <input type="checkbox" v-model="array" value="6" id="check6" name="mycheckbox" />
               <label
                 for="check6"
@@ -177,7 +180,7 @@
                 <span>ကင်ဆာရောဂါရှိသည်။</span>
               </label>
             </div>
-            <div class="optioncontainer">
+            <div :class="darkmode? 'optioncontainerDark': 'optioncontainer'">
               <input type="checkbox" v-model="array" value="7" id="check7" name="mycheckbox" />
               <label
                 for="check7"
@@ -188,7 +191,7 @@
                 <span>HIV/AIDS ရောဂါပိုးရှိသည်။</span>
               </label>
             </div>
-            <div class="optioncontainer">
+            <div :class="darkmode? 'optioncontainerDark': 'optioncontainer'">
               <input type="checkbox" v-model="array" value="8" id="check8" name="mycheckbox" />
               <label
                 for="check8"
@@ -205,6 +208,7 @@
               :class="selected ? 'nextbutton':'nextbutton-disable'"
               @click="next"
               :disabled="!selected"
+              style="cursor: pointer"
             >Next</button>
           </div>
         </div>
@@ -401,6 +405,17 @@ export default {
     0 3px 14px 2px rgba(238, 238, 238, 238),
     0 5px 5px -3px rgba(238, 238, 238, 238);
 }
+.mainflexDark {
+  width: 1129px;
+  height: 871px;
+  background-color: #212121;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  box-shadow: 0 8px 10px 1px rgba(1, 1, 1, 1),
+    0 3px 14px 2px rgba(1, 1, 1, 1),
+    0 5px 5px -3px rgba(1, 1, 1, 1);
+}
 .questionheader {
   margin-left: 15px;
   display: flex;
@@ -486,6 +501,11 @@ export default {
   opacity: 0;
   cursor: pointer;
 }
+.optioncontainerDark input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
 .optioncontainer {
   margin-left: 15px;
   display: flex;
@@ -497,6 +517,22 @@ export default {
   border: 0px;
   outline: none;
   background-color: #f5f5f5;
+  width: 450px;
+  height: 75px;
+  align-items: center;
+  justify-content: center;
+}
+.optioncontainerDark {
+  margin-left: 15px;
+  display: flex;
+  position: relative;
+  margin-top: 10px;
+  border-radius: 10px;
+  color: #f5f5f5;
+  font-size: 14px;
+  border: 0px;
+  outline: none;
+  background-color: #121212;
   width: 450px;
   height: 75px;
   align-items: center;

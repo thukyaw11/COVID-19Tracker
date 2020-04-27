@@ -17,6 +17,7 @@ const messages = {
         langswitchMyanmar: 'Myanmar',
         langswitchEnglish: 'English',
         langdesc: 'language',
+        nopost : 'No Post Yet',
         globaldashboard: {
             confirmcase: "Confirmed Cases",
             newcases : "New Cases",
@@ -46,6 +47,10 @@ const messages = {
             screeningButton : "Start Screening Myself",
             screeningHistory : "View History"
         },
+        screeningDesk : {
+            screeningHeaderOne : 'COVID-19',
+            screeningHeaderTwo : 'Screening Kit'
+        },
         donationPage : {
             donationHeader  : "Make your own support",
             donationContent : `In order to prevent, stop and cure the disease, every single one of us should pay a role by cooperating and supporting to everyone who needs our help.
@@ -55,6 +60,8 @@ const messages = {
         } ,
         aboutusPage : {
             heading : "Coronavirus disease Situation Dashboard",
+            headingOne : "Coronavirus disease",
+            headingTwo : "Situtaion Dashboard",
             content : "We hope to bring an information source that rolls updates on COVID-19, especially for cases in Myanmar, to our citizens.This website is built by the University of Information Technology Students' Union. APIs below are still in development stage and later will be published for further development purposes."
         },
         casesPage : {
@@ -98,6 +105,7 @@ const messages = {
         langswitchMyanmar: 'မြန်မာ',
         langswitchEnglish: 'အင်္ဂလိပ်',
         langdesc: 'ဘာသာစကား',
+        nopost : 'သတင်းရယူနေသည်',
         globaldashboard: {
             confirmcase: "အတည်ပြုလူနာ",
             newcases : "ယနေ့ ထပ်တိုးလူနာ",
@@ -127,6 +135,10 @@ const messages = {
             screeningButton : "စတင်‌စစ်ဆေးမည်",
             screeningHistory : "စစ်ဆေးမှု မှတ်တမ်း"
         },
+        screeningDesk : {
+            screeningHeaderOne : 'ကိုဗစ် ၁၉ ',
+            screeningHeaderTwo : 'ယေဘုယျစစ်ဆေးခြင်း'
+        },
         donationPage : {
             donationHeader  : "သင်လည်း ကူညီနိုင်ပါတယ်။",
             donationContent : `ဤရောဂါဆိုးအား အမြစ်ဖြတ် တွန်းလှန်နိုင်ရန် မိမိတို့သည် ဘက်ပေါင်းစုံမှ ပူးပေါင်းပါ၀င်ရပါမည်။
@@ -136,6 +148,8 @@ const messages = {
         },
         aboutusPage : {
             heading : "ကိုရိုနာဗိုင်းရပ်စ်အခြေအနေပြရီပို့",
+            headingOne : "ကိုရိုနာဗိုင်းရပ်စ်",
+            headingTwo : "အခြေအနေပြရီပို့",
             content : "ကျွန်ုပ်တို့အနေနဲ့ကိုဗစ်19နဲ့ပတ်သက်တဲ့နောက်ဆုံးရအခြေအနေသတင်းအထူးသဖြင့်မြန်မာနိုင်ငံမှသတင်းတွေကိုဒီကနေတစ်ဆင့်မြန်မာပြည်သူတွေကိုယူဆောင်ပေးမယ်နိုင်လို့မျှော်လင့်ပါတယ် ဒီwebsite ကိုသတင်းအချက်အလက်နည်းပညာတက္ကသိုလ်ကျောင်းသားသမဂ္ဂမှတည်ဆောက်ထားတာဖြစ်ပါတယ် အောက်တွင်ဖော်ပြထားသော data တွေဟာယခုလောလောဆယ်တွင်တည်ဆောက်ဆဲဖြစ်သော်လည်းနောက်တစ်ချိန်အသုံးပြုနိုင်ရင်ဖြန့်ဖြူးပေးနိုင်မှာဖြစ်ပါတယ်"
         },
         casesPage : {

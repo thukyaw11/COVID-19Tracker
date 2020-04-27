@@ -4,20 +4,17 @@
         <div class="flexbody">
           <div class="flexbodycontainer">
             <div class="flexbodyheader"  :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">
-              Coronavirus Disease
-              <br />Situation Dashboard
+              {{$t('aboutusPage.headingOne')}}
+              <br />{{$t('aboutusPage.headingTwo')}}
             </div>
             <div class="flexbodycontent">
               <hr style="width:100px; margin-left:0px; border:3px solid #000; background : black" />
               <br />
               <div :style="darkmode? 'color : #757575' : 'color : #212121' ">
-                We hope to bring an information source that rolls updates on COVID-19, especially for cases in Myanmar, to our citizens. This website is built by
-                the University of Information Technology Students’ Union. APIs below are still in development stage and later will be published for further
-                development purposes.
+                {{$t('goodHope.para1')}}
                 <br />
-                <br />Good Hope, currently operating Online Knowledge Sharing Platform and Research Projects, is a student organization based in Yangon
-                University of Economics. Here, we are collaborating with UITSU to create more effective features and to help the community to be
-                aware of COVID-19.
+                <br />
+                {{$t('goodHope.para2')}}
               </div>
 
               <br />
@@ -32,7 +29,7 @@
                 </div>
                 <div :class="darkmode? 'desapiDark' : 'desapi'" style=" margin-left:10px;">
                   Version
-                  <br />1.1 beta
+                  <br />2.0 beta
                 </div>
               </div>
             </div>

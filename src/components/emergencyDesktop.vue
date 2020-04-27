@@ -1,45 +1,54 @@
 <template>
-  
-    <div class="classdesbody">
-      <div class="mainflex">
-        <div class="flexbody">
-          <div class="flexbodycontainer">
-            <div class="flexbodyheader">
-              Emergency
-              <br />Response
-            </div>
-            <div class="flexbodycontent">
-              <hr style="width:100px; margin-left:0px; border:3px solid #000;" />
-              <br />
-              <div
-                style="width:90%; color:#757575;"
-              >သင့်၌ ရောဂါပိုးကူးစက်ခံထားရနိုင်ချေ မြင့်မားသဖြင့်ကျန်းမာရေး၀န်ထမ်းများသို့ အလျင်အမြန်ဆက်သွယ်ပါ။</div>
+  <div class="classdesbody">
+    <div class="mainflex">
+      <div class="flexbody">
+        <div class="flexbodycontainer">
+          <div
+            class="flexbodyheader"
+            :style="darkmode? 'color: #f5f5f5': 'color: #212121'"
+          >{{($t('resultPage.emergencyResponse'))}}</div>
+          <div class="flexbodycontent">
+            <hr
+              style="width:100px; margin-left:0px;"
+              :style="darkmode? 'background : #f5f5f5; border:3px solid #f5f5f5;' : 'background : #212121;  border:3px solid #000;'"
+            />
+            <br />
+            <div
+              style="width:90%; color:#757575;"
+            >သင့်၌ ရောဂါပိုးကူးစက်ခံထားရနိုင်ချေ မြင့်မားသဖြင့်ကျန်းမာရေး၀န်ထမ်းများသို့ အလျင်အမြန်ဆက်သွယ်ပါ။</div>
 
-              <br />
-              <div type class="button" id="myBtn">Emergency Contacts</div>
-            </div>
+            <br />
+            <div type class="button" id="myBtn" @click="openModal">{{($t('resultPage.phno'))}}</div>
           </div>
-        </div>
-        <div class="fleximage">
-          <img src="../assets/emergency_contact.png" width="500" height="500" />
         </div>
       </div>
-      
+      <div class="fleximage">
+        <img src="../assets/emergency_contact.png" width="500" height="500" />
+      </div>
+    </div>
 
-      <!-- <div id="myModal" class="modal">
-    
-        <div class="modal-content">
-          <div class="closecontainer close">
-            <span class="material-icons" style="font-size:39px; font-weight:bold;">close</span>
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div :class="darkmode? 'modal-contentDark' : 'modal-content'">
+        <div class="modalheading">
+          <div class="closecontainer close" @click="closeModal">
+            <span class="material-icons" style="font-size:40px;">close</span>
           </div>
-          <div class="modalheading">
-            <div style="color:#F44336; margin-left:20px; font-weight:bold;">Emergency Contacts</div>
+          <div class="headingcontainer">
+            <div style="margin-left:20px; color:#F44336; font-weight:bold;">Emergency Contacts</div>
             <br />
-
+            <br />
             <div>
-              <form class="searchcontainer">
+              <form :class="darkmode? 'searchcontainer-customDark' : 'searchcontainer-custom'">
                 <div class="placeholdercontainer">
-                  <input type="text" id="search-bar" placeholder="Search ..." />
+                  <input
+                    style="font-size:14px;"
+                    type="text"
+                    id="search-bar"
+                    placeholder="Search ..."
+                    v-model="searchContacts"
+                    :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+                  />
                 </div>
                 <div class="searchicon">
                   <i class="material-icons">search</i>
@@ -47,176 +56,98 @@
               </form>
             </div>
           </div>
-          <div class="modalbody">
-            <div class="modalbodybox">
-              <div class="bodybox1">
-                <div>ရန်ကုန်ပြည်သူ့ဆေးရုံကြီး</div>
-                <div>01256123</div>
-              </div>
-              <div class="bodybox2">
-                <div>
-                  <i class="far fa-clone"></i>
-                </div>
-                <div>Copy</div>
-              </div>
+        </div>
+
+        <div class="modalbody">
+          <div
+            :class="darkmode? 'descontactscontainerDark' : 'descontactscontainer'"
+            v-for="contacts in filterListContacts"
+            v-bind:key="contacts._id"
+          >
+            <div class="desflex1">
+              <div
+                class="desbox1"
+                :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+              >{{contacts.name}}</div>
+              <div
+                class="desbox2"
+                style="line-height:50px"
+                :phoneNumCopy="copyCode"
+                :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
+              >{{contacts.phoneNumber}}</div>
             </div>
-            <br />
-            <div class="modalbodybox">
-              <div class="bodybox1">
-                <div>ရန်ကုန်ပြည်သူ့ဆေးရုံကြီး</div>
-                <div>01256123</div>
-              </div>
-              <div class="bodybox2">
-                <div>
+            <div
+              class="desflex2"
+              v-clipboard:copy="contacts.phoneNumber"
+              v-clipboard:success="onCopy"
+            >
+              <div :class="darkmode? 'desbox3Dark':'desbox3'">
+                <span>
                   <i class="far fa-clone"></i>
-                </div>
-                <div>Copy</div>
+                </span>
               </div>
+              <div :class="darkmode? 'desbox4Dark':'desbox4'">Copy</div>
             </div>
-            <br />
-            <div class="modalbodybox">
-              <div class="bodybox1">
-                <div>ရန်ကုန်ပြည်သူ့ဆေးရုံကြီး</div>
-                <div>01256123</div>
-              </div>
-              <div class="bodybox2">
-                <div>
-                  <i class="far fa-clone"></i>
-                </div>
-                <div>Copy</div>
-              </div>
-            </div>
-            <br />
-            <div class="modalbodybox">
-              <div class="bodybox1">
-                <div>ရန်ကုန်ပြည်သူ့ဆေးရုံကြီး</div>
-                <div>01256123</div>
-              </div>
-              <div class="bodybox2">
-                <div>
-                  <i class="far fa-clone"></i>
-                </div>
-                <div>Copy</div>
-              </div>
-            </div>
-            <br />
-            <div class="modalbodybox">
-              <div class="bodybox1">
-                <div>ရန်ကုန်ပြည်သူ့ဆေးရုံကြီး</div>
-                <div>01256123</div>
-              </div>
-              <div class="bodybox2">
-                <div>
-                  <i class="far fa-clone"></i>
-                </div>
-                <div>Copy</div>
-              </div>
-            </div>
-            <br />
-            <div class="modalbodybox">
-              <div class="bodybox1">
-                <div>ရန်ကုန်ပြည်သူ့ဆေးရုံကြီး</div>
-                <div>01256123</div>
-              </div>
-              <div class="bodybox2">
-                <div>
-                  <i class="far fa-clone"></i>
-                </div>
-                <div>Copy</div>
-              </div>
-            </div>
-            <br />
-            <div class="modalbodybox">
-              <div class="bodybox1">
-                <div>ရန်ကုန်ပြည်သူ့ဆေးရုံကြီး</div>
-                <div>01256123</div>
-              </div>
-              <div class="bodybox2">
-                <div>
-                  <i class="far fa-clone"></i>
-                </div>
-                <div>Copy</div>
-              </div>
-            </div>
-            <br />
-            <div class="modalbodybox">
-              <div class="bodybox1">
-                <div>ရန်ကုန်ပြည်သူ့ဆေးရုံကြီး</div>
-                <div>01256123</div>
-              </div>
-              <div class="bodybox2">
-                <div>
-                  <i class="far fa-clone"></i>
-                </div>
-                <div>Copy</div>
-              </div>
-            </div>
-            <br />
-            <div class="modalbodybox">
-              <div class="bodybox1">
-                <div>ရန်ကုန်ပြည်သူ့ဆေးရုံကြီး</div>
-                <div>01256123</div>
-              </div>
-              <div class="bodybox2">
-                <div>
-                  <i class="far fa-clone"></i>
-                </div>
-                <div>Copy</div>
-              </div>
-            </div>
-            <br />
-            <div class="modalbodybox">
-              <div class="bodybox1">
-                <div>ရန်ကုန်ပြည်သူ့ဆေးရုံကြီး</div>
-                <div>01256123</div>
-              </div>
-              <div class="bodybox2">
-                <div>
-                  <i class="far fa-clone"></i>
-                </div>
-                <div>Copy</div>
-              </div>
-            </div>
-            <br />
-            <div class="modalbodybox">
-              <div class="bodybox1">
-                <div>ရန်ကုန်ပြည်သူ့ဆေးရုံကြီး</div>
-                <div>01256123</div>
-              </div>
-              <div class="bodybox2">
-                <div>
-                  <i class="far fa-clone"></i>
-                </div>
-                <div>Copy</div>
-              </div>
-            </div>
-            <br />
           </div>
         </div>
-      </div>-->
-
-      <!-- Modal content end-->
+      </div>
     </div>
- 
+
+    <!-- Modal content end-->
+  </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en",
+      darkmode: localStorage.getItem("darkmode")
+        ? JSON.parse(localStorage.getItem("darkmode"))
+        : false,
+      copyCode: "",
+      searchContacts: ""
+    };
+  },
+  created() {
+    this.$darkModeBus.$on("dark-mode", this.changeDark);
+  },
+  methods: {
+    onCopy() {
+      alert("copied");
+    },
+    changeDark(value) {
+      this.darkmode = value;
+    },
+    openModal() {
+      this.$el.querySelector("#myModal").style.display = "block";
+    },
+    closeModal() {
+      this.$el.querySelector("#myModal").style.display = "none";
+    }
+  },
+  computed: {
+    filterListContacts() {
+      return this.$store.getters.contacts;
+    }
+  }
+};
+</script>
+
 <style scoped>
-
- /*updated latest desktop ui*/
-  .classdesbody {
-    flex-direction: row;
-    display: flex;
-    width: 100%;
-    height: 88%;
-    align-items:center;
-    justify-content:center;
-  }
-  .mainflex {
-    
-    display: flex;
-    flex:1;
-
-  }
+/*updated latest desktop ui*/
+.classdesbody {
+  flex-direction: row;
+  display: flex;
+  width: 100%;
+  height: 88%;
+  align-items: center;
+  justify-content: center;
+}
+.mainflex {
+  display: flex;
+  flex: 1;
+}
 
 .flexbody {
   display: flex;
@@ -236,7 +167,7 @@
 .flexbodyheader {
   display: flex;
   flex: 1;
-  line-height:100px;
+  line-height: 100px;
   font-size: 70px;
   font-weight: bold;
 }
@@ -301,7 +232,7 @@
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 2; /* Sit on top */
+  z-index: 1; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -320,7 +251,8 @@
   position: fixed;
   right: 0;
   display: flex;
-  flex-direction: column;
+  flex: 1;
+  flex-direction: row;
   background-color: #fff;
   width: 446px;
   height: 100%;
@@ -329,7 +261,20 @@
   animation-name: slideIn;
   animation-duration: 0.4s;
 }
-
+.modal-contentDark {
+  position: fixed;
+  right: 0;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  background-color: #212121;
+  width: 446px;
+  height: 100%;
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.4s;
+}
 /* The Close Button */
 .close {
   color: #757575;
@@ -344,47 +289,116 @@
   text-decoration: none;
   cursor: pointer;
 }
-.closecontainer {
+
+.modalheading {
+  position: fixed;
+  width: 446px;
+  height: 300px;
   display: flex;
-  height: 220px;
+  flex-direction: column;
+}
+.closecontainer {
   align-items: center;
   justify-content: flex-end;
   margin-right: 20px;
+  display: flex;
+  flex: 3;
 }
-.modalheading {
+.headingcontainer {
+  justify-content: center;
   font-size: 24px;
   display: flex;
   flex-direction: column;
   height: 150px;
 }
 .modalbody {
-  overflow: scroll;
-  margin-top: 50px;
+  margin-top: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
   flex-direction: column;
 }
-.modalbodybox {
-  width: 100%;
-  height: 120px;
+.descontactscontainer {
+  width: 446px;
+  height: 135px;
   display: flex;
-  flex-direction: row;
   border-bottom: 1px solid #eee;
+  flex-direction: row;
 }
-.bodybox1 {
+.descontactscontainerDark {
+  width: 446px;
+  height: 135px;
   display: flex;
-  flex: 3;
-  height: 120px;
-  padding: 20px;
-  flex-direction: column;
+  border-bottom: 1px solid #121212;
+  flex-direction: row;
 }
-.bodybox2 {
-  color: #1976d2;
+.desflex1 {
   display: flex;
   flex: 2;
-  height: 120px;
   flex-direction: column;
+  margin-left: 20px;
+}
+
+.desbox1 {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+.desbox2 {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.desflex2 {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  background-color: #fafafa;
+  color: #1976d2;
+}
+.desbox3 {
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+  justify-content: center;
+}
+.desbox3Dark {
+  display: flex;
+  flex: 1;
+  background: #212121;
+  align-items: flex-end;
+  justify-content: center;
+}
+.desbox4 {
+  display: flex;
+  flex: 1;
   align-items: center;
   justify-content: center;
-  background-color: #fafafa;
+}
+.desbox4Dark {
+  display: flex;
+  flex: 1;
+  background: #212121;
+  align-items: center;
+  justify-content: center;
+}
+
+.topnav {
+  margin-right: 15px;
+  overflow: hidden;
+}
+.topnav a {
+  margin-left: 10px;
+  width: 120px;
+  float: left;
+  text-align: center;
+  padding: 18px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.router-link-active {
+  font-weight: bold;
 }
 
 /* Add Animation */

@@ -1,30 +1,31 @@
 <template>
   <div class="classdesbody">
-    <div class="mainflex">
-      <div class="flexbody">
-        <div class="flexbodycontainer">
-          <div class="flexbodyheader" :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">Make your own support</div>
-          <div class="flexbodycontent">
-            <hr style="width:100px; margin-left:0px;" :style="darkmode? 'background : #f5f5f5; border:3px solid #f5f5f5;' : 'background : #212121;  border:3px solid #000;'"/>
-            <br />
-            <div style="width:90%; color:#757575;">
-              In order to prevent, stop and cure the disease, every single one of us should pay a role by cooperating and supporting to everyone who needs our help.
-              Bank accounts and contacts of the Government and Civil Service Organisations are described in this menu for any financial support.
-              Let's win this Covid 19 with our unity.
+
+      <div :class="darkmode? 'landingflexDark' : 'landingflex'">
+
+              <div class="flexbody">
+              <div class="flexbodycontainer">
+                <div class="flexbodyheader" :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">{{$t('donationPage.donationHeader')}}</div>
+                <div class="flexbodycontent">
+                  <hr style="width:100px; margin-left:0px;" :style="darkmode? 'background : #f5f5f5; border:3px solid #f5f5f5;' : 'background : #212121;  border:3px solid #000;'"/>
+                  <br />
+                  <div style="width:90%; color:#757575;">
+                  {{$t('donationPage.donationContent')}}
+                  </div>
+
+                  <br />
+                  <div type class="button">{{$t('donationPage.donationButton')}}</div>
+                </div>
+              </div>
             </div>
-
-            <br />
-            <div type class="button">Donate Now</div>
-          </div>
-        </div>
-      </div>
-      <div class="fleximage">
-        <i class="fas fa-heartbeat" style="font-size:300px; color:#EC407A;"></i>
+            <div class="fleximage">
+              <i class="fas fa-heartbeat" style="font-size:300px; color:#EC407A;"></i>
+            </div>
+        
       </div>
 
-      </div>
+      <div :class="darkmode? 'contactsflexDark' : 'contactsflex'">
 
-            <div class="donatablecontacts">
 
               <div class="backward">
                   <div class="backwardbutton">
@@ -34,7 +35,7 @@
 
               </div>
               <div class="middle">
-                      <div class="donationcard">
+                      <div :class="darkmode? 'donationcardDark' : 'donationcard'">
                           <div class="dcardheader">
                             University Of Information Technology
 
@@ -65,7 +66,7 @@
 
                               </div>
                               <div class="dcardbodyright">
-                                  <div class="bankcard">
+                                  <div :class="darkmode? 'bankcardDark' : 'bankcard'">
                                         <div class="bankcardheader">
                                           Donateable Bank Accounts
 
@@ -104,21 +105,14 @@
                   <i class="material-icons" style="font-size:50px; color:#212121;">keyboard_arrow_right</i>
                 </div>
               </div>
+      
+      </div>
 
 
 
 
 
-            </div>
-
-
-
-
-
-
-
-
-
+      
     
   </div>
 </template>
@@ -148,20 +142,46 @@ export default {
 <style scoped>
 /*updated latest desktop ui*/
 .classdesbody {
-  flex-direction: column;
-  display: flex;
-  flex:1;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-}
+  width:100%;
+  height:2160px;
 
-.mainflex {
-  display: flex;
-   align-items: center;
-  justify-content: center;
+  display:flex;
+  flex-direction:column;
+
+}
+.landingflex
+{
+    background-color:#fff;
+  display:flex;
+  width:100%;
   height:1080px;
+}
+.landingflexDark
+{
+  background-color:#121212;
+  display:flex;
+  width:100%;
+  height:1080px;
+}
+.contactsflex
+{
+background-color:#fff;
+  align-items:center;
+  justify-content:center;
+  display:flex;
+  width:100%;
+  height:1080px;
+  
+}
+.contactsflexDark
+{
+background-color:#121212;
+  align-items:center;
+  justify-content:center;
+  display:flex;
+  width:100%;
+  height:1080px;
+  
 }
 .desfooter {
   position: fixed;
@@ -292,6 +312,18 @@ export default {
   transition: all .25s linear;
 
 }
+.donationcardDark
+{
+  display:flex;
+  flex-direction:column;
+  width:1330px;
+  height:585px;
+  background-color:#212121;
+  color:#f5f5f5;
+  border-radius:20px;
+  transition: all .25s linear;
+
+}
 .dcardheader
 {
   font-weight:bold;
@@ -299,7 +331,7 @@ export default {
   display:flex;
   flex:1;
   margin-left:30px;
-  padding-top:30px;
+  padding-top:35px;
 }
 .dcardbody
 {
@@ -375,6 +407,26 @@ export default {
 
   box-shadow: -1px 10px 29px 0px rgba(158, 158, 158);
 }
+.bankcardDark
+{
+
+  padding-bottom:20px;
+  display:flex;
+  flex-direction:column;
+  width:599px;
+  height:354px;
+  background-color:#121212;
+  border:6px solid #EC407A;
+  border-radius:25px;
+  transition: all .25s linear;
+  box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.4);
+
+
+}
+.bankcardDark:hover{
+
+  box-shadow: -1px 10px 29px 0px rgba(0 , 0, 0);
+}
 .bankcardheader
 {
 
@@ -416,14 +468,5 @@ export default {
   flex:5;
 
 }
-.donatablecontacts
-{
-  background:blue;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction: row;
-  flex:1;
-  height: 600px;
-}
+
 </style>
