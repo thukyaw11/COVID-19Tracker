@@ -68,7 +68,7 @@ export default {
       axios.spread(response => {
         this.message = "Request finished";
 
-        this.phone_numbers = response.data;
+        this.phone_numbers = response.data.data;
       })
     );
 
@@ -85,7 +85,7 @@ export default {
     },
     fetchContent() {
       this.request_msg = "ph no request began";
-      return axios.get("https://covid19mm.info/api/contact/list");
+      return axios.get("https://covid19mm.info/api/generate/api/contact");
     },
     changeName(name) {
       // name will be automatically transported to the parameter.
