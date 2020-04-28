@@ -439,7 +439,6 @@
 
 <script>
 /* eslint-disable no-console */
-
 import Vue from "vue";
 import VueClipboard from "vue-clipboard2";
 import { vueTopprogress } from "vue-top-progress";
@@ -455,11 +454,8 @@ import QuestionComponent from "./components/questionComponent";
 import mapDesktop from "./components/mapDesktop";
 import isoCountries from "./assets/content/countryCode";
 import i18n from "./plugin/i18n";
-
 // import store from './store/store'
-
 Vue.use(VueClipboard);
-
 export default {
   components: {
     Header,
@@ -500,6 +496,10 @@ export default {
     };
   },
   methods: {
+    setContacts(data){
+      
+      this.contactlist = data.data;
+    },
     getCountryCode(countryname) {
       if (Object.prototype.hasOwnProperty.call(this.isoCou, countryname)) {
         const img_url =
@@ -523,17 +523,13 @@ export default {
         localStorage.setItem("lang", "mm");
         this.$eventHub.$emit("change-name", "mm");
       }
-
       this.count++;
-
       console.log(this.count);
     },
     changeLocale(locale) {
       i18n.locale = locale;
       localStorage.setItem("lang", locale);
-
       this.$eventHub.$emit("change-name", locale);
-
       this.closeNav();
     },
     openNav() {
@@ -575,8 +571,8 @@ export default {
     fetchYesNews() {
       return axios.get(this.yesbaseURL);
     },
-    fetchConacts() {
-      return axios.get("https://covid19mm.info/api/contact/list");
+    fetchContacts() {
+      return axios.get("https://covid19mm.info/api/generate/api/convertcsvUIT");
     },
     setCountryCases(data) {
       var sortedArray = data.sort(function(a, b) {
@@ -596,7 +592,7 @@ export default {
       this.propCountryName = countryName;
     },
     onCopy() {
-      alert("copied");
+      this.$swal('Copied');
     },
     changeDark(value) {
       this.darkmode = value;
@@ -615,31 +611,24 @@ export default {
     }
     this.$store.dispatch("getContacts");
     this.$store.dispatch("getCountryCases");
-
     this.urlLocation = window.location.href.split("/").pop();
     this.$darkModeBus.$on("dark-mode", this.changeDark);
-
     //yesterday, today and uploaded
     const todayDate = new Date().toISOString().slice(0, 10);
     const tmrDate = new Date(todayDate);
-
     tmrDate.setDate(tmrDate.getDate() + 1);
-
     const tmrIsoDate = tmrDate.toISOString().slice(0, 10);
-
     this.tdybaseURL = `https://aa56zbybij.execute-api.ap-southeast-1.amazonaws.com/v1/news/covid-19?from=${tmrIsoDate}`;
     this.yesbaseURL = `https://aa56zbybij.execute-api.ap-southeast-1.amazonaws.com/v1/news/covid-19?from=${todayDate}`;
   },
   mounted() {
     this.urlLocation = window.location.href.split("/").pop();
-
     if (this.urlLocation == "aboutus") {
       document.getElementById("desbody").style.display = "none";
       document.getElementById("desaboutusbody").style.display = "flex";
       document.getElementById("desscreeningbody").style.display = "none";
       document.getElementById("desdonationbody").style.display = "none";
       document.getElementById("desquestionbody").style.display = "none";
-
     } else if (this.urlLocation == "start") {
       document.getElementById("desbody").style.display = "none";
       document.getElementById("desaboutusbody").style.display = "none";
@@ -665,24 +654,21 @@ export default {
       document.getElementById("desdonationbody").style.display = "none";
       document.getElementById("desquestionbody").style.display = "none";
     }
-
     //language switching
     i18n.locale = this.lang;
-
     console.log(this.lang);
-
     //yesterday, today and uploaded
     document.getElementById("myNav").style.height = "0%";
-
     axios
       .all([
         this.fetchCountriesCases(),
         this.fetchTdyNews(),
-        this.fetchYesNews()
+        this.fetchYesNews(),
+        this.fetchContacts()
       ])
       .then(
         axios.spread(
-          (countrycasesResponse, newsContentToday, newsContentYesterday) => {
+          (countrycasesResponse, newsContentToday, newsContentYesterday,contacts) => {
             //country response
             countrycasesResponse.json().then(data => {
               this.CountryByCases = data.countries_stat;
@@ -690,14 +676,16 @@ export default {
             });
             //news response
             // news request filter by yesterday, tomorrow and today
-
             if (newsContentToday.status == 200) {
               this.latestNews = newsContentToday.data.items;
             }
-
             if (newsContentYesterday.status == 200) {
               this.yesterdayNews = newsContentYesterday.data.items;
             }
+
+
+            this.contactlist = contacts.data.data;
+            this.setContacts(contacts.data);
           }
         )
       );
@@ -705,10 +693,8 @@ export default {
   watch: {
     $route(to, from) {
       //display none country cases view in about us page desktop
-
       this.urlLocation = to.path.split("/").pop();
       console.log(this.urlLocation);
-
       if (this.urlLocation == "aboutus") {
       document.getElementById("desbody").style.display = "none";
       document.getElementById("desaboutusbody").style.display = "flex";
@@ -740,12 +726,9 @@ export default {
       document.getElementById("desdonationbody").style.display = "none";
       document.getElementById("desquestionbody").style.display = "none";
     }
-
-
       console.log(from);
       //top progress
       this.$refs.topProgress.start();
-
       // Use setTimeout for demo
       setTimeout(() => {
         this.$refs.topProgress.done();
@@ -792,14 +775,12 @@ export default {
     ]
   }
 };
-
 /* eslint-enable no-console */
 </script>
 
 <style>
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
 /* for mobile version css */
-
 @media only screen and (max-width: 1100px) {
   .spinner {
     text-align: center;
@@ -815,7 +796,6 @@ export default {
     font-family: "Poppins", sans-serif;
     font-size: 14px;
   }
-
   .desktopcontainer {
     display: none;
   }
@@ -829,7 +809,6 @@ export default {
   }
   .darkmodeswitchercontainer
   {
-
     height:50px;
     border-radius:50px;
     flex-direction:row;
@@ -957,7 +936,6 @@ export default {
     overflow-y: auto;
     transition: 0.5s;
   }
-
   .overlay-content {
     display: flex;
     flex-direction: column;
@@ -978,7 +956,6 @@ export default {
     padding-left: 15px;
     padding-right: 15px;
   }
-
   .overlay a {
     padding-left: 15px;
     text-decoration: none;
@@ -1005,7 +982,6 @@ export default {
     flex: 1;
     align-items: center;
   }
-
   .overlay .router-link-active {
     border-radius: 50px;
     align-items: center;
@@ -1020,7 +996,6 @@ export default {
     width: 100%;
     font-weight: bold;
   }
-
   .overlay .closebtn {
     display: flex;
     height: 100px;
@@ -1049,14 +1024,12 @@ export default {
     height: 75px;
     border-bottom: 1px solid #212121;
   }
-
   .menubutton {
     display: flex;
     flex: 1;
     align-items: center;
     margin-left: 20px;
   }
-
   .heading {
     display: flex;
     align-items: center;
@@ -1093,7 +1066,6 @@ export default {
     justify-content: center;
     font-size: 20px;
   }
-
   .toggle {
     border-top: 1px solid #eee;
     flex-direction: row;
@@ -1130,7 +1102,6 @@ export default {
     align-items: flex-end;
     justify-content: center;
   }
-
   .local {
     display: flex;
     flex: 1;
@@ -1156,7 +1127,6 @@ export default {
     align-items: center;
     color: #f5f5f5;
   }
-
   .ConfirmedCaseContainer {
     display: flex;
     flex-direction: column;
@@ -1165,7 +1135,6 @@ export default {
   }
   .RecoverCase {
     display: flex;
-
     height: 120px;
     border-radius: 15px;
     margin-top: 5px;
@@ -1286,17 +1255,14 @@ export default {
     justify-content: flex-end;
     margin-right: 10px;
   }
-
   * {
     box-sizing: border-box;
   }
-
   .row::after {
     content: "";
     clear: both;
     display: block;
   }
-
   [class*="col-"] {
     float: left;
     padding: 15px;
@@ -1341,10 +1307,8 @@ export default {
   -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
   display: block;
 }
-
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
 /* for desktop version css */
-
 @media only screen and (min-width: 1100px) {
   /* loading spinner */
   .spinner-des {
@@ -1393,7 +1357,6 @@ export default {
   ::-webkit-scrollbar-thumb {
     background-color: #d6d6d6;
   }
-
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
@@ -1511,7 +1474,6 @@ export default {
     margin-left: 25px;
     font-size: 36px;
   }
-
   .mainflex1 {
     display: flex;
     flex: 1;
@@ -1840,7 +1802,6 @@ export default {
     flex-direction: column;
     border-bottom: 1px solid #eee;
   }
-
   .box1 {
     margin-left: 20px;
   }
@@ -1848,7 +1809,6 @@ export default {
     margin-left: 20px;
     font-weight: bold;
   }
-
   /* The Modal (background) */
   .modal {
     display: none; /* Hidden by default */
@@ -1866,7 +1826,6 @@ export default {
     animation-name: fadeIn;
     animation-duration: 0.4s;
   }
-
   /* Modal Content */
   .modal-content {
     position: fixed;
@@ -1903,14 +1862,12 @@ export default {
     font-size: 28px;
     font-weight: bold;
   }
-
   .close:hover,
   .close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
   }
-
   .modalheading {
     position: fixed;
     width: 446px;
@@ -1958,7 +1915,6 @@ export default {
     flex-direction: column;
     margin-left: 20px;
   }
-
   .desbox1 {
     display: flex;
     flex: 1;
@@ -1970,7 +1926,6 @@ export default {
     align-items: center;
     justify-content: flex-start;
   }
-
   .desflex2 {
     display: flex;
     flex: 1;
@@ -2014,7 +1969,6 @@ export default {
   .router-link-active {
     font-weight: bold;
   }
-
   /* Add Animation */
   @-webkit-keyframes slideIn {
     from {
@@ -2026,7 +1980,6 @@ export default {
       opacity: 1;
     }
   }
-
   @keyframes slideIn {
     from {
       right: -300px;
@@ -2037,7 +1990,6 @@ export default {
       opacity: 1;
     }
   }
-
   @-webkit-keyframes fadeIn {
     from {
       opacity: 0;
@@ -2046,7 +1998,6 @@ export default {
       opacity: 1;
     }
   }
-
   @keyframes fadeIn {
     from {
       opacity: 0;

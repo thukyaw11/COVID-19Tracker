@@ -7,6 +7,10 @@ import VueMarkDown from 'vue-markdown';
 import i18n from './plugin/i18n';
 import Meta from 'vue-meta';
 import vuescroll from 'vue-scrollto';
+import VueSweetalert2 from 'vue-sweetalert2';
+ 
+// If you don't need the styles, do not connect
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 
 
@@ -22,13 +26,17 @@ var filter = function (text, length, clamp) {
   var content = node.textContent;
   return content.length > length ? content.slice(0, length) + clamp : content;
 };
-
+const options = {
+  confirmButtonColor: '#41b882',
+  cancelButtonColor: '#ff7674',
+};
 
 Vue.filter('truncate', filter);
 Vue.use(Meta);
 Vue.use(VueMaterial);
 Vue.use(VueMarkDown);
 Vue.use(vuescroll);
+Vue.use(VueSweetalert2,options);
 
 
 //Vue.use(LoadScript);

@@ -30,66 +30,120 @@
       id="element"
     >Donation Contacts</h3>
 
-    <div class="donationcontactsbody">
+    <div class="donationcontactsbody" v-for="(donation,index) in donationList" :key="index">
       <div :class="darkmode? 'donationcardDark' : 'donationcard'">
         <h3
           class="donateheading"
           :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
-        >University Of Information Technology</h3>
+        >{{donation.Name}}</h3>
         <div class="donatetypeoforg">
           <div style="color : #757575">Type of organization</div>
-          <div :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">University</div>
+          <div
+            :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+          >{{donation.TypeofOrganisationorPerson}}</div>
         </div>
         <div class="donatephno">
           <div style="color : #757575">Phone Number</div>
-          <div :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">0934534923</div>
-        </div>
-        <div class="donatename">
-          <div style="color : #757575">Name</div>
-          <div :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">Sai Kaw Yount</div>
-        </div>
-        <div class="donatedescirption">
-          <div style="color : #757575">Description</div>
           <div
             :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
-          >Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+          >{{donation.ContactPhoneNumber}}</div>
+        </div>
+        <!-- <div class="donatename">
+          <div style="color : #757575">Name</div>
+          <div :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">{{}}</div>
+        </div>-->
+        <div class="donatedescirption">
+          <div style="color : #757575">Description</div>
+          <div :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">{{donation.Description}}</div>
         </div>
 
         <div style="padding:10px; color:#757575;">Donateable Bank Accounts</div>
 
         <div class="bank">
-          <div :class="darkmode? 'bankcontainerDark' : 'bankcontainer'">
+          <div
+            :class="darkmode? 'bankcontainerDark' : 'bankcontainer'"
+            v-if="donation.KBZ != 'null'"
+          >
             <div class="bankflex1" :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">KBZ</div>
             <div
               class="bankflex2"
               :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
-            >9934 3493 3492 2300</div>
-            <div class="bankflex3">
+            >{{donation.KBZ}}</div>
+            <div class="bankflex3" v-clipboard:copy="donation.KBZ" v-clipboard:success="onCopy">
               <i class="far fa-clone" style="color:#EC407A;"></i>
             </div>
           </div>
-          <div :class="darkmode? 'bankcontainerDark' : 'bankcontainer'">
+          <!-- CB -->
+          <div
+            :class="darkmode? 'bankcontainerDark' : 'bankcontainer'"
+            v-if="donation.CB != 'null'"
+          >
             <div class="bankflex1" :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">CB</div>
             <div
               class="bankflex2"
               :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
-            >9934 3493 3492 2300</div>
-            <div class="bankflex3">
+            >{{donation.CB}}</div>
+            <div class="bankflex3" v-clipboard:copy="donation.CB" v-clipboard:success="onCopy">
+              <i class="far fa-clone" style="color:#EC407A;"></i>
+            </div>
+          </div>
+          <!-- AYA -->
+          <div
+            :class="darkmode? 'bankcontainerDark' : 'bankcontainer'"
+            v-if="donation.AYA != 'null'"
+          >
+            <div class="bankflex1" :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">AYA</div>
+            <div
+              class="bankflex2"
+              :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+            >{{donation.AYA}}</div>
+            <div class="bankflex3" v-clipboard:copy="donation.AYA" v-clipboard:success="onCopy">
+              <i class="far fa-clone" style="color:#EC407A;"></i>
+            </div>
+          </div>
+          <!-- MEB -->
+          <div
+            :class="darkmode? 'bankcontainerDark' : 'bankcontainer'"
+            v-if="donation.MEB != 'null'"
+          >
+            <div class="bankflex1" :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">MEB</div>
+            <div
+              class="bankflex2"
+              :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+            >{{donation.MEB}}</div>
+            <div class="bankflex3" v-clipboard:copy="donation.MEB" v-clipboard:success="onCopy">
               <i class="far fa-clone" style="color:#EC407A;"></i>
             </div>
           </div>
 
-          <button class="contactnowbutton">Contact Now</button>
+          <div
+            :class="darkmode? 'bankcontainerDark' : 'bankcontainer'"
+            v-if="donation.KBZPay != 'null'"
+          >
+            <div class="bankflex1" :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">KBZ Pay</div>
+            <div
+              class="bankflex2"
+              :style="darkmode? 'color : #f5f5f5' : 'color : #212121' "
+            >{{donation.KBZPay}}</div>
+            <div class="bankflex3" v-clipboard:copy="donation.KBZPay" v-clipboard:success="onCopy">
+              <i class="far fa-clone" style="color:#EC407A;"></i>
+            </div>
+          </div>
+
+          <button class="contactnowbutton">
+            <a
+              v-bind:href="'tel:'+donation.ContactPhoneNumber"
+              style="text-decoration: none; color : white"
+            >Contact Now</a>
+          </button>
         </div>
       </div>
-
-      <button class="contactnowbutton">Contact Now</button>
     </div>
   </div>
 </template>
 
 <script>
-
+import axios from "axios";
 export default {
   data() {
     return {
@@ -97,53 +151,7 @@ export default {
       darkmode: localStorage.getItem("darkmode")
         ? JSON.parse(localStorage.getItem("darkmode"))
         : false,
-      dontaionList: "",
-      data: [
-        {
-          _id: "5ea2be600f35903664eb6abb",
-          Name:
-            "1. National Committee for Corona Virus Disease Precaution, Control and  Cure",
-          Description:
-            "To Establish the National Fund for Covid 19 Precaution, Control and  Cure ",
-          MEB: "CF 004880",
-          KBZ: "034 103 034 0232 8301",
-          AYA: "A/C 000 110 501 002 5635",
-          CB: "0093 1005 0000 1333",
-          KBZPay: "null",
-          _: "0",
-          TypeofOrganisationorPerson: "Government",
-          ContactPhoneNumber: "null",
-          __v: 0
-        },
-        {
-          _id: "5ea2be600f35903664eb6abc",
-          Name: "2. University of Medicine 1 Volunteer Task Force",
-          Description: "For Medical Staff",
-          MEB: "null",
-          KBZ: "999 307 23400 21 3301",
-          AYA: "null",
-          CB: "2012 6001 0001 9771",
-          KBZPay: "9450044582.0",
-          _: "1",
-          TypeofOrganisationorPerson: "University",
-          ContactPhoneNumber: "9450044582.0",
-          __v: 0
-        },
-        {
-          _id: "5ea2be600f35903664eb6abd",
-          Name: "3.  Yangon Technological University Students' Union",
-          Description: "For Medical Staff",
-          MEB: "null",
-          KBZ: "279 3012 7900 667801",
-          AYA: "00 932010 10061746",
-          CB: "0113 6005000 42595",
-          KBZPay: "9773270096.0",
-          _: "2",
-          TypeofOrganisationorPerson: "University",
-          ContactPhoneNumber: "9773270096.0",
-          __v: 0
-        }
-      ]
+      donationList: []
     };
   },
   //working with event bus
@@ -159,13 +167,18 @@ export default {
     if (this.lang == "en") {
       this.$root.$data.title = "Donation";
     }
-    fetch('https://covid19mm.info/api/generate/api/coviddonationuit').then(response =>
-      response.json().then(data => {
-        this.dontaionList = data.data;
-      })
-    );
+    axios
+      .get("https://covid19mm.info/api/generate/api/coviddonationuit")
+      .then(response => {
+        if (response.data.code == 200) {
+          this.donationList = response.data.data;
+        }
+      });
   },
   methods: {
+    onCopy() {
+      this.$swal("Copied");
+    },
     changeDark(value) {
       this.darkmode = value;
     },

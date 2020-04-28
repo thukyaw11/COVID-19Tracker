@@ -66,7 +66,6 @@
             >မည်သည့် လက္ခဏာမှ မရှိပါ။</label>
           </div>
         </div>
-        <h1>{{resultTwo}}</h1>
       </div>
 
       <!-- question no two end -->

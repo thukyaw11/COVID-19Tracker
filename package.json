@@ -25,6 +25,7 @@
     "vue-meta": "^2.3.3",
     "vue-router": "^3.1.6",
     "vue-scrollto": "^2.18.0",
+    "vue-sweetalert2": "^3.0.3",
     "vue-top-progress": "^0.7.0",
     "vue2-google-maps": "^0.10.7",
     "vuex": "^3.3.0"
