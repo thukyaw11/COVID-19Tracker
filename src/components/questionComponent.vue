@@ -305,7 +305,7 @@ export default {
       for (var checkindex = 1; checkindex < 9; checkindex++) {
         var el = "check" + checkindex;
         document.getElementById(el).checked = false;
-        console.log(document.getElementById(el));
+
       }
     },
     selectOption(index) {
@@ -327,7 +327,7 @@ export default {
     },
     arrayMatch() {
       const finalArray = [...this.userResponses, ...this.resultTwo];
-      console.log(finalArray);
+
       if (finalArray.length == 9) {
         this.seeResultClick = true;
 
@@ -342,7 +342,7 @@ export default {
         this.finalResult = false;
       }
 
-      console.log(this.finalResult);
+  
       var d = new Date();
       var datestring =
         d.getDate() +
