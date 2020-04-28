@@ -572,7 +572,7 @@ export default {
       return axios.get(this.yesbaseURL);
     },
     fetchContacts() {
-      return axios.get("https://covid19mm.info/api/generate/api/convertcsvUIT");
+      return axios.get("https://covid19mm.info/api/generate/api/contact");
     },
     setCountryCases(data) {
       var sortedArray = data.sort(function(a, b) {
@@ -685,6 +685,7 @@ export default {
 
 
             this.contactlist = contacts.data.data;
+        
             this.setContacts(contacts.data);
           }
         )

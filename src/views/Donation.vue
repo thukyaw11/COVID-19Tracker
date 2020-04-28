@@ -168,7 +168,7 @@ export default {
       this.$root.$data.title = "Donation";
     }
     axios
-      .get("https://covid19mm.info/api/generate/api/coviddonationuit")
+      .get("https://covid19mm.info/api/generate/api/CovidDonationUIT")
       .then(response => {
         if (response.data.code == 200) {
           this.donationList = response.data.data;

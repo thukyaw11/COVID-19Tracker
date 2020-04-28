@@ -22,6 +22,8 @@
             <div
               type
               :class="darkmode? 'buttonDark' : 'button'"
+              v-scroll-to="'#elementt'"
+
             >{{$t('donationPage.donationButton')}}</div>
           </div>
         </div>
@@ -34,7 +36,7 @@
       </div>
     </div>
 
-    <div :class="darkmode? 'contactsflexDark' : 'contactsflex'">
+    <div :class="darkmode? 'contactsflexDark' : 'contactsflex'" id="elementt">
       <div class="backward">
         <div :class="darkmode? 'backwardbuttonDark' : 'backwardbutton'" @click="previous">
           <i
@@ -59,7 +61,7 @@
                 </div>
                 <div class="donatename">
                   <div style="color:#757575; font-size:14px;">Name</div>
-                  <div style="font-size:20px;">Sai Kaw Yount</div>
+                  <div style="font-size:20px;">{{slide.ContactPerson}}</div>
                 </div>
                 <div class="donatedescirption">
                   <div style="color:#757575; font-size:14px;">Description</div>
@@ -163,7 +165,7 @@ export default {
   },
   mounted() {
     axios
-      .get("https://covid19mm.info/api/generate/api/coviddonationuit")
+      .get("https://covid19mm.info/api/generate/api/CovidDonationUIT")
       .then(response => {
 
         if (response.data.code == 200) {

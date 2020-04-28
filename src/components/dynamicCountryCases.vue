@@ -62,7 +62,7 @@
 
       </div>
       <div class="desfooter">
-        Last Updated : {{addHour( statusCountry.statistic_taken_at)}}.
+        Last Updated : {{statusCountry[0].record_date}}
         <br />Copyright 2020 Covid 19 | Myanamr
       </div>
     </div>
