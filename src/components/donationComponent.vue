@@ -403,6 +403,7 @@ export default {
   transition: all 0.25s linear;
 }
 .dcardheader {
+  line-height:35px;
   font-weight: bold;
   font-size: 36px;
   display: flex;
@@ -500,18 +501,19 @@ export default {
 .bankcardacc {
   font-weight: bold;
   margin-left: 50px;
-  font-size: 36px;
+  font-size: 28px;
   align-items: center;
   display: flex;
   flex: 1;
   flex-direction: row;
 }
 .accname {
+
   display: flex;
-  flex: 1;
+  flex: 2;
 }
 .accnumber {
   display: flex;
-  flex: 5;
+  flex: 6;
 }
 </style>

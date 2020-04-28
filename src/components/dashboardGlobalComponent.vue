@@ -99,12 +99,33 @@ export default {
       this.WorldTotal = data;
     },
     addHour(recordDate) {
-      var dateTime = new Date(recordDate);
+      var dateParts = recordDate.substring(0, 10).split("-");
+      var timePart = recordDate.substr(11);
+      var hour = timePart.substring(0, 2);
+      var minute = timePart.substring(3, 5);
+      var second = timePart.substring(6, 9);
 
-      dateTime.setHours(dateTime.getHours() + 3);
-      dateTime.setMinutes(dateTime.getMinutes() + 30);
-      this.$root.$data.updatedTime = dateTime;
-      return dateTime;
+      var numHour = Number(hour) + 3;
+      var numMinute = Number(minute) + 30;
+
+      if (numMinute > 60) {
+        numHour = numHour + 1;
+        numMinute = "00";
+      }
+
+      var finalTimePart = numHour + ":" + numMinute + ":" + second;
+
+      var finalDateTime =
+        dateParts[1] +
+        "/" +
+        dateParts[2] +
+        "/" +
+        dateParts[0] +
+        " " +
+        finalTimePart;
+      this.$root.$data.updatedTime = finalDateTime;
+
+      return finalDateTime;
     }
   },
   created(){

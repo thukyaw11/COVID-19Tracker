@@ -63,7 +63,7 @@
       </div>
       <div class="desfooter">
         Last Updated : {{statusCountry[0].record_date}}
-        <br />Copyright 2020 Covid 19 | Myanamr
+        Copyright 2020 Covid 19 | Myanamr
       </div>
     </div>
   </div>
