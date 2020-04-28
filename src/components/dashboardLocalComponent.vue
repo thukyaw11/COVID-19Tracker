@@ -42,13 +42,14 @@
       </div>
       <div class="desmap">
         <svg
+           :fill="darkmode? '#999999' : '#e0e0e0' "
           xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           version="1.1"
           x="0px"
           y="0px"
-          viewBox="-461 335 100 125"
-                style="enable-background:new 0 0 100 100; width:155.58px; height:155.58px;"
+          viewBox="-461 335 100 100"
+                style="enable-background:new 0 0 100 100; width:80%; height:80%;"
           xml:space="preserve"
         >
           <path

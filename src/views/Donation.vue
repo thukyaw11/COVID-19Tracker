@@ -336,19 +336,21 @@ export default {
     margin-bottom: 10px;
   }
   .bankflex1 {
+    margin-left:20px;
     font-weight: bold;
     display: flex;
-    flex: 1;
+    flex: 2;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
   }
   .bankflex2 {
     font-weight: bold;
     display: flex;
-    flex: 4;
+    flex:6;
     flex-direction: row;
     align-items: center;
+    justify-content: flex-start;
   }
   .bankflex3 {
     display: flex;
@@ -358,6 +360,7 @@ export default {
     justify-content: center;
   }
   .contactnowbutton {
+    margin-bottom:10px;
     border-radius: 10px;
     font-weight: bold;
     color: #ffffff;

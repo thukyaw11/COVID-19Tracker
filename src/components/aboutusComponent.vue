@@ -44,7 +44,7 @@
           </div>
         </div>
       </div>
-      <div class="desaboutusfooter">
+      <div :class="darkmode? 'desaboutusfooterDark' : 'desaboutusfooter'">
         <div class="footerLeft">
           <i class="fab fa-facebook" :style="darkmode? 'color : #757575' : 'color : #212121' "></i>
           <i class="fab fa-facebook-messenger" :style="darkmode? 'color : #757575' : 'color : #212121' "></i>
@@ -86,7 +86,7 @@ export default {
 
   /*updated latest desktop ui*/
   .classdesbody {
-    flex-direction: row;
+    flex-direction: column;
     display: flex;
     width: 100%;
     height: 88%;
@@ -102,6 +102,18 @@ export default {
   .desaboutusfooter {
     position:fixed;
     bottom:0;
+    background-color:#fff;
+    width: 98%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    color: #212121;
+    border-top: 1px solid #eee;
+  }
+  .desaboutusfooterDark {
+    position:fixed;
+    bottom:0;
+    background-color:#121212;
     width: 98%;
     height: 80px;
     display: flex;
@@ -129,7 +141,7 @@ export default {
   .flexbody {
     display: flex;
     flex: 4;
-
+  
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -166,26 +178,29 @@ export default {
   /*updated end*/
   .desapicontainer {
     display: flex;
-    flex: 1;
+    flex:1;
     flex-direction: row;
   }
   .desapi {
+    font-size:14px;
+    color: #212121;
     display: flex;
-    width: 300px;
-    height: 100px;
+    width: 200px;
+    height: 90px;
     background-color: #f5f5f5;
-    border-radius: 15px;
+    border-radius: 10px;
     padding-left: 30px;
     align-items: center;
     justify-content: flex-start;
   }
     .desapiDark {
-      color: #f5f5f5;
+    font-size:14px;
+    color: #f5f5f5;
     display: flex;
-    width: 300px;
-    height: 100px;
+    width: 200px;
+    height: 90px;
     background-color: #212121;
-    border-radius: 15px;
+    border-radius: 10px;
     padding-left: 30px;
     align-items: center;
     justify-content: flex-start;
@@ -198,19 +213,19 @@ export default {
     margin-right: -10px;
     z-index: 1;
     border-radius: 50%;
-    height: 120px;
-    width: 120px;
+    height: 100px;
+    width: 100px;
   }
   .desimage1 img {
     border: 3px solid #fbbf3c;
     border-radius: 50%;
-    height: 120px;
-    width: 120px;
+    height: 100px;
+    width: 100px;
   }
   .desimage2 img {
     border-radius: 50%;
-    height: 120px;
-    width: 120px;
+    height: 100px;
+    width: 100px;
   }
   .desimage2 {
     display: flex;
@@ -219,8 +234,8 @@ export default {
     align-items: center;
     justify-content: flex-start;
     z-index: 0.5;
-    height: 120px;
-    width: 120px;
+    height: 100px;
+    width: 100px;
   }
 
  

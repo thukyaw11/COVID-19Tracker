@@ -1676,24 +1676,26 @@ export default {
   }
   .mapname
   {
+    font-size:14px;
     color:#212121;
     display:flex;
     border-radius:10px;
     align-items:center;
     justify-content:center;
-    width:250px;
-    height:65px;
+    width:200px;
+    height:60px;
     background-color:#f5f5f5;
   }
    .mapnameDark
   {
+    font-size:14px;
     color:#f5f5f5;
     display:flex;
     border-radius:10px;
     align-items:center;
     justify-content:center;
-    width:250px;
-    height:65px;
+    width:200px;
+    height:60px;
     background-color:#212121;
   }
   .desfooter {
