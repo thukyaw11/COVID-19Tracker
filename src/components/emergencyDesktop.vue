@@ -14,7 +14,7 @@
             />
             <br />
             <div
-              :style="darkmode? 'color: #f5f5f5; width:100%': 'color: #212121; width:100%'"
+              :style="darkmode? 'color: #f5f5f5; width:100%; line-height:35px;': 'color: #212121; width:100%; line-height:35px;'"
             >သင့်၌ ရောဂါပိုးကူးစက်ခံထားရနိုင်ချေ မြင့်မားသဖြင့်ကျန်းမာရေး၀န်ထမ်းများသို့ အလျင်အမြန်ဆက်သွယ်ပါ။</div>
 
             <br />

@@ -14,12 +14,12 @@
                   </div>
 
                   <br />
-                  <div type class="button">{{$t('donationPage.donationButton')}}</div>
+                  <div type :class="darkmode? 'buttonDark' : 'button'">{{$t('donationPage.donationButton')}}</div>
                 </div>
               </div>
             </div>
             <div class="fleximage">
-              <i class="fas fa-heartbeat" style="font-size:300px; color:#EC407A;"></i>
+              <i class="fas fa-heartbeat" :style="darkmode? 'color : #f06292; font-size:300px;' : 'color : #EC407A; font-size:300px;' "></i>
             </div>
         
       </div>

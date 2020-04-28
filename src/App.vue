@@ -74,20 +74,32 @@
         </div>
       </div>
 
-      <span
+      <div class="darkmodeswitcher">
+
+      <div :class="darkmode? 'darkmodeswitchercontainerDark' : 'darkmodeswitchercontainer'" @click="closeChange()">
+
+         <div class="darkmodeswitchericon"><span
         class="material-icons"
         v-if="darkmode"
         @click="closeChange()"
         :style="darkmode? 'color : #f5f5f5': 'color : #121212'"
       >brightness_7</span>
-      <p v-if="darkmode" style="color: white">off</p>
       <span
         class="material-icons"
         v-if="!darkmode"
         @click="closeChange()"
         :style="darkmode? 'color : #f5f5f5': 'color : #121212'"
-      >brightness_4</span>
-      <p v-if="!darkmode" style="color: #121212">on</p>
+      >brightness_4</span></div>
+        <div class="darkmodeswitcherlabel"> <p v-if="darkmode" style="color: white">Disable Dark Mode</p>
+         <p v-if="!darkmode" style="color: #121212">Enable Dark Mode</p></div>
+
+      
+      
+
+
+      </div>
+      </div>
+      
 
       <div
         class="closebtn"
@@ -137,6 +149,7 @@
           >{{$t('local')}}</router-link>
 
           <router-link
+            :class="darkmode? 'deslinkDark' : 'deslink'"
             to="/map"
             class="deslink"
             style="text-decoration : none; color: #212121;"
@@ -173,13 +186,13 @@
               class="material-icons"
               v-if="darkmode"
               @click="closeChange()"
-              :style="darkmode? 'color : #f5f5f5': 'color : #121212'"
+              :style="darkmode? 'color : #f5f5f5': 'color : #7575757'"
             >brightness_7</span>
             <span
               class="material-icons"
               v-if="!darkmode"
               @click="closeChange()"
-              :style="darkmode? 'color : #f5f5f5': 'color : #121212'"
+              :style="darkmode? 'color : #f5f5f5': 'color : #757575'"
             >brightness_4</span>
           </div>
           <div
@@ -187,7 +200,7 @@
             style="text-decoration : none; color: #757575; font-size:18px; cursor: pointer"
             @click="changeLocaleDesk()"
           >
-            <span class="material-icons" :style="count%2 == 0? 'color:#ffd54f' : ''">g_translate</span>
+            <span class="material-icons" :style="count%2 == 0? 'color:#29b6f6' : ''">g_translate</span>
           </div>
         </div>
       </div>
@@ -269,7 +282,7 @@
             @click="openModal()"
           >
             <div :class="darkmode? 'desemergencyflex1Dark' : 'desemergencyflex1'">
-              <i class="fas fa-star-of-life" style="font-size:36px;"></i>
+              <i class="fas fa-star-of-life" style="font-size:24px;"></i>
             </div>
             <div
               :class="darkmode? 'desemergencyflex2Dark' : 'desemergencyflex2'"
@@ -285,8 +298,7 @@
                 </div>
                 <div class="headingcontainer">
                   <div
-                    style="margin-left:20px; font-weight:bold;"
-                    :style="darkmode? 'color: #ef9a9a': 'color: #F44336'"
+                    style="margin-left:20px; font-weight:bold;"  :style="darkmode? 'color: #ef9a9a': 'color: #F44336'"
                   >{{$t('resultPage.phno')}}</div>
                   <br />
                   <br />
@@ -419,6 +431,7 @@
       <div id="desquestionbody">
         <QuestionComponent v-if="this.urlLocation == 'question'" />
       </div>
+
     </div>
   </div>
 </template>
@@ -600,6 +613,7 @@ export default {
     } else {
       this.count = 1;
     }
+    this.$store.dispatch("getContacts");
     this.$store.dispatch("getCountryCases");
 
     this.urlLocation = window.location.href.split("/").pop();
@@ -625,6 +639,7 @@ export default {
       document.getElementById("desscreeningbody").style.display = "none";
       document.getElementById("desdonationbody").style.display = "none";
       document.getElementById("desquestionbody").style.display = "none";
+
     } else if (this.urlLocation == "start") {
       document.getElementById("desbody").style.display = "none";
       document.getElementById("desaboutusbody").style.display = "none";
@@ -663,17 +678,11 @@ export default {
       .all([
         this.fetchCountriesCases(),
         this.fetchTdyNews(),
-        this.fetchYesNews(),
-        this.fetchConacts()
+        this.fetchYesNews()
       ])
       .then(
         axios.spread(
-          (
-            countrycasesResponse,
-            newsContentToday,
-            newsContentYesterday,
-            contactsResponse
-          ) => {
+          (countrycasesResponse, newsContentToday, newsContentYesterday) => {
             //country response
             countrycasesResponse.json().then(data => {
               this.CountryByCases = data.countries_stat;
@@ -689,10 +698,6 @@ export default {
             if (newsContentYesterday.status == 200) {
               this.yesterdayNews = newsContentYesterday.data.items;
             }
-
-            //contacts response
-            this.contactlist = contactsResponse.data;
-            this.setContacts(contactsResponse.data);
           }
         )
       );
@@ -705,36 +710,37 @@ export default {
       console.log(this.urlLocation);
 
       if (this.urlLocation == "aboutus") {
-        document.getElementById("desbody").style.display = "none";
-        document.getElementById("desaboutusbody").style.display = "flex";
-        document.getElementById("desscreeningbody").style.display = "none";
-        document.getElementById("desdonationbody").style.display = "none";
-        document.getElementById("desquestionbody").style.display = "none";
-      } else if (this.urlLocation == "start") {
-        document.getElementById("desbody").style.display = "none";
-        document.getElementById("desaboutusbody").style.display = "none";
-        document.getElementById("desscreeningbody").style.display = "flex";
-        document.getElementById("desdonationbody").style.display = "none";
-        document.getElementById("desquestionbody").style.display = "none";
-      } else if (this.urlLocation == "donation") {
-        document.getElementById("desbody").style.display = "none";
-        document.getElementById("desaboutusbody").style.display = "none";
-        document.getElementById("desscreeningbody").style.display = "none";
-        document.getElementById("desdonationbody").style.display = "flex";
-        document.getElementById("desquestionbody").style.display = "none";
-      } else if (this.urlLocation == "question") {
-        document.getElementById("desbody").style.display = "none";
-        document.getElementById("desaboutusbody").style.display = "none";
-        document.getElementById("desscreeningbody").style.display = "none";
-        document.getElementById("desdonationbody").style.display = "none";
-        document.getElementById("desquestionbody").style.display = "flex";
-      } else {
-        document.getElementById("desbody").style.display = "flex";
-        document.getElementById("desaboutusbody").style.display = "none";
-        document.getElementById("desscreeningbody").style.display = "none";
-        document.getElementById("desdonationbody").style.display = "none";
-        document.getElementById("desquestionbody").style.display = "none";
-      }
+      document.getElementById("desbody").style.display = "none";
+      document.getElementById("desaboutusbody").style.display = "flex";
+      document.getElementById("desscreeningbody").style.display = "none";
+      document.getElementById("desdonationbody").style.display = "none";
+      document.getElementById("desquestionbody").style.display = "none";
+    } else if (this.urlLocation == "start") {
+      document.getElementById("desbody").style.display = "none";
+      document.getElementById("desaboutusbody").style.display = "none";
+      document.getElementById("desscreeningbody").style.display = "flex";
+      document.getElementById("desdonationbody").style.display = "none";
+      document.getElementById("desquestionbody").style.display = "none";
+    } else if (this.urlLocation == "donation") {
+      document.getElementById("desbody").style.display = "none";
+      document.getElementById("desaboutusbody").style.display = "none";
+      document.getElementById("desscreeningbody").style.display = "none";
+      document.getElementById("desdonationbody").style.display = "flex";
+      document.getElementById("desquestionbody").style.display = "none";
+    } else if (this.urlLocation == "question") {
+      document.getElementById("desbody").style.display = "none";
+      document.getElementById("desaboutusbody").style.display = "none";
+      document.getElementById("desscreeningbody").style.display = "none";
+      document.getElementById("desdonationbody").style.display = "none";
+      document.getElementById("desquestionbody").style.display = "flex";
+    } else {
+      document.getElementById("desbody").style.display = "flex";
+      document.getElementById("desaboutusbody").style.display = "none";
+      document.getElementById("desscreeningbody").style.display = "none";
+      document.getElementById("desdonationbody").style.display = "none";
+      document.getElementById("desquestionbody").style.display = "none";
+    }
+
 
       console.log(from);
       //top progress
@@ -754,7 +760,7 @@ export default {
           .includes(this.search.toLowerCase());
       });
     },
-    filterListContacts() {
+      filterListContacts() {
       return this.contactlist.filter(contact => {
         return contact.name
           .toLowerCase()
@@ -764,6 +770,26 @@ export default {
     storeVal() {
       return this.$store.getters.countrycases;
     }
+  },
+  metaInfo: {
+    meta: [
+      { property: "og:title", content: "COVID 19 | Myanmar" },
+      {
+        property: "og:site_name",
+        content: "A covid 19 tracker app powered by UIT-SU | Myanmar"
+      },
+      // The list of types is available here: http://ogp.me/#types
+      { property: "og:type", content: "tracker app" },
+      // Should the the same as your canonical link, see below.
+      { property: "og:url", content: "https://covid19mm.netlify.com/" },
+      {
+        property: "og:image",
+        content:
+          "https://icons8.com/wp-content/uploads/2020/02/elegant-digital-illustration.png"
+      },
+      // Often the same as your meta description, but not always.
+      { property: "og:description", content: "Hello I am Min Thu Kyaw" }
+    ]
   }
 };
 
@@ -792,6 +818,52 @@ export default {
 
   .desktopcontainer {
     display: none;
+  }
+  .darkmodeswitcher
+  {
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    display:flex;
+    flex:1;
+  }
+  .darkmodeswitchercontainer
+  {
+
+    height:50px;
+    border-radius:50px;
+    flex-direction:row;
+    background-color:#f5f5f5;
+      width:297px;
+    display:flex;
+ 
+  }
+   .darkmodeswitchercontainerDark
+  {
+    height:50px;
+    border-radius:50px;
+    flex-direction:row;
+    background-color:#212121;
+    width:297px;
+    display:flex;
+ 
+  }
+  .darkmodeswitchericon
+  {
+    align-items:center;
+    justify-content:flex-end;
+    margin-right:10px;
+    display:flex;
+    flex:2.5;
+    width:10%;
+  }
+  .darkmodeswitcherlabel
+  {
+    justify-content:flex-start;
+    margin-left:10px;
+    align-items:center;
+    display:flex;
+    flex:5;
   }
   .languageswitcher {
     display: flex;
@@ -823,7 +895,7 @@ export default {
     margin-right: 5px;
     display: flex;
     width: 145px;
-    height: 45px;
+    height: 50px;
     align-items: center;
     justify-content: center;
   }
@@ -833,7 +905,7 @@ export default {
     margin-right: 5px;
     display: flex;
     width: 145px;
-    height: 45px;
+    height: 50px;
     align-items: center;
     justify-content: center;
     color: #f5f5f5;
@@ -844,7 +916,7 @@ export default {
     margin-left: 5px;
     display: flex;
     width: 145px;
-    height: 45px;
+    height: 50px;
     align-items: center;
     justify-content: center;
   }
@@ -855,7 +927,7 @@ export default {
     margin-left: 5px;
     display: flex;
     width: 145px;
-    height: 45px;
+    height: 50px;
     align-items: center;
     justify-content: center;
   }
@@ -1232,8 +1304,8 @@ export default {
 }
 @media only screen and (min-width: 1100px) {
   .container-donationDark,
-  .container-donation,
-  .mapbody {
+  .container-donation ,
+  .mapbody{
     display: none;
   }
   .headercontainer {
@@ -1279,7 +1351,7 @@ export default {
     text-align: center;
     margin-top: 100px;
   }
-
+  
   .searchcontainer-custom {
     border-radius: 50px;
     display: flex;
@@ -1316,7 +1388,7 @@ export default {
   ::-webkit-scrollbar {
     width: 3px;
   }
-
+  
   /* Handle */
   ::-webkit-scrollbar-thumb {
     background-color: #d6d6d6;
@@ -1338,8 +1410,8 @@ export default {
     display: flex;
     position: fixed;
     flex: 1;
-    background-color: #f5f5f5;
-    position: fixed;
+    background-color:#f5f5f5;
+    position:fixed;
     width: 100%;
     font-size: 14px;
     flex-direction: row;
@@ -1351,8 +1423,8 @@ export default {
     position: fixed;
     flex: 1;
     width: 100%;
-    background-color: #121212;
-    position: fixed;
+     background-color:#121212;
+     position:fixed;
     font-size: 14px;
     flex-direction: row;
     height: 65px;
@@ -1631,22 +1703,36 @@ export default {
     justify-content: center;
     background-color: #212121;
   }
-  .mapname {
-    display: flex;
-    border-radius: 10px;
-    align-items: center;
-    justify-content: center;
-    width: 250px;
-    height: 65px;
-    background-color: #f5f5f5;
-  }
   .desmap {
-    flex-direction: column;
+    
+    flex-direction:column;
     display: flex;
     width: 100%;
     height: 75%;
     align-items: center;
     justify-content: center;
+  }
+  .mapname
+  {
+    color:#212121;
+    display:flex;
+    border-radius:10px;
+    align-items:center;
+    justify-content:center;
+    width:250px;
+    height:65px;
+    background-color:#f5f5f5;
+  }
+   .mapnameDark
+  {
+    color:#f5f5f5;
+    display:flex;
+    border-radius:10px;
+    align-items:center;
+    justify-content:center;
+    width:250px;
+    height:65px;
+    background-color:#212121;
   }
   .desfooter {
     flex: 1;
@@ -1697,14 +1783,16 @@ export default {
   .desemergencyflex2 {
     display: flex;
     font-weight: bold;
-    flex: 4;
+    flex: 5;
+    font-size:18px;
     color: #ffffff;
     justify-content: center;
   }
   .desemergencyflex2Dark {
     display: flex;
     font-weight: bold;
-    flex: 4;
+    flex: 5;
+    font-size:18px;
     color: #121212;
     justify-content: center;
   }
@@ -1895,7 +1983,7 @@ export default {
     flex: 1;
     flex-direction: column;
     background-color: #fafafa;
-    color: #90caf9;
+    color: #90CAF9;
   }
   .desbox3 {
     display: flex;
@@ -1906,7 +1994,7 @@ export default {
   .desbox3Dark {
     display: flex;
     flex: 1;
-    background: #424242;
+    background: #424242 ;
     align-items: flex-end;
     justify-content: center;
   }
