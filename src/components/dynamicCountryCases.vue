@@ -123,7 +123,7 @@ export default {
       })
         .then(response => {
           response.json().then(statusByCountry => {
-            console.log(statusByCountry);
+
             this.statusCountry = statusByCountry.latest_stat_by_country;
             this.setData(statusByCountry.latest_stat_by_country);
           });

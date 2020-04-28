@@ -141,7 +141,7 @@ export default {
   mounted() {
     axios.get("https://covid19mm.info/api/contact/list").then(response => {
         this.contactLists = response.data;
-        console.log(this.contactLists);
+       
         this.setContacts(response.data);
     });
   },

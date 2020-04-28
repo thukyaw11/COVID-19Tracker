@@ -165,11 +165,9 @@ export default {
     axios
       .get("https://covid19mm.info/api/generate/api/coviddonationuit")
       .then(response => {
-        console.log(response.data.code);
+
         if (response.data.code == 200) {
           this.slides = response.data.data;
-        } else {
-          console.log("Sever can't response");
         }
       });
   },
