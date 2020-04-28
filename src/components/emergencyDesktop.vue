@@ -18,7 +18,13 @@
             >သင့်၌ ရောဂါပိုးကူးစက်ခံထားရနိုင်ချေ မြင့်မားသဖြင့်ကျန်းမာရေး၀န်ထမ်းများသို့ အလျင်အမြန်ဆက်သွယ်ပါ။</div>
 
             <br />
-            <div type class="button" id="myBtn" @click="openModal" style="cursor: pointer">{{($t('resultPage.phno'))}}</div>
+            <div
+              type
+              class="button"
+              id="myBtn"
+              @click="openModal"
+              style="cursor: pointer"
+            >{{($t('resultPage.phno'))}}</div>
           </div>
         </div>
       </div>
@@ -98,6 +104,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -106,7 +114,8 @@ export default {
         ? JSON.parse(localStorage.getItem("darkmode"))
         : false,
       copyCode: "",
-      searchContacts: ""
+      searchContacts: "",
+      contactLists: []
     };
   },
   created() {
@@ -124,11 +133,25 @@ export default {
     },
     closeModal() {
       this.$el.querySelector("#myModal").style.display = "none";
+    },
+    setContacts(data){
+      this.contactLists = data;
     }
+  },
+  mounted() {
+    axios.get("https://covid19mm.info/api/contact/list").then(response => {
+        this.contactLists = response.data;
+        console.log(this.contactLists);
+        this.setContacts(response.data);
+    });
   },
   computed: {
     filterListContacts() {
-      return this.$store.getters.contacts;
+      return this.contactLists.filter(contact => {
+        return contact.name
+          .toLowerCase()
+          .includes(this.searchContacts.toLowerCase());
+      });
     }
   }
 };

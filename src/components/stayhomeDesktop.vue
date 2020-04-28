@@ -9,7 +9,7 @@
           >{{$t('resultPage.stayhomeResponse')}}</div>
           <div class="flexbodycontent">
             <br />
-            <div  :style="darkmode? 'color: #f5f5f5 ; width:90%;': 'color: #757575; width:90%;'">
+            <div :style="darkmode? 'color: #f5f5f5 ; width:90%;': 'color: #757575; width:90%;'">
               <div class="divcontainer">
                 <div class="div1">
                   <i class="fas fa-thermometer-half" style="font-size:28px;"></i>
@@ -44,7 +44,12 @@
               </div>
             </div>
 
-            <div type class="button" @click="openModal()" style="cursor: pointer">{{($t('resultPage.phno'))}}</div>
+            <div
+              type
+              class="button"
+              @click="openModal()"
+              style="cursor: pointer"
+            >{{($t('resultPage.phno'))}}</div>
           </div>
         </div>
       </div>
@@ -121,6 +126,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
@@ -129,7 +136,8 @@ export default {
         ? JSON.parse(localStorage.getItem("darkmode"))
         : false,
       copyCode: "",
-      searchContacts: ""
+      searchContacts: "",
+      contactLists: []
     };
   },
   created() {
@@ -143,23 +151,34 @@ export default {
       this.darkmode = value;
     },
     openModal() {
-     
-      this.$el.querySelector('#myModal').style.display = "block"
-
+      this.$el.querySelector("#myModal").style.display = "block";
     },
     closeModal() {
-      this.$el.querySelector('#myModal').style.display = "none"
-
-
+      this.$el.querySelector("#myModal").style.display = "none";
+    },
+    setContacts(data) {
+      this.contactLists = data;
     }
+  },
+  mounted() {
+    axios.get("https://covid19mm.info/api/contact/list").then(response => {
+      this.contactLists = response.data;
+      console.log(this.contactLists);
+      this.setContacts(response.data);
+    });
   },
   computed: {
     filterListContacts() {
-      return this.$store.getters.contacts;
+      return this.contactLists.filter(contact => {
+        return contact.name
+          .toLowerCase()
+          .includes(this.searchContacts.toLowerCase());
+      });
     }
   }
 };
 </script>
+
 
 <style scoped>
 /*updated latest desktop ui*/
@@ -247,218 +266,217 @@ export default {
   align-items: flex-start;
 }
 
-  /* The Modal (background) */
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-    -webkit-animation-name: fadeIn; /* Fade in the background */
-    -webkit-animation-duration: 0.4s;
-    animation-name: fadeIn;
-    animation-duration: 0.4s;
-  }
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  -webkit-animation-name: fadeIn; /* Fade in the background */
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s;
+}
 
-  /* Modal Content */
-  .modal-content {
-    position: fixed;
+/* Modal Content */
+.modal-content {
+  position: fixed;
+  right: 0;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  background-color: #fff;
+  width: 446px;
+  height: 100%;
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.4s;
+}
+.modal-contentDark {
+  position: fixed;
+  right: 0;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  background-color: #212121;
+  width: 446px;
+  height: 100%;
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.4s;
+}
+/* The Close Button */
+.close {
+  color: #757575;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modalheading {
+  position: fixed;
+  width: 446px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+.closecontainer {
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 20px;
+  display: flex;
+  flex: 3;
+}
+.headingcontainer {
+  justify-content: center;
+  font-size: 24px;
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+}
+.modalbody {
+  margin-top: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex-direction: column;
+}
+.descontactscontainer {
+  width: 446px;
+  height: 135px;
+  display: flex;
+  border-bottom: 1px solid #eee;
+  flex-direction: row;
+}
+.descontactscontainerDark {
+  width: 446px;
+  height: 135px;
+  display: flex;
+  border-bottom: 1px solid #121212;
+  flex-direction: row;
+}
+.desflex1 {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.desbox1 {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+.desbox2 {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.desflex2 {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  background-color: #fafafa;
+  color: #1976d2;
+}
+.desbox3 {
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+  justify-content: center;
+}
+.desbox3Dark {
+  display: flex;
+  flex: 1;
+  background: #212121;
+  align-items: flex-end;
+  justify-content: center;
+}
+.desbox4 {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+.desbox4Dark {
+  display: flex;
+  flex: 1;
+  background: #212121;
+  align-items: center;
+  justify-content: center;
+}
+
+.topnav {
+  margin-right: 15px;
+  overflow: hidden;
+}
+.topnav a {
+  margin-left: 10px;
+  width: 120px;
+  float: left;
+  text-align: center;
+  padding: 18px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.router-link-active {
+  font-weight: bold;
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+  from {
+    right: -300px;
+    opacity: 0;
+  }
+  to {
     right: 0;
-    display: flex;
-    flex: 1;
-    flex-direction: row;
-    background-color: #fff;
-    width: 446px;
-    height: 100%;
-    -webkit-animation-name: slideIn;
-    -webkit-animation-duration: 0.4s;
-    animation-name: slideIn;
-    animation-duration: 0.4s;
+    opacity: 1;
   }
-  .modal-contentDark {
-    position: fixed;
+}
+
+@keyframes slideIn {
+  from {
+    right: -300px;
+    opacity: 0;
+  }
+  to {
     right: 0;
-    display: flex;
-    flex: 1;
-    flex-direction: row;
-    background-color: #212121;
-    width: 446px;
-    height: 100%;
-    -webkit-animation-name: slideIn;
-    -webkit-animation-duration: 0.4s;
-    animation-name: slideIn;
-    animation-duration: 0.4s;
+    opacity: 1;
   }
-  /* The Close Button */
-  .close {
-    color: #757575;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
+}
 
-  .close:hover,
-  .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
   }
+  to {
+    opacity: 1;
+  }
+}
 
-  .modalheading {
-    position: fixed;
-    width: 446px;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  .closecontainer {
-    align-items: center;
-    justify-content: flex-end;
-    margin-right: 20px;
-    display: flex;
-    flex: 3;
+  to {
+    opacity: 1;
   }
-  .headingcontainer {
-    justify-content: center;
-    font-size: 24px;
-    display: flex;
-    flex-direction: column;
-    height: 150px;
-  }
-  .modalbody {
-    margin-top: 300px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    flex-direction: column;
-  }
-  .descontactscontainer {
-    width: 446px;
-    height: 135px;
-    display: flex;
-    border-bottom: 1px solid #eee;
-    flex-direction: row;
-  }
-  .descontactscontainerDark {
-    width: 446px;
-    height: 135px;
-    display: flex;
-    border-bottom: 1px solid #121212;
-    flex-direction: row;
-  }
-  .desflex1 {
-    display: flex;
-    flex: 2;
-    flex-direction: column;
-    margin-left: 20px;
-  }
-
-  .desbox1 {
-    display: flex;
-    flex: 1;
-    align-items: center;
-  }
-  .desbox2 {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: flex-start;
-  }
-
-  .desflex2 {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    background-color: #fafafa;
-    color: #1976d2;
-  }
-  .desbox3 {
-    display: flex;
-    flex: 1;
-    align-items: flex-end;
-    justify-content: center;
-  }
-  .desbox3Dark {
-    display: flex;
-    flex: 1;
-    background: #212121;
-    align-items: flex-end;
-    justify-content: center;
-  }
-  .desbox4 {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-  }
-  .desbox4Dark {
-    display: flex;
-    flex: 1;
-    background: #212121;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .topnav {
-    margin-right: 15px;
-    overflow: hidden;
-  }
-  .topnav a {
-    margin-left: 10px;
-    width: 120px;
-    float: left;
-    text-align: center;
-    padding: 18px;
-    text-decoration: none;
-    font-size: 17px;
-  }
-  .router-link-active {
-    font-weight: bold;
-  }
-
-  /* Add Animation */
-  @-webkit-keyframes slideIn {
-    from {
-      right: -300px;
-      opacity: 0;
-    }
-    to {
-      right: 0;
-      opacity: 1;
-    }
-  }
-
-  @keyframes slideIn {
-    from {
-      right: -300px;
-      opacity: 0;
-    }
-    to {
-      right: 0;
-      opacity: 1;
-    }
-  }
-
-  @-webkit-keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
+}
 </style>

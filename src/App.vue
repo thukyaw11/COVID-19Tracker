@@ -285,7 +285,8 @@
                 </div>
                 <div class="headingcontainer">
                   <div
-                    style="margin-left:20px; font-weight:bold;"  :style="darkmode? 'color: #ef9a9a': 'color: #F44336'"
+                    style="margin-left:20px; font-weight:bold;"
+                    :style="darkmode? 'color: #ef9a9a': 'color: #F44336'"
                   >{{$t('resultPage.phno')}}</div>
                   <br />
                   <br />
@@ -418,7 +419,6 @@
       <div id="desquestionbody">
         <QuestionComponent v-if="this.urlLocation == 'question'" />
       </div>
-
     </div>
   </div>
 </template>
@@ -600,7 +600,6 @@ export default {
     } else {
       this.count = 1;
     }
-    this.$store.dispatch("getContacts");
     this.$store.dispatch("getCountryCases");
 
     this.urlLocation = window.location.href.split("/").pop();
@@ -626,7 +625,6 @@ export default {
       document.getElementById("desscreeningbody").style.display = "none";
       document.getElementById("desdonationbody").style.display = "none";
       document.getElementById("desquestionbody").style.display = "none";
-
     } else if (this.urlLocation == "start") {
       document.getElementById("desbody").style.display = "none";
       document.getElementById("desaboutusbody").style.display = "none";
@@ -665,11 +663,17 @@ export default {
       .all([
         this.fetchCountriesCases(),
         this.fetchTdyNews(),
-        this.fetchYesNews()
+        this.fetchYesNews(),
+        this.fetchConacts()
       ])
       .then(
         axios.spread(
-          (countrycasesResponse, newsContentToday, newsContentYesterday) => {
+          (
+            countrycasesResponse,
+            newsContentToday,
+            newsContentYesterday,
+            contactsResponse
+          ) => {
             //country response
             countrycasesResponse.json().then(data => {
               this.CountryByCases = data.countries_stat;
@@ -685,6 +689,10 @@ export default {
             if (newsContentYesterday.status == 200) {
               this.yesterdayNews = newsContentYesterday.data.items;
             }
+
+            //contacts response
+            this.contactlist = contactsResponse.data;
+            this.setContacts(contactsResponse.data);
           }
         )
       );
@@ -697,37 +705,36 @@ export default {
       console.log(this.urlLocation);
 
       if (this.urlLocation == "aboutus") {
-      document.getElementById("desbody").style.display = "none";
-      document.getElementById("desaboutusbody").style.display = "flex";
-      document.getElementById("desscreeningbody").style.display = "none";
-      document.getElementById("desdonationbody").style.display = "none";
-      document.getElementById("desquestionbody").style.display = "none";
-    } else if (this.urlLocation == "start") {
-      document.getElementById("desbody").style.display = "none";
-      document.getElementById("desaboutusbody").style.display = "none";
-      document.getElementById("desscreeningbody").style.display = "flex";
-      document.getElementById("desdonationbody").style.display = "none";
-      document.getElementById("desquestionbody").style.display = "none";
-    } else if (this.urlLocation == "donation") {
-      document.getElementById("desbody").style.display = "none";
-      document.getElementById("desaboutusbody").style.display = "none";
-      document.getElementById("desscreeningbody").style.display = "none";
-      document.getElementById("desdonationbody").style.display = "flex";
-      document.getElementById("desquestionbody").style.display = "none";
-    } else if (this.urlLocation == "question") {
-      document.getElementById("desbody").style.display = "none";
-      document.getElementById("desaboutusbody").style.display = "none";
-      document.getElementById("desscreeningbody").style.display = "none";
-      document.getElementById("desdonationbody").style.display = "none";
-      document.getElementById("desquestionbody").style.display = "flex";
-    } else {
-      document.getElementById("desbody").style.display = "flex";
-      document.getElementById("desaboutusbody").style.display = "none";
-      document.getElementById("desscreeningbody").style.display = "none";
-      document.getElementById("desdonationbody").style.display = "none";
-      document.getElementById("desquestionbody").style.display = "none";
-    }
-
+        document.getElementById("desbody").style.display = "none";
+        document.getElementById("desaboutusbody").style.display = "flex";
+        document.getElementById("desscreeningbody").style.display = "none";
+        document.getElementById("desdonationbody").style.display = "none";
+        document.getElementById("desquestionbody").style.display = "none";
+      } else if (this.urlLocation == "start") {
+        document.getElementById("desbody").style.display = "none";
+        document.getElementById("desaboutusbody").style.display = "none";
+        document.getElementById("desscreeningbody").style.display = "flex";
+        document.getElementById("desdonationbody").style.display = "none";
+        document.getElementById("desquestionbody").style.display = "none";
+      } else if (this.urlLocation == "donation") {
+        document.getElementById("desbody").style.display = "none";
+        document.getElementById("desaboutusbody").style.display = "none";
+        document.getElementById("desscreeningbody").style.display = "none";
+        document.getElementById("desdonationbody").style.display = "flex";
+        document.getElementById("desquestionbody").style.display = "none";
+      } else if (this.urlLocation == "question") {
+        document.getElementById("desbody").style.display = "none";
+        document.getElementById("desaboutusbody").style.display = "none";
+        document.getElementById("desscreeningbody").style.display = "none";
+        document.getElementById("desdonationbody").style.display = "none";
+        document.getElementById("desquestionbody").style.display = "flex";
+      } else {
+        document.getElementById("desbody").style.display = "flex";
+        document.getElementById("desaboutusbody").style.display = "none";
+        document.getElementById("desscreeningbody").style.display = "none";
+        document.getElementById("desdonationbody").style.display = "none";
+        document.getElementById("desquestionbody").style.display = "none";
+      }
 
       console.log(from);
       //top progress
@@ -748,31 +755,15 @@ export default {
       });
     },
     filterListContacts() {
-      return this.$store.getters.contacts;
+      return this.contactlist.filter(contact => {
+        return contact.name
+          .toLowerCase()
+          .includes(this.searchContacts.toLowerCase());
+      });
     },
     storeVal() {
       return this.$store.getters.countrycases;
     }
-  },
-  metaInfo: {
-    meta: [
-      { property: "og:title", content: "COVID 19 | Myanmar" },
-      {
-        property: "og:site_name",
-        content: "A covid 19 tracker app powered by UIT-SU | Myanmar"
-      },
-      // The list of types is available here: http://ogp.me/#types
-      { property: "og:type", content: "tracker app" },
-      // Should the the same as your canonical link, see below.
-      { property: "og:url", content: "https://covid19mm.netlify.com/" },
-      {
-        property: "og:image",
-        content:
-          "https://icons8.com/wp-content/uploads/2020/02/elegant-digital-illustration.png"
-      },
-      // Often the same as your meta description, but not always.
-      { property: "og:description", content: "Hello I am Min Thu Kyaw" }
-    ]
   }
 };
 
@@ -1241,8 +1232,8 @@ export default {
 }
 @media only screen and (min-width: 1100px) {
   .container-donationDark,
-  .container-donation ,
-  .mapbody{
+  .container-donation,
+  .mapbody {
     display: none;
   }
   .headercontainer {
@@ -1347,8 +1338,8 @@ export default {
     display: flex;
     position: fixed;
     flex: 1;
-    background-color:#f5f5f5;
-    position:fixed;
+    background-color: #f5f5f5;
+    position: fixed;
     width: 100%;
     font-size: 14px;
     flex-direction: row;
@@ -1360,8 +1351,8 @@ export default {
     position: fixed;
     flex: 1;
     width: 100%;
-     background-color:#121212;
-     position:fixed;
+    background-color: #121212;
+    position: fixed;
     font-size: 14px;
     flex-direction: row;
     height: 65px;
@@ -1640,7 +1631,17 @@ export default {
     justify-content: center;
     background-color: #212121;
   }
+  .mapname {
+    display: flex;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 65px;
+    background-color: #f5f5f5;
+  }
   .desmap {
+    flex-direction: column;
     display: flex;
     width: 100%;
     height: 75%;
@@ -1894,7 +1895,7 @@ export default {
     flex: 1;
     flex-direction: column;
     background-color: #fafafa;
-    color: #90CAF9;
+    color: #90caf9;
   }
   .desbox3 {
     display: flex;
@@ -1905,7 +1906,7 @@ export default {
   .desbox3Dark {
     display: flex;
     flex: 1;
-    background: #424242 ;
+    background: #424242;
     align-items: flex-end;
     justify-content: center;
   }

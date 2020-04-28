@@ -1,0 +1,47 @@
+{
+    "code": 200,
+    "data": [
+        {
+            "_id": "5ea2be600f35903664eb6abb",
+            "Name": "1. National Committee for Corona Virus Disease Precaution, Control and  Cure",
+            "Description": "To Establish the National Fund for Covid 19 Precaution, Control and  Cure ",
+            "MEB": "CF 004880",
+            "KBZ": "034 103 034 0232 8301",
+            "AYA": "A/C 000 110 501 002 5635",
+            "CB": "0093 1005 0000 1333",
+            "KBZPay": "null",
+            "_": "0",
+            "TypeofOrganisationorPerson": "Government",
+            "ContactPhoneNumber": "null",
+            "__v": 0
+        },
+        {
+            "_id": "5ea2be600f35903664eb6abc",
+            "Name": "2. University of Medicine 1 Volunteer Task Force",
+            "Description": "For Medical Staff",
+            "MEB": "null",
+            "KBZ": "999 307 23400 21 3301",
+            "AYA": "null",
+            "CB": "2012 6001 0001 9771",
+            "KBZPay": "9450044582.0",
+            "_": "1",
+            "TypeofOrganisationorPerson": "University",
+            "ContactPhoneNumber": "9450044582.0",
+            "__v": 0
+        },
+        {
+            "_id": "5ea2be600f35903664eb6abd",
+            "Name": "3.  Yangon Technological University Students' Union",
+            "Description": "For Medical Staff",
+            "MEB": "null",
+            "KBZ": "279 3012 7900 667801",
+            "AYA": "00 932010 10061746",
+            "CB": "0113 6005000 42595",
+            "KBZPay": "9773270096.0",
+            "_": "2",
+            "TypeofOrganisationorPerson": "University",
+            "ContactPhoneNumber": "9773270096.0",
+            "__v": 0
+        }
+    ]
+}
