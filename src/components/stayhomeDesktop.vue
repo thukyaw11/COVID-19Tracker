@@ -161,10 +161,10 @@ export default {
     }
   },
   mounted() {
-    axios.get("https://covid19mm.info/api/contact/list").then(response => {
-      this.contactLists = response.data;
+    axios.get("https://covid19mm.info/api/generate/api/contact").then(response => {
+      this.contactLists = response.data.data;
 
-      this.setContacts(response.data);
+      this.setContacts(response.data.data);
     });
   },
   computed: {
