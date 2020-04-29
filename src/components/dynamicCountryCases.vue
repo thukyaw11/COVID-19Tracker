@@ -127,7 +127,7 @@ export default {
   watch: {
     value: function(newVal,oldVal) {
       this.$refs.topProgress.start();
-      console.log(document.getElementById('desimage'));
+    
       // Use setTimeout for demo
       setTimeout(() => {
         this.$refs.topProgress.done();
