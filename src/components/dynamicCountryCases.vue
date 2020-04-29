@@ -42,8 +42,8 @@
       </div>
 
       <div class="desmap">
-                <img :src='getSVG()' alt="" id="desimage">
-                  <div :class="darkmode? 'mapnameDark' : 'mapname'">{{value}} {{getSVG()}}</div>
+                <img src="../assets/svg/France.svg" alt="" id="desimage">
+                  <div :class="darkmode? 'mapnameDark' : 'mapname'">{{value}} {{imgUrl}}</div>
 
 
       </div>
@@ -73,6 +73,11 @@ export default {
         imgValue: ''
     };
   },
+  computed : {
+    imgUrl(){
+      return '../assets/svg/' + 'Spain' + '.svg';
+    }
+  },
   created() {
     // console.log(svg);
     // this.svg.push(svg);
@@ -84,12 +89,7 @@ export default {
     );
   },
   methods: {
-    getSVG(){
- 
-      const imgURL = '../assets/svg/' + this.value + '.svg';
-      console.log(typeof(imgURL));
-      return imgURL;
-    },
+
     changeDark(value) {
       this.darkmode = value;
     },
@@ -127,13 +127,13 @@ export default {
   watch: {
     value: function(newVal,oldVal) {
       this.$refs.topProgress.start();
-      
+      console.log(document.getElementById('desimage'));
       // Use setTimeout for demo
       setTimeout(() => {
         this.$refs.topProgress.done();
       }, 700);
           this.imgValue = newVal;
-      this.getSVG();
+
 
       
 
