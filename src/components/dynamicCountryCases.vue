@@ -41,9 +41,14 @@
         </div>
       </div>
 
-      <div class="desmap">
-                <img :src='getSVG()' alt="" id="desimage">
-                  <div :class="darkmode? 'mapnameDark' : 'mapname'">{{value}} {{getSVG()}}</div>
+      <div class="desmap" v-html="svgURL">
+              
+                  <div :class="darkmode? 'mapnameDark' : 'mapname'">{{value}}</div>
+                <!--<img :src='getSVG()' alt="" id="desimage">-->
+                <!--<img :src='../assets/svg/Spain.svg' alt="" id="desimage">-->
+                <!--<img :src='Path()' alt="" id="desimage">-->
+                <!--<img src=`@/assets/svg/{{imgValue}}.svg` id="desimage" />-->
+                  <div :class="darkmode? 'mapnameDark' : 'mapname'"></div>
 
 
       </div>
@@ -57,7 +62,7 @@
 <script>
 /* eslint-disable no-console */
 import { vueTopprogress } from "vue-top-progress";
-// import { svg } from "../assets/content/svg";
+import { svg } from "../assets/content/svg";
 export default {
   props: ["value"],
   components: {
@@ -70,12 +75,17 @@ export default {
       darkmode: localStorage.getItem("darkmode")
         ? JSON.parse(localStorage.getItem("darkmode"))
         : false,
-        imgValue: ''
+        imgValue: '',
+        URLMap:'',
+        svg: {},
+        svgURL:""
     };
   },
   created() {
-    // console.log(svg);
-    // this.svg.push(svg);
+    console.log(svg);
+    
+    this.svg = svg;
+    this.svgURL = this.svg["Myanmar"]
     this.$darkModeBus.$on("dark-mode", this.changeDark);
   },
   mounted() {
@@ -86,9 +96,16 @@ export default {
   methods: {
     getSVG(){
  
-      const imgURL = '../assets/svg/' + this.value + '.svg';
+      var imgURL = '@/assets/svg/' + this.value + '.svg';
       console.log(typeof(imgURL));
+      console.log(imgURL);
+      // var images = require.context('../assets/svg', false, /\.svg$/)
+      // return images('./' + this.value + ".svg")
       return imgURL;
+    },
+    Path()
+    {
+      return require( `@/assets/svg/${this.imgValue}.svg`)
     },
     changeDark(value) {
       this.darkmode = value;
@@ -133,7 +150,8 @@ export default {
         this.$refs.topProgress.done();
       }, 700);
           this.imgValue = newVal;
-      this.getSVG();
+          this.svgURL = svg[newVal];
+      this.URLMap = this.getSVG();
 
       
 
