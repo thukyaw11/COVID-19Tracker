@@ -213,7 +213,7 @@
             <div
               class="descountrybycasesheading"
               :style="darkmode? 'color : #9fa8da': 'color : #3F51B5'"
-            >{{$t('countrycase')}}</div>
+            >{{$t('countrycase')}}    <p id="test"></p> </div>
             <br />
             <div class="dessearchbar">
               <form :class="darkmode? 'searchcontainer-customDark' : 'searchcontainer-custom'">
@@ -249,7 +249,8 @@
                     class="descasesflex1"
                     style="margin-left:20px;"
                     :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
-                  >{{country.country_name}}</div>
+                  >{{country.country_name}} </div>
+                    
                   <div
                     class="descasesflex2"
                     :style="darkmode? 'color : #f5f5f5' : 'color : #212121'"
@@ -416,6 +417,7 @@
             </div>
 
             <br />
+            
           </div>
         </div>
       </div>
@@ -433,6 +435,7 @@
       </div>
 
     </div>
+ 
   </div>
 </template>
 
@@ -604,6 +607,7 @@ export default {
     }
   },
   created() {
+    
     if (this.lang == "mm") {
       this.count = 0;
     } else {
@@ -622,6 +626,8 @@ export default {
     this.yesbaseURL = `https://aa56zbybij.execute-api.ap-southeast-1.amazonaws.com/v1/news/covid-19?from=${todayDate}`;
   },
   mounted() {
+
+  
     this.urlLocation = window.location.href.split("/").pop();
     if (this.urlLocation == "aboutus") {
       document.getElementById("desbody").style.display = "none";
@@ -737,6 +743,7 @@ export default {
     }
   },
   computed: {
+ 
     filteredListDetail() {
       return this.CountryByCases.filter(name => {
         return name.country_name
