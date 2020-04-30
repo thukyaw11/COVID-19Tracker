@@ -499,6 +499,10 @@ export default {
     };
   },
   methods: {
+    async accept() {
+      this.showUpgradeUI = false
+      await this.$workbox.messageSW({ type: "SKIP_WAITING" });
+    },
     setContacts(data){
       
       this.contactlist = data.data;
@@ -607,7 +611,11 @@ export default {
     }
   },
   created() {
-    
+    if (this.$workbox) {
+      this.$workbox.addEventListener("waiting", () => {
+        this.showUpgradeUI = true;
+      });
+    }
     if (this.lang == "mm") {
       this.count = 0;
     } else {

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import './registerServiceWorker'
+import wb from "./registerServiceWorker";
 import router from './router'
 import store from './store/store'
 import VueMarkDown from 'vue-markdown';
@@ -12,12 +12,9 @@ import VueSweetalert2 from 'vue-sweetalert2';
 // If you don't need the styles, do not connect
 import 'sweetalert2/dist/sweetalert2.min.css';
 
-
-
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
-
 
 var filter = function (text, length, clamp) {
   clamp = clamp || '...';
@@ -37,7 +34,7 @@ Vue.use(VueMaterial);
 Vue.use(VueMarkDown);
 Vue.use(vuescroll);
 Vue.use(VueSweetalert2,options);
-
+Vue.prototype.$workbox = wb;
 
 //Vue.use(LoadScript);
 const sourceOfTruth = { title: 'hello world', updatedTime: '2020-03-28 00:00:00' };
