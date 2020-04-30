@@ -387,10 +387,8 @@ export default {
 <style scoped>
 /*updated latest desktop ui*/
 .classdesbody {
-  flex-direction: row;
+
   display: flex;
-  width: 100%;
-  height: 80%;
   align-items: center;
   justify-content: center;
 }

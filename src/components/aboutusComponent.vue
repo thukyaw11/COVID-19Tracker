@@ -1,6 +1,6 @@
 <template>
-  <div class="classdesbody">
-    <div class="mainflex">
+  <div class="desktopcontainer">
+    <div class="classdesbody">
       <div class="flexbody">
         <div class="flexbodycontainer">
           <div class="flexbodyheader" :style="darkmode? 'color : #f5f5f5' : 'color : #212121' ">
@@ -104,24 +104,63 @@ export default {
 /* for desktop version css */
 
 /*updated latest desktop ui*/
-.classdesbody {
-  flex-direction: column;
-  display: flex;
-  width: 100%;
-  height: 88%;
-  align-items: center;
-  justify-content: center;
+
+.classdesbody
+{
+  display:flex;
+  flex:1;
+  flex-direction:row;
 }
-.mainflex {
+
+.flexbody {
+  display: flex;
+  flex: 3;
+  height:1000px;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+  
+}
+.flexbodycontainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height:1000px;
+  padding-left: 10%;
+}
+.flexbodyheader {
+  
+  align-items:center;
   display: flex;
   flex: 1;
+  width:100%;
+  font-size: 60px;
+  line-height: 100px;
+  font-weight: bold;
 }
+.flexbodycontent {
+
+  flex-direction: column;
+  display: flex;
+  flex: 1;
+  justify-content:center;
+}
+.fleximage {
+  padding-top:200px;
+  display: flex;
+  flex: 1;
+  height:1000px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
 .desaboutusfooter {
   position: fixed;
   bottom: 0;
   background-color: #fff;
-  width: 98%;
+  width: 100%;
   height: 80px;
+  z-index:10;
   display: flex;
   justify-content: center;
   color: #212121;
@@ -131,8 +170,9 @@ export default {
   position: fixed;
   bottom: 0;
   background-color: #121212;
-  width: 98%;
+  width: 100%;
   height: 80px;
+   z-index:10;
   display: flex;
   justify-content: center;
   color: #212121;
@@ -155,47 +195,9 @@ export default {
   align-items: center;
   justify-content: flex-end;
 }
-.flexbody {
-  display: flex;
-  flex: 4;
-
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.flexbodycontainer {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 715px;
-  padding-left: 10%;
-}
-.flexbodyheader {
-  display: flex;
-  flex: 1;
-  font-size: 60px;
-  font-weight: bold;
-  line-height: 100px;
-}
-.flexbodycontent {
-  flex-direction: column;
-  display: flex;
-  flex: 1;
-  justify-content: flex-end;
-}
-.fleximage {
-  display: flex;
-  flex: 2;
-
-  align-items: flex-start;
-  justify-content: center;
-  margin-top: 120px;
-}
-
 /*updated end*/
 .desapicontainer {
   display: flex;
-  flex: 1;
   flex-direction: row;
 }
 .desapi {

@@ -251,37 +251,45 @@ export default {
   color: #212121;
   border-top: 1px solid #eee;
 }
+
+
 .flexbody {
   display: flex;
   flex: 3;
+  height:1000px;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content:center;
+  
 }
 .flexbodycontainer {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 625px;
+  height:1000px;
   padding-left: 10%;
 }
 .flexbodyheader {
+  
+  align-items:center;
   display: flex;
   flex: 1;
-  line-height: 100px;
+  width:100%;
   font-size: 60px;
+  line-height: 100px;
   font-weight: bold;
 }
-
 .flexbodycontent {
+
   flex-direction: column;
   display: flex;
-  height: auto;
-  justify-content: flex-end;
+  flex: 1;
+  justify-content: center;
 }
 .fleximage {
   display: flex;
   flex: 2;
+  height:1000px;
   align-items: center;
   justify-content: center;
 }

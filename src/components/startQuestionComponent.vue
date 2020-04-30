@@ -1,7 +1,6 @@
 <template>
-  <div :class="darkmode? 'desktopcontainerDark': 'desktopcontainer'">
-    <div class="desbody">
-      <div class="mainflex">
+  <div class="desktopcontainer">
+
         <div class="flexbody">
           <div class="flexbodycontainer">
             <div class="flexbodyheader" :style="darkmode? 'color: #f5f5f5': 'color: #212121'">
@@ -31,8 +30,8 @@
         <div class="fleximage">
           <img src="../assets/sick.png" width="500" height="500" />
         </div>
-      </div>
-    </div>
+      
+   
   </div>
 </template>
 <script>
@@ -59,57 +58,29 @@ export default {
 };
 </script>
 <style scoped>
-.desktopcontainer {
-  display: flex;
-  background-color: #dce3ef;
-  flex-direction: column;
-  height: 100%;
-  font-size: 18px;
-  align-items: center;
-  justify-content: center;
-  font-family: "Poppins", sans-serif;
-}
-.desktopcontaineDark {
-  display: flex;
-  background-color: #121212;
-  flex-direction: column;
-  height: 100%;
-  font-size: 18px;
-  align-items: center;
-  justify-content: center;
-  font-family: "Poppins", sans-serif;
-}
 
 /*updated latest desktop ui*/
-.classdesbody {
-  flex-direction: row;
-  display: flex;
-  width: 100%;
-  height: 88%;
-  align-items: center;
-  justify-content: center;
-}
-.mainflex {
-  display: flex;
-  flex: 1;
 
-}
+
 .flexbody {
   display: flex;
   flex: 3;
-
+  height:1000px;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content:center;
+  
 }
 .flexbodycontainer {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 700px;
+  height:1000px;
   padding-left: 10%;
 }
 .flexbodyheader {
+  
+  align-items:center;
   display: flex;
   flex: 1;
   width:100%;
@@ -118,14 +89,16 @@ export default {
   font-weight: bold;
 }
 .flexbodycontent {
+
   flex-direction: column;
   display: flex;
   flex: 1;
-  justify-content: flex-end;
+  justify-content: center;
 }
 .fleximage {
   display: flex;
   flex: 2;
+  height:1000px;
   align-items: center;
   justify-content: center;
 }

@@ -62,7 +62,7 @@
                       style="font-size:36px; color:#757575; padding-top:20px"
                       v-if="statusCountry[0].new_cases"
                     >{{caseByCountry.new_cases}}</div>
-                    <div style="font-size:36px; color:#4CAF50; padding-top:20px" v-else>0</div>
+                    <div style="font-size:36px; color:#757575; padding-top:20px" v-else>0</div>
                   </div>
                 </div>
                 <div class="desnewdeath">
@@ -74,7 +74,7 @@
                       style="font-size:36px; color:#757575; padding-top:20px"
                       v-if="statusCountry[0].total_deaths"
                     >{{caseByCountry.total_deaths}}</div>
-                    <div style="font-size:36px; color:#4CAF50; padding-top:20px" v-else>0</div>
+                    <div style="font-size:36px; color:#757575; padding-top:20px" v-else>0</div>
                   </div>
                 </div>
                 <div class="descasepermin">
@@ -86,7 +86,7 @@
                       style="font-size:36px; color:#757575; padding-top:20px"
                       v-if="statusCountry[0].total_cases_per1m"
                     >{{caseByCountry.total_cases_per1m  }}</div>
-                    <div style="font-size:36px; color:#F44336; padding-top:20px" v-else>0</div>
+                    <div style="font-size:36px; color:#757575; padding-top:20px" v-else>0</div>
                   </div>
                 </div>
 
@@ -101,7 +101,7 @@
                       style="font-size:36px; color:#757575; padding-top:20px"
                       v-if="statusCountry[0].serious_critical"
                     >{{caseByCountry.serious_critical}}</div>
-                    <div style="font-size:36px; color:#F44336; padding-top:20px" v-else>0</div>
+                    <div style="font-size:36px; color:#757575; padding-top:20px" v-else>0</div>
                   </div>
                 </div>
               <div class="descritical">

@@ -1378,16 +1378,15 @@ export default {
   }
   .desktopcontainer {
     display: flex;
-    flex-direction: column;
-    height: 100%;
     font-size: 18px;
-    align-items: center;
     font-family: "Poppins", sans-serif;
   }
   .desheading {
     display: flex;
     position: fixed;
     flex: 1;
+    top:0;
+    z-index:10;
     background-color:#f5f5f5;
     position:fixed;
     width: 100%;
@@ -1400,6 +1399,7 @@ export default {
     display: flex;
     position: fixed;
     flex: 1;
+    z-index:10;
     width: 100%;
      background-color:#121212;
      position:fixed;
@@ -1435,50 +1435,50 @@ export default {
     transition: 0.8s;
   }
   #desbody {
-    margin-top: 90px;
+    margin-top:90px;
     flex-direction: row;
     display: flex;
     width: 100%;
-    height: 88%;
+    height: 1000px;
+   
   }
-  #desaboutusbody {
-    margin-top: 65px;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
+  #desaboutusbody
+  {
+  
     flex-direction: row;
     display: flex;
     width: 100%;
-    height: 88%;
+    height: 1000px;
+
   }
-  #desdonationbody {
-    margin-top: 65px;
-    flex-direction: row;
-    display: flex;
-    flex: 1;
-    width: 100%;
-    height: 100%;
-  }
-  #desscreeningbody {
-    margin-top: 65px;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
+  #desscreeningbody
+  {
+  
     flex-direction: row;
     display: flex;
     width: 100%;
-    height: 88%;
+    height: 1000px;
+
   }
-  #desquestionbody {
-    margin-top: 65px;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
+  #desdonationbody
+  {
     flex-direction: row;
     display: flex;
     width: 100%;
-    height: 88%;
+    height: 1000px;
+
   }
+  #desquestionbody
+  {
+    flex-direction: row;
+    display: flex;
+    width: 100%;
+    height: 1000px;
+    align-items:center;
+    justify-content:center;
+  }
+  
+ 
   .desheadingname {
     font-weight: bold;
     display: flex;
