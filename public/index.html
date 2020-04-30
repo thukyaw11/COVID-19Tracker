@@ -1,68 +1,101 @@
 <html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+		<!-- facebook sharing -->
+		<meta property="og:url" content="https://covid19mm.info" />
+		<meta property="og:type" content="cvoid tracker" />
+		<meta property="og:title" content="COVID19 MM" />
+		<meta
+			property="og:description"
+			content="Built by UIT SU | For news about covid-19"
+		/>
+		<meta property="og:image" content="https://i.imgur.com/hpbxc8u.png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<!-- add icon link -->
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="/apple-touch-icon.png"
+		/>
+		<link
+			rel="icon"
+			type="image/ico"
+			sizes="32x32"
+			href="/favicon-32x32.ico"
+		/>
+		<link
+			rel="icon"
+			type="image/ico"
+			sizes="16x16"
+			href="/favicon-16x16.ico"
+		/>
+		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap"
+			rel="stylesheet"
+		/>
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <!-- facebook sharing -->
-  <meta property="og:url" content="https://covid19mm.info" />
-  <meta property="og:type" content="cvoid tracker" />
-  <meta property="og:title" content="COVID19 MM" />
-  <meta property="og:description" content="Built by UIT SU | For news about covid-19">
-  <meta property="og:image" content="https://i.imgur.com/hpbxc8u.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <!-- add icon link -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/ico" sizes="32x32" href="/favicon-32x32.ico">
-  <link rel="icon" type="image/ico" sizes="16x16" href="/favicon-16x16.ico">
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.13.0/css/v4-shims.css"
+		/>
+		<!-- <link rel="stylesheet" href="https://web.zetamm.com/fonts/2.0.0/css/myanmar3"> -->
+		<!-- material icon -->
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons"
+		/>
 
+		<title>COVID19 MM</title>
+		<style>
+			body.home {
+				background: #121212;
+			}
 
+			body.intro {
+				background: white;
+			}
+		</style>
+	</head>
 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/v4-shims.css">
-  <!-- <link rel="stylesheet" href="https://web.zetamm.com/fonts/2.0.0/css/myanmar3"> -->
-  <!-- material icon -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons">
+	<body>
+		<noscript>
+			<strong
+				>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't
+				work properly without JavaScript enabled. Please enable it to
+				continue.</strong
+			>
+		</noscript>
+		<div id="app"></div>
+		<!-- built files will be auto injected -->
+	</body>
+	<script
+		type="text/javascript"
+		src="https://www.gstatic.com/charts/loader.js"
+	></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		const darkmode = localStorage.getItem("darkmode")
+			? JSON.parse(localStorage.getItem("darkmode"))
+			: false;
 
-  <title>COVID19 MM</title>
-  <style>
-    body.home {
-      background: #121212;
-    }
-
-    body.intro {
-      background: white;
-    }
-  </style>
-</head>
-
-<body>
-  <noscript>
-    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
-      Please enable it to continue.</strong>
-  </noscript>
-  <div id="app"></div>
-  <!-- built files will be auto injected -->
-</body>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script>
-
-  const darkmode = localStorage.getItem('darkmode') ? JSON.parse(localStorage.getItem('darkmode')) : false;
-
-
-  if (darkmode) {
-    document.getElementsByTagName('body')[0].className = "home";
-  } else {
-    document.getElementsByTagName('body')[0].className = "intro";
-  }
-
-
-</script>
-<!-- <script type="text/javascript" src="/src/toggle.js"></script> -->
-
+		if (darkmode) {
+			document.getElementsByTagName("body")[0].className = "home";
+		} else {
+			document.getElementsByTagName("body")[0].className = "intro";
+		}
+	</script>
+	<script src="/sw.js"></script>
+	<!-- <script type="text/javascript" src="/src/toggle.js"></script> -->
 </html>

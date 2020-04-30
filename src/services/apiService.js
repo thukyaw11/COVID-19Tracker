@@ -10,18 +10,9 @@ const apiClientCountryCases = fetch(
     }
   }
 );
-const apiClientContacts = fetch(
-  "https://covid19mm.info/api/contact/list",
-  {
-    method: "GET"
-  }
-);
 
 export default {
   getCountryCases() {
     return apiClientCountryCases;
-  },
-  getContacts(){
-    return apiClientContacts;
   }
 }

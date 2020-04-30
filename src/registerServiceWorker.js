@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === "production") {
 			console.log("New content is downloading.");
 		},
 		updated() {
-			console.alert("New webapp build is available; refreshing ...");
+			console.log("New content is available; Refresh...");
 			setTimeout(() => {
 				window.location.reload(true);
 			}, 1000);

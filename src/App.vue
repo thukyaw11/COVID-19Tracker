@@ -613,7 +613,6 @@ export default {
     } else {
       this.count = 1;
     }
-    this.$store.dispatch("getContacts");
     this.$store.dispatch("getCountryCases");
     this.urlLocation = window.location.href.split("/").pop();
     this.$darkModeBus.$on("dark-mode", this.changeDark);
